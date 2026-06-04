@@ -1,10 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Picxlart </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixlart Photography & Events Co.</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero-content h1{
+font-size:60px;
+margin-bottom:15px;
+color:#d4af37;
+}
+
+.hero-content p{
+font-size:22px;
+margin-bottom:25px;
+}
+
+.btn{
+background:#d4af37;
+color:black;
+padding:12px 30px;
+text-decoration:none;
+font-weight:bold;
+border-radius:30px;
+}
+
+section{
+padding:70px 10%;
+}
+
+h2{
+text-align:center;
+margin-bottom:40px;
+color:#d4af37;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1c1c1c;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
+.contact{
+text-align:center;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:black;
+}
+</style>
 </head>
+
 <body>
-    <h1>Picxlart </h1>
-    <p>Wedding | Event | Corporate Photography</p>
+
+<div class="hero">
+<div class="hero-content">
+<h1>Pixlart Photography & Events Co.</h1>
+<p>Capturing Moments, Creating Memories</p>
+<a href="https://wa.me/919748284730" class="btn">Book Now</a>
+</div>
+</div>
+
+<section>
+<h2>Our Services</h2>
+
+<div class="services">
+<div class="card">
+<h3>Wedding Photography</h3>
+<p>Beautiful wedding moments captured forever.</p>
+</div>
+
+<div class="card">
+<h3>Event Photography</h3>
+<p>Professional coverage for all events.</p>
+</div>
+
+<div class="card">
+<h3>Corporate Photography</h3>
+<p>Premium corporate shoots and branding.</p>
+</div>
+
+<div class="card">
+<h3>Pre Wedding Shoot</h3>
+<p>Creative and cinematic pre-wedding stories.</p>
+</div>
+</div>
+</section>
+
+<section class="contact">
+<h2>Contact Us</h2>
+<p>📞 +91 97482 84730</p>
+<p>📧 info@pixlartphotography.com</p>
+<br>
+<a href="https://wa.me/919748284730" class="btn">WhatsApp Us</a>
+</section>
+
+<footer>
+© 2026 Pixlart Photography & Events Co. All Rights Reserved.
+</footer>
+
 </body>
 </html>
