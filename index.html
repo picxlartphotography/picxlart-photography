@@ -6,141 +6,176 @@
 <title>Picxlart Photography & Events Co.</title>
 
 <style>
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
 body{
-background:#111;
-color:white;
+    background:#111;
+    color:white;
 }
 
+/* Logo */
+.logo{
+    position:absolute;
+    top:20px;
+    left:20px;
+    z-index:1000;
+}
+
+.logo img{
+    height:70px;
+    width:auto;
+}
+
+/* Hero Section */
 .hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url('Cover.jpg.jpg');
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url('Cover.jpg.jpg');
 
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
 .hero-content h1{
-font-size:60px;
-margin-bottom:15px;
-color:#d4af37;
+    font-size:60px;
+    margin-bottom:15px;
+    color:#d4af37;
 }
 
 .hero-content p{
-font-size:22px;
-margin-bottom:25px;
+    font-size:22px;
+    margin-bottom:25px;
 }
 
 .btn{
-background:#d4af37;
-color:black;
-padding:12px 30px;
-text-decoration:none;
-font-weight:bold;
-border-radius:30px;
+    background:#d4af37;
+    color:black;
+    padding:12px 30px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:30px;
 }
 
+/* Sections */
 section{
-padding:70px 10%;
+    padding:70px 10%;
 }
 
 h2{
-text-align:center;
-margin-bottom:40px;
-color:#d4af37;
+    text-align:center;
+    margin-bottom:40px;
+    color:#d4af37;
 }
 
 .services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
 .card{
-background:#1c1c1c;
-padding:30px;
-border-radius:10px;
-text-align:center;
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
 }
 
 .contact{
-text-align:center;
+    text-align:center;
 }
 
 footer{
-text-align:center;
-padding:20px;
-background:black;
+    text-align:center;
+    padding:20px;
+    background:black;
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- Logo -->
+<div class="logo">
+    <img src="logo.png" alt="Picxlart Logo">
+</div>
+
+<!-- Hero Section -->
 <div class="hero">
-<div class="hero-content">
-<h1>Picxlart Photography & Events Co.</h1>
-<p>Timeless Moments, Captured for Eternity</p>
-<a href="https://wa.me/919748284730" class="btn">Book Now</a>
-</div>
+    <div class="hero-content">
+        <h1>Picxlart Photography & Events Co.</h1>
+        <p>Timeless Moments, Captured for Eternity</p>
+        <a href="https://wa.me/919748284730" class="btn">Book Now</a>
+    </div>
 </div>
 
+<!-- Services -->
 <section>
-<h2>Our Services</h2>
+    <h2>Our Services</h2>
 
-<div class="services">
-<a href="wedding.html" style="text-decoration:none;color:white;">
-<div class="card">
-<h3>Wedding Photography</h3>
-<p>Timeless Moments, Captured for Eternity</p>
-</div>
-</a>
+    <div class="services">
 
-<div class="card">
-<h3>Event Photography</h3>
-<p>Professional coverage for all events.</p>
-</div>
+        <a href="wedding.html" style="text-decoration:none;color:white;">
+            <div class="card">
+                <h3>Wedding Photography</h3>
+                <p>Timeless Moments, Captured for Eternity</p>
+            </div>
+        </a>
 
-<div class="card">
-<h3>Corporate Photography</h3>
-<p>Premium corporate shoots and branding.</p>
-</div>
+        <div class="card">
+            <h3>Event Photography</h3>
+            <p>Professional coverage for all events.</p>
+        </div>
 
-<div class="card">
-<h3>Pre Wedding Shoot</h3>
-<p>Creative and cinematic pre-wedding stories.</p>
-</div>
-</div>
+        <div class="card">
+            <h3>Corporate Photography</h3>
+            <p>Premium corporate shoots and branding.</p>
+        </div>
+
+        <div class="card">
+            <h3>Pre Wedding Shoot</h3>
+            <p>Creative and cinematic pre-wedding stories.</p>
+        </div>
+
+    </div>
 </section>
 
+<!-- Contact -->
 <section class="contact">
-<h2>Contact Us</h2>
-<p>📞 +91 70035 21139 / +91 74395 53442  </p>
-<p>📧 picxlartphotography@gmail.com</p>
-<br>
-<a href="https://wa.me/7003521139" class="btn">WhatsApp Us</a>
+    <h2>Contact Us</h2>
+
+    <p>📞 +91 70035 21139 / +91 74395 53442</p>
+    <p>📧 picxlartphotography@gmail.com</p>
+
+    <br>
+
+    <a href="https://wa.me/917003521139" class="btn">
+        WhatsApp Us
+    </a>
 </section>
 
+<!-- Footer -->
 <footer>
-© 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    © 2026 Picxlart Photography & Events Co. All Rights Reserved.
 </footer>
 
 </body>
-<div class="logo">
-<img src="logo.png" alt="Picxlart Logo">
-</div>
 </html>
