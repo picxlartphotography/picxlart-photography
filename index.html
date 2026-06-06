@@ -122,15 +122,23 @@ footer{
             0 0 10px rgba(212,175,55,0.6),
             0 0 20px rgba(212,175,55,0.5),
             0 0 40px rgba(212,175,55,0.4);
-   /* শুধুমাত্র মোবাইলের জন্য লেখা এক লাইনে রাখার কোড */
+  /* শুধুমাত্র মোবাইলের জন্য লেখা এক লাইনে সুন্দর করার কোড */
 @media (max-width: 600px) {
-    .hero-content p {
-        font-size: 16px; /* মোবাইলে ফন্ট সাইজ একটু ছোট করা হলো যাতে ১ লাইনে ধরে */
-        white-space: nowrap; /* লেখাটিকে জোরপূর্বক এক লাইনে রাখবে, ভাঙতে দেবে না */
+    .hero {
+        padding-bottom: 50px !important; /* মোবাইলে লেখাটি একটু নিচে নামাবে যাতে হতের পজিশন না ঢেকে */
     }
-    
     .hero-content h1 {
-        font-size: 24px; /* কোম্পানির নামটাও যাতে মোবাইলে বেশি বড় না লাগে */
+        font-size: 20px !important; /* নামটির সাইজ ছোট করা হলো যাতে মোবাইলে সুন্দর দেখায় */
+        line-height: 1.3;
+    }
+    .hero-content p {
+        font-size: 13px !important; /* স্লোগানটি ছোট করা হলো যাতে ১ লাইনে ধরে */
+        white-space: nowrap !important; /* কোনোভাবেই ২ লাইনে ভাঙবে না */
+        margin-bottom: 15px !important;
+    }
+    .btn {
+        padding: 8px 20px !important; /* মোবাইলের বোতামটি একটু ছোট করা হলো */
+        font-size: 14px !important;
     }
 }
 </style>
