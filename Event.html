@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wedding Photography | Picxlart</title>
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+margin:0;
+}
+
+h1{
+text-align:center;
+padding:30px;
+color:#d4af37;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+transition:0.4s;
+cursor:pointer;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.content{
+padding:20px;
+max-width:1000px;
+margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Event Photography</h1>
+
+<div class="gallery">
+<img src="Wedding1.jpg">
+<img src="Wedding2.jpg">
+<img src="Wedding3.jpg">
+<img src="Wedding4.jpg">
+<img src="Wedding5.jpg">
+<img src="Wedding6.jpg">
+<img src="Wedding7.jpg">
+<img src="Wedding8.jpg">
+<img src="Wedding9.jpg">
+<img src="Wedding10.jpg">
+<img src="Wedding11.jpg">
+<img src="Wedding12.jpg">
+<img src="Wedding13.jpg">
+<img src="Wedding14.jpg">
+<img src="Wedding15.jpg">
+<img src="Wedding16.jpg">
+<img src="Wedding17.jpg">
+<img src="Wedding18.jpg">
+<img src="Wedding19.jpg">
+<img src="Wedding20.jpg">
+</div>
+
+<div class="content">
+<h2>Our Wedding Photography</h2>
+
+<p>
+At Picxlart Photography & Events Co., we capture timeless wedding moments with creativity, emotion and elegance.
+</p>
+
+<p>Birthday Celebrations, Rice Ceremony, Annaprashan, Family Events & Special Occasions.</p>
+
+</div>
+<div id="lightbox" onclick="closeLightbox()"
+style="display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:9999;">
+
+<img id="lightbox-img"
+style="max-width:90%;
+max-height:90%;
+border-radius:10px;">
+</div>
+
+<script>
+const images = document.querySelectorAll('.gallery img');
+
+images.forEach(img => {
+img.addEventListener('click', () => {
+document.getElementById('lightbox').style.display='flex';
+document.getElementById('lightbox-img').src=img.src;
+});
+});
+
+function closeLightbox(){
+document.getElementById('lightbox').style.display='none';
+}
+</script>
+</body>
+</html>
 
