@@ -133,17 +133,35 @@ h2{
     transform:translateY(-5px);
 }
 
-/* ================= BOOKING FORM STYLING ================= */
+/* ================= BOOKING FORM STYLING (WITH BG IMAGE & OVERLAY) ================= */
 .booking-section {
-    background: #161616;
+    position: relative;
+    background-image: url('Cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     text-align: center;
-    padding: 60px 5%;
+    padding: 80px 5%;
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
+    z-index: 1;
+}
+
+/* Transparent Dark Cover Overlay for Form Background */
+.booking-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* Transparent black sheet layer */
+    z-index: -1;
 }
 
 .booking-section h2 {
     margin-bottom: 10px;
+    position: relative;
 }
 
 .booking-section .sub-text {
@@ -154,6 +172,7 @@ h2{
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
+    position: relative;
 }
 
 .form-inline {
@@ -163,11 +182,12 @@ h2{
     gap: 15px;
     max-width: 1000px;
     margin: 0 auto;
+    position: relative;
 }
 
 .form-inline select, 
 .form-inline input {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     border: 1px solid #444;
     padding: 15px 20px;
@@ -299,16 +319,6 @@ h2{
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #111;
-    color: #666;
-    font-size: 14px;
-    border-top: 1px solid #222;
 }
 
 /* Smooth fade transitions */
@@ -471,7 +481,7 @@ footer {
         
         <div class="map-window">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.1292025750373!2d88.34114427592476!3d22.72346762741121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89b4e7243c3f9%3A0xe2da2df59b7dfb32!2sPicxlart%20Photography%20%26%20Events%20Co.!5e0!3m2!1sen!2sin!4v1717955000000!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14722.38096338573!2d88.33129885000001!3d22.74328225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89b14df5a975b%3A0x7d01804c7c8bc1e6!2sSerampore%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1717967200000!5m2!1sen!2sin" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
