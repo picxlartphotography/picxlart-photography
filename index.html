@@ -96,6 +96,8 @@ body{
     font-weight:bold;
     border-radius:30px;
     display: inline-block;
+    border: none;
+    cursor: pointer;
 }
 
 /* Sections */
@@ -129,6 +131,87 @@ h2{
 }
 .card:hover{
     transform:translateY(-5px);
+}
+
+/* ================= BOOKING FORM STYLING ================= */
+.booking-section {
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('Cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 60px 5%;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.booking-section h2 {
+    margin-bottom: 10px;
+}
+
+.booking-section .sub-text {
+    color: #ccc;
+    font-size: 15px;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.form-inline select, 
+.form-inline input {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #444;
+    padding: 15px 20px;
+    font-size: 15px;
+    border-radius: 30px;
+    outline: none;
+    min-width: 200px;
+    flex: 1;
+}
+
+.form-inline select option {
+    background: #111;
+    color: white;
+}
+
+.form-inline input[type="date"] {
+    color-scheme: dark; /* Mobile-e date picker kalo dekhabar jonno */
+}
+
+.form-inline select:focus, 
+.form-inline input:focus {
+    border-color: #d4af37;
+}
+
+.form-inline .send-btn {
+    background: white;
+    color: black;
+    padding: 15px 40px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-inline .send-btn:hover {
+    background: #d4af37;
+    color: black;
 }
 
 /* ================= CONTACT & STATS STYLING ================= */
@@ -169,7 +252,7 @@ h2{
     letter-spacing: 1px;
 }
 
-/* Two Column Contact Layout (Left Map, Right Text) */
+/* Two Column Contact Layout */
 .contact-layout {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr; 
@@ -221,8 +304,6 @@ h2{
     gap: 10px;
 }
 
-/* ========================================================== */
-
 /* Smooth fade transitions */
 .fade {
     animation-name: fade;
@@ -250,6 +331,14 @@ h2{
     .map-window {
         height: 280px;
         order: 2; 
+    }
+    .form-inline {
+        flex-direction: column;
+    }
+    .form-inline select, 
+    .form-inline input,
+    .form-inline .send-btn {
+        width: 100%;
     }
 }
 
@@ -329,6 +418,27 @@ h2{
     </div>
 </section>
 
+<section class="booking-section">
+    <h2>LET'S PLAN YOUR PHOTOGRAPHY NOW!</h2>
+    <p class="sub-text">We offer a range of photography with different price segments. Let us know your requirements and budget and discuss everything to get you the Best!</p>
+    
+    <div class="form-inline">
+        <select id="shootType">
+            <option value="" disabled selected>Type of shoot</option>
+            <option value="Wedding Photography">Wedding Photography</option>
+            <option value="Pre Wedding Shoot">Pre Wedding Shoot</option>
+            <option value="Event Photography">Event Photography</option>
+            <option value="Corporate Photography">Corporate Photography</option>
+            <option value="Baby Photography">Baby Photography</option>
+        </select>
+        
+        <input type="date" id="shootDate" placeholder="dd-mm-yyyy">
+        
+        <input type="tel" id="clientPhone" placeholder="Phone number">
+        
+        <button class="send-btn" onclick="sendEnquiry()">Send</button>
+    </div>
+</section>
 <section class="contact">
     
     <div class="stats-container">
@@ -354,7 +464,7 @@ h2{
         
         <div class="map-window">
             <iframe 
-                src="https://maps.google.com/maps?q=Picxlart%20Photography%20%26%20Events%20Co.&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                src="http://googleusercontent.com/maps.google.com/4" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
@@ -396,6 +506,25 @@ function showSlides() {
   if (slideIndex > slides.length) {slideIndex = 1}    
   slides[slideIndex-1].style.display = "block";  
   setTimeout(showSlides, 3500); 
+}
+
+// WhatsApp Enquiry Automation Script
+function sendEnquiry() {
+    const sType = document.getElementById('shootType').value;
+    const sDate = document.getElementById('shootDate').value;
+    const sPhone = document.getElementById('clientPhone').value;
+    
+    if(!sType || !sDate || !sPhone) {
+        alert("Please fill all the details before sending!");
+        return;
+    }
+    
+    // Formatted message text
+    const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Shoot:* ${sType}%0A*Preferred Date:* ${sDate}%0A*My Phone Number:* ${sPhone}%0A%0APlease get back to me with the details.`;
+    
+    // Opens WhatsApp with predefined text to your primary number
+    const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
+    window.open(whatsappUrl, '_blank');
 }
 </script>
 
