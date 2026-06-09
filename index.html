@@ -6,7 +6,6 @@
 <title>Picxlart Photography & Events Co.</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -32,7 +31,6 @@ body{
     width:auto;
 }
 
-/* Hero Section */
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -96,8 +94,6 @@ body{
     to {opacity: 1}
 }
 
-
-
 .hero-content p{
     font-size:22px;
     margin-bottom:25px;
@@ -110,6 +106,7 @@ body{
     text-decoration:none;
     font-weight:bold;
     border-radius:30px;
+    display: inline-block;
 }
 
 /* Sections */
@@ -135,7 +132,6 @@ h2{
     border-radius:10px;
     text-align:center;
     transition:0.3s;
-
     min-height:140px;
 }
     
@@ -162,19 +158,21 @@ footer{
             0 0 5px rgba(212,175,55,0.3),
             0 0 10px rgba(212,175,55,0.2);
     }
-
     to{
         text-shadow:
             0 0 10px rgba(212,175,55,0.6),
             0 0 20px rgba(212,175,55,0.5),
             0 0 40px rgba(212,175,55,0.4);
-  /* শুধুমাত্র মোবাইলের জন্য লেখা এক লাইনে সুন্দর করার কোড */
+    }
+}
+
+/* শুধুমাত্র মোবাইলের জন্য লেখা এক লাইনে সুন্দর করার কোড */
 @media (max-width: 600px) {
     .hero {
         padding-bottom: 50px !important; /* মোবাইলে লেখাটি একটু নিচে নামাবে যাতে হতের পজিশন না ঢেকে */
     }
     .hero-content h1 {
-        font-size: 20px !important; /* নামটির সাইজ ছোট করা হলো যাতে মোবাইলে সুন্দর দেখায় */
+        font-size: 20px !important; /* নামটির সাইজ ছোট করা হলো যাতে মোবাইলে সুন্দর দেখায় */
         line-height: 1.3;
     }
     .hero-content p {
@@ -192,13 +190,19 @@ footer{
 
 <body>
 
-<!-- Logo -->
 <div class="logo">
     <img src="logo.png" alt="Picxlart Logo">
 </div>
 
-<!-- Hero Section -->
 <div class="hero">
+    
+    <div class="hero-slideshow">
+        <div class="mySlides fade"><img src="Cover.jpg"></div>
+        <div class="mySlides fade"><img src="Cover1.jpg"></div>
+        <div class="mySlides fade"><img src="Cover2.jpg"></div>
+        <div class="mySlides fade"><img src="Cover3.jpg"></div>
+    </div>
+
     <div class="hero-content">
         <h1>Picxlart Photography & Events Co.</h1>
         <p>Timeless Moments, Captured for Eternity</p>
@@ -206,12 +210,10 @@ footer{
     </div>
 </div>
 
-<!-- Services -->
 <section>
     <h2>Our Services</h2>
 
     <div class="services">
-
         <a href="wedding.html" style="text-decoration:none;color:white;">
             <div class="card">
                 <h3>Wedding Photography</h3>
@@ -219,32 +221,29 @@ footer{
             </div>
         </a>
 
-       <a href="Event.html" style="text-decoration:none;color:white;">
-
-<div class="card">
-<h3>Event Photography</h3>
-<p>Professional coverage for all events.</p>
-</div>
-</a>
+        <a href="Event.html" style="text-decoration:none;color:white;">
+            <div class="card">
+                <h3>Event Photography</h3>
+                <p>Professional coverage for all events.</p>
+            </div>
+        </a>
 
         <a href="corporate.html" style="text-decoration:none;color:white;">
-<div class="card">
-<h3>Corporate Photography</h3>
-<p>Premium corporate shoots and branding.</p>
-</div>
-</a>
+            <div class="card">
+                <h3>Corporate Photography</h3>
+                <p>Premium corporate shoots and branding.</p>
+            </div>
+        </a>
 
         <a href="prewedding.html" style="text-decoration:none;color:white;">
-<div class="card">
-<h3>Pre Wedding Shoot</h3>
-<p>Creative and cinematic pre-wedding stories.</p>
-</div>
-</a>
-
+            <div class="card">
+                <h3>Pre Wedding Shoot</h3>
+                <p>Creative and cinematic pre-wedding stories.</p>
+            </div>
+        </a>
     </div>
 </section>
 
-<!-- Contact -->
 <section class="contact">
     <h2>Contact Us</h2>
 
@@ -258,10 +257,26 @@ footer{
     </a>
 </section>
 
-<!-- Footer -->
 <footer>
     © 2026 Picxlart Photography & Events Co. All Rights Reserved.
 </footer>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 3500); // 3.5 Second por por change hobe
+}
+</script>
 
 </body>
 </html>
