@@ -447,14 +447,25 @@ footer {
     <p class="sub-text">We offer a range of photography with different price segments. Let us know your requirements and budget and discuss everything to get you the Best!</p>
     
     <div class="form-inline">
-        <select id="shootType">
-            <option value="" disabled selected>Type of shoot</option>
-            <option value="Wedding Photography">Wedding Photography</option>
-            <option value="Pre Wedding Shoot">Pre Wedding Shoot</option>
-            <option value="Event Photography">Event Photography</option>
-            <option value="Corporate Photography">Corporate Photography</option>
-            <option value="Baby Photography">Baby Photography</option>
-        </select>
+<select id="shootType" onchange="toggleOtherField()">
+    <option value="" disabled selected>Type of shoot</option>
+    <option value="Wedding Photography">Wedding Photography</option>
+    <option value="Pre Wedding Shoot">Pre Wedding Shoot</option>
+    <option value="Event Photography">Event Photography</option>
+    <option value="Corporate Photography">Corporate Photography</option>
+    <option value="Baby Photography">Baby Photography</option>
+    <option value="Rice Ceremony">Rice Ceremony</option>
+    <option value="Birthday Ceremony">Birthday Ceremony</option>
+    <option value="Thread Ceremony">Thread Ceremony</option>
+    <option value="Others">Others</option>
+</select>
+
+<input
+    type="text"
+    id="otherDetails"
+    placeholder="Programme details (max 10 words)"
+    style="display:none;"
+    maxlength="60">
         
         <input type="date" id="shootDate" placeholder="dd-mm-yyyy">
         
@@ -535,18 +546,37 @@ function showSlides() {
   setTimeout(showSlides, 3500); 
 }
 
+function toggleOtherField() {
+    const shootType = document.getElementById("shootType").value;
+    const otherField = document.getElementById("otherDetails");
+
+    if (shootType === "Others") {
+        otherField.style.display = "block";
+    } else {
+        otherField.style.display = "none";
+        otherField.value = "";
+    }
+}
+    
 // WhatsApp Enquiry Automation Script
 function sendEnquiry() {
     const sType = document.getElementById('shootType').value;
     const sDate = document.getElementById('shootDate').value;
     const sPhone = document.getElementById('clientPhone').value;
+    const otherDetails = document.getElementById('otherDetails').value;
     
     if(!sType || !sDate || !sPhone) {
         alert("Please fill all the details before sending!");
         return;
     }
     
-    const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Shoot:* ${sType}%0A*Preferred Date:* ${sDate}%0A*My Phone Number:* ${sPhone}%0A%0APlease get back to me with the details.`;
+    let extraInfo = "";
+
+if (sType === "Others" && otherDetails.trim() !== "") {
+    extraInfo = `%0A*Programme Details:* ${otherDetails}`;
+}
+
+const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Shoot:* ${sType}${extraInfo}%0A*Preferred Date:* ${sDate}%0A*My Phone Number:* ${sPhone}%0A%0APlease get back to me with the details.`;
     
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
