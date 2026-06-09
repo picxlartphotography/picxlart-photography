@@ -6,6 +6,70 @@
 <title>Picxlart Photography & Events Co.</title>
 
 <style>
+    /* Top Navbar */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#4b0082;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 30px;
+    z-index:99999;
+    box-shadow:0 2px 10px rgba(0,0,0,.4);
+}
+
+.nav-logo img{
+    height:55px;
+}
+
+.nav-menu{
+    display:flex;
+    gap:25px;
+}
+
+.nav-menu a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.nav-menu a:hover{
+    color:#d4af37;
+}
+
+.nav-social{
+    display:flex;
+    gap:15px;
+}
+
+.nav-social a{
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.nav-social a:hover{
+    color:#d4af37;
+}
+
+/* Hero section niche neme jabe */
+.hero{
+    margin-top:75px;
+}
+
+@media(max-width:768px){
+    .nav-menu{
+        gap:12px;
+        font-size:13px;
+    }
+
+    .nav-logo img{
+        height:40px;
+    }
+}
 *{
     margin:0;
     padding:0;
@@ -385,10 +449,42 @@ footer {
     }
 }
 </style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
+<div class="navbar">
 
+    <div class="nav-logo">
+        <img src="logo.png" alt="Picxlart Logo">
+    </div>
+
+    <div class="nav-menu">
+        <a href="#">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#why">Why Picxlart</a>
+        <a href="#payment">Payment Terms</a>
+        <a href="#book">Book Now</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="YOUR_FACEBOOK_LINK" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="YOUR_INSTAGRAM_LINK" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="YOUR_YOUTUBE_LINK" target="_blank">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+
+</div>
+    
 <div class="logo">
     <img src="logo.png" alt="Picxlart Logo">
 </div>
@@ -408,8 +504,8 @@ footer {
     </div>
 </div>
 
-<section>
-    <h2>Our Services</h2>
+<section id="gallery">
+<h2>Our Services</h2>
 
     <div class="services">
         <a href="wedding.html" style="text-decoration:none;color:white;">
@@ -441,8 +537,59 @@ footer {
         </a>
     </div>
 </section>
+<section id="why">
+    <h2>Why Picxlart</h2>
 
-<section class="booking-section">
+    <div class="services">
+
+        <div class="card">
+            <h3>Experienced Team</h3>
+            <p>Years of experience in wedding and event photography.</p>
+        </div>
+
+        <div class="card">
+            <h3>Premium Editing</h3>
+            <p>High-end retouching and cinematic colour grading.</p>
+        </div>
+
+        <div class="card">
+            <h3>On-Time Delivery</h3>
+            <p>Fast and reliable delivery of photos and videos.</p>
+        </div>
+
+        <div class="card">
+            <h3>Trusted by Clients</h3>
+            <p>Hundreds of happy clients across West Bengal.</p>
+        </div>
+
+    </div>
+</section>
+    <section id="why">
+    <h2>Why Picxlart</h2>
+
+    <div class="services">
+        <div class="card">
+            <h3>Experienced Team</h3>
+            <p>Years of experience in wedding and event photography.</p>
+        </div>
+
+        <div class="card">
+            <h3>Premium Editing</h3>
+            <p>High-end photo editing and retouching.</p>
+        </div>
+
+        <div class="card">
+            <h3>On-Time Delivery</h3>
+            <p>Fast and reliable delivery of photos and videos.</p>
+        </div>
+
+        <div class="card">
+            <h3>Trusted by Clients</h3>
+            <p>Hundreds of happy clients across West Bengal.</p>
+        </div>
+    </div>
+</section>
+<section class="booking-section" id="book">
     <h2>LET'S PLAN YOUR PHOTOGRAPHY NOW!</h2>
     <p class="sub-text">We offer a range of photography with different price segments. Let us know your requirements and budget and discuss everything to get you the Best!</p>
     
