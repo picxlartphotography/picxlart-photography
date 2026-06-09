@@ -33,21 +33,67 @@ body{
 }
 
 /* Hero Section */
-.hero{
-    height:100vh;
-    background:
-    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-    url('Cover.jpg.jpg');
+/* Hero Section */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    padding-bottom: 180px; 
+}
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+/* Slideshow chobi gulor jonno layout */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 
-    display:flex;
-    justify-content:center;
-    align-items:flex-end; 
-    text-align:center;
-    padding-bottom: 180px; /* এখানে ৮০ থেকে বাড়িয়ে ১৮০ করে দেওয়া হয়েছে, যা লেখাটিকে আরেকটু ওপরে তুলবে */
+/* Dark layer jate chobir opor lekha bhalo bojha jay */
+.hero-slideshow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6));
+    z-index: 2;
+}
+
+.mySlides {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hero content jate chobir opor thake */
+.hero-content {
+    position: relative;
+    z-index: 3;
+}
+
+/* Smooth fade transitions */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 
