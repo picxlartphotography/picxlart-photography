@@ -173,7 +173,35 @@ body{
 section{
     padding:70px 10%;
 }
+@media (max-width:768px){
 
+    section{
+        padding:50px 15px;
+    }
+
+    .contact-layout{
+        grid-template-columns:1fr;
+        padding:20px;
+        gap:25px;
+    }
+
+    .contact-text-side{
+        text-align:center;
+    }
+
+    .contact-details-list p{
+        justify-content:center;
+        text-align:center;
+        flex-wrap:wrap;
+        word-break:break-word;
+    }
+
+    .map-window{
+        width:100%;
+        height:250px;
+    }
+
+}
 h2{
     text-align:center;
     margin-bottom:40px;
@@ -409,32 +437,16 @@ footer {
 }
 
 /* Responsive System */
-@media (max-width: 768px) {
-    .contact-layout {
-        grid-template-columns: 1fr;
-        padding: 15px;
-        gap: 20px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-}
-    .contact-text-side {
-        text-align: center;
-    }
-    .contact-details-list p {
-        justify-content: center;
-    }
-    .map-window {
-        height: 280px;
-        order: 2; 
-    }
+
     .form-inline {
         flex-direction: column;
     }
-    .form-inline select, 
+
+    .form-inline select,
     .form-inline input,
     .form-inline .send-btn {
         width: 100%;
+        min-width: 100%;
     }
 }
 
