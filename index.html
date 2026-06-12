@@ -272,17 +272,18 @@ h2{
 }
 
 .form-inline{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    max-width:1400px;
+    margin:0 auto;
+    position:relative;
+    flex-direction:row;
 }
 
-.form-inline select, 
-.form-inline input {
+.form-inline select,
+.form-inline input{
     background: rgba(0, 0, 0, 0.8);
     color: white;
     border: 1px solid #444;
@@ -291,7 +292,8 @@ h2{
     border-radius: 30px;
     outline: none;
     min-width: 200px;
-    width: 250px;
+    width: 280px;
+    flex:none;
 }
 
 .form-inline select option {
@@ -320,7 +322,7 @@ h2{
     transition: 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
-    width: 180px;
+    width:180px;
 }
 
 .form-inline .send-btn:hover {
