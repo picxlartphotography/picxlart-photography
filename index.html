@@ -514,7 +514,41 @@ footer {
     }
 
 }
+.why-card{
+    max-width:950px;
+    margin:auto;
+    text-align:center;
+    line-height:1.8;
+}
 
+#seeMoreBtn{
+    display:none;
+}
+
+@media(max-width:768px){
+
+    #whyText{
+        max-height:140px;
+        overflow:hidden;
+        transition:.4s;
+    }
+
+    #whyText.expanded{
+        max-height:1000px;
+    }
+
+    #seeMoreBtn{
+        display:inline-block;
+        margin-top:15px;
+        background:#d4af37;
+        color:#111;
+        border:none;
+        padding:10px 22px;
+        border-radius:25px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+}
 </style>
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -604,10 +638,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <section id="why">
     <h2>Why Picxlart</h2>
 
-<div class="card" style="max-width:950px; margin:auto; text-align:center; line-height:1.8;">
-    <p>
+<div class="card why-card">
+
+    <p id="whyText">
         At Picxlart Photography & Events Co., we believe every special moment deserves to be preserved with creativity, passion, and perfection. Our experienced team combines artistic storytelling, premium editing, cinematic visuals, and attention to detail to create memories that last a lifetime. We are committed to delivering exceptional quality, professional service, and on-time delivery while ensuring every client enjoys a comfortable and personalized experience. Trusted by hundreds of happy families and businesses, we continuously strive to exceed expectations and turn ordinary moments into extraordinary stories. Based in West Bengal, we proudly serve clients across India and are available for destination weddings, corporate projects, and international assignments worldwide.
     </p>
+
+    <button id="seeMoreBtn" onclick="toggleWhy()">
+        See More
+    </button>
+
 </div>
     
 <h3 style="
@@ -811,6 +851,19 @@ const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Sho
     
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
+}
+    function toggleWhy(){
+
+    const text = document.getElementById("whyText");
+    const btn = document.getElementById("seeMoreBtn");
+
+    text.classList.toggle("expanded");
+
+    if(text.classList.contains("expanded")){
+        btn.innerText = "See Less";
+    }else{
+        btn.innerText = "See More";
+    }
 }
 </script>
 
