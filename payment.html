@@ -1,21 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Payment | Picxlart</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:50px 20px;
+}
+
+h1{
+text-align:center;
+color:#d4af37;
+margin-bottom:25px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#ddd;
+font-size:17px;
+}
+
+.payment-container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
+margin-top:60px;
+flex-wrap:wrap;
+}
+
+.payment-left{
+text-align:center;
+}
+
+.payment-left img{
+width:320px;
+max-width:100%;
+border-radius:15px;
+border:2px solid #d4af37;
+}
+
+.upi-id{
+margin-top:15px;
+color:#d4af37;
+font-weight:bold;
+font-size:16px;
+}
+
+.divider{
+width:2px;
+height:320px;
+background:#d4af37;
+}
+
+.payment-right{
+max-width:400px;
+text-align:center;
+}
+
+.payment-right h3{
+color:#d4af37;
+font-size:28px;
+margin-bottom:25px;
+}
+
+.pay-btn{
+display:inline-block;
+background:#d4af37;
+color:black;
+padding:15px 30px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+margin-bottom:20px;
+}
+
+.pay-btn:hover{
+opacity:0.9;
+}
+
+.payment-right p{
+line-height:1.8;
+color:#ddd;
+}
+
+@media(max-width:768px){
+
+.payment-container{
+flex-direction:column;
+}
+
+.divider{
+display:none;
+}
+
+.payment-left img{
+width:280px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
 <h1>Online Payment</h1>
 
-<p style="max-width:900px;margin:auto;line-height:1.8;text-align:center;">
+<p class="intro">
 We value your trust and strive to make every step of your experience smooth and hassle-free.
-
 <br><br>
-
 To complete your booking, advance payment, or final payment, simply scan the QR Code below using any UPI-supported payment application. Your payment will be processed securely and instantly.
-
 <br><br>
-
 After a successful transaction, please share the payment screenshot via WhatsApp so that our team can verify and update your booking status promptly.
 </p>
 
 <div class="payment-container">
 
 <div class="payment-left">
-    <img src="QR-Code.jpg" alt="Payment QR Code">
+
+<img src="QR-Code.jpg" alt="Payment QR Code">
+
+<div class="upi-id">
+UPI ID: debghosh2006@okicici
+</div>
+
 </div>
 
 <div class="divider"></div>
@@ -25,38 +155,18 @@ After a successful transaction, please share the payment screenshot via WhatsApp
 <h3>Quick Payment</h3>
 
 <a href="upi://pay?pa=debghosh2006@okicici&pn=Debashis Ghosh&cu=INR" class="pay-btn">
-    Google Pay / PhonePe / Paytm
+Google Pay / PhonePe / Paytm
 </a>
 
 <p>
-Tap the button above to open any UPI-supported payment application directly on your mobile device.
+Tap the button above to open your preferred UPI application directly on your mobile device and complete the payment securely.
 </p>
 
 </div>
 
 </div>
-<div class="payment-container">
-
-<div class="payment-left">
-    <img src="QR-Code.jpg" alt="Payment QR Code">
-</div>
-
-<div class="divider"></div>
-
-<div class="payment-right">
-
-```
-<h3>Quick Payment</h3>
-
-<a href="upi://pay?pa=YOUR_UPI_ID&pn=Picxlart Photography & Events Co.&cu=INR" class="pay-btn">
-    Google Pay / PhonePe / Paytm
-</a>
-
-<p>
-Tap the button above to open any UPI-supported payment application directly on your mobile device.
-</p>
-```
 
 </div>
 
-</div>
+</body>
+</html>
