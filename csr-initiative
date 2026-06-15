@@ -124,7 +124,11 @@ width:280px;
 
 <body>
 
-<body>
+<h1>CSR Initiative – Dream Wedding Support Program</h1>
+
+<p style="max-width:950px;margin:auto;line-height:1.9;text-align:center;">
+
+At Picxlart Photography & Events Co., we believe that every bride deserves the opportunity to preserve the memories of her special day, regardless of financial circumstances.
 
 <h1>CSR Initiative – Dream Wedding Support Program</h1>
 
@@ -132,41 +136,93 @@ width:280px;
 
 At Picxlart Photography & Events Co., we believe that every bride deserves the opportunity to preserve the memories of her special day, regardless of financial circumstances.
 
-...
+As part of our Corporate Social Responsibility (CSR) Initiative, we select up to three (3) deserving brides every year for wedding photography support.
+
+This initiative is intended for families who genuinely wish to document their wedding memories but are unable to afford professional wedding photography services due to financial limitations.
+
+This support program is applicable only for <strong>Single Side (Bride) Wedding Photography Coverage</strong> and is offered on a limited basis each year.
+
+<br><br>
+
+<h2 style="color:#d4af37;">Who Can Apply?</h2>
+
+<p style="line-height:1.9;">
+
+• Families with limited financial resources.
+
+<br>
+
+• Brides whose families are unable to afford professional wedding photography despite having a genuine desire to preserve their wedding memories.
+
+<br>
+
+• Families planning a wedding with a modest budget.
+
+<br>
+
+• Applicants who value and respect the importance of photography as a lifelong memory.
+
 </p>
 
-<div class="payment-container">
+<br>
 
-<div class="payment-left">
+<h2 style="color:#d4af37;">Selection Process</h2>
 
-<img src="./QR-Code.jpeg" alt="Payment QR Code">
+<p style="line-height:1.9;">
 
-<div class="upi-id">
-UPI ID: debghosh2006@okicici
-</div>
+Every application is carefully reviewed by our team.
 
-</div>
+Selection is based on:
 
-<div class="divider"></div>
+<br><br>
 
-<div class="payment-right">
+• Family income and financial condition.
 
-<h3>Quick Payment</h3>
+<br>
 
-<a href="upi://pay?pa=debghosh2006@okicici&pn=Debashis Ghosh&cu=INR" class="pay-btn">
-Google Pay / PhonePe / Paytm
+• Overall family background.
+
+<br>
+
+• Wedding budget and circumstances.
+
+<br>
+
+• Supporting information provided by the applicant.
+
+<br>
+
+• Internal verification conducted by Picxlart Photography & Events Co.
+
+</p>
+
+<br>
+
+<h2 style="color:#d4af37;">Important Note</h2>
+
+<p style="line-height:1.9;">
+
+Submission of an application does not guarantee selection.
+
+Only up to three (3) applicants may be selected in a calendar year.
+
+Picxlart Photography & Events Co. reserves the sole right to approve, reject, shortlist, or discontinue any application based on internal review and eligibility criteria.
+
+</p>
+
+<br>
+
+<p style="font-size:18px;text-align:center;">
+
+Our objective is simple — to help deserving families preserve one of the most important days of their lives through meaningful and professional wedding photography.
+
+</p>
+<div style="text-align:center;margin-top:40px;margin-bottom:60px;">
+
+<a href="#" class="pay-btn">
+Apply Now
 </a>
 
-<p>
-Tap the button above to open your preferred UPI application directly on your mobile device and complete the payment securely.
-</p>
-
 </div>
 
-</div>
-
-</div>
-
-</body>
-</html>
 
