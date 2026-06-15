@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSR Initiative | Picxlart</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:50px 20px;
+}
+
+h1{
+text-align:center;
+color:#d4af37;
+margin-bottom:25px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#ddd;
+font-size:17px;
+}
+
+.payment-container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
+margin-top:60px;
+flex-wrap:wrap;
+}
+
+.payment-left{
+text-align:center;
+}
+
+.payment-left img{
+width:320px;
+max-width:100%;
+border-radius:15px;
+border:2px solid #d4af37;
+}
+
+.upi-id{
+margin-top:15px;
+color:#d4af37;
+font-weight:bold;
+font-size:16px;
+}
+
+.divider{
+width:2px;
+height:320px;
+background:#d4af37;
+}
+
+.payment-right{
+max-width:400px;
+text-align:center;
+}
+
+.payment-right h3{
+color:#d4af37;
+font-size:28px;
+margin-bottom:25px;
+}
+
+.pay-btn{
+display:inline-block;
+background:#d4af37;
+color:black;
+padding:15px 30px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+margin-bottom:20px;
+}
+
+.pay-btn:hover{
+opacity:0.9;
+}
+
+.payment-right p{
+line-height:1.8;
+color:#ddd;
+}
+
+@media(max-width:768px){
+
+.payment-container{
+flex-direction:column;
+}
+
+.divider{
+display:none;
+}
+
+.payment-left img{
+width:280px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<body>
+
+<h1>CSR Initiative – Dream Wedding Support Program</h1>
+
+<p style="max-width:950px;margin:auto;line-height:1.9;text-align:center;">
+
+At Picxlart Photography & Events Co., we believe that every bride deserves the opportunity to preserve the memories of her special day, regardless of financial circumstances.
+
+...
+</p>
+
+<div class="payment-container">
+
+<div class="payment-left">
+
+<img src="./QR-Code.jpeg" alt="Payment QR Code">
+
+<div class="upi-id">
+UPI ID: debghosh2006@okicici
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="payment-right">
+
+<h3>Quick Payment</h3>
+
+<a href="upi://pay?pa=debghosh2006@okicici&pn=Debashis Ghosh&cu=INR" class="pay-btn">
+Google Pay / PhonePe / Paytm
+</a>
+
+<p>
+Tap the button above to open your preferred UPI application directly on your mobile device and complete the payment securely.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
 
