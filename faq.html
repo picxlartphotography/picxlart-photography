@@ -1,0 +1,168 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Frequently Asked Questions | Picxlart Photography & Events Co.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:70px 20px;
+}
+
+.page-title{
+text-align:center;
+color:#d4af37;
+font-size:42px;
+margin-bottom:15px;
+}
+
+.page-subtitle{
+text-align:center;
+color:#ccc;
+margin-bottom:50px;
+line-height:1.8;
+}
+
+.faq-item{
+background:#1a1a1a;
+border:1px solid #2c2c2c;
+border-radius:12px;
+margin-bottom:15px;
+overflow:hidden;
+}
+
+.faq-question{
+padding:22px;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:600;
+font-size:17px;
+}
+
+.faq-question:hover{
+color:#d4af37;
+}
+
+.faq-icon{
+font-size:22px;
+color:#d4af37;
+}
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+transition:max-height .4s ease;
+}
+
+.faq-answer-content{
+padding:0 22px 22px;
+color:#ccc;
+line-height:1.9;
+}
+
+.faq-item.active .faq-answer{
+max-height:500px;
+}
+
+.back-btn{
+display:inline-block;
+margin-bottom:35px;
+text-decoration:none;
+color:#d4af37;
+}
+
+@media(max-width:768px){
+
+.page-title{
+font-size:30px;
+}
+
+.faq-question{
+font-size:15px;
+padding:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back-btn">← Back to Home</a>
+
+<h1 class="page-title">Frequently Asked Questions</h1>
+
+<p class="page-subtitle">
+Find answers to the most common questions about our photography and videography services.
+</p>
+
+<!-- FAQ START -->
+
+<div class="faq-item">
+<div class="faq-question">
+<span>How do I book Picxlart Photography & Events Co.?</span>
+<span class="faq-icon">+</span>
+</div>
+
+<div class="faq-answer">
+<div class="faq-answer-content">
+Booking is confirmed upon payment of the required advance amount and confirmation of event details.
+</div>
+</div>
+</div>
+
+<!-- More FAQ Items Here -->
+
+</div>
+
+<script>
+
+const faqItems=document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item=>{
+
+item.querySelector('.faq-question').addEventListener('click',()=>{
+
+item.classList.toggle('active');
+
+const icon=item.querySelector('.faq-icon');
+
+icon.textContent=
+item.classList.contains('active')
+? '−'
+: '+';
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
+```
