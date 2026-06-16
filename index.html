@@ -114,6 +114,11 @@ body{
     background:#111;
     color:white;
     overflow-x:hidden;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 
 /* Logo */
@@ -946,6 +951,24 @@ document.addEventListener('contextmenu', function(e){
     e.preventDefault();
 });
 </script>
-</body>
-</html>
 
+<script>
+document.addEventListener('dragstart', function(e){
+    e.preventDefault();
+});
+</script>
+
+<script>
+document.addEventListener('keydown', function(e){
+
+if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){
+    e.preventDefault();
+}
+
+if(e.key === 'F12'){
+    e.preventDefault();
+}
+
+});
+</script>
+</body>
