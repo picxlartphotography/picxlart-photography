@@ -380,22 +380,27 @@ We combine creativity, cinematic storytelling, premium editing, professional equ
 
 <script>
 
-const faqItems=document.querySelectorAll('.faq-item');
+const faqItems = document.querySelectorAll('.faq-item');
 
-faqItems.forEach(item=>{
+faqItems.forEach(item => {
 
-item.querySelector('.faq-question').addEventListener('click',()=>{
+    item.querySelector('.faq-question').addEventListener('click', () => {
 
-item.classList.toggle('active');
+        const isActive = item.classList.contains('active');
 
-const icon=item.querySelector('.faq-icon');
+        // First close all FAQs
+        faqItems.forEach(faq => {
+            faq.classList.remove('active');
+            faq.querySelector('.faq-icon').textContent = '+';
+        });
 
-icon.textContent=
-item.classList.contains('active')
-? '−'
-: '+';
+        // Then open only the clicked one
+        if (!isActive) {
+            item.classList.add('active');
+            item.querySelector('.faq-icon').textContent = '−';
+        }
 
-});
+    });
 
 });
 
