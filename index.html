@@ -28,6 +28,8 @@
 
     box-shadow:
     0 4px 20px rgba(0,0,0,.35);
+
+    overflow:hidden;
 }
 
 .nav-logo img{
@@ -104,7 +106,41 @@
     }
 
     .nav-social a{
-        font-size:16px;
+    font-size:16px;
+}
+}
+
+.navbar::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:-180px;
+    width:180px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,1),
+        transparent
+    );
+
+    opacity:0;
+}
+
+.navbar.shine::after{
+    animation:goldSweep 1.2s ease forwards;
+}
+
+@keyframes goldSweep{
+    0%{
+        left:-180px;
+        opacity:1;
+    }
+
+    100%{
+        left:100%;
+        opacity:1;
     }
 }
 
@@ -587,8 +623,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="navbar">
 
    <div class="nav-logo">
-    <a href="index.html">
-        <img src="logo.png" alt="Picxlart Logo">
+    <a href="index.html" id="logoLink">
+        <img src="logo.png" alt="Logo">
     </a>
 </div>
 
@@ -975,5 +1011,22 @@ if(e.key === 'F12'){
 }
 
 });
+</script>
+
+<script>
+const logoLink = document.getElementById('logoLink');
+
+if(logoLink){
+    logoLink.addEventListener('click', function(){
+
+        const navbar = document.querySelector('.navbar');
+
+        navbar.classList.remove('shine');
+
+        void navbar.offsetWidth;
+
+        navbar.classList.add('shine');
+    });
+}
 </script>
 </body>
