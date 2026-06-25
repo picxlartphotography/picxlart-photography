@@ -586,7 +586,21 @@ footer {
 }
 
 #seeMoreBtn{
-    display:none;
+    display:inline-block;
+    margin-top:20px;
+    background:#d4af37;
+    color:#111;
+    border:none;
+    padding:12px 28px;
+    border-radius:30px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#seeMoreBtn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 15px rgba(212,175,55,.4);
 }
 
 @media(max-width:768px){
@@ -677,7 +691,6 @@ footer {
 #moreContent{
     display:none;
 }
-
 #seeMoreBtn{
     display:inline-block;
     margin-top:20px;
