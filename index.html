@@ -658,6 +658,38 @@ footer {
     transform:translateY(-3px);
     box-shadow:0 0 20px rgba(212,175,55,.5);
 }
+.services-list{
+    display:inline-block;
+    text-align:left;
+    margin:20px auto;
+    padding-left:25px;
+}
+
+.services-list li{
+    margin-bottom:8px;
+}
+
+.offer-title{
+    margin:25px 0 15px;
+    color:#fff;
+}
+
+#moreContent{
+    display:none;
+}
+
+#seeMoreBtn{
+    display:inline-block;
+    margin-top:20px;
+    background:#d4af37;
+    color:#111;
+    border:none;
+    padding:12px 28px;
+    border-radius:30px;
+    font-weight:700;
+    cursor:pointer;
+}
+    
 </style>
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -752,19 +784,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="card why-card">
 
-    <p id="whyText">
-       <div>
-  <p>
-    At <strong>Picxlart Photography & Events</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
-  </p>
+  <div id="whyText">
 
-  <p>
-    We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India. Our experienced team combines modern techniques with emotional storytelling to create unforgettable moments that last a lifetime.
-  </p>
+<p>
+At <strong>Picxlart Photography & Events</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
+</p>
 
-  <p><strong>We proudly offer:</strong></p>
+<div id="moreContent">
 
-  <ul>
+<p>
+We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
+</p>
+
+<h3 class="offer-title">We Proudly Offer:</h3>
+
+<ul class="services-list">
     <li>Wedding Photography & Cinematography</li>
     <li>Candid Wedding Photography</li>
     <li>Pre-Wedding Photoshoots</li>
@@ -779,19 +813,24 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <li>Housewarming (Griha Pravesh) Event Coverage</li>
     <li>Family Functions & Cultural Event Photography</li>
     <li>School, College & Institutional Event Coverage</li>
-  </ul>
+</ul>
 
-  <p>
-    Based in <strong>West Bengal</strong>, we proudly serve clients in
-    <strong>Kolkata, Durgapur, Asansol, Bardhaman, Purulia, Bankura, Siliguri, Kharagpur, and across India</strong>.
-    Whether it's an intimate family celebration, a grand wedding, or a corporate event, our commitment to quality, professionalism, and on-time delivery ensures a personalized and memorable experience for every client.
-  </p>
+<p>
+Based in <strong>West Bengal</strong>, we proudly serve clients in
+<strong>Kolkata, Durgapur, Asansol, Bardhaman, Purulia, Bankura, Siliguri, Kharagpur, and across India</strong>.
+</p>
 
-  <p>
-    If you are looking for the <strong>best wedding photographer in West Bengal, candid wedding photography services, destination wedding photographers, birthday event photographers, rice ceremony photographers, or professional event coverage</strong>, Picxlart is dedicated to turning your precious moments into extraordinary visual stories that you will cherish forever.
-  </p>
+<p>
+If you are looking for the <strong>best wedding photographer in West Bengal, candid wedding photography services, destination wedding photographers, birthday event photographers, rice ceremony photographers, or professional event coverage</strong>, Picxlart is dedicated to turning your precious moments into extraordinary visual stories that you will cherish forever.
+</p>
+
 </div>
-    </p>
+
+<button id="seeMoreBtn" onclick="toggleWhy()">
+    See More
+</button>
+
+</div>
 
     <button id="seeMoreBtn" onclick="toggleWhy()">
         See More
@@ -1072,17 +1111,17 @@ const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Sho
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
 }
-    function toggleWhy(){
+function toggleWhy(){
 
-    const text = document.getElementById("whyText");
+    const content = document.getElementById("moreContent");
     const btn = document.getElementById("seeMoreBtn");
 
-    text.classList.toggle("expanded");
-
-    if(text.classList.contains("expanded")){
-        btn.innerText = "See Less";
-    }else{
+    if(content.style.display === "block"){
+        content.style.display = "none";
         btn.innerText = "See More";
+    }else{
+        content.style.display = "block";
+        btn.innerText = "See Less";
     }
 }
 </script>
