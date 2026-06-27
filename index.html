@@ -579,12 +579,36 @@ footer {
 
 }
 .why-card{
-    max-width:950px;
-    margin:auto;
+    width:100%;
+    max-width:1000px;
+    margin:40px auto 80px;
+    padding:45px 60px;
     text-align:center;
-    line-height:1.8;
-}
+    line-height:1.9;
 
+    background:#181818;
+    border:1px solid rgba(212,175,55,.15);
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+.why-card p{
+    margin-bottom:18px;
+    font-size:17px;
+    line-height:1.9;
+    color:#f2f2f2;
+}
+@media (max-width:768px){
+
+    .why-card{
+        max-width:95%;
+        padding:30px 22px;
+    }
+
+    .why-card p{
+        font-size:15px;
+    }
+
+}
 #seeMoreBtn{
     display:inline-block;
     margin-top:20px;
