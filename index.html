@@ -198,11 +198,11 @@
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
 
-    /* গোল্ডেন সাব-টাইটেলটি বোল্ড এবং সামান্য বড় করা হলো */
+    /* গোল্ডেন সাব-টাইটেল বোল্ড এবং বড় */
     .hero-title span {
         display: block;
-        font-size: 28px; /* সাইজ ২৪ থেকে বাড়িয়ে ২৮ করা হলো */
-        font-weight: 700; /* ফন্ট ওয়েট ৫০০ থেকে বাড়িয়ে ৭০০ (Bold) করা হলো */
+        font-size: 28px; 
+        font-weight: 700; 
         letter-spacing: 2px;
         color: #d4af37;
         text-transform: uppercase;
@@ -665,6 +665,7 @@
         gap: 12px;
     }
 
+    /* মোবাইল অ্যাড্রেস বিন্যাস ফিক্স */
     .address-break span {
         display: inline;
     }
@@ -691,12 +692,12 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(212,175,55,0.2);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
     }
     
     .footer-btn-premium:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(212,175,55,0.4);
+        box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
     }
 
     .footer-links-container {
@@ -783,7 +784,6 @@
             max-width: 320px;
         }
 
-        /* মোবাইলেও ব্যালেন্সড বোল্ড সাইজ */
         .hero-title span {
             font-size: 20px;
             letter-spacing: 1.5px;
@@ -827,13 +827,18 @@
             text-align:center;
         }
 
+        /* মোবাইলে আপনার মনের মতো নিখুঁত ২ লাইন অ্যাড্রেস লেআউট */
         .contact-details-list p{
-            justify-content:center;
-            text-align:center;
+            display: block !important;
+            text-align: center;
         }
 
         .address-break span {
             display: block !important;
+        }
+        
+        .address-break span:first-child {
+            margin-bottom: 5px;
         }
 
         .map-window{
@@ -1104,6 +1109,7 @@
             <p class="intro-p">Every milestone deserves to be preserved beautifully. Whether it is your dream wedding, a cinematic pre-wedding story, or a premium corporate profile, we are here to weave magic through our lenses. Let's connect and design your perfect visual memories together.</p>
             
             <div class="contact-details-list">
+                <!-- আপনার নির্দিষ্ট রিকোয়ারমেন্ট অনুযায়ী স্প্যান স্ট্রাকচার সম্পূর্ণ ফিক্স করা হলো -->
                 <p class="address-break">📍 <span>Serampore Hooghly, </span><span>West Bengal, India</span></p>
                 <p>📧 picxlartphotography@gmail.com</p>
                 <p>📞 +91 70035 21139 / +91 74395 53442</p>
