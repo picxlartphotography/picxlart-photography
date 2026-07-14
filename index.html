@@ -133,7 +133,7 @@
         100%{ left:100%; opacity:1; }
     }
 
-    /* Hero Section with Upgraded Premium Typography & Animations */
+    /* Hero Section with Upgraded Premium Typography & Alignment Adjustments */
     .hero{
         margin-top:60px;
         height: calc(100vh - 60px);
@@ -141,9 +141,9 @@
         overflow: hidden;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end; /* কন্টেন্ট নিচে পুশ করার জন্য flex-end করা হলো */
         text-align: center;
-        padding: 0 20px;
+        padding: 0 20px 80px; /* ডেস্কটপে টেক্সট নিচ থেকে ৮০ পিক্সেল ওপরে থাকবে, যা ফেস থেকে দূরে রাখবে */
     }
 
     .hero-slideshow {
@@ -355,7 +355,7 @@
         text-transform: uppercase;
         cursor:pointer;
         transition:all .3s ease;
-        width: 180px; /* বাটন ছোট করার জন্য নির্দিষ্ট উইডথ দেওয়া হলো */
+        width: 180px; 
         margin-left: auto;
         margin-right: auto;
     }
@@ -754,7 +754,7 @@
         }
 
         .nav-social{
-            display: flex !important; /* মোবাইল ভিউতেও সোশ্যাল আইকন ফোর্স শো করানো হলো */
+            display: flex !important; 
             gap:10px;
         }
 
@@ -768,6 +768,11 @@
         
         h2 {
             font-size: 28px;
+        }
+
+        /* মোবাইলের হিরো সেকশন পজিশন অ্যাডজাস্টমেন্ট */
+        .hero {
+            padding: 0 20px 40px; /* নিচ থেকে প্যাডিং কমিয়ে লেখা আরও নিচে নামানো হলো যাতে ফেস ক্লিয়ার থাকে */
         }
 
         .hero-title h1 {
@@ -823,7 +828,6 @@
             text-align:center;
         }
 
-        /* শুধুমাত্র মোবাইলে অ্যাড্রেস ব্রেক ফিক্স */
         .address-break span {
             display: block !important;
         }
@@ -855,17 +859,18 @@
         }
         
         .hero {
-            height: 90vh;
+            height: 95vh; /* উচ্চতা কিছুটা বাড়িয়ে ব্যালেন্স করা হলো */
+            padding-bottom: 30px; /* মুখের অংশ থেকে টেক্সট সম্পূর্ণ নিচে নামানো হলো */
         }
 
         .hero-title h1 {
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: 1px;
             line-height: 1.2;
         }
 
         .hero-title span {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 0.5px;
             margin-top: 4px;
         }
@@ -873,7 +878,8 @@
         .hero-content p {
             font-size: 11px;
             letter-spacing: 1.5px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            margin-top: 10px;
         }
 
         .btn {
@@ -990,7 +996,7 @@
                     From grand weddings and cinematic wedding films to candid photography, pre-wedding shoots, bridal portraits, destination weddings, corporate events, birthdays, rice ceremonies (Annaprashan), baby showers, anniversaries, housewarming celebrations, family functions, school and college events, our experienced team is committed to delivering premium photography and cinematic storytelling tailored to every occasion.
                 </p>
                 <p>
-                    Based in West Bengal, Picxlart proudly serves clients across Kolkata, Serampore, Hooghly, Durgapur, Asansol, Siliguri, Kharagpur, and destinations throughout India. Whether your event is close to home or in another state, our team is always ready to travel to capture your story with the same passion and professionalism.
+                    Based in West Bengal, Picxlart proudly serves clients across Kolkata, Serampore, Hooghly, Durgapur, asansol, Siliguri, Kharagpur, and destinations throughout India. Whether your event is close to home or in another state, our team is always ready to travel to capture your story with the same passion and professionalism.
                 </p>
                 <p>
                     If you are searching for trusted wedding photographers, cinematic wedding films, destination wedding photography, corporate event coverage, birthday photography, rice ceremony photography, or premium event photography anywhere in India, Picxlart is dedicated to transforming your most precious moments into timeless visual stories that will be cherished for generations.
@@ -1095,7 +1101,6 @@
             <p class="intro-p">Every milestone deserves to be preserved beautifully. Whether it is your dream wedding, a cinematic pre-wedding story, or a premium corporate profile, we are here to weave magic through our lenses. Let's connect and design your perfect visual memories together.</p>
             
             <div class="contact-details-list">
-                <!-- এখানে কাস্টম ক্লাস দিয়ে স্প্যান ব্যবহার করা হলো যাতে মোবাইলে নির্দিষ্ট জায়গায় ভাঙে -->
                 <p class="address-break">📍 <span>Serampore Hooghly, </span><span>West Bengal, India</span></p>
                 <p>📧 picxlartphotography@gmail.com</p>
                 <p>📞 +91 70035 21139 / +91 74395 53442</p>
