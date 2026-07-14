@@ -665,10 +665,6 @@
         gap: 12px;
     }
 
-    .address-break span {
-        display: inline;
-    }
-
     /* Enterprise Footer Architecture */
     footer {
         text-align: center;
@@ -826,36 +822,24 @@
             text-align:center;
         }
 
-        /* মোবাইলে অ্যাড্রেস কন্টেইনার এবং পিন ইমোজি বিন্যাস ফিক্স */
+        /* মোবাইলে পিন ইমোজি এবং টেক্সট অ্যালাইনমেন্ট ফিক্স */
         .contact-details-list p{
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 6px !important;
-        }
-
-        .address-break {
-            position: relative;
-            padding-top: 25px; /* পিনটি ইমোজির ওপরে পজিশন করানোর স্পেস */
-        }
-
-        /* পিন আইকন ইমোজিটিকে পজিশন রিলেটিভ করে মোবাইলে লেখার উপরে সঠিকভাবে অ্যালাইন করা হলো */
-        .address-break::before {
-            content: "📍";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 16px;
-        }
-
-        .address-break span {
             display: block !important;
             text-align: center !important;
         }
-        
-        .address-break span:first-of-type {
+
+        /* পিন ইমোজি এবং টেক্সট যাতে নিখুঁতভাবে আপনার মনের মতো ২ লাইনে বসে */
+        .address-mobile-layout {
+            display: block !important;
+            text-align: center !important;
+        }
+
+        .address-mobile-layout span {
+            display: block !important;
+            text-align: center !important;
+        }
+
+        .address-mobile-layout span:first-child {
             margin-bottom: 4px;
         }
 
@@ -1127,8 +1111,11 @@
             <p class="intro-p">Every milestone deserves to be preserved beautifully. Whether it is your dream wedding, a cinematic pre-wedding story, or a premium corporate profile, we are here to weave magic through our lenses. Let's connect and design your perfect visual memories together.</p>
             
             <div class="contact-details-list">
-                <!-- পিন আইকন ইমোজি টেক্সট থেকে সরিয়ে সিএসএস পজিশনে নেওয়া হলো যাতে মোবাইলে ওপরে উঠে না যায় -->
-                <p class="address-break"><span>Serampore Hooghly, </span><span>West Bengal, India</span></p>
+                <!-- পিন ইমোজিটিকে সরাসরি লেখার ভেতরেই সেট করে দেওয়া হলো, যাতে আলাদা হওয়ার কোনো সুযোগ না থাকে -->
+                <p class="address-mobile-layout">
+                    <span>📍 Serampore Hooghly,</span>
+                    <span>West Bengal, India</span>
+                </p>
                 <p>📧 picxlartphotography@gmail.com</p>
                 <p>📞 +91 70035 21139 / +91 74395 53442</p>
             </div>
