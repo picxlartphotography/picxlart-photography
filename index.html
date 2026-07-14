@@ -35,14 +35,19 @@
 }
 
 .nav-logo img{
-    height:60px;
+    height:68px;
     width:auto;
+    transition:transform .35s ease, filter .35s ease;
+}
+
+.nav-logo img:hover{
+    transform:scale(1.05);
+    filter:drop-shadow(0 0 12px rgba(212,175,55,.45));
 }
 
 .nav-logo a{
--webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color:transparent;
 }
-    
 .nav-menu{
     display:flex;
     gap:25px;
