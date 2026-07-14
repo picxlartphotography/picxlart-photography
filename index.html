@@ -133,7 +133,7 @@
         100%{ left:100%; opacity:1; }
     }
 
-    /* Hero Section with Upgraded Premium Typography & Alignment Adjustments */
+    /* Hero Section with Upgraded Premium Layout & Logo Style */
     .hero{
         margin-top:60px;
         height: calc(100vh - 60px);
@@ -141,9 +141,9 @@
         overflow: hidden;
         display: flex;
         justify-content: center;
-        align-items: flex-end; /* কন্টেন্ট নিচে পুশ করার জন্য flex-end করা হলো */
+        align-items: flex-end; 
         text-align: center;
-        padding: 0 20px 80px; /* ডেস্কটপে টেক্সট নিচ থেকে ৮০ পিক্সেল ওপরে থাকবে, যা ফেস থেকে দূরে রাখবে */
+        padding: 0 20px 80px; 
     }
 
     .hero-slideshow {
@@ -183,16 +183,18 @@
         z-index: 3;
         max-width: 900px;
         animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .hero-title h1 {
-        font-size: 56px;
-        font-weight: 700;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: #ffffff;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        line-height: 1.1;
+    /* ব্র্যান্ডেড লোগো ইমেজের প্রিমিয়াম স্টাইলিং */
+    .hero-brand-logo {
+        max-width: 420px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
 
     .hero-title span {
@@ -201,8 +203,9 @@
         font-weight: 500;
         letter-spacing: 2px;
         color: #d4af37;
-        margin-top: 10px;
         text-transform: uppercase;
+        margin-top: 5px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     .hero-content p{
@@ -770,20 +773,18 @@
             font-size: 28px;
         }
 
-        /* মোবাইলের হিরো সেকশন পজিশন অ্যাডজাস্টমেন্ট */
         .hero {
-            padding: 0 20px 40px; /* নিচ থেকে প্যাডিং কমিয়ে লেখা আরও নিচে নামানো হলো যাতে ফেস ক্লিয়ার থাকে */
+            padding: 0 20px 40px; 
         }
 
-        .hero-title h1 {
-            font-size: 36px;
-            letter-spacing: 2px;
+        .hero-brand-logo {
+            max-width: 320px;
         }
 
         .hero-title span {
             font-size: 18px;
             letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .hero-content p {
@@ -859,20 +860,18 @@
         }
         
         .hero {
-            height: 95vh; /* উচ্চতা কিছুটা বাড়িয়ে ব্যালেন্স করা হলো */
-            padding-bottom: 30px; /* মুখের অংশ থেকে টেক্সট সম্পূর্ণ নিচে নামানো হলো */
+            height: 95vh; 
+            padding-bottom: 30px; 
         }
 
-        .hero-title h1 {
-            font-size: 26px;
-            letter-spacing: 1px;
-            line-height: 1.2;
+        .hero-brand-logo {
+            max-width: 250px;
         }
 
         .hero-title span {
             font-size: 13px;
             letter-spacing: 0.5px;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .hero-content p {
@@ -937,8 +936,10 @@
     </div>
 
     <div class="hero-content">
+        <!-- এখানে টেক্সটের জায়গায় ব্রান্ডেড পিএনজি লোগো ইমেজটি লিংক করা হলো -->
         <div class="hero-title">
-            <h1>PICXLART <span>PHOTOGRAPHY & EVENTS CO.</span></h1>
+            <img src="hero-logo.png" alt="Picxlart" class="hero-brand-logo">
+            <span>PHOTOGRAPHY & EVENTS CO.</span>
         </div>
         <p>Timeless Moments, Captured for Eternity</p>
         <a href="https://wa.me/917003521139" class="btn">Book Now</a>
