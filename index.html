@@ -54,14 +54,32 @@
 }
 
 .nav-menu a{
-    color:white;
+    color:#fff;
     text-decoration:none;
-    font-weight:600;
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:.5px;
+    position:relative;
+    transition:.35s ease;
+}
+
+.nav-menu a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:#d4af37;
+    transition:.35s ease;
 }
 
 .nav-menu a:hover{
     color:#d4af37;
-    text-shadow:0 0 10px rgba(212,175,55,.5);
+}
+
+.nav-menu a:hover::after{
+    width:100%;
 }
 
 .nav-social{
