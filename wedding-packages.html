@@ -37,7 +37,6 @@
         width:100%;
         background:rgba(10,10,10,0.92);
         backdrop-filter:blur(12px);
-        -webkit-backdrop-filter:blur(12px);
         display:flex;
         justify-content:space-between;
         align-items:center;
@@ -45,23 +44,11 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:hidden;
     }
 
-    .nav-logo img{
-        height:60px;
-        width:auto;
-        transition: transform 0.3s ease;
-    }
-    
-    .nav-logo img:hover {
-        transform: scale(1.03);
-    }
+    .nav-logo img{ height:60px; width:auto; }
         
-    .nav-menu{
-        display:flex;
-        gap:35px;
-    }
+    .nav-menu{ display:flex; gap:35px; }
 
     .nav-menu a{
         color:#e0e0e0;
@@ -71,57 +58,9 @@
         text-transform: uppercase;
         font-size: 13px;
         transition: all 0.3s ease;
-        position: relative;
-        padding: 4px 0;
     }
 
-    .nav-menu a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1.5px;
-        background: #d4af37;
-        transition: width 0.3s ease;
-    }
-
-    .nav-menu a:hover::after {
-        width: 100%;
-    }
-
-    .nav-menu a:hover{
-        color:#d4af37;
-        text-shadow:0 0 10px rgba(212,175,55,.3);
-    }
-
-    .nav-social{
-        display:flex;
-        gap:20px;
-    }
-
-    .nav-social a{
-        color:#e0e0e0;
-        text-decoration:none;
-        font-size:18px;
-        transition:all .3s ease;
-    }
-
-    .nav-social a:hover{
-        color:#d4af37;
-        transform:translateY(-3px);
-    }
-
-    .menu-toggle {
-        display: none;
-        color: #d4af37;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 1000000;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
+    .nav-menu a:hover{ color:#d4af37; }
 
     /* Page Content Styling */
     .container{
@@ -153,83 +92,103 @@
     .wedding-grid{
         display:flex;
         flex-direction: column;
-        gap:30px;
+        gap: 40px;
     }
 
     .package-row-card{
-        background: rgba(20, 20, 20, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.02);
-        padding: 40px;
-        border-radius: 20px;
+        background: rgba(20, 20, 20, 0.7);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 50px;
+        border-radius: 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        backdrop-filter: blur(10px);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(15px);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Elegant inner glow effect */
+    .package-row-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+        transition: 0.7s;
+    }
+
+    .package-row-card:hover::after {
+        left: 100%;
     }
 
     .card-left-info {
-        max-width: 75%;
+        max-width: 70%;
+        z-index: 2;
     }
 
     .card-left-info .tagline {
-        font-size: 13px;
-        color: #999;
+        font-size: 12px;
+        color: #d4af37;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 5px;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
         display: block;
+        font-weight: 500;
     }
 
     .card-left-info h3{
-        color:#d4af37;
-        font-size: 28px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin-bottom: 12px;
+        color:#ffffff;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        margin-bottom: 15px;
         text-transform: uppercase;
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
     }
 
     .card-left-info p {
         font-size: 15px;
-        color: #cccccc;
-        line-height: 1.7;
+        color: #aaaaaa;
+        line-height: 1.8;
     }
 
     .card-right-action {
         text-align: right;
+        z-index: 2;
     }
 
     .view-details-btn {
-        background: transparent;
+        background: rgba(212, 175, 55, 0.05);
         color: #d4af37;
-        border: 2px solid #d4af37;
-        padding: 12px 30px;
-        font-size: 13px;
+        border: 1px solid #d4af37;
+        padding: 15px 35px;
+        font-size: 14px;
         font-weight: 600;
-        border-radius: 30px;
-        letter-spacing: 1.5px;
+        border-radius: 50px;
+        letter-spacing: 2px;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
         cursor: pointer;
     }
 
     .package-row-card:hover{
-        transform: scale(1.02);
-        background: rgba(26, 26, 26, 0.85);
-        border-color: rgba(212, 175, 55, 0.3);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        transform: translateY(-10px);
+        background: rgba(26, 26, 26, 0.95);
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     }
 
     .package-row-card:hover .view-details-btn {
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        background: #d4af37;
         color: #000;
-        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        border-color: transparent;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
     }
 
-    /* Enterprise Footer Architecture */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -238,251 +197,64 @@
         font-size: 13px;
         border-top: 1px solid #1a1a1a;
     }
-
-    .footer-links-container {
-        margin-bottom:25px; 
-        line-height: 2.2;
-    }
-
-    .footer-links-container a {
-        color:#d4af37; 
-        text-decoration:none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-    
-    .footer-links-container a:hover {
-        color: #ffffff;
-    }
-
-    .footer-divider {
-        color:#333;
-        margin: 0 8px;
-    }
-
-    /* Mobile View Overrides */
-    @media(max-width:768px){
-        .navbar{
-            padding:12px 24px;
-            flex-wrap: nowrap;
-            overflow: visible !important;
-        }
-
-        .nav-logo img{
-            height:45px;
-        }
-
-        .menu-toggle {
-            display: block; 
-        }
-
-        .nav-social {
-            display: none !important; 
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 60px; 
-            left: 0;
-            width: 100%;
-            height: auto; 
-            background: rgba(13, 13, 13, 0.97);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0;
-            padding: 15px 0 0 0;
-            transform: translateY(-150%); 
-            transition: transform 0.4s ease-in-out;
-            z-index: 999998;
-            border-bottom: 3px solid #d4af37; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-        }
-
-        .nav-menu.active {
-            transform: translateY(0);
-        }
-
-        .nav-menu a {
-            font-size: 15px;
-            letter-spacing: 2px;
-            font-weight: 500;
-            color: #d4af37 !important;
-            width: 100%;
-            text-align: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .nav-menu a:last-child {
-            border-bottom: none;
-            padding-bottom: 22px;
-        }
-
-        .nav-menu a::after {
-            display: none; 
-        }
-
-        h1 { font-size: 26px; }
-        .intro-text { font-size: 14px; margin-bottom: 40px; }
-        .package-row-card { flex-direction: column; text-align: center; gap: 25px; padding: 30px 20px; }
-        .card-left-info { max-width: 100%; }
-        .card-left-info h3 { font-size: 22px; }
-        .card-left-info p { font-size: 14px; }
-        .view-details-btn { width: 100%; }
-    }
 </style>
 </head>
 
 <body>
 
-<!-- Header Navigation Bar Architecture -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
-            <img src="logo.png" alt="Logo">
-        </a>
+        <a href="index.html"><img src="logo.png" alt="Logo"></a>
     </div>
-
     <div class="nav-menu">
         <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
         <a href="packages.html">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
     </div>
-
-    <div class="nav-social">
-        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-
-    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
 <div class="container">
     <h1>Wedding Packages</h1>
-    <p class="intro-text">Discover our beautifully crafted Bengali wedding photography structures. Choose the perfect plan to narrate your timeless visual journey.</p>
+    <p class="intro-text">Discover our beautifully crafted Bengali wedding photography structures.</p>
 
-    <!-- Sub-Category Tree Branch List -->
     <div class="wedding-grid">
-        
-        <!-- SPARSHA PACKAGE Card -->
         <a href="wedding-sparsha.html" class="package-row-card">
             <div class="card-left-info">
-                <span class="tagline">Capturing the first touch of love and emotions</span>
+                <span class="tagline">Capturing the first touch of love</span>
                 <h3>Sparsha</h3>
-                <p>A comprehensive 3-day cinematic coverage including Wedding, Vidai & Bodhuboron, and Reception with dual-branded premium photobooks and high-end cinematography crew allocation.</p>
+                <p>3-day cinematic coverage including Wedding, Vidai & Reception. Includes Indigo or Canvera Standard Photobooks.</p>
             </div>
             <div class="card-right-action">
                 <button class="view-details-btn">View Inclusions</button>
             </div>
         </a>
 
-        <!-- SHRISHTI PACKAGE Card -->
         <a href="wedding-shrishti.html" class="package-row-card">
             <div class="card-left-info">
-                <span class="tagline">Commemorating the creation of new beginnings</span>
+                <span class="tagline">New Beginnings</span>
                 <h3>Shrishti</h3>
-                <p>Premium 3-day extensive wedding documentary boasting customized high-definition teasers, standard plus Canvera layouts, and multi-manpower candid coverage matrices.</p>
+                <p>Premium wedding documentary with high-def teasers and Canvera standard layouts.</p>
             </div>
             <div class="card-right-action">
                 <button class="view-details-btn">View Inclusions</button>
             </div>
         </a>
 
-        <!-- SAUBHAGYA PACKAGE Card -->
         <a href="wedding-saubhagya.html" class="package-row-card">
             <div class="card-left-info">
-                <span class="tagline">Preserving the moments of your blessed union</span>
+                <span class="tagline">Blessed Union</span>
                 <h3>Saubhagya</h3>
-                <p>Luxurious 4-day structural network tracking your Mehendi, Sangeet, Wedding, and Gala Reception layers. Features complimentary premium pre-wedding and multi-angle drone assets.</p>
+                <p>Luxurious 4-day coverage for Mehendi, Sangeet, Wedding, and Reception with drone assets.</p>
             </div>
             <div class="card-right-action">
                 <button class="view-details-btn">View Inclusions</button>
             </div>
         </a>
-
-        <!-- ANUBANDHA PACKAGE Card -->
-        <a href="wedding-anubandha.html" class="package-row-card">
-            <div class="card-left-info">
-                <span class="tagline">Showcasing the emotional bonds of togetherness</span>
-                <h3>Anubandha</h3>
-                <p>Elite 3-day cinematography and premium photo package backed with detailed 4K timelines, premium Canvera integrations, and a dedicated 6-hour single-day outdoor couple pre-wedding portfolio shoot.</p>
-            </div>
-            <div class="card-right-action">
-                <button class="view-details-btn">View Inclusions</button>
-            </div>
-        </a>
-
-        <!-- AMRITASYA PACKAGE Card -->
-        <a href="wedding-amritasya.html" class="package-row-card">
-            <div class="card-left-info">
-                <span class="tagline">An all-encompassing package for immortal memories</span>
-                <h3>Amritasya</h3>
-                <p>The ultimate ultra-luxury Royal Bengali Wedding framework spanning 7 comprehensive operational days, bundled with a 2-day Pre-Wedding Radiance campaign, metallic photobooks, and 4K cinema tracks.</p>
-            </div>
-            <div class="card-right-action">
-                <button class="view-details-btn">View Inclusions</button>
-            </div>
-        </a>
-
     </div>
 </div>
 
 <footer>
-    <div class="footer-links-container">
-        <div>
-            <a href="faq.html">FAQ</a>
-            <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
-        </div>
-        <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
-        </div>
-        <div>
-            <a href="terms.html">Terms & Conditions</a>
-        </div>
-    </div>
-    <p style="margin-top:20px;">
-        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
-    </p>
+    <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
 </footer>
 
-<script>
-// Mobile Dropdown Control Script
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('keydown', function(e){
-    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
-    if(e.key === 'F12'){ e.preventDefault(); }
-});
-</script>
 </body>
 </html>
