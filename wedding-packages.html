@@ -7,13 +7,11 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-    /* গ্লোবাল স্টাইল - আপনার হোমপেজ থেকে নেওয়া */
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; padding-top:100px; }
 
-    /* হোমপেজ স্টাইলের ন্যাভবার */
+    /*Navbar Fix*/
     .navbar{
         position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92);
         backdrop-filter:blur(12px); display:flex; justify-content:space-between; 
@@ -25,10 +23,11 @@
     .nav-menu a{ color:#e0e0e0; text-decoration:none; font-size:13px; text-transform:uppercase; font-weight:500; }
     .nav-menu a:hover{ color:#d4af37; }
 
-    /* কন্টেইনার এবং প্রিমিয়াম কার্ডস */
+    /* Container */
     .container{ max-width:900px; margin:auto; padding:60px 20px; }
     h1{ text-align:center; color:#d4af37; margin-bottom:50px; font-size:36px; text-transform:uppercase; letter-spacing:2px; }
-    
+
+    /* Cards */
     .wedding-grid{ display:flex; flex-direction:column; gap:25px; }
     .package-row-card{
         background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.3);
@@ -45,9 +44,8 @@
     }
     .package-row-card:hover .view-details-btn{ background:#d4af37; color:#000; }
 
-    /* হোমপেজের ফুটর স্টাইল */
+    /* Footer Fix */
     footer { text-align: center; padding: 50px 20px; background: #080808; border-top: 1px solid #1a1a1a; color: #777; font-size: 13px; margin-top:50px; }
-    .footer-btn-premium { display:inline-block; background: linear-gradient(135deg, #d4af37, #b38f2d); color:black; padding:12px 35px; border-radius:30px; text-decoration:none; font-weight:700; font-size:14px; margin-bottom:25px; }
     .footer-links-container { margin-bottom:25px; line-height: 2.2; }
     .footer-links-container a { color:#d4af37; text-decoration:none; margin: 0 8px; }
     .footer-divider { color:#333; }
@@ -91,7 +89,6 @@
 </div>
 
 <footer>
-    <div style="margin-bottom:25px;"><a href="csr-initiative.html" class="footer-btn-premium">CSR Initiative</a></div>
     <div class="footer-links-container">
         <a href="faq.html">FAQ</a> <span class="footer-divider">|</span>
         <a href="payment.html">Online Payment</a> <span class="footer-divider">|</span>
