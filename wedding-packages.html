@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Selection | Picxlart</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body{ background:#0d0d0d; color:#f5f5f5; padding-top:100px; }
+
+    /* Navbar */
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:15px 40px; z-index:99999; border-bottom:2px solid #d4af37; }
+    .nav-logo img{ height:60px; }
+    .nav-menu{ display:flex; gap:35px; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-size:13px; text-transform:uppercase; font-weight:500; }
+    .nav-menu a:hover{ color:#d4af37; }
+
+    /* Container */
+    .container{ max-width:800px; margin:auto; padding:60px 20px; text-align:center; }
+    h1{ color:#d4af37; margin-bottom:50px; font-size:32px; text-transform:uppercase; letter-spacing:2px; }
+
+    /* Selection Cards */
+    .selection-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+    .select-card{ background: #141414; border: 1px solid #333; padding: 40px; border-radius: 20px; transition: 0.4s; text-decoration: none; display: block; }
+    .select-card:hover{ border-color: #d4af37; background: #1a1a1a; transform: translateY(-10px); }
+    .select-card h3{ color:#d4af37; font-size:22px; margin-top:20px; text-transform:uppercase; }
+    .select-card i{ font-size:40px; color:#d4af37; }
+
+    /* Footer */
+    footer { text-align: center; padding: 50px 20px; background: #080808; border-top: 1px solid #222; color: #777; font-size: 13px; margin-top:100px; }
+    .footer-links-container { margin-bottom: 20px; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; margin: 0 8px; }
+
+    @media(max-width:768px){ .selection-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-logo"><a href="index.html"><img src="logo.png" alt="Logo"></a></div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="reviews.html">Reviews</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Select Wedding Type</h1>
+    <div class="selection-grid">
+        <a href="bengali-wedding-packages.html" class="select-card">
+            <i class="fas fa-heart"></i>
+            <h3>Bengali Wedding</h3>
+        </a>
+        <a href="other-indian-wedding-packages.html" class="select-card">
+            <i class="fas fa-gopuram"></i>
+            <h3>Other Indian Wedding</h3>
+        </a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links-container">
+        <a href="faq.html">FAQ</a> | <a href="payment.html">Online Payment</a> | 
+        <a href="privacy-policy.html">Privacy Policy</a> | <a href="payment-terms.html">Payment Terms</a> | 
+        <a href="terms.html">Terms & Conditions</a>
+    </div>
+    <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
