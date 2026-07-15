@@ -6,64 +6,50 @@
 <title>Wedding Packages | Picxlart</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Styles */
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body{ background:#0d0d0d; color:#f5f5f5; padding-top:100px; }
+    body{ background:#0d0d0d; color:#fff; min-height:100vh; display:flex; flex-direction:column; }
 
-    /* Premium Navbar */
+    /* Navbar Fixed */
     .navbar{
         position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92);
         backdrop-filter:blur(12px); display:flex; justify-content:space-between; 
-        align-items:center; padding:10px 50px; z-index:99999; border-bottom:2px solid #d4af37;
+        align-items:center; padding:8px 40px; z-index:9999; border-bottom:2px solid #d4af37;
     }
-    .nav-logo img{ height:55px; }
+    .nav-logo img{ height:60px; }
     .nav-menu{ display:flex; gap:35px; }
-    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-size:13px; text-transform:uppercase; letter-spacing:1px; transition:0.3s; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-size:13px; text-transform:uppercase; letter-spacing:1px; }
     .nav-menu a:hover{ color:#d4af37; }
 
-    /* Container */
-    .container{ max-width:900px; margin:auto; padding:40px 20px; }
-    h1{ text-align:center; color:#d4af37; margin-bottom:15px; text-transform:uppercase; letter-spacing:3px; font-size:36px; }
-    .sub-head{ text-align:center; color:#888; margin-bottom:50px; font-size:14px; letter-spacing:1px; }
+    /* Content Area */
+    .main-content{ flex: 1; padding: 120px 20px 80px; max-width: 900px; margin: 0 auto; }
+    h1{ text-align:center; color:#d4af37; font-size:40px; margin-bottom:50px; text-transform:uppercase; letter-spacing:3px; }
 
-    /* Premium Glassmorphism Cards */
+    /* Premium Glass Cards */
     .package-row-card{
-        background: rgba(20, 20, 20, 0.6);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        padding: 40px;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 25px;
-        backdrop-filter: blur(15px);
-        transition: all 0.4s ease;
-        text-decoration: none;
-        position: relative;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 40px; border-radius: 25px; margin-bottom: 25px;
+        display: flex; justify-content: space-between; align-items: center;
+        backdrop-filter: blur(10px); transition: all 0.4s ease; text-decoration: none;
     }
     .package-row-card:hover{
-        transform: translateY(-5px);
-        border-color: rgba(212, 175, 55, 0.6);
-        background: rgba(25, 25, 25, 0.8);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform: translateY(-8px); border-color: #d4af37;
+        background: rgba(212, 175, 55, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .card-left-info h3{ color:#d4af37; font-size:26px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
-    .card-left-info p{ color:#bbb; font-size:14px; line-height:1.6; }
-    
+    .card-left-info h3{ color:#d4af37; font-size:28px; margin-bottom:10px; }
+    .card-left-info p{ color:#ccc; font-size:15px; }
     .view-details-btn{
         background: transparent; color:#d4af37; border:1px solid #d4af37;
-        padding: 12px 25px; border-radius: 30px; cursor: pointer; transition: 0.4s;
-        text-transform: uppercase; font-size:12px; letter-spacing:1px; font-weight:600;
+        padding: 12px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s;
     }
     .package-row-card:hover .view-details-btn{ background:#d4af37; color:#000; }
 
-    @media(max-width:768px){
-        .navbar{ padding:15px 20px; }
-        .package-row-card{ flex-direction:column; text-align:center; gap:20px; }
-        .card-left-info{ max-width:100%; }
-    }
+    /* Footer */
+    footer { text-align: center; padding: 50px; background: #080808; border-top:1px solid #222; color:#777; }
 </style>
 </head>
 <body>
@@ -73,36 +59,39 @@
     <div class="nav-menu">
         <a href="index.html">Home</a>
         <a href="packages.html">Packages</a>
+        <a href="reviews.html">Reviews</a>
     </div>
 </div>
 
-<div class="container">
+<div class="main-content">
     <h1>Wedding Packages</h1>
-    <p class="sub-head">Discover our beautifully crafted Bengali wedding photography structures.</p>
-
     <div class="wedding-grid">
         <a href="wedding-sparsha.html" class="package-row-card">
-            <div class="card-left-info"><h3>Sparsha</h3><p>Capturing the first touch of love. Includes 2x Indigo or Canvera Standard Photobooks.</p></div>
+            <div class="card-left-info"><h3>SPARSHA</h3><p>Includes your choice of 2x Indigo OR 2x Canvera Standard Photobooks.</p></div>
             <button class="view-details-btn">View Details</button>
         </a>
         <a href="wedding-shrishti.html" class="package-row-card">
-            <div class="card-left-info"><h3>Shrishti</h3><p>Premium wedding documentary with customized high-definition teasers.</p></div>
+            <div class="card-left-info"><h3>SHRISHTI</h3><p>Premium documentary with high-def teasers and standard layouts.</p></div>
             <button class="view-details-btn">View Details</button>
         </a>
         <a href="wedding-saubhagya.html" class="package-row-card">
-            <div class="card-left-info"><h3>Saubhagya</h3><p>4-Day event coverage including Mehendi, Sangeet & Reception with drone assets.</p></div>
+            <div class="card-left-info"><h3>SAUBHAGYA</h3><p>4-Day event coverage, drone footage, premium books.</p></div>
             <button class="view-details-btn">View Details</button>
         </a>
         <a href="wedding-anubandha.html" class="package-row-card">
-            <div class="card-left-info"><h3>Anubandha</h3><p>Elite cinematic experience with pre-wedding portfolio shoot.</p></div>
+            <div class="card-left-info"><h3>ANUBANDHA</h3><p>Elite cinematic experience with pre-wedding portfolio.</p></div>
             <button class="view-details-btn">View Details</button>
         </a>
         <a href="wedding-amritasya.html" class="package-row-card">
-            <div class="card-left-info"><h3>Amritasya</h3><p>7-Day Royal Gala with metallic photobooks and 4K cinema tracks.</p></div>
+            <div class="card-left-info"><h3>AMRITASYA</h3><p>7-Day Royal Gala with metallic photobooks and 4K cinema.</p></div>
             <button class="view-details-btn">View Details</button>
         </a>
     </div>
 </div>
+
+<footer>
+    <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
