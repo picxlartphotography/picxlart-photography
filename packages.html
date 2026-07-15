@@ -215,19 +215,19 @@
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     }
 
-    /* Premium Hover States */
-    .tree-card:hover{
+    /* Premium Hover & Active States for both desktop and mobile */
+    .tree-card:hover, .tree-card:active{
         transform: translateY(-8px);
         border-color: rgba(212, 175, 55, 0.6);
         box-shadow: 0 15px 30px rgba(0,0,0,0.7);
     }
 
-    .tree-card:hover::before {
-        background: rgba(0, 0, 0, 0.45); /* darkens slightly to pop the gold button */
+    .tree-card:hover::before, .tree-card:active::before {
+        background: rgba(0, 0, 0, 0.5); /* darkens slightly to pop the gold button */
     }
 
     /* Reveals the hidden button beautifully on hover or touch */
-    .tree-card:hover p {
+    .tree-card:hover p, .tree-card:active p {
         opacity: 1;
         transform: translateY(0);
     }
@@ -329,13 +329,10 @@
         h1 { font-size: 28px; }
         .package-tree-grid { gap: 20px; }
         
-        /* Mobile usability fix: Keeps button fully visible on small touchscreens */
+        /* Mobile usability fix: reduces button padding slightly for perfect touch spacing */
         .tree-card p {
-            opacity: 1;
-            transform: translateY(0);
-            background: rgba(0, 0, 0, 0.65);
-            padding: 8px 18px;
-            font-size: 11px;
+            padding: 8px 20px;
+            font-size: 12px;
         }
     }
 </style>
