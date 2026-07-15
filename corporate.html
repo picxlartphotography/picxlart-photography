@@ -1,84 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Corporate Photography | Picxlart</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-font-family:Arial;
-background:#111;
-color:white;
-margin:0;
-}
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-h1{
-text-align:center;
-padding:30px;
-color:#d4af37;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-padding:20px;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-.gallery img{
-width:100%;
-border-radius:10px;
-transition:0.4s;
-cursor:pointer;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-.gallery img:hover{
-transform:scale(1.05);
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
-.content{
-padding:20px;
-max-width:1000px;
-margin:auto;
-text-align:center;
-line-height:1.8;
-}
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
 
-.btn{
-background:#d4af37;
-color:black;
-padding:12px 30px;
-text-decoration:none;
-font-weight:bold;
-border-radius:30px;
-display:inline-block;
-}
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
 
-.btn:hover{
-opacity:0.9;
-}
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
 
-.back-btn {
-display: inline-block;
-margin: 20px 0 0 20px;
-text-decoration: none;
-color: #d4af37;
-font-weight: bold;
-font-size: 16px;
-}
-.back-btn:hover {
-color: white;
-}
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
+
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
+
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
+
+    /* Page Content Styling */
+    h1{
+        text-align:center;
+        padding:30px;
+        color:#d4af37;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .intro-text {
+        text-align:center; 
+        max-width:800px; 
+        margin:20px auto 40px; 
+        font-size:16px; 
+        line-height:1.7;
+        color: #b8b8b8;
+        padding: 0 20px;
+    }
+
+    .gallery{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+        gap:20px;
+        padding:20px;
+    }
+
+    .gallery img{
+        width:100%;
+        border-radius:10px;
+        transition:0.4s;
+        cursor:pointer;
+    }
+
+    .gallery img:hover{
+        transform:scale(1.05);
+    }
+
+    /* Premium Quote Button */
+    .btn-container {
+        text-align:center; 
+        margin:40px 0 60px;
+    }
+
+    .btn{
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color: #000000;
+        padding: 15px 42px;
+        text-decoration:none;
+        font-weight:700;
+        font-size: 14px;
+        border-radius:50px;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+    }
+
+    .content{
+        padding:0 20px 60px;
+        max-width:1000px;
+        margin:auto;
+        text-align:center;
+    }
+
+    .content p {
+        line-height: 1.8;
+        color: #b8b8b8;
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width:768px){
+        .navbar{ padding:6px 20px; }
+        .nav-logo img{ height:45px; }
+        .nav-menu{ gap:12px; }
+        .nav-menu a { font-size: 11px; }
+        .nav-social a{ font-size:14px; }
+    }
 </style>
 </head>
 
 <body>
 
-<a href="/" class="back-btn">← Back to Home</a>
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
 
 <h1>Corporate Photography</h1>
 
-<p style="text-align:center; max-width:800px; margin:20px auto; font-size:18px; line-height:1.6;">
+<p class="intro-text">
 Professional coverage for conferences, seminars, business meetings, award ceremonies, branding shoots and corporate events.
 </p>
 
@@ -90,7 +274,7 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 <img src="Corporate5.jpg">
 </div>
 
-<div style="text-align:center; margin:40px 0;">
+<div class="btn-container">
 <a href="https://wa.me/917003521139" class="btn">Request Corporate Quote</a>
 </div>
 
@@ -98,6 +282,28 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 <p>At Picxlart Photography & Events Co., we provide professional coverage for corporate events, plant and office video, safety video, conferences, seminars, business meetings and branding projects.</p>
 <p>Our services include event documentation, team portraits, office photography, award ceremonies and business branding content creation.</p>
 </div>
+
+<!-- Footer Enterprise Framework -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
 
 <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:9999;">
 <img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;">
@@ -114,6 +320,14 @@ document.getElementById('lightbox-img').src=img.src;
 function closeLightbox(){
 document.getElementById('lightbox').style.display='none';
 }
+
+// Security Controls Matrix
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
 </script>
 </body>
 </html>
