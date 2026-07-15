@@ -4,120 +4,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy | Picxlart Photography & Events Co.</title>
-<!-- এখানে ফ্যাবআইকন লিংকটি যুক্ত করা হলো -->
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-body{
-background:#0d0d0d;
-color:#ffffff;
-font-family:Arial, sans-serif;
-line-height:1.8;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:60px 25px;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-h1{
-text-align:center;
-color:#d4af37;
-margin-bottom:20px;
-font-size:38px;
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
-.last-updated{
-text-align:center;
-color:#999;
-margin-bottom:40px;
-}
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
 
-.intro{
-max-width:900px;
-margin:0 auto 50px auto;
-text-align:center;
-color:#dddddd;
-font-size:17px;
-line-height:1.9;
-}
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
 
-.section{
-margin-bottom:35px;
-}
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
 
-.section h2{
-color:#d4af37;
-margin-bottom:12px;
-font-size:28px;
-}
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
 
-.section p,
-.section li{
-color:#dddddd;
-}
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
 
-.section ul{
-padding-left:25px;
-margin-top:10px;
-}
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
 
-.section ul li{
-margin-bottom:10px;
-}
+    /* Page Content Styling */
+    .container{
+        max-width:1000px;
+        margin:auto;
+        padding:40px 25px 60px;
+    }
 
-.contact-box{
-background:#151515;
-border-left:4px solid #d4af37;
-padding:20px;
-border-radius:8px;
-margin-top:15px;
-}
+    h1{
+        text-align:center;
+        color:#d4af37;
+        margin-bottom:15px;
+        font-size:38px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
 
-.footer-note{
-text-align:center;
-margin-top:50px;
-color:#999;
-font-size:14px;
-}
+    .last-updated{
+        text-align:center;
+        color:#999;
+        margin-bottom:40px;
+        font-size: 14px;
+    }
 
-@media(max-width:768px){
-.intro{
-text-align:justify;
-font-size:16px;
-}
+    .intro{
+        max-width:900px;
+        margin:0 auto 50px auto;
+        text-align:center;
+        color:#b8b8b8;
+        font-size:16px;
+        line-height:1.9;
+    }
 
-.section p,
-.section li{
-font-size:16px;
-}
-.container{
-padding:35px 20px;
-}
+    .intro p {
+        margin-bottom: 15px;
+    }
 
-h1{
-font-size:28px;
-line-height:1.4;
-}
+    .section{
+        margin-bottom:45px;
+    }
 
-.section h2{
-font-size:22px;
-}
+    .section h2{
+        color:#d4af37;
+        margin-bottom:15px;
+        font-size:26px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
 
-}
+    .section p,
+    .section li{
+        color:#b8b8b8;
+        font-size: 15px;
+        line-height: 1.8;
+    }
 
+    .section ul{
+        padding-left:25px;
+        margin-top:10px;
+    }
+
+    .section ul li{
+        margin-bottom:10px;
+    }
+
+    .contact-box{
+        background:#141414;
+        border-left:4px solid #d4af37;
+        padding:25px;
+        border-radius:12px;
+        margin-top:20px;
+        border-top: 1px solid rgba(255,255,255,0.02);
+        border-right: 1px solid rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    
+    .contact-box p {
+        margin-bottom: 8px;
+        color: #e0e0e0;
+    }
+    
+    .contact-box p strong {
+        color: #d4af37;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    @media(max-width:768px){
+        .navbar{ padding:6px 20px; }
+        .nav-logo img{ height:45px; }
+        .nav-menu{ gap:12px; }
+        .nav-menu a { font-size: 11px; }
+        .nav-social a{ font-size:14px; }
+        .intro{ text-align:justify; }
+        .container{ padding:20px; }
+        h1{ font-size:28px; }
+        .section h2{ font-size:22px; }
+    }
 </style>
 </head>
 
 <body>
+
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
 
 <div class="container">
 
@@ -127,174 +274,135 @@ font-size:22px;
 Last Updated: June 2026
 </div>
 
-  <div class="intro">
-
-<p>
-At Picxlart Photography & Events Co., your privacy is important to us.
-</p>
-
-<p>
-We are committed to protecting the personal information you share with us while using our website, communicating through WhatsApp, social media platforms, email, phone calls, or while booking any of our photography and videography services.
-</p>
-
-<p>
-This Privacy Policy explains what information we collect, how we use it, how we protect it, and the rights you have regarding your personal information.
-</p>
-
-<p>
-By accessing our website or using our services, you agree to the practices described in this Privacy Policy.
-</p>
-
+<div class="intro">
+    <p>At Picxlart Photography & Events Co., your privacy is important to us.</p>
+    <p>We are committed to protecting the personal information you share with us while using our website, communicating through WhatsApp, social media platforms, email, phone calls, or while booking any of our photography and videography services.</p>
+    <p>This Privacy Policy explains what information we collect, how we use it, how we protect it, and the rights you have regarding your personal information.</p>
+    <p>By accessing our website or using our services, you agree to the practices described in this Privacy Policy.</p>
 </div>
 
 <div class="section">
-<h2>1. Information We Collect</h2>
-
-<ul>
-<li>Name</li>
-<li>Phone Number</li>
-<li>Email Address</li>
-<li>Event Details</li>
-<li>Wedding / Event Date</li>
-<li>Location Information</li>
-<li>Photographs and Videos captured during assignments</li>
-<li>Information submitted through enquiry or contact forms</li>
-</ul>
+    <h2>1. Information We Collect</h2>
+    <ul>
+        <li>Name</li>
+        <li>Phone Number</li>
+        <li>Email Address</li>
+        <li>Event Details</li>
+        <li>Wedding / Event Date</li>
+        <li>Location Information</li>
+        <li>Photographs and Videos captured during assignments</li>
+        <li>Information submitted through enquiry or contact forms</li>
+    </ul>
 </div>
 
 <div class="section">
-<h2>2. How We Use Your Information</h2>
-
-<ul>
-<li>Responding to enquiries and booking requests</li>
-<li>Managing photography and videography assignments</li>
-<li>Client communication and support</li>
-<li>Delivering photographs, videos, albums, and related services</li>
-<li>Improving our services and customer experience</li>
-<li>Internal business and record-keeping purposes</li>
-</ul>
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+        <li>Responding to enquiries and booking requests</li>
+        <li>Managing photography and videography assignments</li>
+        <li>Client communication and support</li>
+        <li>Delivering photographs, videos, albums, and related services</li>
+        <li>Improving our services and customer experience</li>
+        <li>Internal business and record-keeping purposes</li>
+    </ul>
 </div>
 
 <div class="section">
-<h2>3. Photographs & Portfolio Usage</h2>
-
-<p>
-Unless otherwise agreed in writing, Picxlart Photography & Events Co. may use selected photographs and videos from assignments for portfolio display, website galleries, social media promotion, advertising, and marketing purposes.
-</p>
-
-<p>
-If a client wishes to keep their photographs completely private, a written request must be made before the assignment.
-</p>
+    <h2>3. Photographs & Portfolio Usage</h2>
+    <p>Unless otherwise agreed in writing, Picxlart Photography & Events Co. may use selected photographs and videos from assignments for portfolio display, website galleries, social media promotion, advertising, and marketing purposes.</p>
+    <p>If a client wishes to keep their photographs completely private, a written request must be made before the assignment.</p>
 </div>
 
 <div class="section">
-<h2>4. Payment Information</h2>
-
-<p>
-We do not store debit card, credit card, banking passwords, UPI PINs, or any sensitive payment credentials.
-</p>
-
-<p>
-Payments made through UPI, bank transfer, or third-party payment platforms are processed by their respective providers.
-</p>
+    <h2>4. Payment Information</h2>
+    <p>We do not store debit card, credit card, banking passwords, UPI PINs, or any sensitive payment credentials.</p>
+    <p>Payments made through UPI, bank transfer, or third-party payment platforms are processed by their respective providers.</p>
 </div>
 
 <div class="section">
-<h2>5. Information Sharing</h2>
-
-<p>
-We do not sell, rent, or trade personal information to third parties.
-</p>
-
-<p>
-Information may only be shared when required to deliver contracted services, comply with legal obligations, or protect our legal rights and business interests.
-</p>
+    <h2>5. Information Sharing</h2>
+    <p>We do not sell, rent, or trade personal information to third parties.</p>
+    <p>Information may only be shared when required to deliver contracted services, comply with legal obligations, or protect our legal rights and business interests.</p>
 </div>
 
 <div class="section">
-<h2>6. Data Security</h2>
-
-<p>
-We take reasonable precautions to protect client information, photographs, videos, and project-related files from unauthorized access, misuse, or disclosure.
-</p>
-
-<p>
-However, no method of online transmission or digital storage can be guaranteed to be 100% secure.
-</p>
+    <h2>6. Data Security</h2>
+    <p>We take reasonable precautions to protect client information, photographs, videos, and project-related files from unauthorized access, misuse, or disclosure.</p>
+    <p>However, no method of online transmission or digital storage can be guaranteed to be 100% secure.</p>
 </div>
 
 <div class="section">
-<h2>7. Third-Party Links</h2>
-
-<p>
-Our website may contain links to external websites, social media platforms, Google Maps, WhatsApp, or other third-party services.
-</p>
-
-<p>
-We are not responsible for the privacy practices of those external platforms.
-</p>
+    <h2>7. Third-Party Links</h2>
+    <p>Our website may contain links to external websites, social media platforms, Google Maps, WhatsApp, or other third-party services.</p>
+    <p>We are not responsible for the privacy practices of those external platforms.</p>
 </div>
 
 <div class="section">
-<h2>8. Cookies & Analytics</h2>
-
-<p>
-Our website may use basic cookies or analytics tools to improve website performance and understand visitor activity.
-</p>
-
-<p>
-These tools do not provide us with sensitive personal information.
-</p>
+    <h2>8. Cookies & Analytics</h2>
+    <p>Our website may use basic cookies or analytics tools to improve website performance and understand visitor activity.</p>
+    <p>These tools do not provide us with sensitive personal information.</p>
 </div>
 
 <div class="section">
-<h2>9. Children's Privacy</h2>
-
-<p>
-Our services are not intended to collect personal information directly from children without parental or guardian involvement.
-</p>
+    <h2>9. Children's Privacy</h2>
+    <p>Our services are not intended to collect personal information directly from children without parental or guardian involvement.</p>
 </div>
 
 <div class="section">
-<h2>10. Changes to This Policy</h2>
-
-<p>
-Picxlart Photography & Events Co. reserves the right to modify or update this Privacy Policy at any time without prior notice.
-</p>
-
-<p>
-Updated versions will be published on this page.
-</p>
+    <h2>10. Changes to This Policy</h2>
+    <p>Picxlart Photography & Events Co. reserves the right to modify or update this Privacy Policy at any time without prior notice.</p>
+    <p>Updated versions will be published on this page.</p>
 </div>
 
 <div class="section">
-<h2>11. Contact Us</h2>
-
-<div class="contact-box">
-
-<p><strong>Picxlart Photography & Events Co.</strong></p>
-
-<p>📧 picxlartphotography@gmail.com</p>
-<p>📞 +91 70035 21139 / +91 74395 53442</p>
-
-<p>📍 Serampore, Hooghly, West Bengal, India</p>
-
-</div>
+    <h2>11. Contact Us</h2>
+    <div class="contact-box">
+        <p><strong>Picxlart Photography & Events Co.</strong></p>
+        <p>📧 <a href="mailto:info@picxlart.com" style="color: inherit; text-decoration: none;">info@picxlart.com</a></p>
+        <p>📞 +91 70035 21139 / +91 74395 53442</p>
+        <p>📍 Serampore, Hooghly, West Bengal, India</p>
+    </div>
 </div>
 
 <div class="section">
-
-<p style="text-align:center;">
-By using this website, you consent to the terms outlined in this Privacy Policy.
-</p>
-
-</div>
-
-<div class="footer-note">
-© 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    <p style="text-align:center; color: #d4af37;">
+        By using this website, you consent to the terms outlined in this Privacy Policy.
+    </p>
 </div>
 
 </div>
+
+<!-- Footer Enterprise Framework (Exact layout matching index.html) -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Security Controls Matrix
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
 
 </body>
 </html>
