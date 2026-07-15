@@ -1,146 +1,287 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Online Payment | Picxlart</title>
-<!-- এখানে ফ্যাবআইকন লিংকটি যুক্ত করা হলো -->
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-body{
-background:#111;
-color:white;
-font-family:'Poppins',sans-serif;
-margin:0;
-padding:0;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:50px 20px;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-h1{
-text-align:center;
-color:#d4af37;
-margin-bottom:25px;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-.intro{
-max-width:900px;
-margin:auto;
-text-align:center;
-line-height:1.9;
-color:#ddd;
-font-size:17px;
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
-.payment-container{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:50px;
-margin-top:60px;
-flex-wrap:wrap;
-}
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
 
-.payment-left{
-text-align:center;
-}
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
 
-.payment-left img{
-width:320px;
-max-width:100%;
-border-radius:15px;
-border:2px solid #d4af37;
-}
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
 
-.upi-id{
-margin-top:15px;
-color:#d4af37;
-font-weight:bold;
-font-size:16px;
-}
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
 
-.divider{
-width:2px;
-height:320px;
-background:#d4af37;
-}
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
 
-.payment-right{
-max-width:400px;
-text-align:center;
-}
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
 
-.payment-right h3{
-color:#d4af37;
-font-size:28px;
-margin-bottom:25px;
-}
+    /* Page Content Styling */
+    .container{
+        max-width:1200px;
+        margin:auto;
+        padding:40px 20px 60px;
+    }
 
-.pay-btn{
-display:inline-block;
-background:#d4af37;
-color:black;
-padding:15px 30px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-font-size:16px;
-margin-bottom:20px;
-}
+    h1{
+        text-align:center;
+        color:#d4af37;
+        margin-bottom:25px;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
 
-.pay-btn:hover{
-opacity:0.9;
-}
+    .intro{
+        max-width:900px;
+        margin:auto;
+        text-align:center;
+        line-height:1.9;
+        color:#b8b8b8;
+        font-size:16px;
+    }
 
-.payment-right p{
-line-height:1.8;
-color:#ddd;
-}
+    .payment-container{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:50px;
+        margin-top:50px;
+        flex-wrap:wrap;
+    }
 
-@media(max-width:768px){
+    .payment-left{
+        text-align:center;
+    }
 
-.payment-container{
-flex-direction:column;
-}
+    .payment-left img{
+        width:320px;
+        max-width:100%;
+        border-radius:15px;
+        border:2px solid #d4af37;
+    }
 
-.divider{
-display:none;
-}
+    .upi-id{
+        margin-top:15px;
+        color:#d4af37;
+        font-weight:bold;
+        font-size:16px;
+    }
 
-.payment-left img{
-width:280px;
-}
+    .divider{
+        width:2px;
+        height:320px;
+        background:#d4af37;
+    }
 
-}
+    .payment-right{
+        max-width:400px;
+        text-align:center;
+    }
 
-.back-home{
-    display:inline-block;
-    margin:40px 0 20px 40px;
-    color:#d4af37;
-    text-decoration:none;
-    font-size:18px;
-    font-weight:500;
-    transition:.3s;
-}
+    .payment-right h3{
+        color:#d4af37;
+        font-size:28px;
+        margin-bottom:25px;
+        font-weight: 600;
+    }
 
-.back-home:hover{
-    color:white;
-}
-  
+    /* Premium Button Architecture matching our style */
+    .pay-btn{
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color: #000000;
+        padding: 15px 42px;
+        text-decoration:none;
+        font-weight:700;
+        font-size: 14px;
+        border-radius:50px;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+        margin-bottom: 20px;
+    }
+
+    .pay-btn:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+    }
+
+    .payment-right p{
+        line-height:1.8;
+        color:#b8b8b8;
+        font-size: 15px;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    @media(max-width:768px){
+        .navbar{ padding:6px 20px; }
+        .nav-logo img{ height:45px; }
+        .nav-menu{ gap:12px; }
+        .nav-menu a { font-size: 11px; }
+        .nav-social a{ font-size:14px; }
+        .payment-container{ flex-direction:column; }
+        .divider{ display:none; }
+        .payment-left img{ width:280px; }
+    }
 </style>
-
 </head>
 
 <body>
 
-<a href="index.html" class="back-home">← Back to Home</a>
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
+
 <div class="container">
 
 <h1>Online Payment</h1>
@@ -156,34 +297,59 @@ After a successful transaction, please share the payment screenshot via WhatsApp
 <div class="payment-container">
 
 <div class="payment-left">
-
-<img src="./QR-Code.jpeg" alt="Payment QR Code">
-
-<div class="upi-id">
-UPI ID: debghosh2006@okicici
-</div>
-
+    <img src="./QR-Code.jpeg" alt="Payment QR Code">
+    <div class="upi-id">
+        UPI ID: debghosh2006@okicici
+    </div>
 </div>
 
 <div class="divider"></div>
 
 <div class="payment-right">
-
-<h3>Quick Payment</h3>
-
-<a href="upi://pay?pa=debghosh2006@okicici&pn=Debashis Ghosh&cu=INR" class="pay-btn">
-Google Pay / PhonePe / Paytm
-</a>
-
-<p>
-Tap the button above to open your preferred UPI application directly on your mobile device and complete the payment securely.
-</p>
-
+    <h3>Quick Payment</h3>
+    <a href="upi://pay?pa=debghosh2006@okicici&pn=Debashis Ghosh&cu=INR" class="pay-btn">
+        Google Pay / PhonePe / Paytm
+    </a>
+    <p>
+        Tap the button above to open your preferred UPI application directly on your mobile device and complete the payment securely.
+    </p>
 </div>
 
 </div>
 
 </div>
+
+<!-- Footer Enterprise Framework (Exact layout matching index.html) -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Security Controls Matrix
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
 
 </body>
 </html>
