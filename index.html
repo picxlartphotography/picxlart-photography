@@ -112,6 +112,16 @@
         transform:translateY(-3px);
     }
 
+    /* Premium Mobile Hamburger Control */
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 999999;
+        transition: transform 0.3s ease;
+    }
+
     /* Navbar Shimmer Effect */
     .navbar::after{
         content:'';
@@ -737,7 +747,7 @@
 
     @media(max-width:768px){
         .navbar{
-            padding:6px 20px;
+            padding:16px 24px; /* মোবাইল রেসপন্সিভ স্ক্রিন ব্যালেন্সিং */
             flex-wrap: nowrap;
         }
 
@@ -745,22 +755,45 @@
             height:45px;
         }
 
-        .nav-menu{
-            gap:12px;
+        /* Luxurious Full-Screen Mobile Drawer System */
+        .menu-toggle {
+            display: block; /* মোবাইলে গোল্ডেন হ্যামবার্গার অন */
         }
-        
+
+        .nav-social {
+            display: none !important; /* প্রফেশনাল ক্লিয়ারেন্সের জন্য সোশ্যাল লিংক আইকন হাইড */
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(8, 8, 8, 0.98);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 38px;
+            transform: translateY(-100%); /* ওপর থেকে নিচে মসৃণভাবে নামার ট্রানজিশন */
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            z-index: 999998;
+        }
+
+        .nav-menu.active {
+            transform: translateY(0);
+        }
+
         .nav-menu a {
-            font-size: 11px;
-            letter-spacing: 0.5px;
+            font-size: 20px;
+            letter-spacing: 2.5px;
+            font-weight: 600;
         }
 
-        .nav-social{
-            display: flex !important; 
-            gap:10px;
-        }
-
-        .nav-social a{
-            font-size:14px;
+        .nav-menu a::after {
+            display: none; /* মোবাইলে আন্ডারলাইন ইফেক্ট অফ */
         }
 
         section{
@@ -822,13 +855,11 @@
             text-align:center;
         }
 
-        /* মোবাইলে পিন ইমোজি এবং টেক্সট অ্যালাইনমেন্ট ফিক্স */
         .contact-details-list p{
             display: block !important;
             text-align: center !important;
         }
 
-        /* পিন ইমোজি এবং টেক্সট যাতে নিখুঁতভাবে আপনার মনের মতো ২ লাইনে বসে */
         .address-mobile-layout {
             display: block !important;
             text-align: center !important;
@@ -850,23 +881,7 @@
 
     @media (max-width: 480px) {
         .navbar {
-            padding: 6px 10px;
-        }
-        
-        .nav-menu {
-            gap: 6px;
-        }
-        
-        .nav-menu a {
-            font-size: 9.5px;
-        }
-        
-        .nav-social {
-            gap: 8px;
-        }
-
-        .nav-social a {
-            font-size: 13px;
+            padding: 12px 20px;
         }
         
         .hero {
@@ -932,6 +947,11 @@
         <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <!-- Mobile Screen Trigger (Golden Hamburger Bars Icon) -->
+    <div class="menu-toggle" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
     </div>
 </div>
     
@@ -1111,7 +1131,6 @@
             <p class="intro-p">Every milestone deserves to be preserved beautifully. Whether it is your dream wedding, a cinematic pre-wedding story, or a premium corporate profile, we are here to weave magic through our lenses. Let's connect and design your perfect visual memories together.</p>
             
             <div class="contact-details-list">
-                <!-- পিন ইমোজিটিকে সরাসরি লেখার ভেতরেই সেট করে দেওয়া হলো, যাতে আলাদা হওয়ার কোনো সুযোগ না থাকে -->
                 <p class="address-mobile-layout">
                     <span>📍 Serampore Hooghly,</span>
                     <span>West Bengal, India</span>
@@ -1213,6 +1232,34 @@ function toggleWhy(){
         btn.innerText = "Read More";
     }
 }
+</script>
+
+<!-- Mobile Overlay Navigation Trigger Automation Script -->
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+const menuIcon = mobileMenuBtn.querySelector('i');
+
+mobileMenuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+    } else {
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+    }
+});
+
+// Auto close full-screen drawer when clicking internal anchor link references
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+    });
+});
 </script>
 
 <!-- Security Engine Controls Section -->
