@@ -674,7 +674,7 @@
         gap: 12px;
     }
 
-    /* Enterprise Footer Architecture */
+    /* Enterprise Footer Architecture & Golden Button CSR Fix */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -682,6 +682,27 @@
         color: #777777;
         font-size: 13px;
         border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-btn-premium {
+        display:inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color:black;
+        padding:12px 35px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+    
+    .footer-btn-premium:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
     }
 
     .footer-links-container {
@@ -703,17 +724,6 @@
     .footer-divider {
         color:#333;
         margin: 0 8px;
-    }
-
-    /* Technical Animations */
-    .fade {
-        animation-name: fade;
-        animation-duration: 1.5s;
-    }
-
-    @keyframes fade {
-        from {opacity: .4} 
-        to {opacity: 1}
     }
 
     /* Complete Multi-Device Responsive System */
@@ -1124,9 +1134,7 @@
     </div>
 </section>
 
-<!-- Footer Enterprise Framework -->
 <footer>
-    <!-- এখানে আপনার সেই সোনালী বাটনটি আবার যোগ করে দেওয়া হলো -->
     <div style="margin-bottom:25px;">
         <a href="csr-initiative.html" class="footer-btn-premium">CSR Initiative</a>
     </div>
