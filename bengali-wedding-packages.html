@@ -30,7 +30,7 @@
         min-height: 100vh;
     }
 
-    /* Top Navbar Layout & Styling (Hubahub Match) */
+    /* Top Navbar Layout & Styling */
     .navbar{
         position:fixed;
         top:0;
@@ -171,6 +171,7 @@
         text-decoration: none;
         position: relative;
         overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Golden sweep reflection glow effect */
@@ -183,10 +184,6 @@
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
         transition: 0.8s;
-    }
-
-    .package-row-card:hover::after {
-        left: 100%;
     }
 
     .card-left-info {
@@ -211,6 +208,7 @@
         letter-spacing: 1px;
         margin-bottom: 16px;
         text-transform: uppercase;
+        transition: color 0.3s ease;
     }
 
     .card-left-info p {
@@ -238,22 +236,47 @@
         cursor: pointer;
     }
 
-    /* Luxury Hover Architecture States */
-    .package-row-card:hover{
-        transform: translateY(-8px);
-        background: rgba(28, 28, 28, 0.85);
-        border-color: rgba(212, 175, 55, 0.6);
-        box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+    /* Desktop Hover Architecture States */
+    @media(min-width: 769px) {
+        .package-row-card:hover{
+            transform: translateY(-8px);
+            background: rgba(28, 28, 28, 0.85);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+        }
+
+        .package-row-card:hover::after {
+            left: 100%;
+        }
+
+        .package-row-card:hover .view-details-btn {
+            background: #d4af37;
+            color: #000000;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            border-color: transparent;
+        }
     }
 
-    .package-row-card:hover .view-details-btn {
-        background: #d4af37;
-        color: #000000;
-        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        border-color: transparent;
+    /* Advanced Touch Responsive Class Framework for Mobile Glow */
+    .package-row-card.touch-glow {
+        background: rgba(28, 28, 28, 0.9) !important;
+        border-color: rgba(212, 175, 55, 0.75) !important;
+        box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15) !important;
+        transform: translateY(-4px);
     }
 
-    /* Enterprise Footer Architecture (Hubahub Match) */
+    .package-row-card.touch-glow .view-details-btn {
+        background: #d4af37 !important;
+        color: #000000 !important;
+        border-color: transparent !important;
+    }
+
+    .package-row-card.touch-glow::after {
+        left: 100% !important;
+        transition: left 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    /* Enterprise Footer Architecture */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -503,7 +526,23 @@ navLinks.forEach(link => {
     });
 });
 
-// Structural Anti-Theft Script Mechanics
+// Advanced Touch Interface Logic for Mobile Glow Optimization
+const rowCards = document.querySelectorAll('.package-row-card');
+rowCards.forEach(card => {
+    card.addEventListener('touchstart', function() {
+        card.classList.add('touch-glow');
+    });
+    card.addEventListener('touchend', function() {
+        setTimeout(() => {
+            card.classList.remove('touch-glow');
+        }, 350); // Clean fade out animation window
+    });
+    card.addEventListener('touchcancel', function() {
+        card.classList.remove('touch-active');
+    });
+});
+
+// Structural Security Mechanics
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
