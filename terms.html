@@ -1,133 +1,301 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms & Conditions | Picxlart Photography & Events Co.</title>
-<!-- এখানে ফ্যাবআইকন লিংকটি যুক্ত করা হলো -->
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-body{
-font-family:Arial,sans-serif;
-background:#111;
-color:white;
-max-width:1000px;
-margin:auto;
-padding:30px;
-line-height:1.8;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-h1{
-color:#d4af37;
-text-align:center;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-h2{
-color:#d4af37;
-margin-top:30px;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-p{
-margin-bottom:15px;
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
+
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
+
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
+
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
+
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
+
+    /* Page Content Styling */
+    .container{
+        max-width:1000px;
+        margin:auto;
+        padding:40px 25px 60px;
+    }
+
+    h1{
+        text-align:center;
+        color:#d4af37;
+        margin-bottom:20px;
+        font-size:38px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .intro-text{
+        text-align:center;
+        color:#b8b8b8;
+        font-size:16px;
+        margin-bottom:40px;
+    }
+
+    .terms-list{
+        padding-left:30px;
+    }
+
+    .terms-list li{
+        margin-bottom:18px;
+        color:#b8b8b8;
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .terms-list li::marker{
+        color:#d4af37;
+        font-weight:bold;
+    }
+    
+    .terms-list li strong {
+        color: #d4af37;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    @media(max-width:768px){
+        .navbar{ padding:6px 20px; }
+        .nav-logo img{ height:45px; }
+        .nav-menu{ gap:12px; }
+        .nav-menu a { font-size: 11px; }
+        .nav-social a{ font-size:14px; }
+        .container{ padding:20px; }
+        h1{ font-size:28px; }
+    }
 </style>
-
 </head>
 
 <body>
 
-<h1>Terms & Conditions</h1>
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
 
-<p style="text-align:center;">
-Please read these terms carefully before booking any service with Picxlart Photography & Events Co.
-</p>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
 
-<!-- TERMS START -->
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
 
-<style>
-.terms-list{
-    margin-top:30px;
-    padding-left:30px;
-}
+<div class="container">
 
-.terms-list li{
-    margin-bottom:18px;
-    color:#ffffff;
-}
+    <h1>Terms & Conditions</h1>
 
-.terms-list li::marker{
-    color:#d4af37;
-    font-weight:bold;
-}
-</style>
+    <p class="intro-text">
+        Please read these terms carefully before booking any service with Picxlart Photography & Events Co.
+    </p>
 
-<ol class="terms-list">
+    <ol class="terms-list">
+        <li>The client must provide complete details of the event before booking.</li>
+        <li>Late-night weddings / lagan ceremonies may attract additional charges and increase the package value.</li>
+        <li>Package charges may increase for outstation assignments.</li>
+        <li>Any customization or addition to the package after booking may increase the package value.</li>
+        <li>Work Timing (Bengali Wedding): 8:00 AM to 12:00 AM (Midnight).</li>
+        <li>Work beyond 12:00 AM for Bengali or Non-Bengali weddings will be chargeable and may require a different package.</li>
+        <li>Wedding Reception coverage is valid up to 12:30 AM.</li>
+        <li>If the agreed work duration exceeds the package timing, additional charges will be applicable on an hourly and manpower basis. Conditions Apply.</li>
+        <li>A booking is confirmed only after receiving 50% advance payment. The remaining 50% must be paid on the assignment day.</li>
+        <li>If the client cancels the booking for any reason after confirmation, the advance amount is non-refundable. However, it may be adjusted against another assignment at the company's discretion.</li>
+        <li>If the client wishes to change or postpone the booked date, they must inform us as early as possible (ASAP).</li>
+        <li>For outdoor shoots such as Pre-Wedding, Post-Wedding, or similar assignments, all location entry fees, spot charges, permits, and miscellaneous expenses must be borne by the client.</li>
+        <li>Travelling, food, and accommodation expenses are not included in any package unless specifically mentioned.</li>
+        <li>Payment terms cannot be changed under any circumstances.</li>
+        <li>Delivery timeline may take up to 3 months after receiving the final selected photographs from the client.</li>
+        <li>Complimentary correction or re-editing of completed work is not included.</li>
+        <li>The client must allocate sufficient time for couple photo sessions within the agreed schedule.</li>
+        <li>Any additional photography requirements beyond the fixed schedule may be chargeable on an hourly basis per photographer.</li>
+        <li>The team shall not be held responsible if the client fails to complete the planned photoshoot within the allotted time.</li>
+        <li>If drone photography or videography is required, the client must obtain all necessary permissions from the local authorities and police station (if applicable).</li>
+        <li>The client shall also be responsible for any interruptions or restrictions caused by lack of permissions.</li>
+        <li>Final payment is mandatory on the wedding day or programme reception day.</li>
+        <li>The use of laser lights is strictly prohibited during photography and videography. If any camera or equipment damage occurs due to laser lights, the client shall bear the full cost of repair or replacement.</li>
+        <li>No photographs, videos, albums, edited files, or data will be delivered until the final payment has been completed.</li>
+        <li>We do not provide props for any type of photoshoot unless specifically agreed in writing.</li>
+        <li>Raw video footage is not transferable. Only unedited photographs may be provided if included in the package.</li>
+        <li>If any equipment belonging to Picxlart Photography & Events Co. is damaged due to the actions of the client, guests, relatives, vendors, or any third party associated with the event, the client shall be responsible for the full cost of repair or replacement.</li>
+        <li><strong>Album Design Revision Policy:</strong> The client is entitled to a maximum of two (2) rounds of album design revisions after the initial album layout is shared. Any revision requests beyond two rounds may be subject to additional charges.</li>
+        <li>By confirming a booking, the client acknowledges that they have read, understood, and agreed to all the above Terms & Conditions.</li>
+    </ol>
 
-<li>The client must provide complete details of the event before booking.</li>
+</div>
 
-<li>Late-night weddings / lagan ceremonies may attract additional charges and increase the package value.</li>
+<!-- Footer Enterprise Framework (Exact layout matching index.html) -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
 
-<li>Package charges may increase for outstation assignments.</li>
-
-<li>Any customization or addition to the package after booking may increase the package value.</li>
-
-<li>Work Timing (Bengali Wedding): 8:00 AM to 12:00 AM (Midnight).</li>
-
-<li>Work beyond 12:00 AM for Bengali or Non-Bengali weddings will be chargeable and may require a different package.</li>
-
-<li>Wedding Reception coverage is valid up to 12:30 AM.</li>
-
-<li>If the agreed work duration exceeds the package timing, additional charges will be applicable on an hourly and manpower basis. Conditions Apply.</li>
-
-<li>A booking is confirmed only after receiving 50% advance payment. The remaining 50% must be paid on the assignment day.</li>
-
-<li>If the client cancels the booking for any reason after confirmation, the advance amount is non-refundable. However, it may be adjusted against another assignment at the company's discretion.</li>
-
-<li>If the client wishes to change or postpone the booked date, they must inform us as early as possible (ASAP).</li>
-
-<li>For outdoor shoots such as Pre-Wedding, Post-Wedding, or similar assignments, all location entry fees, spot charges, permits, and miscellaneous expenses must be borne by the client.</li>
-
-<li>Travelling, food, and accommodation expenses are not included in any package unless specifically mentioned.</li>
-
-<li>Payment terms cannot be changed under any circumstances.</li>
-
-<li>Delivery timeline may take up to 3 months after receiving the final selected photographs from the client.</li>
-
-<li>Complimentary correction or re-editing of completed work is not included.</li>
-
-<li>The client must allocate sufficient time for couple photo sessions within the agreed schedule.</li>
-
-<li>Any additional photography requirements beyond the fixed schedule may be chargeable on an hourly basis per photographer.</li>
-
-<li>The team shall not be held responsible if the client fails to complete the planned photoshoot within the allotted time.</li>
-
-<li>If drone photography or videography is required, the client must obtain all necessary permissions from the local authorities and police station (if applicable).</li>
-
-<li>The client shall also be responsible for any interruptions or restrictions caused by lack of permissions.</li>
-
-<li>Final payment is mandatory on the wedding day or programme reception day.</li>
-
-<li>The use of laser lights is strictly prohibited during photography and videography. If any camera or equipment damage occurs due to laser lights, the client shall bear the full cost of repair or replacement.</li>
-
-<li>No photographs, videos, albums, edited files, or data will be delivered until the final payment has been completed.</li>
-
-<li>We do not provide props for any type of photoshoot unless specifically agreed in writing.</li>
-
-<li>Raw video footage is not transferable. Only unedited photographs may be provided if included in the package.</li>
-
-<li>If any equipment belonging to Picxlart Photography & Events Co. is damaged due to the actions of the client, guests, relatives, vendors, or any third party associated with the event, the client shall be responsible for the full cost of repair or replacement.</li>
-
-<li><strong>Album Design Revision Policy:</strong> The client is entitled to a maximum of two (2) rounds of album design revisions after the initial album layout is shared. Any revision requests beyond two rounds may be subject to additional charges.</li>
-
-<li>By confirming a booking, the client acknowledges that they have read, understood, and agreed to all the above Terms & Conditions.</li>
-
-</ol>
-
-<p style="text-align:center;">
-© 2026 Picxlart Photography & Events Co.<br>
-All Rights Reserved.
-</p>
+<script>
+// Security Controls Matrix
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
 
 </body>
 </html>
