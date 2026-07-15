@@ -684,26 +684,6 @@
         border-top: 1px solid #1a1a1a;
     }
 
-    .footer-btn-premium {
-        display:inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
-        color:black;
-        padding:12px 35px;
-        border-radius:30px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:14px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-    }
-    
-    .footer-btn-premium:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
-    }
-
     .footer-links-container {
         margin-bottom:25px; 
         line-height: 2.2;
@@ -763,13 +743,12 @@
             display: none !important; 
         }
 
-        /* FIXED: Modified to match Rig Biswas's layout (not full screen, gold bottom bar) */
         .nav-menu {
             position: fixed;
-            top: 60px; /* Just below the top main navbar line */
+            top: 60px; 
             left: 0;
             width: 100%;
-            height: auto; /* Fits perfectly to content height */
+            height: auto; 
             background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -781,7 +760,7 @@
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
             z-index: 999998;
-            border-bottom: 3px solid #d4af37; /* Matching the bottom banner line styling like Rig */
+            border-bottom: 3px solid #d4af37; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
@@ -789,7 +768,6 @@
             transform: translateY(0);
         }
 
-        /* Smaller elegant sleek fonts with top-bottom borders per row item */
         .nav-menu a {
             font-size: 15px;
             letter-spacing: 2px;
@@ -935,14 +913,12 @@
     }
 </style>
 
-<!-- Typography Infrastructure & Icons Elements -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- Header Navigation Bar Architecture -->
 <div class="navbar">
    <div class="nav-logo">
         <a href="index.html" id="logoLink">
@@ -963,11 +939,9 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- Mobile Navigation Toggle Button -->
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
     
-<!-- Hero Frame Canvas Showcase -->
 <div class="hero">
     <div class="hero-slideshow">
         <div class="mySlides fade"><img src="Cover.jpg" alt="Cover 1"></div>
@@ -987,7 +961,6 @@
     </div>
 </div>
 
-<!-- Portfolio Matrices Catalog -->
 <section id="gallery">
     <h2>Our Services</h2>
     <div class="services">
@@ -1021,7 +994,6 @@
     </div>
 </section>
 
-<!-- Brand Equity Profile Narrative -->
 <section id="why">
     <h2>Why Picxlart</h2>
     <div class="card why-card">
@@ -1050,7 +1022,6 @@
     </div>
 </section>
 
-<!-- External Visual Assets Channels Matrix -->
 <h3 class="social-visit-title">Also Visit Us At</h3>
 <div class="social-buttons-container">
     <a href="https://www.facebook.com/picxlart/" target="_blank" class="social-btn-premium">
@@ -1064,7 +1035,6 @@
     </a>
 </div>
 
-<!-- Scheduling Registration Control Panel -->
 <section class="booking-section" id="book">
     <h2>LET'S PLAN YOUR PHOTOGRAPHY NOW!</h2>
     <p class="sub-text">We offer a range of photography with different price segments. Let us know your requirements and budget and discuss everything to get you the Best!</p>
@@ -1090,7 +1060,6 @@
     </div>
 </section>
 
-<!-- Trust Matrix Social Feed Engine -->
 <section class="google-review-section">
     <div class="review-box">
         <h2>⭐⭐⭐⭐⭐</h2>
@@ -1104,7 +1073,6 @@
     </div>
 </section>
 
-<!-- Operational Intelligence Metrics Dashboard & Map Coordinates Framework -->
 <section class="contact">
     <div class="stats-container">
         <div class="stat-box">
@@ -1156,7 +1124,6 @@
     </div>
 </section>
 
-<!-- Footer Enterprise Framework -->
 <footer>
     <div style="margin-bottom:25px;">
         <a href="csr-initiative.html" class="footer-btn-premium">CSR Initiative</a>
@@ -1182,7 +1149,6 @@
     </p>
 </footer>
 
-<!-- Functional Automation Core Scripts Engine -->
 <script>
 let slideIndex = 0;
 showSlides();
@@ -1246,7 +1212,6 @@ function toggleWhy(){
 }
 </script>
 
-<!-- Mobile Dropdown Control Script -->
 <script>
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
@@ -1270,7 +1235,6 @@ navLinks.forEach(link => {
 });
 </script>
 
-<!-- Security Engine Controls Section -->
 <script>
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
