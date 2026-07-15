@@ -112,14 +112,16 @@
         transform:translateY(-3px);
     }
 
-    /* Premium Mobile Hamburger Control */
+    /* Mobile Menu Toggle button default hiddeing */
     .menu-toggle {
         display: none;
         color: #d4af37;
-        font-size: 24px;
+        font-size: 28px;
+        font-weight: bold;
         cursor: pointer;
-        z-index: 999999;
-        transition: transform 0.3s ease;
+        z-index: 1000000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Navbar Shimmer Effect */
@@ -198,7 +200,6 @@
         align-items: center;
     }
 
-    /* লোগোর ব্যালেন্সড সিএসএস */
     .hero-brand-logo {
         max-width: 580px; 
         width: 100%;
@@ -208,7 +209,6 @@
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
 
-    /* গোল্ডেন সাব-টাইটেল বোল্ড এবং বড় */
     .hero-title span {
         display: block;
         font-size: 28px; 
@@ -231,7 +231,6 @@
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    /* Premium Call To Action Buttons */
     .btn{
         background: linear-gradient(135deg, #d4af37, #b38f2d);
         color: #000000;
@@ -746,9 +745,11 @@
     }
 
     @media(max-width:768px){
+        /* FIXED: Navbar overflow fix so drawer slides down externally properly */
         .navbar{
-            padding:16px 24px; /* মোবাইল রেসপন্সিভ স্ক্রিন ব্যালেন্সিং */
+            padding:12px 24px;
             flex-wrap: nowrap;
+            overflow: visible !important;
         }
 
         .nav-logo img{
@@ -757,11 +758,11 @@
 
         /* Luxurious Full-Screen Mobile Drawer System */
         .menu-toggle {
-            display: block; /* মোবাইলে গোল্ডেন হ্যামবার্গার অন */
+            display: block; /* মোবাইলে হ্যামবার্গার অন */
         }
 
         .nav-social {
-            display: none !important; /* প্রফেশনাল ক্লিয়ারেন্সের জন্য সোশ্যাল লিংক আইকন হাইড */
+            display: none !important; /* সোশ্যাল আইকন অফ */
         }
 
         .nav-menu {
@@ -770,14 +771,14 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(8, 8, 8, 0.98);
+            background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 38px;
-            transform: translateY(-100%); /* ওপর থেকে নিচে মসৃণভাবে নামার ট্রানজিশন */
+            gap: 40px;
+            transform: translateY(-100%); 
             transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
             z-index: 999998;
         }
@@ -786,14 +787,16 @@
             transform: translateY(0);
         }
 
+        /* FIXED: Ensuring high visibility gold colors on dark mobile layer backdrop */
         .nav-menu a {
-            font-size: 20px;
-            letter-spacing: 2.5px;
+            font-size: 22px;
+            letter-spacing: 2px;
             font-weight: 600;
+            color: #d4af37 !important;
         }
 
         .nav-menu a::after {
-            display: none; /* মোবাইলে আন্ডারলাইন ইফেক্ট অফ */
+            display: none; 
         }
 
         section{
@@ -949,10 +952,8 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- Mobile Screen Trigger (Golden Hamburger Bars Icon) -->
-    <div class="menu-toggle" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
-    </div>
+    <!-- Mobile Navigation Toggle (Custom Textual Unicode Execution) -->
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
     
 <!-- Hero Frame Canvas Showcase -->
@@ -1234,30 +1235,27 @@ function toggleWhy(){
 }
 </script>
 
-<!-- Mobile Overlay Navigation Trigger Automation Script -->
+<!-- Mobile Navigation Functional Script Box Matrix -->
 <script>
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
-const menuIcon = mobileMenuBtn.querySelector('i');
 
-mobileMenuBtn.addEventListener('click', () => {
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     navMenu.classList.toggle('active');
     if(navMenu.classList.contains('active')) {
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-xmark');
+        mobileMenuBtn.textContent = '✕';
     } else {
-        menuIcon.classList.remove('fa-xmark');
-        menuIcon.classList.add('fa-bars');
+        mobileMenuBtn.textContent = '☰';
     }
 });
 
-// Auto close full-screen drawer when clicking internal anchor link references
+// Auto close full-screen drawer when clicking internal references
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
-        menuIcon.classList.remove('fa-xmark');
-        menuIcon.classList.add('fa-bars');
+        mobileMenuBtn.textContent = '☰';
     });
 });
 </script>
