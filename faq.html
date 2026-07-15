@@ -3,118 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Frequently Asked Questions | Picxlart Photography & Events Co.</title>
-<!-- এখানে ফ্যাবআইকন লিংকটি যুক্ত করা হলো -->
 <link rel="icon" type="image/png" href="favicon.png">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-body{
-background:#111;
-color:white;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:70px 20px;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-.page-title{
-text-align:center;
-color:#d4af37;
-font-size:42px;
-margin-bottom:15px;
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
-.page-subtitle{
-text-align:center;
-color:#ccc;
-margin-bottom:50px;
-line-height:1.8;
-}
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
 
-.faq-item{
-background:#1a1a1a;
-border:1px solid #2c2c2c;
-border-radius:12px;
-margin-bottom:15px;
-overflow:hidden;
-}
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
 
-.faq-question{
-padding:22px;
-cursor:pointer;
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-weight:600;
-font-size:17px;
-}
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
 
-.faq-question:hover{
-color:#d4af37;
-}
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
 
-.faq-icon{
-font-size:22px;
-color:#d4af37;
-}
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
 
-.faq-answer{
-max-height:0;
-overflow:hidden;
-transition:max-height .4s ease;
-}
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
 
-.faq-answer-content{
-padding:0 22px 22px;
-color:#ccc;
-line-height:1.9;
-}
+    /* Page Content Styling */
+    .container{
+        max-width:1000px;
+        margin:auto;
+        padding:40px 20px 60px;
+    }
 
-.faq-item.active .faq-answer{
-max-height:500px;
-}
+    .page-title{
+        text-align:center;
+        color:#d4af37;
+        font-size:42px;
+        margin-bottom:15px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
 
-.back-btn{
-display:inline-block;
-margin-bottom:35px;
-text-decoration:none;
-color:#d4af37;
-}
+    .page-subtitle{
+        text-align:center;
+        color:#b8b8b8;
+        margin-bottom:50px;
+        line-height:1.8;
+        font-size: 16px;
+    }
 
-@media(max-width:768px){
+    .faq-item{
+        background:#141414;
+        border:1px solid rgba(255,255,255,0.03);
+        border-radius:12px;
+        margin-bottom:15px;
+        overflow:hidden;
+        transition: border-color 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        border-color: rgba(212,175,55,0.3);
+    }
 
-.page-title{
-font-size:30px;
-}
+    .faq-question{
+        padding:22px;
+        cursor:pointer;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-weight:600;
+        font-size:17px;
+        transition: color 0.3s ease;
+    }
 
-.faq-question{
-font-size:15px;
-padding:18px;
-}
+    .faq-question:hover{
+        color:#d4af37;
+    }
 
-}
+    .faq-icon{
+        font-size:22px;
+        color:#d4af37;
+    }
 
+    .faq-answer{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .4s ease;
+    }
+
+    .faq-answer-content{
+        padding:0 22px 22px;
+        color:#b8b8b8;
+        line-height:1.9;
+        font-size: 15px;
+    }
+
+    .faq-item.active .faq-answer{
+        max-height:500px;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    @media(max-width:768px){
+        .navbar{ padding:6px 20px; }
+        .nav-logo img{ height:45px; }
+        .nav-menu{ gap:12px; }
+        .nav-menu a { font-size: 11px; }
+        .nav-social a{ font-size:14px; }
+        .page-title{ font-size:30px; }
+        .faq-question{ font-size:15px; padding:18px; }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
 
-<a href="index.html" class="back-btn">← Back to Home</a>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
+
+<div class="container">
 
 <h1 class="page-title">Frequently Asked Questions</h1>
 
@@ -380,14 +520,33 @@ We combine creativity, cinematic storytelling, premium editing, professional equ
 
 </div>
 
-<script>
+<!-- Footer Enterprise Framework (Exact layout matching index.html) -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
 
+<script>
 const faqItems = document.querySelectorAll('.faq-item');
 
 faqItems.forEach(item => {
-
     item.querySelector('.faq-question').addEventListener('click', () => {
-
         const isActive = item.classList.contains('active');
 
         // First close all FAQs
@@ -401,11 +560,16 @@ faqItems.forEach(item => {
             item.classList.add('active');
             item.querySelector('.faq-icon').textContent = '−';
         }
-
     });
-
 });
 
+// Security Controls Matrix
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
 </script>
 
 </body>
