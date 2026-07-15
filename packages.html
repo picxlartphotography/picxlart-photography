@@ -154,58 +154,85 @@
         gap:30px;
     }
 
+    /* Elegant Image Cards with Overlay text */
     .tree-card{
-        background: rgba(20, 20, 20, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        padding: 50px 30px;
+        height: 380px;
         border-radius: 15px;
-        text-align: center;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         text-decoration: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        backdrop-filter: blur(8px);
         position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        background-size: cover;
+        background-position: center;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .tree-card .icon-wrapper {
-        font-size: 40px;
-        color: #d4af37;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease;
+    /* Dark Overlay for Text Readability */
+    .tree-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+        transition: background 0.3s ease;
+        z-index: 1;
+    }
+
+    .card-content-box {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+        text-align: center;
     }
         
     .tree-card h3{
         color:#ffffff;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         transition: color 0.3s ease;
     }
 
     .tree-card p {
-        font-size: 13px;
-        color: #888888;
+        font-size: 12px;
+        color: #d4af37;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 2px;
+        border: 1px solid #d4af37;
+        padding: 8px 20px;
+        border-radius: 30px;
+        display: inline-block;
+        background: rgba(0,0,0,0.4);
+        transition: all 0.3s ease;
     }
 
+    /* Hover Effects */
     .tree-card:hover{
         transform: translateY(-8px);
-        background: rgba(26, 26, 26, 0.9);
-        border-color: rgba(212, 175, 55, 0.4);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        border-color: rgba(212, 175, 55, 0.5);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
     }
 
-    .tree-card:hover .icon-wrapper {
-        transform: scale(1.15);
+    .tree-card:hover::before {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
     }
 
     .tree-card:hover h3 {
         color: #d4af37;
+    }
+
+    .tree-card:hover p {
+        background: #d4af37;
+        color: #000;
+        font-weight: 600;
     }
 
     footer {
@@ -304,7 +331,7 @@
 
         h1 { font-size: 28px; }
         .package-tree-grid { gap: 20px; }
-        .tree-card { padding: 40px 20px; }
+        .tree-card { height: 320px; }
     }
 </style>
 </head>
@@ -339,28 +366,36 @@
     <p class="intro-text">Select a category below to explore our customized service structures, inclusions, and deliverables.</p>
 
     <div class="package-tree-grid">
-        <a href="wedding-packages.html" class="tree-card">
-            <div class="icon-wrapper"><i class="fas fa-camera-retro"></i></div>
-            <h3>Wedding</h3>
-            <p>View Packages</p>
+        <!-- Wedding Category -->
+        <a href="wedding-packages.html" class="tree-card" style="background-image: url('wedding-bg.jpg');">
+            <div class="card-content-box">
+                <h3>Wedding</h3>
+                <p>View Packages</p>
+            </div>
         </a>
 
-        <a href="event-packages.html" class="tree-card">
-            <div class="icon-wrapper"><i class="fas fa-cake-candles"></i></div>
-            <h3>Rice Ceremony / Birthday</h3>
-            <p>View Packages</p>
+        <!-- Rice Ceremony / Birthday Category -->
+        <a href="event-packages.html" class="tree-card" style="background-image: url('event-bg.jpg');">
+            <div class="card-content-box">
+                <h3>Rice Ceremony / Birthday</h3>
+                <p>View Packages</p>
+            </div>
         </a>
 
-        <a href="prewedding-packages.html" class="tree-card">
-            <div class="icon-wrapper"><i class="fas fa-heart"></i></div>
-            <h3>Prewedding</h3>
-            <p>View Packages</p>
+        <!-- Pre-Wedding Category -->
+        <a href="prewedding-packages.html" class="tree-card" style="background-image: url('prewedding-bg.jpg');">
+            <div class="card-content-box">
+                <h3>Prewedding</h3>
+                <p>View Packages</p>
+            </div>
         </a>
 
-        <a href="corporate-packages.html" class="tree-card">
-            <div class="icon-wrapper"><i class="fas fa-briefcase"></i></div>
-            <h3>Corporate or Others</h3>
-            <p>View Packages</p>
+        <!-- Corporate or Others Category -->
+        <a href="corporate-packages.html" class="tree-card" style="background-image: url('corporate-bg.jpg');">
+            <div class="card-content-box">
+                <h3>Corporate or Others</h3>
+                <p>View Packages</p>
+            </div>
         </a>
     </div>
 </div>
