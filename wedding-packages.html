@@ -152,47 +152,63 @@
         max-width: 900px;
     }
 
-    /* Premium Category Box Cards */
+    /* Ultra Premium Category Box Cards with Landscape Rectangular Image Frame */
     .select-card{
         background: rgba(28, 28, 28, 0.4);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        padding: 50px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px;
         border-radius: 20px;
         text-align: center;
-        transition: all 0.4s ease;
-        min-height: 220px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         backdrop-filter: blur(10px);
         text-decoration: none;
     }
 
-    .select-card i{
-        font-size: 40px;
-        color: #d4af37;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease;
+    /* The Premium Rectangular Image Window Box */
+    .card-img-holder {
+        width: 100%;
+        aspect-ratio: 16 / 10; /* Perfect elegant landscape rectangle shape */
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 22px;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        position: relative;
+    }
+
+    .card-img-holder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .select-card h3{
-        color: #d4af37;
+        color: #e0e0e0;
         font-size: 20px;
         font-weight: 600;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
     }
 
+    /* Hover States Architecture */
     .select-card:hover{
         transform: translateY(-8px);
-        background: rgba(35, 35, 35, 0.7);
-        border-color: rgba(212, 175, 55, 0.6);
+        background: rgba(35, 35, 35, 0.6);
+        border-color: rgba(212, 175, 55, 0.4);
         box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
-    .select-card:hover i {
-        transform: scale(1.15);
+    .select-card:hover .card-img-holder img {
+        transform: scale(1.06); /* Ultra-smooth upscale zoom */
+    }
+
+    .select-card:hover h3 {
+        color: #d4af37; /* Title shifts to brand gold smoothly */
     }
 
     /* Enterprise Footer Architecture (Hubahub Match) */
@@ -294,7 +310,7 @@
 
         .selection-grid {
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 30px;
         }
     }
 </style>
@@ -328,14 +344,23 @@
 <div class="main-content">
     <h1>SELECT WEDDING TYPE</h1>
     <div class="selection-grid">
+        
+        <!-- Bengali Wedding Selector Card -->
         <a href="bengali-wedding-packages.html" class="select-card">
-            <i class="fas fa-heart"></i>
+            <div class="card-img-holder">
+                <img src="bengali-wedding-card.jpg" alt="Bengali Wedding Portfolio">
+            </div>
             <h3>Bengali Wedding</h3>
         </a>
+        
+        <!-- Other Indian Wedding Selector Card -->
         <a href="other-indian-wedding-packages.html" class="select-card">
-            <i class="fas fa-gopuram"></i>
+            <div class="card-img-holder">
+                <img src="other-wedding-card.jpg" alt="Other Indian Wedding Portfolio">
+            </div>
             <h3>Other Indian Wedding</h3>
         </a>
+        
     </div>
 </div>
 
