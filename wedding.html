@@ -112,6 +112,18 @@
         transform:translateY(-3px);
     }
 
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
     /* Page Content Styling */
     h1{
         text-align:center;
@@ -159,7 +171,7 @@
         margin-bottom: 10px;
     }
 
-    /* Enterprise Footer Architecture (Exact Copy from index.html) */
+    /* Enterprise Footer Architecture */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -190,13 +202,70 @@
         margin: 0 8px;
     }
 
-    /* Responsive adjustments */
+    /* Mobile View Overrides (Exactly matches updated index.html) */
     @media(max-width:768px){
-        .navbar{ padding:6px 20px; }
-        .nav-logo img{ height:45px; }
-        .nav-menu{ gap:12px; }
-        .nav-menu a { font-size: 11px; }
-        .nav-social a{ font-size:14px; }
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
+
+        .nav-logo img{
+            height:45px;
+        }
+
+        .menu-toggle {
+            display: block; 
+        }
+
+        .nav-social {
+            display: none !important; 
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px; 
+            left: 0;
+            width: 100%;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%); 
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .nav-menu.active {
+            transform: translateY(0);
+        }
+
+        .nav-menu a {
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        .nav-menu a::after {
+            display: none; 
+        }
     }
 </style>
 </head>
@@ -223,6 +292,9 @@
         <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
+
+    <!-- Mobile Navigation Toggle Button -->
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
 <h1>Wedding Photography</h1>
@@ -256,7 +328,7 @@
 <p>Our services include candid photography, traditional coverage, cinematic storytelling and premium album design.</p>
 </div>
 
-<!-- Footer Enterprise Framework (Hubhuh layout matching index.html) -->
+<!-- Footer Enterprise Framework -->
 <footer>
     <div class="footer-links-container">
         <div>
@@ -294,7 +366,29 @@ function closeLightbox(){
 document.getElementById('lightbox').style.display='none';
 }
 
-// Right Click and Security Controls
+// Mobile Dropdown Control Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+// Security Controls
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
