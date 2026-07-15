@@ -168,6 +168,7 @@
         background-size: cover;
         background-position: center;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Subtle Dark overlay for clear graphics view initially */
@@ -215,19 +216,35 @@
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     }
 
-    /* Premium Hover & Active States for both desktop and mobile */
-    .tree-card:hover, .tree-card:active{
-        transform: translateY(-8px);
+    /* Premium Hover States for Desktop only to avoid sticky mobile clicks */
+    @media(min-width:769px) {
+        .tree-card:hover{
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+        }
+
+        .tree-card:hover::before {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .tree-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* JS Controlled Active Class for Touch Screen perfection */
+    .tree-card.touch-active{
+        transform: translateY(-4px);
         border-color: rgba(212, 175, 55, 0.6);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
     }
 
-    .tree-card:hover::before, .tree-card:active::before {
-        background: rgba(0, 0, 0, 0.5); /* darkens slightly to pop the gold button */
+    .tree-card.touch-active::before {
+        background: rgba(0, 0, 0, 0.5);
     }
 
-    /* Reveals the hidden button beautifully on hover or touch */
-    .tree-card:hover p, .tree-card:active p {
+    .tree-card.touch-active p {
         opacity: 1;
         transform: translateY(0);
     }
@@ -329,7 +346,6 @@
         h1 { font-size: 28px; }
         .package-tree-grid { gap: 20px; }
         
-        /* Mobile usability fix: reduces button padding slightly for perfect touch spacing */
         .tree-card p {
             padding: 8px 20px;
             font-size: 12px;
@@ -421,6 +437,7 @@
 </footer>
 
 <script>
+// Mobile Navigation Control Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -442,6 +459,23 @@ navLinks.forEach(link => {
     });
 });
 
+// Advanced Touch Handling Interface for Mobile Devices
+const cards = document.querySelectorAll('.tree-card');
+cards.forEach(card => {
+    card.addEventListener('touchstart', function() {
+        card.classList.add('touch-active');
+    });
+    card.addEventListener('touchend', function() {
+        setTimeout(() => {
+            card.classList.remove('touch-active');
+        }, 300); // 300ms delay for a smooth vanish effect
+    });
+    card.addEventListener('touchcancel', function() {
+        card.classList.remove('touch-active');
+    });
+});
+
+// Security Controls
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
