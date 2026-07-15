@@ -4,142 +4,370 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CSR Initiative | Picxlart Photography & Events Co.</title>
-<!-- এখানে ফ্যাবআইকন লিংকটি যুক্ত করা হলো -->
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        margin:0;
+        padding-top:90px;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
 
-body{
-    background:#0d0d0d;
-    color:#ffffff;
-    font-family:'Poppins',sans-serif;
-    line-height:1.8;
-}
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:60px 25px;
-}
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
 
-h1{
-    text-align:center;
-    color:#d4af37;
-    margin-bottom:25px;
-    font-size:36px;
-}
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
 
-.intro{
-    text-align:center;
-    color:#dddddd;
-    font-size:17px;
-    margin-bottom:50px;
-}
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
 
-.section{
-    margin-bottom:45px;
-}
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
 
-.section h2{
-    color:#d4af37;
-    margin-bottom:15px;
-    font-size:30px;
-}
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
 
-.section p{
-    color:#dddddd;
-}
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
 
-.section ul{
-    padding-left:25px;
-    color:#dddddd;
-}
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
 
-.section ul li{
-    margin-bottom:10px;
-}
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
 
-.note-box{
-    background:#151515;
-    border-left:4px solid #d4af37;
-    padding:20px;
-    border-radius:8px;
-}
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
 
-.objective{
-    text-align:center;
-    margin-top:50px;
-    font-size:18px;
-    color:#ffffff;
-}
-
-.button-area{
-    text-align:center;
-    margin-top:40px;
-}
-
-.apply-btn{
-    display:inline-block;
-    background:#d4af37;
-    color:#000;
-    padding:15px 35px;
-    border-radius:40px;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.apply-btn:hover{
-    transform:translateY(-2px);
-    opacity:0.9;
-}
-
-.footer-note{
-    text-align:center;
-    color:#999;
-    margin-top:60px;
-    font-size:14px;
-}
-
-@media(max-width:768px){
-
+    /* Page Content Styling */
     .container{
-        padding:30px 20px;
+        max-width:1000px;
+        margin:auto;
+        padding:40px 25px 60px;
     }
 
     h1{
-        font-size:24px;
-        line-height:1.4;
-        white-space:normal;
+        text-align:center;
+        color:#d4af37;
+        margin-bottom:25px;
+        font-size:36px;
+        font-weight: 600;
+        letter-spacing: 1px;
     }
 
     .intro{
+        text-align:center;
+        color:#b8b8b8;
         font-size:16px;
-        text-align:left;
+        margin-bottom:50px;
+        line-height: 1.8;
+    }
+
+    .section{
+        margin-bottom:45px;
     }
 
     .section h2{
-        font-size:24px;
+        color:#d4af37;
+        margin-bottom:15px;
+        font-size:26px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
 
-    .section p,
-    .section ul,
+    .section p, .section li{
+        color:#b8b8b8;
+        font-size: 15px;
+    }
+
+    .section ul{
+        padding-left:25px;
+    }
+
+    .section ul li{
+        margin-bottom:10px;
+    }
+
+    .note-box{
+        background:#141414;
+        border-left:4px solid #d4af37;
+        padding:25px;
+        border-radius:12px;
+        border-top: 1px solid rgba(255,255,255,0.02);
+        border-right: 1px solid rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.02);
+        color:#b8b8b8;
+        font-size: 15px;
+    }
+
     .objective{
+        text-align:center;
+        margin-top:50px;
         font-size:16px;
+        color:#e0e0e0;
+        line-height: 1.8;
     }
 
-}
+    .button-area{
+        text-align:center;
+        margin-top:40px;
+    }
 
+    .apply-btn{
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color: #000000;
+        padding: 15px 42px;
+        text-decoration:none;
+        font-weight:700;
+        font-size: 14px;
+        border-radius:50px;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    .apply-btn:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links-container a:hover {
+        color: #ffffff;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    /* Mobile View Overrides */
+    @media(max-width:768px){
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
+
+        .nav-logo img{
+            height:45px;
+        }
+
+        .menu-toggle {
+            display: block; 
+        }
+
+        .nav-social {
+            display: none !important; 
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px; 
+            left: 0;
+            width: 100%;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%); 
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .nav-menu.active {
+            transform: translateY(0);
+        }
+
+        .nav-menu a {
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        .nav-menu a::after {
+            display: none; 
+        }
+
+        .container{
+            padding:20px;
+        }
+
+        h1{
+            font-size:26px;
+            line-height:1.4;
+        }
+
+        .intro{
+            font-size:15px;
+            text-align:justify;
+        }
+
+        .section h2{
+            font-size:22px;
+        }
+
+        .section p, .section ul, .objective{
+            font-size:15px;
+        }
+    }
 </style>
 </head>
 
 <body>
+
+<!-- Header Navigation Bar Architecture -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <!-- Mobile Navigation Toggle Button -->
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
 
 <div class="container">
 
@@ -154,7 +382,6 @@ h1{
 
     <div class="section">
         <h2>Who Can Apply?</h2>
-
         <ul>
             <li>Families with limited financial resources.</li>
             <li>Brides whose families are unable to afford professional wedding photography despite having a genuine desire to preserve their wedding memories.</li>
@@ -165,13 +392,8 @@ h1{
 
     <div class="section">
         <h2>Selection Process</h2>
-
-        <p>
-            Every application is carefully reviewed by our team. Selection may be based on:
-        </p>
-
+        <p>Every application is carefully reviewed by our team. Selection may be based on:</p>
         <br>
-
         <ul>
             <li>Family income and financial condition.</li>
             <li>Overall family background.</li>
@@ -183,7 +405,6 @@ h1{
 
     <div class="section">
         <h2>Important Note</h2>
-
         <div class="note-box">
             Submission of an application does not guarantee selection.
             Only up to three (3) applicants may be selected in a calendar year.
@@ -196,18 +417,65 @@ h1{
     </div>
 
     <div class="button-area">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0f2-Od5NmhAzYTBeUPoosg8K3nrSE4xnAhLfTangkepAO3Q/viewform?usp=pp_url"
-       class="apply-btn"
-       target="_blank">
-        Apply Now
-    </a>
-</div>
-
-    <div class="footer-note">
-        © Picxlart Photography & Events Co. | CSR Wedding Support Initiative
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0f2-Od5NmhAzYTBeUPoosg8K3nrSE4xnAhLfTangkepAO3Q/viewform?usp=pp_url" class="apply-btn" target="_blank">
+            Apply Now
+        </a>
     </div>
 
 </div>
 
+<!-- Footer Enterprise Framework (Exact layout matching index.html) -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Mobile Dropdown Control Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+// Security Controls
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
 </body>
 </html>
