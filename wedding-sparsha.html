@@ -96,7 +96,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Qpid Style Premium Rectangle Automatic Carousel Slider */
+    /* Standard 16:9 Aspect Ratio Carousel System to prevent cropping and empty spaces */
     .slider-viewport-container {
         padding: 130px 20px 20px;
         max-width: 100%;
@@ -113,7 +113,7 @@
 
     .carousel-slide-item {
         flex: 0 0 calc(33.333% - 10px);
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 16 / 9; /* স্ট্যান্ডার্ড ল্যান্ডস্কেপ ক্যামেরা ছবির রেশিও */
         border-radius: 4px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.08);
@@ -123,8 +123,7 @@
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        background: #0d0d0d;
+        object-fit: cover; /* দুই পাশের ফাঁকা জায়গা ভরাট করার জন্য কভার দেওয়া হলো */
         transition: transform 0.6s ease;
     }
 
@@ -381,7 +380,7 @@
         .nav-menu a::after { display: none; }
 
         .slider-viewport-container { padding-top: 100px; }
-        .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 16 / 10; }
+        .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 16 / 9; }
         .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -434,7 +433,7 @@
     <p>"Love is life's greatest adventure that offers us pleasurable moments. Let's preserve these moments in a treasure box of priceless memories."</p>
 </div>
 
-<!-- 2. Narrative & Portrait Split Panel (Content optimized in English for Starter Package) -->
+<!-- 2. Narrative & Portrait Split Panel -->
 <div class="narrative-split-panel">
     <div class="narrative-left">
         <span class="tagline">Capturing the first touch of love and emotions</span>
@@ -456,7 +455,7 @@
     <a href="https://wa.me/917003521139" class="hire-us-btn" style="background:#d4af37; color:#000; border:none;" target="_blank">Get In Touch</a>
 </div>
 
-<!-- 4. Inclusions Grid Section (Reflected as Starter/Essential Package) -->
+<!-- 4. Inclusions Grid Section -->
 <div class="inclusions-section">
     <h3 class="inclusions-title">What you will get in Sparsha wedding package</h3>
     <p class="inclusions-subtitle">We provide every detail of your grand affair in a creative style, freezing those magical moments safely.</p>
