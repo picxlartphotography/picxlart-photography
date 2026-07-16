@@ -236,7 +236,7 @@
     /* Mid call-to-Action Banner */
     .cinematic-mid-banner {
         position: relative;
-        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('Sparsha_Banner.jpg');
+        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('mid-banner.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -382,7 +382,7 @@
 
         .slider-viewport-container { padding-top: 100px; }
         .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 16 / 10; }
-        .narrative-left h2 { font-size: 28px; }
+        .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
         .inclusion-card { padding: 30px 20px; }
@@ -420,12 +420,12 @@
 <!-- 1. Qpid Style Rectangle Automatic Multi-Photo Carousel Slider -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
-        <div class="carousel-slide-item"><img src="Sparsha1.jpg" alt="Sparsha Slide 1"></div>
-        <div class="carousel-slide-item"><img src="Sparsha2.jpg" alt="Sparsha Slide 2"></div>
-        <div class="carousel-slide-item"><img src="Sparsha3.jpg" alt="Sparsha Slide 3"></div>
-        <div class="carousel-slide-item"><img src="Sparsha4.jpg" alt="Sparsha Slide 4"></div>
-        <div class="carousel-slide-item"><img src="Sparsha5.jpg" alt="Sparsha Slide 5"></div>
-        <div class="carousel-slide-item"><img src="Sparsha6.jpg" alt="Sparsha Slide 6"></div>
+        <div class="carousel-slide-item"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div>
+        <div class="carousel-slide-item"><img src="top-slide2.jpg" alt="Sparsha Slide 2"></div>
+        <div class="carousel-slide-item"><img src="top-slide3.jpg" alt="Sparsha Slide 3"></div>
+        <div class="carousel-slide-item"><img src="top-slide4.jpg" alt="Sparsha Slide 4"></div>
+        <div class="carousel-slide-item"><img src="top-slide5.jpg" alt="Sparsha Slide 5"></div>
+        <div class="carousel-slide-item"><img src="top-slide6.jpg" alt="Sparsha Slide 6"></div>
     </div>
 </div>
 
@@ -434,7 +434,7 @@
     <p>"Love is life's greatest adventure that offers us pleasurable moments. Let's preserve these moments in a treasure box of priceless memories."</p>
 </div>
 
-<!-- 2. Narrative & Portrait Split Panel (এখানে Wedding6.jpg ইমেজটি ফিরিয়ে আনা হয়েছে) -->
+<!-- 2. Narrative & Portrait Split Panel (নতুন sparsha-portrait.jpg ছবি সেট করা হয়েছে) -->
 <div class="narrative-split-panel">
     <div class="narrative-left">
         <span class="tagline">Capturing the first touch of love and emotions</span>
@@ -445,7 +445,7 @@
     </div>
     <div class="narrative-right">
         <div class="featured-portrait-box">
-            <img src="Wedding6.jpg" alt="Featured Royal Bridal Portrait Layout">
+            <img src="sparsha-portrait.jpg" alt="Featured Royal Bridal Portrait Layout">
         </div>
     </div>
 </div>
@@ -572,7 +572,6 @@ function autoPlaySlider() {
     track.style.transform = `translateX(-${amountToMove}px)`;
 }
 
-// Slide interval setup (Slides every 3 seconds)
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
 window.addEventListener('resize', () => {
