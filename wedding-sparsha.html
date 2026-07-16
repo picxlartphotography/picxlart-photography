@@ -160,7 +160,7 @@
     }
 
     .narrative-left {
-        flex: 1;
+        flex: 1.2;
     }
 
     .narrative-left .tagline {
@@ -173,7 +173,7 @@
     }
 
     .narrative-left h2 {
-        font-size: 36px;
+        font-size: 38px;
         color: #ffffff;
         text-transform: uppercase;
         letter-spacing: 1.5px;
@@ -192,11 +192,11 @@
         background: transparent;
         color: #d4af37;
         border: 1px solid #d4af37;
-        padding: 14px 40px;
+        padding: 14px 35px;
         font-size: 13px;
         font-weight: 600;
         border-radius: 50px;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
         cursor: pointer;
         margin-top: 15px;
@@ -214,25 +214,26 @@
     .narrative-right {
         flex: 1;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Anti-Crop settings implemented for the portrait image box */
+    /* Dynamic Frame to remove portrait side spacing without cropping */
     .featured-portrait-box {
         width: 100%;
-        max-width: 500px;
-        height: 600px;
-        border-radius: 20px;
+        max-width: 440px; /* Perfect portrait scaling width */
+        aspect-ratio: 4 / 5; /* Exact match for portrait photos to eliminate gaps */
+        border-radius: 16px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.2);
         box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        background: #111111; /* Adds dark matte backing to blend empty spacing beautifully */
+        background: #0d0d0d;
     }
 
     .featured-portrait-box img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* ছবি এবং ব্র্যান্ডের লোগো সম্পূর্ণ সুরক্ষিত রাখার জন্য */
+        object-fit: contain;
     }
 
     /* Mid call-to-Action Banner */
@@ -355,7 +356,7 @@
     @media(max-width:992px) {
         .carousel-slide-item { flex: 0 0 calc(50% - 8px); }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
-        .featured-portrait-box { max-width: 100%; height: 500px; }
+        .featured-portrait-box { max-width: 100%; height: auto; }
         .inclusions-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -440,10 +441,10 @@
 <div class="narrative-split-panel">
     <div class="narrative-left">
         <span class="tagline">Capturing the first touch of love and emotions</span>
-        <h2>Sparsha Package</h2>
+        <h2>Sparsha</h2>
         <p>Preserving the genuine essence of your love story shouldn't depend on complex setups. The Sparsha Package is our beautifully curated essential wedding configuration, systematically designed for couples who prioritize timeless, high-quality memories within a classic budgetary landscape.</p>
         <p>Spanning a standard 3-day milestone timeline, our photography and cinematography team captures the core spirit of your authentic rituals. From the emotional depth of the main wedding traditions to the raw feelings of the Vidai ceremony, followed by the warmth of the Bodhuboron and the elegance of your Reception gala—every smile, embrace, and important ritual is preserved safely in an elegant digital archive.</p>
-        <a href="https://wa.me/917003521139" class="hire-us-btn" target="_blank">Enquire Coverage</a>
+        <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Sparsha%20Package." class="hire-us-btn" target="_blank">Check Pricing & Availability</a>
     </div>
     <div class="narrative-right">
         <div class="featured-portrait-box">
@@ -455,7 +456,7 @@
 <!-- 3. Mid call-to-Action Banner -->
 <div class="cinematic-mid-banner">
     <h3>Let's make something <strong>great together</strong>.</h3>
-    <a href="https://wa.me/917003521139" class="hire-us-btn" style="background:#d4af37; color:#000; border:none;" target="_blank">Get In Touch</a>
+    <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20more%20details%20about%20your%20Wedding%20Packages." class="hire-us-btn" style="background:#d4af37; color:#000; border:none;" target="_blank">Get In Touch</a>
 </div>
 
 <!-- 4. Inclusions Grid Section -->
@@ -551,7 +552,6 @@ navLinks.forEach(link => {
 const track = document.getElementById('carouselTrack');
 let slideIndex = 0;
 
-// Set responsive layout widths based on standard breakpoints
 function getSlidesPerView() {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 992) return 2;
