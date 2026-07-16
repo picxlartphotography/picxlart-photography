@@ -96,9 +96,9 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Qpid Style Premium Rectangle Automatic Carousel Slider */
+    /* Qpid Style Rectangle Automatic Multi-Photo Carousel Slider */
     .slider-viewport-container {
-        padding: 130px 20px 20px;
+        padding: 130px 20px 10px;
         max-width: 100%;
         margin: 0 auto;
         overflow: hidden;
@@ -132,10 +132,34 @@
         transform: scale(1.02);
     }
 
+    /* Qpid Style Slider Dots Navigation Container */
+    .slider-dots-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 15px 0 25px 0;
+    }
+
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .slider-dot.active {
+        background: #d4af37;
+        transform: scale(1.15);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
     /* Elegant Intro Quote Centered */
     .luxury-quote-container {
         text-align: center;
-        padding: 40px 20px;
+        padding: 20px 20px 40px;
         max-width: 900px;
         margin: 0 auto;
     }
@@ -214,26 +238,23 @@
     .narrative-right {
         flex: 1;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
     }
 
-    /* Dynamic Frame to remove portrait side spacing without cropping */
     .featured-portrait-box {
         width: 100%;
-        max-width: 440px; /* Perfect portrait scaling width */
-        aspect-ratio: 4 / 5; /* Exact match for portrait photos to eliminate gaps */
+        max-width: 430px; 
         border-radius: 16px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.2);
         box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        background: #0d0d0d;
     }
 
     .featured-portrait-box img {
         width: 100%;
-        height: 100%;
-        object-fit: contain;
+        height: auto; 
+        display: block;
     }
 
     /* Mid call-to-Action Banner */
@@ -356,7 +377,8 @@
     @media(max-width:992px) {
         .carousel-slide-item { flex: 0 0 calc(50% - 8px); }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
-        .featured-portrait-box { max-width: 100%; height: auto; }
+        .featured-portrait-box { max-width: 100%; }
+        .narrative-right { justify-content: center; }
         .inclusions-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -430,6 +452,16 @@
         <div class="carousel-slide-item"><img src="top-slide5.jpg" alt="Sparsha Slide 5"></div>
         <div class="carousel-slide-item"><img src="top-slide6.jpg" alt="Sparsha Slide 6"></div>
     </div>
+</div>
+
+<!-- Navigation Dots Structure -->
+<div class="slider-dots-container" id="sliderDots">
+    <div class="slider-dot active" data-index="0"></div>
+    <div class="slider-dot" data-index="1"></div>
+    <div class="slider-dot" data-index="2"></div>
+    <div class="slider-dot" data-index="3"></div>
+    <div class="slider-dot" data-index="4"></div>
+    <div class="slider-dot" data-index="5"></div>
 </div>
 
 <!-- Centered Luxury Core Quote -->
@@ -548,14 +580,28 @@ navLinks.forEach(link => {
     });
 });
 
-// Automatic Smooth Infinite Slider Core Logic
+// Qpid Style Advanced Smooth Automatic Slider & Interactive Dots Logic
 const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.slider-dot');
 let slideIndex = 0;
 
 function getSlidesPerView() {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 992) return 2;
     return 3;
+}
+
+function updateSliderPosition() {
+    const slideWidth = track.children[0].getBoundingClientRect().width;
+    const gap = 15;
+    const amountToMove = (slideWidth + gap) * slideIndex;
+    track.style.transform = `translateX(-${amountToMove}px)`;
+    
+    // Active dot logic
+    dots.forEach(dot => dot.classList.remove('active'));
+    if(dots[slideIndex]) {
+        dots[slideIndex].classList.add('active');
+    }
 }
 
 function autoPlaySlider() {
@@ -567,19 +613,31 @@ function autoPlaySlider() {
     if (slideIndex > maxIndex) {
         slideIndex = 0;
     }
-
-    const slideWidth = track.children[0].getBoundingClientRect().width;
-    const gap = 15;
-    const amountToMove = (slideWidth + gap) * slideIndex;
-
-    track.style.transform = `translateX(-${amountToMove}px)`;
+    updateSliderPosition();
 }
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
+// Interactive Click Controls on Dots
+dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        clearInterval(sliderInterval);
+        const targetIndex = parseInt(e.target.getAttribute('data-index'));
+        const totalSlides = track.children.length;
+        const slidesPerView = getSlidesPerView();
+        const maxIndex = totalSlides - slidesPerView;
+
+        if (targetIndex <= maxIndex) {
+            slideIndex = targetIndex;
+            updateSliderPosition();
+        }
+        sliderInterval = setInterval(autoPlaySlider, 3000);
+    });
+});
+
 window.addEventListener('resize', () => {
     slideIndex = 0;
-    track.style.transform = 'translateX(0px)';
+    updateSliderPosition();
     clearInterval(sliderInterval);
     sliderInterval = setInterval(autoPlaySlider, 3000);
 });
