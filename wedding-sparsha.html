@@ -382,26 +382,41 @@
         .inclusions-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media(max-width:768px){
-        .navbar{ padding:12px 24px; }
+    @media(max-width:768px) {
+        .navbar{ padding:12px 24px; flex-wrap: nowrap; overflow: visible !important; }
         .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
         
+        /* Mobile Menu Layout and Padding Corrections (Matches Main Pages) */
         .nav-menu {
             position: fixed;
-            top: 60px; left: 0; width: 100%;
+            top: 60px; left: 0; width: 100%; height: auto;
             background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            flex-direction: column; align-items: center;
-            padding: 15px 0 0 0;
+            flex-direction: column; justify-content: flex-start; align-items: center;
+            gap: 0; padding: 15px 0 0 0;
             transform: translateY(-150%);
             transition: transform 0.4s ease-in-out;
+            z-index: 999998;
             border-bottom: 3px solid #d4af37;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a { font-size: 15px; letter-spacing: 2px; width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        
+        /* Fixed text color to match Golden-Yellow (#d4af37) and adjusted gap */
+        .nav-menu a { 
+            font-size: 15px; 
+            letter-spacing: 2px; 
+            font-weight: 500;
+            color: #d4af37 !important; 
+            width: 100%; 
+            text-align: center; 
+            padding: 16px 0; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+        }
+        
         .nav-menu a:last-child { border-bottom: none; padding-bottom: 22px; }
         .nav-menu a::after { display: none; }
 
@@ -580,7 +595,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Qpid Style Advanced Smooth Automatic Slider & Interactive Dots Logic
+// Automatic Smooth Infinite Slider Core Logic
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
 let slideIndex = 0;
@@ -597,7 +612,6 @@ function updateSliderPosition() {
     const amountToMove = (slideWidth + gap) * slideIndex;
     track.style.transform = `translateX(-${amountToMove}px)`;
     
-    // Active dot logic
     dots.forEach(dot => dot.classList.remove('active'));
     if(dots[slideIndex]) {
         dots[slideIndex].classList.add('active');
@@ -618,7 +632,6 @@ function autoPlaySlider() {
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// Interactive Click Controls on Dots
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
