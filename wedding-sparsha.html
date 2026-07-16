@@ -96,10 +96,10 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Premium Qpid Style Automatic Multi-Photo Carousel Slider */
+    /* Qpid Style Premium Rectangle Automatic Carousel Slider */
     .slider-viewport-container {
-        padding: 120px 20px 30px;
-        max-width: 1400px;
+        padding: 130px 20px 20px;
+        max-width: 100%;
         margin: 0 auto;
         overflow: hidden;
         position: relative;
@@ -113,22 +113,23 @@
 
     .carousel-slide-item {
         flex: 0 0 calc(33.333% - 10px);
-        height: 500px;
-        border-radius: 12px;
+        aspect-ratio: 16 / 10; /* কিউপিড স্টাইলের পারফেক্ট রেক্ট্যাঙ্গেল শেপ কাঠামো */
+        border-radius: 4px;
         overflow: hidden;
-        border: 1px solid rgba(212, 175, 55, 0.1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border: 1px solid rgba(212, 175, 55, 0.08);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain; /* ছবি ক্রপ হওয়া রুখতে অবজেক্ট কন্টেন দেওয়া হলো */
+        background: #0d0d0d;
         transition: transform 0.6s ease;
     }
 
     .carousel-slide-item:hover img {
-        transform: scale(1.04);
+        transform: scale(1.03);
     }
 
     /* Elegant Intro Quote Centered */
@@ -380,7 +381,7 @@
         .nav-menu a::after { display: none; }
 
         .slider-viewport-container { padding-top: 100px; }
-        .carousel-slide-item { flex: 0 0 100%; height: 350px; }
+        .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 16 / 10; }
         .narrative-left h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -416,7 +417,7 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Qpid Style Automatic Multi-Photo Carousel Slider -->
+<!-- 1. Qpid Style Rectangle Automatic Multi-Photo Carousel Slider -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
         <div class="carousel-slide-item"><img src="Sparsha1.jpg" alt="Sparsha Slide 1"></div>
