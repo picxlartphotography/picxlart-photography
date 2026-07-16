@@ -96,7 +96,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Absolute Anti-Crop Zero-Gap Gallery Carousel System */
+    /* Qpid Style Premium Rectangle Automatic Carousel Slider */
     .slider-viewport-container {
         padding: 130px 20px 20px;
         max-width: 100%;
@@ -113,18 +113,18 @@
 
     .carousel-slide-item {
         flex: 0 0 calc(33.333% - 10px);
-        aspect-ratio: 3 / 2; /* ৩:২ নিখুঁত ল্যান্ডস্কেপ রেশিও যা লোগো কাটতে দেবে না */
+        aspect-ratio: 3 / 2;
         border-radius: 4px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.15);
         box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        background: #111111; /* ফাঁকা ডার্ক ম্যাট আর্ট ব্যাকগ্রাউন্ড */
+        background: #111111;
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* ছবি ও দুই কোনার লোগোকে ১০০% সুরক্ষিত রাখার জন্য */
+        object-fit: contain;
         transition: transform 0.4s ease;
     }
 
@@ -217,6 +217,7 @@
         justify-content: flex-end;
     }
 
+    /* Anti-Crop settings implemented for the portrait image box */
     .featured-portrait-box {
         width: 100%;
         max-width: 500px;
@@ -225,12 +226,13 @@
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.2);
         box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        background: #111111; /* Adds dark matte backing to blend empty spacing beautifully */
     }
 
     .featured-portrait-box img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain; /* ছবি এবং ব্র্যান্ডের লোগো সম্পূর্ণ সুরক্ষিত রাখার জন্য */
     }
 
     /* Mid call-to-Action Banner */
@@ -417,7 +419,7 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Rectangle Anti-Crop Carousel Slider -->
+<!-- 1. Qpid Style Rectangle Automatic Multi-Photo Carousel Slider -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
         <div class="carousel-slide-item"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div>
@@ -441,7 +443,7 @@
         <h2>Sparsha Package</h2>
         <p>Preserving the genuine essence of your love story shouldn't depend on complex setups. The Sparsha Package is our beautifully curated essential wedding configuration, systematically designed for couples who prioritize timeless, high-quality memories within a classic budgetary landscape.</p>
         <p>Spanning a standard 3-day milestone timeline, our photography and cinematography team captures the core spirit of your authentic rituals. From the emotional depth of the main wedding traditions to the raw feelings of the Vidai ceremony, followed by the warmth of the Bodhuboron and the elegance of your Reception gala—every smile, embrace, and important ritual is preserved safely in an elegant digital archive.</p>
-        <a href="https://wa.me/917003521139" class="toggle-control hire-us-btn" target="_blank">Enquire Coverage</a>
+        <a href="https://wa.me/917003521139" class="hire-us-btn" target="_blank">Enquire Coverage</a>
     </div>
     <div class="narrative-right">
         <div class="featured-portrait-box">
@@ -549,6 +551,7 @@ navLinks.forEach(link => {
 const track = document.getElementById('carouselTrack');
 let slideIndex = 0;
 
+// Set responsive layout widths based on standard breakpoints
 function getSlidesPerView() {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 992) return 2;
