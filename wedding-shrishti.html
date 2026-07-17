@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shrishti Package | Picxlart</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Global Base Styling */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+    
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+    }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after { width: 100%; }
+    .nav-menu a:hover{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Qpid Style Rectangle Automatic Multi-Photo Carousel Slider */
+    .slider-viewport-container {
+        padding: 130px 20px 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .carousel-track-wrapper {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        gap: 15px;
+    }
+
+    .carousel-slide-item {
+        flex: 0 0 calc(33.333% - 10px);
+        aspect-ratio: 3 / 2;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        background: #111111;
+    }
+
+    .carousel-slide-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+    }
+
+    .carousel-slide-item:hover img {
+        transform: scale(1.02);
+    }
+
+    /* Qpid Style Slider Dots Navigation Container */
+    .slider-dots-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 15px 0 25px 0;
+    }
+
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .slider-dot.active {
+        background: #d4af37;
+        transform: scale(1.15);
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    /* Elegant Intro Quote Centered */
+    .luxury-quote-container {
+        text-align: center;
+        padding: 20px 20px 40px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .luxury-quote-container p {
+        font-size: 18px;
+        color: #e0e0e0;
+        line-height: 1.8;
+        font-style: italic;
+        letter-spacing: 0.5px;
+    }
+
+    /* Narrative & Portrait Split Panel */
+    .narrative-split-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        max-width: 1200px;
+        margin: 40px auto 80px;
+        padding: 0 20px;
+    }
+
+    .narrative-left {
+        flex: 1.2;
+    }
+
+    .narrative-left .tagline {
+        font-size: 12px;
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .narrative-left h2 {
+        font-size: 38px;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 25px;
+    }
+
+    .narrative-left p {
+        font-size: 15px;
+        color: #b8b8b8;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .hire-us-btn {
+        background: transparent;
+        color: #d4af37;
+        border: 1px solid #d4af37;
+        padding: 14px 35px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 50px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .hire-us-btn:hover {
+        background: #d4af37;
+        color: #000000;
+        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .narrative-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    /* Fixed side spaces dynamically without cropping */
+    .featured-portrait-box {
+        width: 100%;
+        max-width: 430px; 
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .featured-portrait-box img {
+        width: 100%;
+        height: auto; 
+        display: block;
+    }
+
+    /* Mid call-to-Action Banner */
+    .cinematic-mid-banner {
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('shrishti-mid-banner.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 120px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .cinematic-mid-banner h3 {
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 400;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+
+    .cinematic-mid-banner h3 strong {
+        color: #d4af37;
+    }
+
+    /* Inclusions Grid Layout */
+    .inclusions-section {
+        max-width: 1200px;
+        margin: 90px auto;
+        padding: 0 20px;
+    }
+
+    .inclusions-title {
+        text-align: center;
+        font-size: 28px;
+        color: #d4af37;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .inclusions-subtitle {
+        text-align: center;
+        color: #a0a0a0;
+        font-size: 15px;
+        margin-bottom: 60px;
+    }
+
+    .inclusions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .inclusion-card {
+        background: rgba(22, 22, 22, 0.4);
+        border: 1px solid rgba(212, 175, 55, 0.12);
+        border-radius: 16px;
+        padding: 40px 30px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+    }
+
+    .inclusion-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(212, 175, 55, 0.4);
+        background: rgba(26, 28, 26, 0.7);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+    .inclusion-card h4 {
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        padding-bottom: 12px;
+    }
+
+    .inclusion-card ul {
+        list-style: none;
+    }
+
+    .inclusion-card ul li {
+        color: #b8b8b8;
+        font-size: 14.5px;
+        line-height: 1.8;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .inclusion-card ul li i {
+        color: #d4af37;
+        margin-top: 5px;
+        font-size: 12px;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+        margin-top: 60px;
+    }
+
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Complete Multi-Device Responsive Interface */
+    @media(max-width:992px) {
+        .carousel-slide-item { flex: 0 0 calc(50% - 8px); }
+        .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
+        .featured-portrait-box { max-width: 100%; }
+        .narrative-right { justify-content: center; }
+        .inclusions-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media(max-width:768px) {
+        .navbar{ padding:12px 24px; flex-wrap: nowrap; overflow: visible !important; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+        
+        .nav-menu {
+            position: fixed;
+            top: 60px; left: 0; width: 100%; height: auto;
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            flex-direction: column; justify-content: flex-start; align-items: center;
+            gap: 0; padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+        
+        .nav-menu a { 
+            font-size: 15px; 
+            letter-spacing: 2px; 
+            font-weight: 500;
+            color: #d4af37 !important; 
+            width: 100%; 
+            text-align: center; 
+            padding: 16px 0; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+        }
+        
+        .nav-menu a:last-child { border-bottom: none; padding-bottom: 22px; }
+        .nav-menu a::after { display: none; }
+
+        .slider-viewport-container { padding-top: 100px; }
+        .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 3 / 2; }
+        .narrative-split-panel h2 { font-size: 28px; }
+        .cinematic-mid-banner h3 { font-size: 20px; }
+        .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
+        .inclusion-card { padding: 30px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Header Top Navigation Bar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="packages.html">Packages</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- 1. Qpid Style Rectangle Automatic Multi-Photo Carousel Slider -->
+<div class="slider-viewport-container">
+    <div class="carousel-track-wrapper" id="carouselTrack">
+        <div class="carousel-slide-item"><img src="shrishti-slide1.jpg" alt="Shrishti Slide 1"></div>
+        <div class="carousel-slide-item"><img src="shrishti-slide2.jpg" alt="Shrishti Slide 2"></div>
+        <div class="carousel-slide-item"><img src="shrishti-slide3.jpg" alt="Shrishti Slide 3"></div>
+        <div class="carousel-slide-item"><img src="shrishti-slide4.jpg" alt="Shrishti Slide 4"></div>
+        <div class="carousel-slide-item"><img src="shrishti-slide5.jpg" alt="Shrishti Slide 5"></div>
+        <div class="carousel-slide-item"><img src="shrishti-slide6.jpg" alt="Shrishti Slide 6"></div>
+    </div>
+</div>
+
+<!-- Navigation Dots Structure -->
+<div class="slider-dots-container" id="sliderDots">
+    <div class="slider-dot active" data-index="0"></div>
+    <div class="slider-dot" data-index="1"></div>
+    <div class="slider-dot" data-index="2"></div>
+    <div class="slider-dot" data-index="3"></div>
+    <div class="slider-dot" data-index="4"></div>
+    <div class="slider-dot" data-index="5"></div>
+</div>
+
+<!-- Centered Luxury Core Quote -->
+<div class="luxury-quote-container">
+    <p>"Love is life's greatest adventure that offers us pleasurable moments. Let's preserve these moments in a treasure box of priceless memories."</p>
+</div>
+
+<!-- 2. Narrative & Portrait Split Panel -->
+<div class="narrative-split-panel">
+    <div class="narrative-left">
+        <span class="tagline">Commemorating the creation of new beginnings[cite: 1]</span>
+        <h2>Shrishti</h2>
+        <p>Step up to an enriched cinematic experience with the Shrishti Package. Beautifully conceptualized as our premier standard multi-day blueprint, this package is designed for couples who seek comprehensive, high-definition storytelling, advanced media aesthetics, and branded preservation mechanics.</p>
+        <p>Spanning an extensive 3-day signature wedding timeline[cite: 1], our premium team captures the authentic workflow of your historical Bengali traditions. From the soulful focus of the main Wedding Day rituals to the emotional nuances of the Vidai, Bodhuboron, and the high-energy layouts of your Grand Reception Gala[cite: 1]—every smile, golden glance, and cinematic memory is delivered in pristine clarity.</p>
+        <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Shrishti%20Package." class="hire-us-btn" target="_blank">Check Pricing & Availability</a>
+    </div>
+    <div class="narrative-right">
+        <div class="featured-portrait-box">
+            <img src="shrishti-portrait.jpg" alt="Featured Royal Bridal Portrait Layout">
+        </div>
+    </div>
+</div>
+
+<!-- 3. Mid call-to-Action Banner -->
+<div class="cinematic-mid-banner">
+    <h3>Let's make something <strong>great together</strong>.</h3>
+    <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20more%20details%20about%20your%20Wedding%20Packages." class="hire-us-btn" style="background:#d4af37; color:#000; border:none;" target="_blank">Get In Touch</a>
+</div>
+
+<!-- 4. Inclusions Grid Section -->
+<div class="inclusions-section">
+    <h3 class="inclusions-title">What you will get in Shrishti wedding package</h3>
+    <p class="inclusions-subtitle">We provide every detail of your grand affair in a creative style, freezing those magical moments safely.</p>
+    
+    <div class="inclusions-grid">
+        <!-- Column 1: Structural Coverage -->
+        <div class="inclusion-card">
+            <h4>1. Essential Coverage</h4>
+            <ul>
+                <li><i class="fas fa-camera"></i> 3-Day Comprehensive Operational Wedding Timeline[cite: 1].</li>
+                <li><i class="fas fa-heart"></i> Beautiful coverage of the core sacred Wedding Day Rituals[cite: 1].</li>
+                <li><i class="fas fa-dove"></i> Emotional capture of the Vidai Ceremony transitions[cite: 1].</li>
+                <li><i class="fas fa-home"></i> Traditional essence preservation of the Bodhuboron ceremony[cite: 1].</li>
+                <li><i class="fas fa-glass-cheers"></i> Professional documentation of the Grand Reception Gala layout[cite: 1].</li>
+            </ul>
+        </div>
+
+        <!-- Column 2: Cinematic Products Matrix -->
+        <div class="inclusion-card">
+            <h4>2. Media Products Suite</h4>
+            <ul>
+                <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos[cite: 1].</li>
+                <li><i class="fas fa-film"></i> High-End Premium Cinematic Wedding Teaser Movie[cite: 1].</li>
+                <li><i class="fas fa-compress-arrows-alt"></i> Approx 50 to 60 Minutes Full-Length Cinematic Film[cite: 1].</li>
+                <li><i class="fas fa-wand-magic-sparkles"></i> Directorial color grading, sound design, and narrative layouts.</li>
+                <li><i class="fas fa-cloud-download"></i> High-security digital delivery cloud architecture[cite: 1].</li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Premium Customizable Album Layout -->
+        <div class="inclusion-card">
+            <h4>3. Heirloom Albums Suite</h4>
+            <ul>
+                <li><i class="fas fa-book-open"></i> 2 Premium Handcrafted Customized 12x18 (12x36) Photobooks[cite: 1].</li>
+                <li><i class="fas fa-crown"></i> <strong>Branded Canvera Standard Plus Layout:</strong> Immersive heirloom prints built to last[cite: 1].</li>
+                <li><i class="fas fa-copy"></i> Expansive print blueprint covering 25 Sheets (50 Pages)[cite: 1].</li>
+                <li><i class="fas fa-globe"></i> Complimentary high-security Online View Architecture sync[cite: 1].</li>
+                <li><i class="fas fa-gem"></i> Tailored selection framework mapping your unique aesthetic choices.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Framework Section -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <p style="margin-top:20px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Mobile Responsive Dropdown Control Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+// Qpid Style Advanced Smooth Automatic Slider & Interactive Dots Logic
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.slider-dot');
+let slideIndex = 0;
+
+function getSlidesPerView() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 992) return 2;
+    return 3;
+}
+
+function updateSliderPosition() {
+    const slideWidth = track.children[0].getBoundingClientRect().width;
+    const gap = 15;
+    const amountToMove = (slideWidth + gap) * slideIndex;
+    track.style.transform = `translateX(-${amountToMove}px)`;
+    
+    dots.forEach(dot => dot.classList.remove('active'));
+    if(dots[slideIndex]) {
+        dots[slideIndex].classList.add('active');
+    }
+}
+
+function autoPlaySlider() {
+    const totalSlides = track.children.length;
+    const slidesPerView = getSlidesPerView();
+    const maxIndex = totalSlides - slidesPerView;
+
+    slideIndex++;
+    if (slideIndex > maxIndex) {
+        slideIndex = 0;
+    }
+    updateSliderPosition();
+}
+
+let sliderInterval = setInterval(autoPlaySlider, 3000);
+
+dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        clearInterval(sliderInterval);
+        const targetIndex = parseInt(e.target.getAttribute('data-index'));
+        const totalSlides = track.children.length;
+        const slidesPerView = getSlidesPerView();
+        const maxIndex = totalSlides - slidesPerView;
+
+        if (targetIndex <= maxIndex) {
+            slideIndex = targetIndex;
+            updateSliderPosition();
+        }
+        sliderInterval = setInterval(autoPlaySlider, 3000);
+    });
+});
+
+window.addEventListener('resize', () => {
+    slideIndex = 0;
+    updateSliderPosition();
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(autoPlaySlider, 3000);
+});
+
+// Structural Security Mechanics
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
+</body>
+</html>
