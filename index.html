@@ -37,12 +37,16 @@
         justify-content: center;
         align-items: center;
         z-index: 999999;
-        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+        opacity: 1;
+        visibility: visible;
+        /* যাওয়ার সময় আলতো করে ১ সেকেন্ড ধরে ভ্যানিশ হওয়ার জন্য ট্রানজিশন ফিক্সড */
+        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .loader-content {
         text-align: center;
         padding: 0 20px;
+        transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     /* Welcome to - Normal Premium Font Style (No Italic) */
@@ -65,7 +69,7 @@
         margin-top: 15px;
         margin-bottom: 15px;
         opacity: 0;
-        transform: scale(0.93); /* ছোট থেকে বড় হওয়ার জন্য */
+        transform: scale(0.93);
         animation: introFadeInLogo 1.8s forwards ease-in-out;
         animation-delay: 0.3s;
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
@@ -92,9 +96,14 @@
         to { opacity: 1; transform: scale(1); }
     }
 
+    /* যখন এই ক্লাসটি যুক্ত হবে, তখন স্ক্রিনটি খুব স্মুথভাবে আবছা হয়ে অফ হবে */
     #picxlart-preloader.fade-out {
         opacity: 0;
         visibility: hidden;
+    }
+    
+    #picxlart-preloader.fade-out .loader-content {
+        transform: scale(1.02); /* অফ হওয়ার সময় কন্টেন্ট হালকা একটু বড় হয়ে মিলিয়ে যাবে */
     }
 
     /* Top Navbar Layout & Styling */
@@ -217,7 +226,7 @@
         100%{ left:100%; opacity:1; }
     }
 
-    /* Hero Section with Original Premium Layout (Untouched) */
+    /* Hero Section with Original Premium Layout */
     .hero{
         margin-top:60px;
         height: calc(100vh - 60px);
@@ -1004,7 +1013,7 @@
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -1013,7 +1022,6 @@
 <div id="picxlart-preloader">
     <div class="loader-content">
         <div class="intro-welcome-text">Welcome to</div>
-        <!-- Replaced text with hero-logo.png and added scaling animation -->
         <img src="hero-logo.png" alt="Picxlart Logo" class="intro-brand-logo">
         <div class="intro-tagline-text">Timeless Moments, Captured For Eternity</div>
     </div>
@@ -1258,7 +1266,7 @@ window.addEventListener('load', function() {
         if (preloader) {
             preloader.classList.add('fade-out');
         }
-    }, 3500); 
+    }, 3500); /* ৩.৫ সেকেন্ড পর স্মুথ ফেইড-আউট ট্রিগার হবে */
 });
 
 let slideIndex = 0;
