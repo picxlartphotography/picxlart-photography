@@ -96,7 +96,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Fixed Perfect 3-Image Center View Carousel Logic Layout */
+    /* Premium Cinematic Slider Layout */
     .slider-viewport-container {
         padding: 130px 0 10px;
         width: 100%;
@@ -107,32 +107,34 @@
     .carousel-track-wrapper {
         display: flex;
         transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        padding-left: calc(50% - 16.666%); /* ছবি সবসময় উইন্ডোর স্ক্রিনের সেন্টারে নিয়ে আসার গাণিতিক হিসেব */
+        width: 100%;
     }
 
+    /* সাইডের বাকি সব ইমেজ ছোট এবং আবছা থাকবে */
     .carousel-slide-item {
         flex: 0 0 33.333%;
-        padding: 0 10px;
+        padding: 0 15px;
         aspect-ratio: 3 / 2;
         border-radius: 4px;
         overflow: hidden;
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        opacity: 0.4; /* সাইডের ছবিগুলোর ব্রাইটনেস কম থাকবে */
+        transform: scale(0.85); /* সাইডের ছবিগুলো ১৫% ছোট থাকবে */
+        opacity: 0.35; /* সাইডের ছবিগুলোর ব্রাইটনেস কম থাকবে */
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
     }
 
-    /* মাঝখানের ছবির সাইজ এবং ব্রাইটনেস বেশি থাকবে */
+    /* মাঝখানের ইমেজটি অরিজিনাল ফুল সাইজে এবং উজ্জ্বল থাকবে */
     .carousel-slide-item.center-active {
         opacity: 1;
-        transform: scale(1.02);
+        transform: scale(1); /* মাঝখানের ছবি তার আসল ফুল সাইজেই থাকবে */
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 4px;
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        border-radius: 6px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     /* Slider Dots Navigation Container */
@@ -378,8 +380,8 @@
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
-        .carousel-track-wrapper { padding-left: calc(50% - 25%); }
-        .carousel-slide-item { flex: 0 0 50%; }
+        .carousel-slide-item { flex: 0 0 50%; transform: scale(0.9); }
+        .carousel-slide-item.center-active { transform: scale(1); }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
         .featured-portrait-box { max-width: 100%; }
         .narrative-right { justify-content: center; }
@@ -424,8 +426,8 @@
 
         .slider-viewport-container { padding-top: 100px; }
         .carousel-track-wrapper { padding-left: 0; }
-        .carousel-slide-item { flex: 0 0 100%; padding: 0 15px; }
-        .carousel-slide-item.center-active { transform: scale(1); }
+        .carousel-slide-item { flex: 0 0 100%; padding: 0 15px; transform: scale(1); opacity: 0.35; }
+        .carousel-slide-item.center-active { transform: scale(1); opacity: 1; }
         .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -461,7 +463,7 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Center Focused Multi-Photo Carousel Slider Layout -->
+<!-- 1. Premium Center Focused Multi-Photo Carousel Slider Layout -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
         <div class="carousel-slide-item"><img src="sparsha-slide1.jpg" alt="Sparsha Slide 1"></div>
@@ -492,9 +494,9 @@
 <div class="narrative-split-panel">
     <div class="narrative-left">
         <span class="tagline">Capturing the first touch of love and emotions</span>
-        <h2>Sparsha</h2>
-        <p>Preserve the pure essence of your magical union with the Sparsha package. Beautifully conceptualized as our premier entry-level multi-day blueprint, this package is designed for couples who seek a complete, professional documentation of their historical rituals without compromising visual quality.</p>
-        <p>Spanning an extensive 3-day operational timeline, our team captures the authentic workflow of your traditional Bengali setup—from the vibrant emotions of the Wedding Day to the heartfelt transitions of Vidai, Bodhuboron, and the elegance of your Reception Gala. Every smile, tear, and golden glance is safe in our premium frames.</p>
+        <h2>Sparsha[cite: 1]</h2>
+        <p>Preserve the pure essence of your magical union with the Sparsha package[cite: 1]. Beautifully conceptualized as our premier entry-level multi-day blueprint, this package is designed for couples who seek a complete, professional documentation of their historical rituals without compromising visual quality.</p>
+        <p>Spanning an extensive 3-day operational timeline[cite: 1], our team captures the authentic workflow of your traditional Bengali setup—from the vibrant emotions of the Wedding Day to the heartfelt transitions of Vidai, Bodhuboron, and the elegance of your Reception Gala[cite: 1]. Every smile, tear, and golden glance is safe in our premium frames.</p>
         <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Sparsha%20Package." class="hire-us-btn" target="_blank">Check Pricing & Availability</a>
     </div>
     <div class="narrative-right">
@@ -520,11 +522,11 @@
         <div class="inclusion-card">
             <h4>1. Essential Coverage</h4>
             <ul>
-                <li><i class="fas fa-camera"></i> 3-Day Comprehensive Operational Wedding Timeline.</li>
-                <li><i class="fas fa-heart"></i> Beautiful coverage of the core sacred Wedding Day Rituals.</li>
-                <li><i class="fas fa-dove"></i> Emotional capture of the Vidai Ceremony transitions.</li>
-                <li><i class="fas fa-home"></i> Traditional essence preservation of the Bodhuboron ceremony.</li>
-                <li><i class="fas fa-glass-cheers"></i> Professional documentation of the Grand Reception Gala layout.</li>
+                <li><i class="fas fa-camera"></i> 3-Day Comprehensive Operational Wedding Timeline[cite: 1].</li>
+                <li><i class="fas fa-heart"></i> Beautiful coverage of the core sacred Wedding Day Rituals[cite: 1].</li>
+                <li><i class="fas fa-dove"></i> Emotional capture of the Vidai Ceremony transitions[cite: 1].</li>
+                <li><i class="fas fa-home"></i> Traditional essence preservation of the Bodhuboron ceremony[cite: 1].</li>
+                <li><i class="fas fa-glass-cheers"></i> Professional documentation of the Grand Reception Gala layout[cite: 1].</li>
             </ul>
         </div>
 
@@ -532,11 +534,11 @@
         <div class="inclusion-card">
             <h4>2. Media Products Suite</h4>
             <ul>
-                <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos.</li>
-                <li><i class="fas fa-film"></i> High-End Premium Cinematic Wedding Teaser Movie.</li>
-                <li><i class="fas fa-compress-arrows-alt"></i> Approx 40 to 50 Minutes Full-Length Cinematic Film.</li>
+                <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos[cite: 1].</li>
+                <li><i class="fas fa-film"></i> High-End Premium Cinematic Wedding Teaser Movie[cite: 1].</li>
+                <li><i class="fas fa-compress-arrows-alt"></i> Approx 40 to 50 Minutes Full-Length Cinematic Film[cite: 1].</li>
                 <li><i class="fas fa-wand-magic-sparkles"></i> Directorial color grading, sound design, and narrative layouts.</li>
-                <li><i class="fas fa-cloud-download"></i> High-security digital delivery cloud architecture.</li>
+                <li><i class="fas fa-cloud-download"></i> High-security digital delivery cloud architecture[cite: 1].</li>
             </ul>
         </div>
 
@@ -544,10 +546,10 @@
         <div class="inclusion-card">
             <h4>3. Heirloom Albums Suite</h4>
             <ul>
-                <li><i class="fas fa-book-open"></i> 2 Premium Handcrafted Customized 12x18 (12x36) Photobooks.</li>
-                <li><i class="fas fa-crown"></i> <strong>Branded Photo Book Matrix:</strong> Premium Indigo / Canvera structural selections.</li>
-                <li><i class="fas fa-copy"></i> Expansive print blueprint covering 20 Sheets (40 Pages).</li>
-                <li><i class="fas fa-globe"></i> Complimentary high-security Online View Architecture sync.</li>
+                <li><i class="fas fa-book-open"></i> 2 Premium Handcrafted Customized 12x18 (12x36) Photobooks[cite: 1].</li>
+                <li><i class="fas fa-crown"></i> <strong>Branded Photo Book Matrix:</strong> Premium Indigo / Canvera structural selections[cite: 1].</li>
+                <li><i class="fas fa-copy"></i> Expansive print blueprint covering 20 Sheets (40 Pages)[cite: 1].</li>
+                <li><i class="fas fa-globe"></i> Complimentary high-security Online View Architecture sync[cite: 1].</li>
                 <li><i class="fas fa-gem"></i> Tailored selection framework mapping your unique aesthetic choices.</li>
             </ul>
         </div>
@@ -591,7 +593,7 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// Upgraded Center-View Multi-Photo Carousel Logic
+// Upgraded Premium Center-View Slider Engine Logics
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
 const slides = Array.from(track.children);
@@ -599,8 +601,9 @@ let slideIndex = 0;
 
 function updateSliderPosition() {
     const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth > 768 && window.innerWidth <= 992;
     
-    // রিমুভ ও অ্যাড একটিভ ক্লাস স্লাইড হাইলাইটের জন্য
+    // ছবির একটিভ ক্লাস সিঙ্ক করা
     slides.forEach((slide, index) => {
         slide.classList.remove('center-active');
         if (index === slideIndex) {
@@ -609,17 +612,21 @@ function updateSliderPosition() {
     });
 
     if (isMobile) {
-        // মোবাইলে সিম্পল ফুল স্ক্রিন স্লাইড ট্র্যান্সলেট
         const slideWidth = slides[0].getBoundingClientRect().width;
         track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
     } else {
-        // ডেস্কটপ এবং ট্যাবলেটে পারফেক্ট সেন্টারড পজিশন ম্যাপিং
+        // নতুন নিখুঁত সেন্টারিং গাণিতিক সূত্র
         const slideWidth = slides[0].getBoundingClientRect().width;
-        const amountToMove = slideWidth * slideIndex;
+        const viewportWidth = window.innerWidth;
+        
+        // কারেন্ট একটিভ ইমেজকে একদম স্ক্রিনের মাঝখানে নিয়ে আসার অফসেট হিসেব
+        const offsetLeft = (viewportWidth - slideWidth) / 2;
+        const amountToMove = (slideWidth * slideIndex) - offsetLeft;
+        
         track.style.transform = `translateX(-${amountToMove}px)`;
     }
     
-    // ডটস সিঙ্ক ও আপডেট লজিক
+    // ডটস আপডেট
     dots.forEach(dot => dot.classList.remove('active'));
     if(dots[slideIndex]) {
         dots[slideIndex].classList.add('active');
@@ -636,7 +643,7 @@ function autoPlaySlider() {
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// ডটস ক্লিকের মাধ্যমে ডিরেক্ট সেন্টারিং সিস্টেম অ্যাকশন
+// ডটস ম্যানুয়াল ক্লিক হ্যান্ডলার (ক্লিক করলেই সেই ছবি মাঝখানে আসবে)
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
@@ -650,7 +657,7 @@ window.addEventListener('resize', () => {
     updateSliderPosition();
 });
 
-// ইনিশিয়াল প্রথম লোডে সেন্টার পজিশন সেটআপ
+// প্রথম লোডেই পজিশন ইনিশিয়েট করা
 updateSliderPosition();
 
 // Structural Security Mechanics
