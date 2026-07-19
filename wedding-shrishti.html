@@ -96,43 +96,53 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Qpid Style Rectangle Automatic Multi-Photo Carousel Slider */
+    /* Infinite Carousel Slider Layout Container */
     .slider-viewport-container {
-        padding: 130px 20px 10px;
-        max-width: 100%;
-        margin: 0 auto;
+        padding: 130px 0 10px;
+        width: 100%;
         overflow: hidden;
         position: relative;
     }
 
     .carousel-track-wrapper {
         display: flex;
-        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        gap: 15px;
+        width: 100%;
+        will-change: transform;
     }
 
+    /* ৩টি ছবি পাশাপাশি থাকবে এবং ক্রপ হবে না */
     .carousel-slide-item {
-        flex: 0 0 calc(33.333% - 10px);
-        aspect-ratio: 3 / 2;
-        border-radius: 4px;
+        flex: 0 0 33.333%;
+        width: 33.333%;
+        padding: 0 12px;
         overflow: hidden;
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        background: #111111;
+        opacity: 0.4;
+        transition: opacity 0.4s ease;
+    }
+
+    /* মাঝখানের ছবির ব্রাইটনেস পুরোপুরি হাইলাইটেড থাকবে */
+    .carousel-slide-item.center-active {
+        opacity: 1;
+    }
+
+    .carousel-slide-item .img-container {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        transition: transform 0.4s ease;
+        display: block;
+        background: #0d0d0d;
     }
 
-    .carousel-slide-item:hover img {
-        transform: scale(1.02);
-    }
-
-    /* Qpid Style Slider Dots Navigation Container */
+    /* Slider Dots Navigation Container */
     .slider-dots-container {
         display: flex;
         justify-content: center;
@@ -152,11 +162,11 @@
 
     .slider-dot.active {
         background: #d4af37;
-        transform: scale(1.15);
+        transform: scale(1.2);
         box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
     }
 
-    /* Elegant Intro Quote Centered - Adjusted specifically for Shrishti Package */
+    /* Elegant Intro Quote Centered */
     .luxury-quote-container {
         text-align: center;
         padding: 20px 20px 40px;
@@ -375,7 +385,7 @@
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
-        .carousel-slide-item { flex: 0 0 calc(50% - 8px); }
+        .carousel-slide-item { flex: 0 0 50%; width: 50%; }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
         .featured-portrait-box { max-width: 100%; }
         .narrative-right { justify-content: center; }
@@ -419,7 +429,9 @@
         .nav-menu a::after { display: none; }
 
         .slider-viewport-container { padding-top: 100px; }
-        .carousel-slide-item { flex: 0 0 100%; aspect-ratio: 3 / 2; }
+        .carousel-track-wrapper { padding-left: 0; }
+        .carousel-slide-item { flex: 0 0 100%; width: 100%; padding: 0 15px; opacity: 0.4; }
+        .carousel-slide-item.center-active { opacity: 1; }
         .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -455,19 +467,30 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Qpid Style Rectangle Automatic Multi-Photo Carousel Slider -->
+<!-- 1. Hardcoded Infinite Carousel Slider Architecture Setup (No Dynamic JavaScript Cloning) -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
-        <div class="carousel-slide-item"><img src="shrishti-slide1.jpg" alt="Shrishti Slide 1"></div>
-        <div class="carousel-slide-item"><img src="shrishti-slide2.jpg" alt="Shrishti Slide 2"></div>
-        <div class="carousel-slide-item"><img src="shrishti-slide3.jpg" alt="Shrishti Slide 3"></div>
-        <div class="carousel-slide-item"><img src="shrishti-slide4.jpg" alt="Shrishti Slide 4"></div>
-        <div class="carousel-slide-item"><img src="shrishti-slide5.jpg" alt="Shrishti Slide 5"></div>
-        <div class="carousel-slide-item"><img src="shrishti-slide6.jpg" alt="Shrishti Slide 6"></div>
+        <!-- সেট ১ (বাম দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="shrishti-slide4.jpg" alt="Slide 4"></div></div>
+        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="shrishti-slide5.jpg" alt="Slide 5"></div></div>
+        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="shrishti-slide6.jpg" alt="Slide 6"></div></div>
+
+        <!-- সেট ২ (আসল ১ থেকে ৬ নম্বর ইমেজের মূল সেটআপ) -->
+        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="shrishti-slide1.jpg" alt="Slide 1"></div></div>
+        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="shrishti-slide2.jpg" alt="Slide 2"></div></div>
+        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="shrishti-slide3.jpg" alt="Slide 3"></div></div>
+        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="shrishti-slide4.jpg" alt="Slide 4"></div></div>
+        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="shrishti-slide5.jpg" alt="Slide 5"></div></div>
+        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="shrishti-slide6.jpg" alt="Slide 6"></div></div>
+
+        <!-- সেট ৩ (ডান দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="shrishti-slide1.jpg" alt="Slide 1"></div></div>
+        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="shrishti-slide2.jpg" alt="Slide 2"></div></div>
+        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="shrishti-slide3.jpg" alt="Slide 3"></div></div>
     </div>
 </div>
 
-<!-- Navigation Dots Structure -->
+<!-- 6 Interactive Navigation Dots -->
 <div class="slider-dots-container" id="sliderDots">
     <div class="slider-dot active" data-index="0"></div>
     <div class="slider-dot" data-index="1"></div>
@@ -477,7 +500,7 @@
     <div class="slider-dot" data-index="5"></div>
 </div>
 
-<!-- Centered Luxury Core Quote - Fully adjusted for Shrishti Package -->
+<!-- Centered Luxury Core Quote -->
 <div class="luxury-quote-container">
     <p>"Every wedding marks the creation of a beautiful canvas. Let us weave your timeless emotions into a cinematic masterpiece that echoes forever."</p>
 </div>
@@ -510,7 +533,6 @@
     <p class="inclusions-subtitle">We provide every detail of your grand affair in a creative style, freezing those magical moments safely.</p>
     
     <div class="inclusions-grid">
-        <!-- Column 1: Structural Coverage -->
         <div class="inclusion-card">
             <h4>1. Essential Coverage</h4>
             <ul>
@@ -522,7 +544,6 @@
             </ul>
         </div>
 
-        <!-- Column 2: Cinematic Products Matrix -->
         <div class="inclusion-card">
             <h4>2. Media Products Suite</h4>
             <ul>
@@ -534,7 +555,6 @@
             </ul>
         </div>
 
-        <!-- Column 3: Premium Customizable Album Layout -->
         <div class="inclusion-card">
             <h4>3. Heirloom Albums Suite</h4>
             <ul>
@@ -571,61 +591,60 @@
 </footer>
 
 <script>
-// Mobile Responsive Dropdown Control Script
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-// Qpid Style Advanced Smooth Automatic Slider & Interactive Dots Logic
+// Advanced Infinite Loop Slider Engine Mechanism
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
-let slideIndex = 0;
+const allSlides = Array.from(track.children);
+const totalOriginals = 6; 
 
-function getSlidesPerView() {
-    if (window.innerWidth <= 768) return 1;
-    if (window.innerWidth <= 992) return 2;
-    return 3;
-}
+let currentVirtualIndex = 3; 
 
-function updateSliderPosition() {
-    const slideWidth = track.children[0].getBoundingClientRect().width;
-    const gap = 15;
-    const amountToMove = (slideWidth + gap) * slideIndex;
-    track.style.transform = `translateX(-${amountToMove}px)`;
-    
+function updateSliderPosition(animate = true) {
+    const isMobile = window.innerWidth <= 768;
+    const slideWidth = allSlides[0].offsetWidth;
+    const viewportWidth = window.innerWidth;
+
+    if (animate) {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+    } else {
+        track.style.transition = 'none';
+    }
+
+    allSlides.forEach(slide => slide.classList.remove('center-active'));
+    if (allSlides[currentVirtualIndex]) {
+        allSlides[currentVirtualIndex].classList.add('center-active');
+    }
+
+    if (isMobile) {
+        track.style.transform = `translateX(-${slideWidth * currentVirtualIndex}px)`;
+    } else {
+        const offsetLeft = (viewportWidth - slideWidth) / 2;
+        const amountToMove = (slideWidth * currentVirtualIndex) - offsetLeft;
+        track.style.transform = `translateX(-${amountToMove}px)`;
+    }
+
+    const realIndex = parseInt(allSlides[currentVirtualIndex].getAttribute('data-id'));
     dots.forEach(dot => dot.classList.remove('active'));
-    if(dots[slideIndex]) {
-        dots[slideIndex].classList.add('active');
+    if (dots[realIndex]) {
+        dots[realIndex].classList.add('active');
     }
 }
+
+// ট্র্যাকিং এন্ড লুপ জাম্প লজিক
+track.addEventListener('transitionend', () => {
+    if (currentVirtualIndex >= 3 + totalOriginals) {
+        currentVirtualIndex = currentVirtualIndex - totalOriginals;
+        updateSliderPosition(false);
+    } 
+    else if (currentVirtualIndex < 3) {
+        currentVirtualIndex = currentVirtualIndex + totalOriginals;
+        updateSliderPosition(false);
+    }
+});
 
 function autoPlaySlider() {
-    const totalSlides = track.children.length;
-    const slidesPerView = getSlidesPerView();
-    const maxIndex = totalSlides - slidesPerView;
-
-    slideIndex++;
-    if (slideIndex > maxIndex) {
-        slideIndex = 0;
-    }
-    updateSliderPosition();
+    currentVirtualIndex++;
+    updateSliderPosition(true);
 }
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
@@ -633,25 +652,18 @@ let sliderInterval = setInterval(autoPlaySlider, 3000);
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
-        const targetIndex = parseInt(e.target.getAttribute('data-index'));
-        const totalSlides = track.children.length;
-        const slidesPerView = getSlidesPerView();
-        const maxIndex = totalSlides - slidesPerView;
-
-        if (targetIndex <= maxIndex) {
-            slideIndex = targetIndex;
-            updateSliderPosition();
-        }
+        const targetRealIndex = parseInt(e.target.getAttribute('data-index'));
+        currentVirtualIndex = 3 + targetRealIndex;
+        updateSliderPosition(true);
         sliderInterval = setInterval(autoPlaySlider, 3000);
     });
 });
 
-window.addEventListener('resize', () => {
-    slideIndex = 0;
-    updateSliderPosition();
-    clearInterval(sliderInterval);
-    sliderInterval = setInterval(autoPlaySlider, 3000);
-});
+window.addEventListener('resize', () => { updateSliderPosition(false); });
+window.addEventListener('load', () => { updateSliderPosition(false); });
+
+// ইনিশিয়াল রান
+setTimeout(() => { updateSliderPosition(false); }, 100);
 
 // Structural Security Mechanics
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
