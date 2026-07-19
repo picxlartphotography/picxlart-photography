@@ -25,6 +25,76 @@
         user-select:none;
     }
 
+    /* Upgraded Custom Premium Animated Intro Screen Overlay Styles */
+    #picxlart-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #080808;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+    }
+
+    .loader-content {
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    /* Welcome to - Golden Animated Font Style */
+    .intro-welcome-text {
+        font-size: 26px;
+        font-weight: 300;
+        color: #d4af37; /* গোল্ডেন ফন্ট */
+        letter-spacing: 3px;
+        font-style: italic;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: introFadeIn 1.5s forwards ease-in-out;
+    }
+
+    /* Picxlart - Main Elegant Title */
+    .intro-brand-title {
+        font-size: 62px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        opacity: 0;
+        transform: scale(0.96);
+        animation: introFadeIn 1.8s forwards ease-in-out;
+        animation-delay: 0.3s;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Signature Tagline Placement */
+    .intro-tagline-text {
+        font-size: 14px;
+        font-weight: 300;
+        color: #dfdfdf;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: introFadeIn 1.8s forwards ease-in-out;
+        animation-delay: 0.6s;
+    }
+
+    @keyframes introFadeIn {
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    #picxlart-preloader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     /* Top Navbar Layout & Styling */
     .navbar{
         position:fixed;
@@ -145,7 +215,7 @@
         100%{ left:100%; opacity:1; }
     }
 
-    /* Hero Section with Upgraded Premium Layout & Logo Style */
+    /* Hero Section with Original Premium Layout (Untouched) */
     .hero{
         margin-top:60px;
         height: calc(100vh - 60px);
@@ -200,23 +270,11 @@
         align-items: center;
     }
 
-    /* Premium Welcome Text Placement Layout */
-    .hero-welcome-text {
-        font-size: 32px;
-        font-weight: 300;
-        color: #f5f5f5;
-        letter-spacing: 2px;
-        text-transform: none;
-        margin-bottom: -5px;
-        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
-        font-style: italic;
-    }
-
     .hero-brand-logo {
         max-width: 580px; 
         width: 100%;
         height: auto;
-        margin-top: 5px;
+        margin-top: 15px;
         margin-bottom: 5px; 
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
@@ -338,7 +396,7 @@
         box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    /* Brand Story (Why Picxlart) Box Layout */
+    /* Brand Story Box Layout */
     .why-card{
         width:100%;
         max-width:1000px;
@@ -530,7 +588,7 @@
         box-shadow: 0 5px 15px rgba(212,175,55,0.4);
     }
 
-    /* Trust Matrix (Google Reviews) Style */
+    /* Trust Matrix Style */
     .google-review-section{
         text-align:center;
         padding:80px 20px;
@@ -595,7 +653,7 @@
         100%{ box-shadow:0 0 0 0 rgba(212,175,55,0); }
     }
 
-    /* Core Metrics & Operational Network Layout */
+    /* Core Metrics Layout */
     .stats-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -685,7 +743,7 @@
         gap: 12px;
     }
 
-    /* Enterprise Footer Architecture & Golden Button CSR Fix */
+    /* Enterprise Footer Architecture */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -821,10 +879,6 @@
             padding: 0 20px 40px; 
         }
 
-        .hero-welcome-text {
-            font-size: 22px;
-        }
-
         .hero-brand-logo {
             max-width: 320px;
         }
@@ -840,6 +894,11 @@
             letter-spacing: 2px;
             margin-top: 15px;
         }
+
+        /* Responsive Preloader adjustments */
+        .intro-welcome-text { font-size: 20px; }
+        .intro-brand-title { font-size: 42px; letter-spacing: 4px; }
+        .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
 
         .why-card{
             padding:35px 25px;
@@ -906,9 +965,9 @@
             padding-bottom: 30px; 
         }
 
-        .hero-welcome-text {
-            font-size: 18px;
-        }
+        .intro-welcome-text { font-size: 16px; }
+        .intro-brand-title { font-size: 34px; letter-spacing: 3px; }
+        .intro-tagline-text { font-size: 10px; letter-spacing: 1.5px; }
 
         .hero-brand-logo {
             max-width: 250px;
@@ -948,6 +1007,15 @@
 
 <body>
 
+<!-- Custom Premium Animated Splash Screen Structure -->
+<div id="picxlart-preloader">
+    <div class="loader-content">
+        <div class="intro-welcome-text">Welcome to</div>
+        <div class="intro-brand-title">Picxlart</div>
+        <div class="intro-tagline-text">Timeless Moments, Captured For Eternity</div>
+    </div>
+</div>
+
 <div class="navbar">
    <div class="nav-logo">
         <a href="index.html" id="logoLink">
@@ -983,8 +1051,6 @@
 
     <div class="hero-content">
         <div class="hero-title">
-            <!-- Added Welcome Text perfectly above the logo line -->
-            <div class="hero-welcome-text">Welcome to</div>
             <img src="hero-logo.png" alt="Picxlart" class="hero-brand-logo">
             <span>PHOTOGRAPHY & EVENTS CO.</span>
         </div>
@@ -1132,7 +1198,7 @@
     <div class="contact-layout">
         <div class="map-window">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4527.114987748521!2d88.3314629760027!3d22.758727326121473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events Co.!5e1!3m2!1sen!2sin!4v1781028041230!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4527.114987748521!2d88.3314629760027!3d22.758727326121473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events%20Co.!5e1!3m2!1sen!2sin!4v1781028041230!5m2!1sen!2sin"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -1182,6 +1248,16 @@
 </footer>
 
 <script>
+// Premium Preloader Transition Execution Script
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const preloader = document.getElementById('picxlart-preloader');
+        if (preloader) {
+            preloader.classList.add('fade-out');
+        }
+    }, 3500); /* ৩.৫ সেকেন্ড ইন্ট্রো অ্যানিমেশনটি প্রদর্শন করবে */
+});
+
 let slideIndex = 0;
 showSlides();
 
@@ -1230,6 +1306,7 @@ function sendEnquiry() {
     window.open(whatsappUrl, '_blank');
 }
 
+// Why Box Execution Architecture Mapping
 function toggleWhy(){
     const content = document.getElementById("moreContent");
     const btn = document.getElementById("seeMoreBtn");
