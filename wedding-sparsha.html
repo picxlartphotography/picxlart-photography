@@ -96,55 +96,46 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* 100% Working Centered Slider Structure Layout */
+    /* Premium 3-Image Side-by-Side Viewport Slider Layout */
     .slider-viewport-container {
         padding: 130px 0 10px;
         width: 100%;
+        overflow: hidden;
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .carousel-track-wrapper {
         display: flex;
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         width: 100%;
-        max-width: 900px;
-        padding: 0 20px;
-        overflow: hidden;
-        position: relative;
-        aspect-ratio: 3 / 2;
-        border-radius: 8px;
-        background: #111;
+        will-change: transform;
     }
 
+    /* ছবিগুলো কাটবে না এবং আগে যেমন পাশাপাশি ৩টি দেখাতো তেমনই থাকবে */
     .carousel-slide-item {
-        position: absolute;
-        top: 0;
-        left: 20px;
-        right: 20px;
-        bottom: 0;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
-        z-index: 1;
+        flex: 0 0 33.333%;
+        width: 33.333%;
+        padding: 0 12px;
+        aspect-ratio: 3 / 2;
+        border-radius: 4px;
+        overflow: hidden;
+        opacity: 0.4; /* সাইডের ছবিগুলোর ব্রাইটনেস কম থাকবে */
+        transition: opacity 0.4s ease;
     }
 
-    /* প্রতিটি ছবি সুন্দরভাবে মাঝখানে ফোকাস হওয়ার জন্য একটিভ ক্লাস */
+    /* মাঝখানের ছবির ব্রাইটনেস পুরোপুরি হাইলাইটেড থাকবে */
     .carousel-slide-item.center-active {
         opacity: 1;
-        visibility: visible;
-        z-index: 2;
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; /* ইমেজ ক্রপ হওয়া বন্ধ রাখার সঠিক মেকানিজম */
         display: block;
-        border-radius: 8px;
+        border-radius: 6px;
         border: 1px solid rgba(212, 175, 55, 0.2);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     /* Slider Dots Navigation Container */
@@ -152,13 +143,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
-        margin: 20px 0 25px 0;
+        gap: 8px;
+        margin: 15px 0 25px 0;
     }
 
     .slider-dot {
-        width: 11px;
-        height: 11px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.25);
         cursor: pointer;
@@ -167,7 +158,7 @@
 
     .slider-dot.active {
         background: #d4af37;
-        transform: scale(1.25);
+        transform: scale(1.2);
         box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
     }
 
@@ -390,6 +381,7 @@
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
+        .carousel-slide-item { flex: 0 0 50%; width: 50%; }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
         .featured-portrait-box { max-width: 100%; }
         .narrative-right { justify-content: center; }
@@ -432,7 +424,10 @@
         .nav-menu a:last-child { border-bottom: none; padding-bottom: 22px; }
         .nav-menu a::after { display: none; }
 
-        .slider-viewport-container { padding-top: 100px; padding-left: 10px; padding-right: 10px; }
+        .slider-viewport-container { padding-top: 100px; }
+        .carousel-track-wrapper { padding-left: 0; }
+        .carousel-slide-item { flex: 0 0 100%; width: 100%; padding: 0 15px; opacity: 0.4; }
+        .carousel-slide-item.center-active { opacity: 1; }
         .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -468,10 +463,9 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Center Focused Multi-Photo Carousel Slider Layout -->
+<!-- 1. Premium Center Focused Multi-Photo Carousel Slider Layout -->
 <div class="slider-viewport-container">
-    <div class="carousel-track-wrapper">
-        <!-- 💡 সঠিক ফাইল নেম 'top-slide' ম্যাপিং সফলভাবে করা হয়েছে -->
+    <div class="carousel-track-wrapper" id="carouselTrack">
         <div class="carousel-slide-item center-active"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div>
         <div class="carousel-slide-item"><img src="top-slide2.jpg" alt="Sparsha Slide 2"></div>
         <div class="carousel-slide-item"><img src="top-slide3.jpg" alt="Sparsha Slide 3"></div>
@@ -596,17 +590,40 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// বুলেপ্রুফ ফেড স্লাইডার ইঞ্জিন মেকানিজম
+// Clean Center Centering Logic 
+const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
-const slides = document.querySelectorAll('.carousel-slide-item');
+const slides = Array.from(track.children);
 let slideIndex = 0;
 
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('center-active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+function updateSliderPosition() {
+    const isMobile = window.innerWidth <= 768;
     
-    if(slides[index]) slides[index].classList.add('center-active');
-    if(dots[index]) dots[index].classList.add('active');
+    slides.forEach((slide, index) => {
+        slide.classList.remove('center-active');
+        if (index === slideIndex) {
+            slide.classList.add('center-active');
+        }
+    });
+
+    if (isMobile) {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
+    } else {
+        // স্লাইডের ক্লায়েন্ট উইথ এর ওপর ভিত্তি করে একদম ডেড সেন্টার করার নিখুঁত গাণিতিক সূত্র
+        const slideWidth = slides[0].offsetWidth;
+        const viewportWidth = window.innerWidth;
+        
+        const offsetLeft = (viewportWidth - slideWidth) / 2;
+        const amountToMove = (slideWidth * slideIndex) - offsetLeft;
+        
+        track.style.transform = `translateX(-${amountToMove}px)`;
+    }
+    
+    dots.forEach(dot => dot.classList.remove('active'));
+    if(dots[slideIndex]) {
+        dots[slideIndex].classList.add('active');
+    }
 }
 
 function autoPlaySlider() {
@@ -614,23 +631,26 @@ function autoPlaySlider() {
     if (slideIndex >= slides.length) {
         slideIndex = 0;
     }
-    showSlide(slideIndex);
+    updateSliderPosition();
 }
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// ডট ম্যানুয়াল ক্লিক কন্ট্রোল
+// ডটস ক্লিকের মাধ্যমে ডিরেক্ট সেন্টারিং অ্যাকশন
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
         slideIndex = parseInt(e.target.getAttribute('data-index'));
-        showSlide(slideIndex);
+        updateSliderPosition();
         sliderInterval = setInterval(autoPlaySlider, 3000);
     });
 });
 
-// প্রথম লোডেই পজিশন অ্যাক্টিভেশন
-showSlide(slideIndex);
+window.addEventListener('resize', () => { updateSliderPosition(); });
+window.addEventListener('load', () => { updateSliderPosition(); });
+
+// ইনিশিয়াল রান
+updateSliderPosition();
 
 // Structural Security Mechanics
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
