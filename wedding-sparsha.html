@@ -96,39 +96,41 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Standard Responsive Slider Section Layout */
+    /* 100% Working Centered Slider Structure Layout */
     .slider-viewport-container {
-        padding: 130px 20px 10px;
+        padding: 130px 0 10px;
         width: 100%;
-        max-width: 1050px;
-        margin: 0 auto;
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .carousel-track-wrapper {
-        position: relative;
+        display: flex;
         width: 100%;
-        aspect-ratio: 3 / 2;
+        max-width: 900px; /* মেইন স্লাইডারের ফিক্সড এরিয়া */
+        padding: 0 20px;
         overflow: hidden;
+        position: relative;
+        aspect-ratio: 3 / 2;
         border-radius: 8px;
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
-    /* স্লাইডের ইমেজগুলো ব্লক আকারে একটির পর একটি অবস্থান করবে */
+    /* ছবিগুলোর পজিশনিং একদম ওয়ান-বাই-ওয়ান ব্লক মোডে সেট */
     .carousel-slide-item {
         position: absolute;
         top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
         z-index: 1;
     }
 
-    /* একটিভ ইমেজটি স্ক্রিনের ডেড সেন্টারে সম্পূর্ণ ভিজ্যুয়াল মোডে থাকবে */
+    /* ১ থেকে ৬ পর্যন্ত প্রতিটি ছবি মাঝখানে ওপেন হওয়ার পারফেক্ট ক্লাস */
     .carousel-slide-item.center-active {
         opacity: 1;
         visibility: visible;
@@ -140,6 +142,9 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        border-radius: 8px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
     /* Slider Dots Navigation Container */
@@ -518,7 +523,6 @@
     <p class="inclusions-subtitle">We provide every detail of your grand affair in a creative style, freezing those magical moments safely.</p>
     
     <div class="inclusions-grid">
-        <!-- Column 1: Structural Coverage -->
         <div class="inclusion-card">
             <h4>1. Essential Coverage</h4>
             <ul>
@@ -530,7 +534,6 @@
             </ul>
         </div>
 
-        <!-- Column 2: Cinematic Products Matrix -->
         <div class="inclusion-card">
             <h4>2. Media Products Suite</h4>
             <ul>
@@ -542,7 +545,6 @@
             </ul>
         </div>
 
-        <!-- Column 3: Premium Customizable Album Layout -->
         <div class="inclusion-card">
             <h4>3. Heirloom Albums Suite</h4>
             <ul>
@@ -593,7 +595,7 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// ১০০% ওয়ার্কিং ফেড স্লাইডার ইঞ্জিন মেকানিজম
+// বুলেপ্রুফ ফেড স্লাইডার ইঞ্জিন মেকানিজম
 const dots = document.querySelectorAll('.slider-dot');
 const slides = document.querySelectorAll('.carousel-slide-item');
 let slideIndex = 0;
@@ -602,8 +604,8 @@ function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('center-active'));
     dots.forEach(dot => dot.classList.remove('active'));
     
-    slides[index].classList.add('center-active');
-    dots[index].classList.add('active');
+    if(slides[index]) slides[index].classList.add('center-active');
+    if(dots[index]) dots[index].classList.add('active');
 }
 
 function autoPlaySlider() {
@@ -616,7 +618,7 @@ function autoPlaySlider() {
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// ডট নেভিগেশন কন্ট্রোল
+// ডট ম্যানুয়াল ক্লিক কন্ট্রোল
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
@@ -625,6 +627,9 @@ dots.forEach(dot => {
         sliderInterval = setInterval(autoPlaySlider, 3000);
     });
 });
+
+// প্রথম লোডেই পজিশন অ্যাক্টিভেশন
+showSlide(slideIndex);
 
 // Structural Security Mechanics
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
