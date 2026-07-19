@@ -96,7 +96,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Premium Cinematic Slider Layout */
+    /* Fixed Standard Carousel Layout */
     .slider-viewport-container {
         padding: 130px 0 10px;
         width: 100%;
@@ -111,30 +111,28 @@
         will-change: transform;
     }
 
-    /* সাইডের বাকি সব ইমেজ ছোট এবং আবছা থাকবে */
+    /* ছবিগুলোর উইথ এবং ডিসপ্লে ফিক্সড—যাতে কোনো ব্রাউজারে ব্ল্যাক বা হাইড না হয় */
     .carousel-slide-item {
-        flex: 0 0 600px; /* ফিক্সড উইথ দেওয়া হলো যাতে ব্ল্যাক বক্স না হয়ে ইমেজ নিজের সাইজ পায় */
-        width: 600px;
-        max-width: 80%; /* মোবাইল স্ক্রিনের জন্য ব্যালেন্স */
-        padding: 0 15px;
+        flex: 0 0 33.333%;
+        width: 33.333%;
+        padding: 0 12px;
         aspect-ratio: 3 / 2;
         border-radius: 4px;
         overflow: hidden;
-        transform: scale(0.85); /* সাইডের ছবিগুলো ১৫% ছোট থাকবে */
-        opacity: 0.35; /* সাইডের ছবিগুলোর ব্রাইটনেস কম থাকবে */
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+        opacity: 0.6; /* পাশে থাকা ছবিগুলো হালকা আবছা থাকবে */
+        transition: opacity 0.4s ease;
     }
 
-    /* makhankhane ashle image full visual size e thakbe */
+    /* মাঝখানের ছবির ব্রাইটনেস পুরোপুরি ক্লিয়ার থাকবে */
     .carousel-slide-item.center-active {
         opacity: 1;
-        transform: scale(1);
     }
 
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
         border-radius: 6px;
         border: 1px solid rgba(212, 175, 55, 0.2);
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -383,7 +381,7 @@
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
-        .carousel-slide-item { flex: 0 0 440px; width: 440px; }
+        .carousel-slide-item { flex: 0 0 50%; width: 50%; }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
         .featured-portrait-box { max-width: 100%; }
         .narrative-right { justify-content: center; }
@@ -427,8 +425,8 @@
         .nav-menu a::after { display: none; }
 
         .slider-viewport-container { padding-top: 100px; }
-        .carousel-slide-item { flex: 0 0 100%; width: 100%; padding: 0 15px; transform: scale(1); opacity: 0.35; }
-        .carousel-slide-item.center-active { transform: scale(1); opacity: 1; }
+        .carousel-slide-item { flex: 0 0 100%; width: 100%; padding: 0 15px; opacity: 0.4; }
+        .carousel-slide-item.center-active { opacity: 1; }
         .narrative-split-panel h2 { font-size: 28px; }
         .cinematic-mid-banner h3 { font-size: 20px; }
         .inclusions-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -594,7 +592,7 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// Fixed Center-View Slider Engine Logics
+// Clean Center Centering Logic 
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
 const slides = Array.from(track.children);
@@ -611,14 +609,13 @@ function updateSliderPosition() {
     });
 
     if (isMobile) {
-        const slideWidth = slides[0].offsetWidth;
+        const slideWidth = slides[0].getBoundingClientRect().width;
         track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
     } else {
-        // একদম পারফেক্ট অফসেট ক্যালকুলেশন লজিক
+        // স্লাইডের ক্লায়েন্ট উইথ এর ওপর ভিত্তি করে একদম ডেড সেন্টার করার নিখুঁত গাণিতিক সূত্র
         const slideWidth = slides[0].offsetWidth;
         const viewportWidth = window.innerWidth;
         
-        // ডাইনামিক অফসেট ব্যালেন্স মেকানিজম—যা ছবিকে ঠিক স্ক্রিনের সেন্টারে নিয়ে আসবে
         const offsetLeft = (viewportWidth - slideWidth) / 2;
         const amountToMove = (slideWidth * slideIndex) - offsetLeft;
         
@@ -641,7 +638,7 @@ function autoPlaySlider() {
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// ডটস ম্যানুয়াল ক্লিক হ্যান্ডলার (ক্লিক করলেই সেই ছবি মাঝখানে আসবে)
+// ডটস ক্লিকের মাধ্যমে ডিরেক্ট সেন্টারিং অ্যাকশন
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
@@ -651,14 +648,10 @@ dots.forEach(dot => {
     });
 });
 
-window.addEventListener('resize', () => {
-    updateSliderPosition();
-});
+window.addEventListener('resize', () => { updateSliderPosition(); });
+window.addEventListener('load', () => { updateSliderPosition(); });
 
-// প্রথম লোডেই পজিশন ইনিশিয়েট করা
-window.addEventListener('load', () => {
-    updateSliderPosition();
-});
+// ইনিশিয়াল রান
 updateSliderPosition();
 
 // Structural Security Mechanics
