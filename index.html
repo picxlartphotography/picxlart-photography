@@ -25,6 +25,61 @@
         user-select:none;
     }
 
+    /* Premium Intro Preloader Screen Overlay Styles */
+    #picxlart-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #080808;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+    }
+
+    .loader-content {
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .loader-logo {
+        height: 90px;
+        width: auto;
+        opacity: 0;
+        transform: scale(0.95);
+        animation: fadeInLogo 1.8s forwards ease-in-out;
+    }
+
+    .loader-text {
+        font-family: 'Poppins', sans-serif;
+        color: #d4af37;
+        font-size: 15px;
+        font-weight: 300;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-top: 22px;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: fadeInText 1.8s forwards cubic-bezier(0.25, 1, 0.5, 1);
+        animation-delay: 0.5s;
+    }
+
+    @keyframes fadeInLogo {
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInText {
+        to { opacity: 0.9; transform: translateY(0); }
+    }
+
+    #picxlart-preloader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
     /* Top Navbar Layout & Styling */
     .navbar{
         position:fixed;
@@ -368,7 +423,6 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         cursor:pointer;
-        transition:all .3s ease;
         width: 180px; 
         margin-left: auto;
         margin-right: auto;
@@ -924,10 +978,18 @@
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+<!-- Premium Animated Intro Overlay Layout Added Here Successfully -->
+<div id="picxlart-preloader">
+    <div class="loader-content">
+        <img src="logo.png" alt="Picxlart Logo" class="loader-logo">
+        <h1 class="loader-text">Timeless Moments, Captured For Eternity</h1>
+    </div>
+</div>
 
 <div class="navbar">
    <div class="nav-logo">
@@ -936,7 +998,6 @@
         </a>
     </div>
 
-    <!-- এখানে মেনুর ভেতরে Packages লিঙ্কটি পারফেক্টলি যোগ করা হয়েছে -->
     <div class="nav-menu">
         <a href="/">Home</a>
         <a href="#gallery">Gallery</a>
@@ -1162,6 +1223,16 @@
 </footer>
 
 <script>
+// Premium Preloader Fading Out Management Script Logic
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const preloader = document.getElementById('picxlart-preloader');
+        if (preloader) {
+            preloader.classList.add('fade-out');
+        }
+    }, 3500); /* ৩.৫ সেকেন্ড পর স্মুথলি ভ্যানিশ হয়ে হোম পেজ ওপেন হবে */
+});
+
 let slideIndex = 0;
 showSlides();
 
