@@ -96,7 +96,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Premium 3-Image Side-by-Side Viewport Slider Layout */
+    /* Infinite Carousel Slider Layout Container */
     .slider-viewport-container {
         padding: 130px 0 10px;
         width: 100%;
@@ -106,18 +106,15 @@
 
     .carousel-track-wrapper {
         display: flex;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         width: 100%;
         will-change: transform;
     }
 
-    /* ছবিগুলো কাটবে না এবং আগে যেমন পাশাপাশি ৩টি দেখাতো তেমনই থাকবে */
+    /* ৩টি ছবি পাশাপাশি থাকবে এবং ক্রপ হবে না */
     .carousel-slide-item {
         flex: 0 0 33.333%;
         width: 33.333%;
         padding: 0 12px;
-        aspect-ratio: 3 / 2;
-        border-radius: 4px;
         overflow: hidden;
         opacity: 0.4; /* সাইডের ছবিগুলোর ব্রাইটনেস কম থাকবে */
         transition: opacity 0.4s ease;
@@ -128,14 +125,21 @@
         opacity: 1;
     }
 
+    .carousel-slide-item .img-container {
+        width: 100%;
+        aspect-ratio: 3 / 2; /* ৩:২ রেশিও লক, যাতে ছবি কোনো অবস্থাতেই ক্রপ না হয় */
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
     .carousel-slide-item img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* ইমেজ ক্রপ হওয়া বন্ধ রাখার সঠিক মেকানিজম */
+        object-fit: contain; /* কন্টেইন করায় পুরো ছবি নিখুঁত দেখাবে, কাটবে না */
         display: block;
-        border-radius: 6px;
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        background: #0d0d0d;
     }
 
     /* Slider Dots Navigation Container */
@@ -463,15 +467,16 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Premium Center Focused Multi-Photo Carousel Slider Layout -->
+<!-- 1. Infinite Infinite Carousel Slider Structure Layout -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
-        <div class="carousel-slide-item center-active"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div>
-        <div class="carousel-slide-item"><img src="top-slide2.jpg" alt="Sparsha Slide 2"></div>
-        <div class="carousel-slide-item"><img src="top-slide3.jpg" alt="Sparsha Slide 3"></div>
-        <div class="carousel-slide-item"><img src="top-slide4.jpg" alt="Sparsha Slide 4"></div>
-        <div class="carousel-slide-item"><img src="top-slide5.jpg" alt="Sparsha Slide 5"></div>
-        <div class="carousel-slide-item"><img src="top-slide6.jpg" alt="Sparsha Slide 6"></div>
+        <!-- ইমেজ লিস্ট ট্র্যাক ডাইনামিকালি জাভাস্ক্রিপ্ট দিয়ে ক্লোন এবং হ্যান্ডেল করা হবে -->
+        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div></div>
+        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="top-slide2.jpg" alt="Sparsha Slide 2"></div></div>
+        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="top-slide3.jpg" alt="Sparsha Slide 3"></div></div>
+        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="top-slide4.jpg" alt="Sparsha Slide 4"></div></div>
+        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="top-slide5.jpg" alt="Sparsha Slide 5"></div></div>
+        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="top-slide6.jpg" alt="Sparsha Slide 6"></div></div>
     </div>
 </div>
 
@@ -590,67 +595,96 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// Clean Center Centering Logic 
+// Advanced Infinite Loop Slider Engine Mechanism
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
-const slides = Array.from(track.children);
-let slideIndex = 0;
+const originalSlides = Array.from(track.children);
+const totalOriginals = originalSlides.length;
 
-function updateSliderPosition() {
+// গ্যাপ এবং লুপ ফিক্স করতে ছবিগুলোকে ডানে ও বামে ৩ বার ক্লোন করা হলো
+originalSlides.forEach(slide => {
+    const cloneBefore = slide.cloneNode(true);
+    cloneBefore.classList.add('cloned');
+    track.insertBefore(cloneBefore, track.firstChild);
+});
+originalSlides.forEach(slide => {
+    const cloneAfter = slide.cloneNode(true);
+    cloneAfter.classList.add('cloned');
+    track.appendChild(cloneAfter);
+});
+
+const allSlides = Array.from(track.children);
+let currentVirtualIndex = totalOriginals; // ক্লোনের পর অরিজিনাল ১ নম্বর ছবির পজিশন
+
+function updateSliderPosition(animate = true) {
     const isMobile = window.innerWidth <= 768;
-    
-    slides.forEach((slide, index) => {
-        slide.classList.remove('center-active');
-        if (index === slideIndex) {
-            slide.classList.add('center-active');
-        }
-    });
+    const slideWidth = allSlides[0].offsetWidth;
+    const viewportWidth = window.innerWidth;
 
-    if (isMobile) {
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
+    // অ্যানিমেশন অন/অফ হ্যান্ডলিং
+    if (animate) {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     } else {
-        // স্লাইডের ক্লায়েন্ট উইথ এর ওপর ভিত্তি করে একদম ডেড সেন্টার করার নিখুঁত গাণিতিক সূত্র
-        const slideWidth = slides[0].offsetWidth;
-        const viewportWidth = window.innerWidth;
-        
+        track.style.transition = 'none';
+    }
+
+    // একটিভ সেন্টারিং ক্লাস সিঙ্ক করা
+    allSlides.forEach(slide => slide.classList.remove('center-active'));
+    if (allSlides[currentVirtualIndex]) {
+        allSlides[currentVirtualIndex].classList.add('center-active');
+    }
+
+    // অফসেট ধরে একদম স্ক্রিনের সেন্টারে নিয়ে আসার নিখুঁত সমীকরণ
+    if (isMobile) {
+        track.style.transform = `translateX(-${slideWidth * currentVirtualIndex}px)`;
+    } else {
         const offsetLeft = (viewportWidth - slideWidth) / 2;
-        const amountToMove = (slideWidth * slideIndex) - offsetLeft;
-        
+        const amountToMove = (slideWidth * currentVirtualIndex) - offsetLeft;
         track.style.transform = `translateX(-${amountToMove}px)`;
     }
-    
+
+    // আসল ডটের ইনডেক্স খুঁজে হাইলাইট করা
+    const realIndex = parseInt(allSlides[currentVirtualIndex].getAttribute('data-id'));
     dots.forEach(dot => dot.classList.remove('active'));
-    if(dots[slideIndex]) {
-        dots[slideIndex].classList.add('active');
+    if (dots[realIndex]) {
+        dots[realIndex].classList.add('active');
     }
 }
 
-function autoPlaySlider() {
-    slideIndex++;
-    if (slideIndex >= slides.length) {
-        slideIndex = 0;
+// ট্র্যাকিং শেষ হলে বর্ডারলেস লুপ রিসেট মেকানিজম
+track.addEventListener('transitionend', () => {
+    if (currentVirtualIndex >= totalOriginals * 2) {
+        currentVirtualIndex = totalOriginals;
+        updateSliderPosition(false);
+    } else if (currentVirtualIndex < totalOriginals) {
+        currentVirtualIndex = totalOriginals * 2 - 1;
+        updateSliderPosition(false);
     }
-    updateSliderPosition();
+});
+
+function autoPlaySlider() {
+    currentVirtualIndex++;
+    updateSliderPosition(true);
 }
 
 let sliderInterval = setInterval(autoPlaySlider, 3000);
 
-// ডটস ক্লিকের মাধ্যমে ডিরেক্ট সেন্টারিং অ্যাকশন
+// ডটস ক্লিকের সাথে সাথে নিখুঁত পজিশনে জাম্প করা
 dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
-        slideIndex = parseInt(e.target.getAttribute('data-index'));
-        updateSliderPosition();
+        const targetRealIndex = parseInt(e.target.getAttribute('data-index'));
+        currentVirtualIndex = totalOriginals + targetRealIndex;
+        updateSliderPosition(true);
         sliderInterval = setInterval(autoPlaySlider, 3000);
     });
 });
 
-window.addEventListener('resize', () => { updateSliderPosition(); });
-window.addEventListener('load', () => { updateSliderPosition(); });
+window.addEventListener('resize', () => { updateSliderPosition(false); });
+window.addEventListener('load', () => { updateSliderPosition(false); });
 
 // ইনিশিয়াল রান
-updateSliderPosition();
+setTimeout(() => { updateSliderPosition(false); }, 100);
 
 // Structural Security Mechanics
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
