@@ -25,61 +25,6 @@
         user-select:none;
     }
 
-    /* Premium Intro Preloader Screen Overlay Styles */
-    #picxlart-preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #080808;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 999999;
-        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
-    }
-
-    .loader-content {
-        text-align: center;
-        padding: 0 20px;
-    }
-
-    .loader-logo {
-        height: 90px;
-        width: auto;
-        opacity: 0;
-        transform: scale(0.95);
-        animation: fadeInLogo 1.8s forwards ease-in-out;
-    }
-
-    .loader-text {
-        font-family: 'Poppins', sans-serif;
-        color: #d4af37;
-        font-size: 15px;
-        font-weight: 300;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-top: 22px;
-        opacity: 0;
-        transform: translateY(12px);
-        animation: fadeInText 1.8s forwards cubic-bezier(0.25, 1, 0.5, 1);
-        animation-delay: 0.5s;
-    }
-
-    @keyframes fadeInLogo {
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes fadeInText {
-        to { opacity: 0.9; transform: translateY(0); }
-    }
-
-    #picxlart-preloader.fade-out {
-        opacity: 0;
-        visibility: hidden;
-    }
-
     /* Top Navbar Layout & Styling */
     .navbar{
         position:fixed;
@@ -255,11 +200,23 @@
         align-items: center;
     }
 
+    /* Premium Welcome Text Placement Layout */
+    .hero-welcome-text {
+        font-size: 32px;
+        font-weight: 300;
+        color: #f5f5f5;
+        letter-spacing: 2px;
+        text-transform: none;
+        margin-bottom: -5px;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+        font-style: italic;
+    }
+
     .hero-brand-logo {
         max-width: 580px; 
         width: 100%;
         height: auto;
-        margin-top: 15px;
+        margin-top: 5px;
         margin-bottom: 5px; 
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
@@ -864,6 +821,10 @@
             padding: 0 20px 40px; 
         }
 
+        .hero-welcome-text {
+            font-size: 22px;
+        }
+
         .hero-brand-logo {
             max-width: 320px;
         }
@@ -945,6 +906,10 @@
             padding-bottom: 30px; 
         }
 
+        .hero-welcome-text {
+            font-size: 18px;
+        }
+
         .hero-brand-logo {
             max-width: 250px;
         }
@@ -978,18 +943,10 @@
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
-<!-- Premium Animated Intro Overlay Layout Added Here Successfully -->
-<div id="picxlart-preloader">
-    <div class="loader-content">
-        <img src="logo.png" alt="Picxlart Logo" class="loader-logo">
-        <h1 class="loader-text">Timeless Moments, Captured For Eternity</h1>
-    </div>
-</div>
 
 <div class="navbar">
    <div class="nav-logo">
@@ -1026,6 +983,8 @@
 
     <div class="hero-content">
         <div class="hero-title">
+            <!-- Added Welcome Text perfectly above the logo line -->
+            <div class="hero-welcome-text">Welcome to</div>
             <img src="hero-logo.png" alt="Picxlart" class="hero-brand-logo">
             <span>PHOTOGRAPHY & EVENTS CO.</span>
         </div>
@@ -1173,7 +1132,7 @@
     <div class="contact-layout">
         <div class="map-window">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4527.114987748521!2d88.3314629760027!3d22.758727326121473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events%20Co.!5e1!3m2!1sen!2sin!4v1781028041230!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4527.114987748521!2d88.3314629760027!3d22.758727326121473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events Co.!5e1!3m2!1sen!2sin!4v1781028041230!5m2!1sen!2sin"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -1223,16 +1182,6 @@
 </footer>
 
 <script>
-// Premium Preloader Fading Out Management Script Logic
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        const preloader = document.getElementById('picxlart-preloader');
-        if (preloader) {
-            preloader.classList.add('fade-out');
-        }
-    }, 3500); /* ৩.৫ সেকেন্ড পর স্মুথলি ভ্যানিশ হয়ে হোম পেজ ওপেন হবে */
-});
-
 let slideIndex = 0;
 showSlides();
 
