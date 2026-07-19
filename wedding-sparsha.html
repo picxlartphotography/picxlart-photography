@@ -113,8 +113,9 @@
 
     /* সাইডের বাকি সব ইমেজ ছোট এবং আবছা থাকবে */
     .carousel-slide-item {
-        flex: 0 0 33.333%;
-        width: 33.333%;
+        flex: 0 0 600px; /* ফিক্সড উইথ দেওয়া হলো যাতে ব্ল্যাক বক্স না হয়ে ইমেজ নিজের সাইজ পায় */
+        width: 600px;
+        max-width: 80%; /* মোবাইল স্ক্রিনের জন্য ব্যালেন্স */
         padding: 0 15px;
         aspect-ratio: 3 / 2;
         border-radius: 4px;
@@ -124,10 +125,10 @@
         transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
     }
 
-    /* মাঝখানের ইমেজটি অরিজিনাল ফুল সাইজে এবং উজ্জ্বল থাকবে */
+    /* makhankhane ashle image full visual size e thakbe */
     .carousel-slide-item.center-active {
         opacity: 1;
-        transform: scale(1); /* মাঝখানের ছবি তার আসল ফুল সাইজেই থাকবে */
+        transform: scale(1);
     }
 
     .carousel-slide-item img {
@@ -382,8 +383,7 @@
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
-        .carousel-slide-item { flex: 0 0 50%; width: 50%; transform: scale(0.9); }
-        .carousel-slide-item.center-active { transform: scale(1); }
+        .carousel-slide-item { flex: 0 0 440px; width: 440px; }
         .narrative-split-panel { flex-direction: column; gap: 40px; text-align: center; }
         .featured-portrait-box { max-width: 100%; }
         .narrative-right { justify-content: center; }
@@ -427,7 +427,6 @@
         .nav-menu a::after { display: none; }
 
         .slider-viewport-container { padding-top: 100px; }
-        .carousel-track-wrapper { padding-left: 0; }
         .carousel-slide-item { flex: 0 0 100%; width: 100%; padding: 0 15px; transform: scale(1); opacity: 0.35; }
         .carousel-slide-item.center-active { transform: scale(1); opacity: 1; }
         .narrative-split-panel h2 { font-size: 28px; }
@@ -595,7 +594,7 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// Upgraded Premium Center-View Slider Engine Logics
+// Fixed Center-View Slider Engine Logics
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
 const slides = Array.from(track.children);
@@ -604,7 +603,6 @@ let slideIndex = 0;
 function updateSliderPosition() {
     const isMobile = window.innerWidth <= 768;
     
-    // ছবির একটিভ ক্লাস সিঙ্ক করা
     slides.forEach((slide, index) => {
         slide.classList.remove('center-active');
         if (index === slideIndex) {
@@ -613,20 +611,20 @@ function updateSliderPosition() {
     });
 
     if (isMobile) {
-        const slideWidth = slides[0].getBoundingClientRect().width;
+        const slideWidth = slides[0].offsetWidth;
         track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
     } else {
-        const slideWidth = slides[0].getBoundingClientRect().width;
+        // একদম পারফেক্ট অফসেট ক্যালকুলেশন লজিক
+        const slideWidth = slides[0].offsetWidth;
         const viewportWidth = window.innerWidth;
         
-        // কারেন্ট একটিভ ইমেজকে একদম স্ক্রিনের মাঝখানে নিয়ে আসার অফসেট হিসেব
+        // ডাইনামিক অফসেট ব্যালেন্স মেকানিজম—যা ছবিকে ঠিক স্ক্রিনের সেন্টারে নিয়ে আসবে
         const offsetLeft = (viewportWidth - slideWidth) / 2;
         const amountToMove = (slideWidth * slideIndex) - offsetLeft;
         
         track.style.transform = `translateX(-${amountToMove}px)`;
     }
     
-    // ডটস আপডেট
     dots.forEach(dot => dot.classList.remove('active'));
     if(dots[slideIndex]) {
         dots[slideIndex].classList.add('active');
@@ -658,6 +656,9 @@ window.addEventListener('resize', () => {
 });
 
 // প্রথম লোডেই পজিশন ইনিশিয়েট করা
+window.addEventListener('load', () => {
+    updateSliderPosition();
+});
 updateSliderPosition();
 
 // Structural Security Mechanics
