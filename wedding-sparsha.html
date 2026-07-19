@@ -114,7 +114,7 @@
     /* সাইডের বাকি সব ইমেজ ছোট এবং আবছা থাকবে */
     .carousel-slide-item {
         flex: 0 0 33.333%;
-        width: 33.333%; /* ব্ল্যাক বক্স ফিক্স করার জন্য উইথ ফিক্সড */
+        width: 33.333%;
         padding: 0 15px;
         aspect-ratio: 3 / 2;
         border-radius: 4px;
@@ -613,15 +613,13 @@ function updateSliderPosition() {
     });
 
     if (isMobile) {
-        // মোবাইল ভিউ ক্যালকুলেশন ফিক্সড
         const slideWidth = slides[0].getBoundingClientRect().width;
         track.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
     } else {
-        // ট্র্যাকটির রিয়েল-টাইম সেন্টারিং পজিশন গণনা 
         const slideWidth = slides[0].getBoundingClientRect().width;
         const viewportWidth = window.innerWidth;
         
-        // ডাইনামিক অফসেট ব্যালেন্স লজিক—যা স্ক্রিনের ডেড সেন্টারে একটিভ ছবিকে লক রাখবে
+        // কারেন্ট একটিভ ইমেজকে একদম স্ক্রিনের মাঝখানে নিয়ে আসার অফসেট হিসেব
         const offsetLeft = (viewportWidth - slideWidth) / 2;
         const amountToMove = (slideWidth * slideIndex) - offsetLeft;
         
