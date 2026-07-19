@@ -467,15 +467,26 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Infinite Carousel Slider Structure Layout -->
+<!-- 1. Hardcoded Loop Architecture Structure Layout (No Dynamic JavaScript Cloning) -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
-        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="top-slide1.jpg" alt="Sparsha Slide 1"></div></div>
-        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="top-slide2.jpg" alt="Sparsha Slide 2"></div></div>
-        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="top-slide3.jpg" alt="Sparsha Slide 3"></div></div>
-        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="top-slide4.jpg" alt="Sparsha Slide 4"></div></div>
-        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="top-slide5.jpg" alt="Sparsha Slide 5"></div></div>
-        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="top-slide6.jpg" alt="Sparsha Slide 6"></div></div>
+        <!-- সেট ১ (বাম দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="top-slide4.jpg" alt="Slide 4"></div></div>
+        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="top-slide5.jpg" alt="Slide 5"></div></div>
+        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="top-slide6.jpg" alt="Slide 6"></div></div>
+
+        <!-- সেট ২ (আসল ১ থেকে ৬ নম্বর ইমেজের মূল সেটআপ) -->
+        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="top-slide1.jpg" alt="Slide 1"></div></div>
+        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="top-slide2.jpg" alt="Slide 2"></div></div>
+        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="top-slide3.jpg" alt="Slide 3"></div></div>
+        <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="top-slide4.jpg" alt="Slide 4"></div></div>
+        <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="top-slide5.jpg" alt="Slide 5"></div></div>
+        <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="top-slide6.jpg" alt="Slide 6"></div></div>
+
+        <!-- সেট ৩ (ডান দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="top-slide1.jpg" alt="Slide 1"></div></div>
+        <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="top-slide2.jpg" alt="Slide 2"></div></div>
+        <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="top-slide3.jpg" alt="Slide 3"></div></div>
     </div>
 </div>
 
@@ -580,40 +591,14 @@
 </footer>
 
 <script>
-// Mobile Responsive Dropdown Control Script
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
 // Advanced Infinite Loop Slider Engine Mechanism
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
-const originalSlides = Array.from(track.children);
-const totalOriginals = originalSlides.length;
-
-// ক্লোন লজিক ফিক্সড: ১ নম্বরের বামে যেন ডুপ্লিকেট না এসে ৬ নম্বর পারফেক্টলি বসে
-originalSlides.forEach(slide => {
-    const cloneBefore = slide.cloneNode(true);
-    cloneBefore.classList.add('cloned');
-    track.insertBefore(cloneBefore, track.firstChild);
-});
-originalSlides.forEach(slide => {
-    const cloneAfter = slide.cloneNode(true);
-    cloneAfter.classList.add('cloned');
-    track.appendChild(cloneAfter);
-});
-
 const allSlides = Array.from(track.children);
-let currentVirtualIndex = totalOriginals; 
+const totalOriginals = 6; 
+
+// ইনডেক্স শুরু হচ্ছে ঠিক দ্বিতীয় সেটের ১ম ইমেজ (অর্থাৎ আসল ১ নম্বর ছবি) থেকে
+let currentVirtualIndex = 3; 
 
 function updateSliderPosition(animate = true) {
     const isMobile = window.innerWidth <= 768;
@@ -646,12 +631,15 @@ function updateSliderPosition(animate = true) {
     }
 }
 
-// ট্র্যাকিং বাউন্ডারি রিসেট লজিক—যা পাশাপাশি একই ছবি আসা বন্ধ রাখবে
+// ট্র্যাকিং এন্ড লুপ জাম্প লজিক
 track.addEventListener('transitionend', () => {
-    if (currentVirtualIndex >= totalOriginals * 2) {
+    // ডানদিকের শেষ বাউন্ডারি অতিক্রম করলে ঝটপট মূল সেট-এ ফিরে আসবে
+    if (currentVirtualIndex >= 3 + totalOriginals) {
         currentVirtualIndex = currentVirtualIndex - totalOriginals;
         updateSliderPosition(false);
-    } else if (currentVirtualIndex < totalOriginals) {
+    } 
+    // বাঁদিকের শেষ বাউন্ডারি অতিক্রম করলে মূল শেষ ছবিতে চলে যাবে
+    else if (currentVirtualIndex < 3) {
         currentVirtualIndex = currentVirtualIndex + totalOriginals;
         updateSliderPosition(false);
     }
@@ -668,7 +656,7 @@ dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
         clearInterval(sliderInterval);
         const targetRealIndex = parseInt(e.target.getAttribute('data-index'));
-        currentVirtualIndex = totalOriginals + targetRealIndex;
+        currentVirtualIndex = 3 + targetRealIndex;
         updateSliderPosition(true);
         sliderInterval = setInterval(autoPlaySlider, 3000);
     });
@@ -677,7 +665,7 @@ dots.forEach(dot => {
 window.addEventListener('resize', () => { updateSliderPosition(false); });
 window.addEventListener('load', () => { updateSliderPosition(false); });
 
-// ইনিশিয়াল রান টাইমিং ব্যালেন্স
+// ইনিশিয়াল রান
 setTimeout(() => { updateSliderPosition(false); }, 100);
 
 // Structural Security Mechanics
