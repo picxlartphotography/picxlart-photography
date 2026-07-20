@@ -53,7 +53,7 @@
         width:auto;
         transition: transform 0.3s ease;
     }
-    
+        
     .nav-logo img:hover {
         transform: scale(1.03);
     }
@@ -386,28 +386,28 @@
 
     <div class="package-tree-grid">
         <!-- Wedding Category -->
-        <a href="wedding-packages.html" class="tree-card" style="background-image: url('wedding-bg.png');">
+        <a href="wedding-packages.html" class="tree-card" style="background-image: url('wedding-bg.jpg');">
             <div class="card-content-box">
                 <p>View Details</p>
             </div>
         </a>
 
         <!-- Rice Ceremony / Birthday Category -->
-        <a href="event-packages.html" class="tree-card" style="background-image: url('event-bg.png');">
+        <a href="event-packages.html" class="tree-card" style="background-image: url('event-bg.jpg');">
             <div class="card-content-box">
                 <p>View Details</p>
             </div>
         </a>
 
         <!-- Pre-Wedding Category -->
-        <a href="prewedding-packages.html" class="tree-card" style="background-image: url('prewedding-bg.png');">
+        <a href="prewedding-packages.html" class="tree-card" style="background-image: url('prewedding-bg.jpg');">
             <div class="card-content-box">
                 <p>View Details</p>
             </div>
         </a>
 
         <!-- Corporate or Others Category -->
-        <a href="corporate-packages.html" class="tree-card" style="background-image: url('corporate-bg.png');">
+        <a href="corporate-packages.html" class="tree-card" style="background-image: url('corporate-bg.jpg');">
             <div class="card-content-box">
                 <p>View Details</p>
             </div>
@@ -468,7 +468,7 @@ cards.forEach(card => {
     card.addEventListener('touchend', function() {
         setTimeout(() => {
             card.classList.remove('touch-active');
-        }, 300); // 300ms delay for a smooth vanish effect
+        }, 300); 
     });
     card.addEventListener('touchcancel', function() {
         card.classList.remove('touch-active');
