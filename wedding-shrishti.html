@@ -270,7 +270,7 @@
     /* Mid call-to-Action Banner */
     .cinematic-mid-banner {
         position: relative;
-        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('shrishti-mid-banner.jpg');
+        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('mid-banner.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -395,21 +395,22 @@
     @media(max-width:768px) {
         .navbar{ padding:12px 24px; flex-wrap: nowrap; overflow: visible !important; }
         .nav-logo img{ height:45px; }
-        .menu-toggle { display: block; }
+        .menu-toggle { display: block; z-index: 10000000 !important; }
         .nav-social { display: none !important; }
         
         .nav-menu {
             position: fixed;
             top: 60px; left: 0; width: 100%; height: auto;
-            background: rgba(13, 13, 13, 0.97);
+            background: rgba(13, 13, 13, 0.98);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            display: flex;
             flex-direction: column; justify-content: flex-start; align-items: center;
             gap: 0; padding: 15px 0 0 0;
             transform: translateY(-150%);
             transition: transform 0.4s ease-in-out;
-            z-index: 999998;
+            z-index: 9999999 !important; /* সর্বোচ্চ লেয়ার পজিশন ফিক্স */
             border-bottom: 3px solid #d4af37;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .nav-menu.active { transform: translateY(0); }
@@ -467,15 +468,15 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- 1. Hardcoded Infinite Carousel Slider Architecture Setup (No Dynamic JavaScript Cloning) -->
+<!-- 1. Hardcoded Loop Architecture Structure Layout -->
 <div class="slider-viewport-container">
     <div class="carousel-track-wrapper" id="carouselTrack">
-        <!-- সেট ১ (বাম দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <!-- সেট ১ -->
         <div class="carousel-slide-item" data-id="3"><div class="img-container"><img src="shrishti-slide4.jpg" alt="Slide 4"></div></div>
         <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="shrishti-slide5.jpg" alt="Slide 5"></div></div>
         <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="shrishti-slide6.jpg" alt="Slide 6"></div></div>
 
-        <!-- সেট ২ (আসল ১ থেকে ৬ নম্বর ইমেজের মূল সেটআপ) -->
+        <!-- সেট ২ (মূল সেট) -->
         <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="shrishti-slide1.jpg" alt="Slide 1"></div></div>
         <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="shrishti-slide2.jpg" alt="Slide 2"></div></div>
         <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="shrishti-slide3.jpg" alt="Slide 3"></div></div>
@@ -483,7 +484,7 @@
         <div class="carousel-slide-item" data-id="4"><div class="img-container"><img src="shrishti-slide5.jpg" alt="Slide 5"></div></div>
         <div class="carousel-slide-item" data-id="5"><div class="img-container"><img src="shrishti-slide6.jpg" alt="Slide 6"></div></div>
 
-        <!-- সেট ৩ (ডান দিকের বাউন্ডারি গ্যাপ পূরণ করার জন্য) -->
+        <!-- সেট ৩ -->
         <div class="carousel-slide-item" data-id="0"><div class="img-container"><img src="shrishti-slide1.jpg" alt="Slide 1"></div></div>
         <div class="carousel-slide-item" data-id="1"><div class="img-container"><img src="shrishti-slide2.jpg" alt="Slide 2"></div></div>
         <div class="carousel-slide-item" data-id="2"><div class="img-container"><img src="shrishti-slide3.jpg" alt="Slide 3"></div></div>
@@ -510,8 +511,8 @@
     <div class="narrative-left">
         <span class="tagline">Commemorating the creation of new beginnings</span>
         <h2>Shrishti</h2>
-        <p>Step up to an enriched cinematic experience with the Shrishti Package. Beautifully conceptualized as our premier standard multi-day blueprint, this package is designed for couples who seek comprehensive, high-definition storytelling, advanced media aesthetics, and branded preservation mechanics.</p>
-        <p>Spanning an extensive 3-day signature wedding timeline, our premium team captures the authentic workflow of your historical Bengali traditions. From the soulful focus of the main Wedding Day rituals to the emotional nuances of the Vidai, Bodhuboron, and the high-energy layouts of your Grand Reception Gala—every smile, golden glance, and cinematic memory is delivered in pristine clarity.</p>
+        <p>Elevate your wedding story with our premium Shrishti package. Meticulously structured as our mid-tier signature framework, this package offers a massive upgrade in terms of visual scale, cinematic depth, and high-end deliverables for your grand celebrations.</p>
+        <p>Spanning a comprehensive 3-day operational timeline, our specialized crew provides high-definition artistic coverage of your complete traditional rituals—from the deep emotions of the Wedding Day and Vidai to the majesty of your Reception Gala. With advanced cinematic tools and dedicated candid optics, we ensure your visual legacy is crafted into an unforgettable piece of art.</p>
         <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Shrishti%20Package." class="hire-us-btn" target="_blank">Check Pricing & Availability</a>
     </div>
     <div class="narrative-right">
@@ -534,23 +535,21 @@
     
     <div class="inclusions-grid">
         <div class="inclusion-card">
-            <h4>1. Essential Coverage</h4>
+            <h4>1. Premium Coverage</h4>
             <ul>
-                <li><i class="fas fa-camera"></i> 3-Day Comprehensive Operational Wedding Timeline.</li>
-                <li><i class="fas fa-heart"></i> Beautiful coverage of the core sacred Wedding Day Rituals.</li>
-                <li><i class="fas fa-dove"></i> Emotional capture of the Vidai Ceremony transitions.</li>
-                <li><i class="fas fa-home"></i> Traditional essence preservation of the Bodhuboron ceremony.</li>
-                <li><i class="fas fa-glass-cheers"></i> Professional documentation of the Grand Reception Gala layout.</li>
+                <li><i class="fas fa-camera"></i> 3-Day Comprehensive Operational Wedding Timeline.[cite: 1]</li>
+                <li><i class="fas fa-users"></i> **Wedding Day Crew:** 2 Videographers & 2 Photographers.[cite: 1]</li>
+                <li><i class="fas fa-dove"></i> **Vidai & Boron:** 1 Videographer & 1 Photographer layout.[cite: 1]</li>
+                <li><i class="fas fa-glass-cheers"></i> **Reception Crew:** 1 Videographer, 1 Photographer & 1 Candid Photographer.[cite: 1]</li>
             </ul>
         </div>
 
         <div class="inclusion-card">
             <h4>2. Media Products Suite</h4>
             <ul>
-                <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos.</li>
-                <li><i class="fas fa-film"></i> High-End Premium Cinematic Wedding Teaser Movie.</li>
-                <li><i class="fas fa-compress-arrows-alt"></i> Approx 50 to 60 Minutes Full-Length Cinematic Film.</li>
-                <li><i class="fas fa-wand-magic-sparkles"></i> Directorial color grading, sound design, and narrative layouts.</li>
+                <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos.[cite: 1]</li>
+                <li><i class="fas fa-film"></i> Full HD Cinematic Wedding Teaser Movie.[cite: 1]</li>
+                <li><i class="fas fa-compress-arrows-alt"></i> Approx 50 to 60 Minutes Full-Length Cinematic Film.[cite: 1]</li>
                 <li><i class="fas fa-cloud-download"></i> High-security digital delivery cloud architecture.</li>
             </ul>
         </div>
@@ -558,11 +557,10 @@
         <div class="inclusion-card">
             <h4>3. Heirloom Albums Suite</h4>
             <ul>
-                <li><i class="fas fa-book-open"></i> 2 Premium Handcrafted Customized 12x18 (12x36) Photobooks.</li>
-                <li><i class="fas fa-crown"></i> <strong>Branded Canvera Standard Plus Layout:</strong> Immersive heirloom prints built to last.</li>
-                <li><i class="fas fa-copy"></i> Expansive print blueprint covering 25 Sheets (50 Pages).</li>
-                <li><i class="fas fa-globe"></i> Complimentary high-security Online View Architecture sync.</li>
-                <li><i class="fas fa-gem"></i> Tailored selection framework mapping your unique aesthetic choices.</li>
+                <li><i class="fas fa-book-open"></i> 2 Premium Handcrafted Branded Canvera Standard Plus Photobooks.[cite: 1]</li>
+                <li><i class="fas fa-expand"></i> Massive 12x18 (12x36) physical print blueprint structure.[cite: 1]</li>
+                <li><i class="fas fa-copy"></i> Expanded blueprint covering 25 Sheets (50 Pages).[cite: 1]</li>
+                <li><i class="fas fa-globe"></i> Complimentary high-security Online View Architecture sync.[cite: 1]</li>
             </ul>
         </div>
     </div>
@@ -591,6 +589,28 @@
 </footer>
 
 <script>
+// Mobile Responsive Dropdown Control Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
 // Advanced Infinite Loop Slider Engine Mechanism
 const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.slider-dot');
@@ -662,7 +682,7 @@ dots.forEach(dot => {
 window.addEventListener('resize', () => { updateSliderPosition(false); });
 window.addEventListener('load', () => { updateSliderPosition(false); });
 
-// ইনিশিয়াল রান
+// ইনিশিয়াল রান
 setTimeout(() => { updateSliderPosition(false); }, 100);
 
 // Structural Security Mechanics
