@@ -39,7 +39,6 @@
         z-index: 999999;
         opacity: 1;
         visibility: visible;
-        /* যাওয়ার সময় আলতো করে ১ সেকেন্ড ধরে ভ্যানিশ হওয়ার জন্য ট্রানজিশন ফিক্সড */
         transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -49,7 +48,6 @@
         transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    /* Welcome to - Normal Premium Font Style (No Italic) */
     .intro-welcome-text {
         font-size: 20px;
         font-weight: 400;
@@ -61,7 +59,6 @@
         animation: introFadeInText 1.5s forwards ease-in-out;
     }
 
-    /* hero-logo.png - Smoothly Fades In and Grows Slightly */
     .intro-brand-logo {
         max-width: 580px; 
         width: 100%;
@@ -75,7 +72,6 @@
         filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
     }
 
-    /* Signature Tagline Placement */
     .intro-tagline-text {
         font-size: 14px;
         font-weight: 300;
@@ -96,14 +92,13 @@
         to { opacity: 1; transform: scale(1); }
     }
 
-    /* যখন এই ক্লাসটি যুক্ত হবে, তখন স্ক্রিনটি খুব স্মুথভাবে আবছা হয়ে অফ হবে */
     #picxlart-preloader.fade-out {
         opacity: 0;
         visibility: hidden;
     }
     
     #picxlart-preloader.fade-out .loader-content {
-        transform: scale(1.02); /* অফ হওয়ার সময় কন্টেন্ট হালকা একটু বড় হয়ে মিলিয়ে যাবে */
+        transform: scale(1.02);
     }
 
     /* Top Navbar Layout & Styling */
@@ -193,7 +188,6 @@
         transform:translateY(-3px);
     }
 
-    /* Mobile Menu Toggle Button */
     .menu-toggle {
         display: none;
         color: #d4af37;
@@ -205,7 +199,6 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Navbar Shimmer Effect */
     .navbar::after{
         content:'';
         position:absolute;
@@ -754,6 +747,69 @@
         gap: 12px;
     }
 
+    /* SEO Guide Section Styling (Enhanced 6-Card Grid) */
+    .seo-guide-section {
+        padding: 90px 8%;
+        background: #090909;
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .seo-guide-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .seo-guide-card {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 20px;
+        padding: 35px 25px;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .seo-guide-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(212, 175, 55, 0.5);
+        background: rgba(26, 26, 26, 0.85);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .seo-card-icon {
+        width: 55px;
+        height: 55px;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid #d4af37;
+        color: #d4af37;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .seo-guide-card h3 {
+        color: #ffffff;
+        font-size: 19px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .seo-guide-card p {
+        color: #b0b0b0;
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
     /* Enterprise Footer Architecture */
     footer {
         text-align: center;
@@ -811,6 +867,10 @@
         .contact-layout {
             gap: 40px;
             padding: 40px;
+        }
+        .seo-guide-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
     }
 
@@ -883,7 +943,7 @@
         }
         
         h2 {
-            font-size: 28px;
+            font-size: 26px;
         }
 
         .hero {
@@ -906,7 +966,6 @@
             margin-top: 15px;
         }
 
-        /* Responsive Preloader adjustments */
         .intro-welcome-text { font-size: 16px; letter-spacing: 3px; }
         .intro-brand-logo { max-width: 340px; }
         .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
@@ -963,6 +1022,17 @@
 
         .map-window{
             height:280px;
+        }
+
+        .seo-guide-section {
+            padding: 60px 20px;
+        }
+        .seo-guide-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .seo-guide-card {
+            padding: 30px 20px;
         }
     }
 
@@ -1233,6 +1303,49 @@
     </div>
 </section>
 
+<!-- THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA (SEO SECTION WITH 6 CARDS) -->
+<section class="seo-guide-section">
+    <h2>THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA</h2>
+    
+    <div class="seo-guide-grid">
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-search"></i></div>
+            <h3>Comprehensive Research & Visual Style</h3>
+            <p>Before selecting the best wedding photographer in Kolkata, conducting thorough research is essential. Evaluate their core visual storytelling style—whether candid, traditional, or cinematic—and ensure their portfolio aligns perfectly with your wedding vision.</p>
+        </div>
+
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-award"></i></div>
+            <h3>Experience & Cultural Expertise</h3>
+            <p>Evaluating domain expertise and technical proficiency is crucial. An experienced team smoothly handles fast-paced traditional rituals, dynamic lighting conditions, and multi-event schedules to deliver pristine, timeless imagery.</p>
+        </div>
+
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-star"></i></div>
+            <h3>Genuine Google & Client Reviews</h3>
+            <p>Always review authentic client feedback on Google and social channels. Genuine reviews provide honest insights into team behavior, punctuality, and post-event deliverable quality, ensuring complete peace of mind.</p>
+        </div>
+
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-wallet"></i></div>
+            <h3>Transparent Value & Album Portfolio</h3>
+            <p>Analyze customized package structures and album deliverables clearly. Ensure your investment includes premium handcrafted photobooks, 4K video edits, and complete RAW file delivery without hidden conditions.</p>
+        </div>
+
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-clock"></i></div>
+            <h3>Clear Deliverables & Timelines</h3>
+            <p>Ensure your photography team guarantees a transparent operational timeline in writing. Clear commitments regarding high-res edited photo delivery, teaser turnaround, full cinematic movie edits, and album printing build solid trust.</p>
+        </div>
+
+        <div class="seo-guide-card">
+            <div class="seo-card-icon"><i class="fas fa-camera-retro"></i></div>
+            <h3>Advanced Gear & Backup Equipment</h3>
+            <p>Confirm if the team utilizes professional dual-slot mirrorless bodies, high-speed prime lenses, aerial drones, and lighting setups. Essential secondary backup equipment prevents any technical disruptions during live wedding rituals.</p>
+        </div>
+    </div>
+</section>
+
 <footer>
     <div style="margin-bottom:25px;">
         <a href="csr-initiative.html" class="footer-btn-premium">CSR Initiative</a>
@@ -1266,7 +1379,7 @@ window.addEventListener('load', function() {
         if (preloader) {
             preloader.classList.add('fade-out');
         }
-    }, 3500); /* ৩.৫ সেকেন্ড পর স্মুথ ফেইড-আউট ট্রিগার হবে */
+    }, 3500);
 });
 
 let slideIndex = 0;
