@@ -14,7 +14,7 @@
         box-sizing:border-box;
         font-family:'Poppins', sans-serif;
     }
-
+    
     body{
         background:#0d0d0d;
         color:#f5f5f5;
@@ -747,12 +747,17 @@
         gap: 12px;
     }
 
-    /* SEO Guide Section Styling (Enhanced 6-Card Grid) */
+    /* SEO Guide Section Styling (Single Line Heading Fix) */
     .seo-guide-section {
         padding: 90px 8%;
         background: #090909;
         border-top: 1px solid rgba(212, 175, 55, 0.15);
         border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .seo-guide-section h2 {
+        font-size: 28px;
+        letter-spacing: 1px;
     }
 
     .seo-guide-grid {
@@ -863,6 +868,12 @@
     }
 
     /* Complete Multi-Device Responsive System */
+    @media(max-width:1200px){
+        .seo-guide-section h2 {
+            font-size: 24px;
+        }
+    }
+
     @media(max-width:1024px){
         .contact-layout {
             gap: 40px;
@@ -943,7 +954,7 @@
         }
         
         h2 {
-            font-size: 26px;
+            font-size: 24px;
         }
 
         .hero {
@@ -1303,7 +1314,7 @@
     </div>
 </section>
 
-<!-- THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA (SEO SECTION WITH 6 CARDS) -->
+<!-- THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA (SEO SECTION WITH SINGLE LINE HEADING) -->
 <section class="seo-guide-section">
     <h2>THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA</h2>
     
