@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Films - Picxlart Photography & Events Co.</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+    /* Global Reset */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    /* Top Navbar */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+        align-items: center;
+    }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
+
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
+
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
+
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
+
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+    }
+
+    /* Page Header */
+    .films-header {
+        margin-top: 70px;
+        padding: 80px 20px 30px;
+        text-align: center;
+        background: radial-gradient(circle, rgba(25,25,25,1) 0%, rgba(10,10,10,1) 100%);
+        border-bottom: 1px solid rgba(212,175,55,0.15);
+    }
+
+    .films-header h1 {
+        font-size: 36px;
+        color: #d4af37;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .films-header p {
+        font-size: 15px;
+        color: #cccccc;
+        letter-spacing: 1.5px;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    /* 2 Options Segment Container */
+    .segments-container {
+        padding: 70px 8%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .segment-card {
+        position: relative;
+        height: 420px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(212,175,55,0.25);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 40px;
+    }
+
+    .segment-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s ease;
+        z-index: 1;
+    }
+
+    /* Card Background Images */
+    .segment-card.wedding-bg::before {
+        background-image: linear-gradient(to top, rgba(10,10,10,0.95) 10%, rgba(0,0,0,0.3)), url('Cover.jpg');
+    }
+
+    .segment-card.other-bg::before {
+        background-image: linear-gradient(to top, rgba(10,10,10,0.95) 10%, rgba(0,0,0,0.3)), url('Cover1.jpg');
+    }
+
+    .segment-card:hover {
+        transform: translateY(-10px);
+        border-color: #d4af37;
+        box-shadow: 0 20px 45px rgba(212,175,55,0.2);
+    }
+
+    .segment-card:hover::before {
+        transform: scale(1.08);
+    }
+
+    .segment-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .segment-content h2 {
+        font-size: 30px;
+        color: #d4af37;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    }
+
+    .segment-content p {
+        font-size: 14px;
+        color: #e0e0e0;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .explore-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color: #000;
+        font-weight: 700;
+        font-size: 12px;
+        border-radius: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: all 0.3s ease;
+    }
+
+    .segment-card:hover .explore-btn {
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+        box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+    }
+
+    /* Enterprise Footer */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    /* Responsive Design */
+    @media(max-width:768px){
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.97);
+            flex-direction: column;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+
+        .nav-menu a {
+            font-size: 15px;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .segments-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 50px 20px;
+        }
+
+        .segment-card {
+            height: 320px;
+            padding: 25px;
+        }
+
+        .films-header h1 { font-size: 26px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Top Navigation Bar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Picxlart Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="films.html" style="color:#d4af37;">Films</a>
+        <a href="packages.html">Packages</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Header Section -->
+<div class="films-header">
+    <h1>Our Cinematic Films</h1>
+    <p>Choose a category below to experience our visual storytelling and movie creations</p>
+</div>
+
+<!-- 2 Options Cards -->
+<div class="segments-container">
+    <!-- Option 1: Wedding Films -->
+    <a href="wedding-films.html" class="segment-card wedding-bg">
+        <div class="segment-content">
+            <h2>Wedding Films</h2>
+            <p>Soulful, cinematic wedding stories, trailers & teasers handcrafted with deep emotions.</p>
+            <span class="explore-btn">Watch Wedding Films →</span>
+        </div>
+    </a>
+
+    <!-- Option 2: Other Films -->
+    <a href="other-films.html" class="segment-card other-bg">
+        <div class="segment-content">
+            <h2>Other Films</h2>
+            <p>Pre-wedding films, corporate event highlights, birthdays, and special milestone celebrations.</p>
+            <span class="explore-btn">Watch Other Films →</span>
+        </div>
+    </a>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+</script>
+
+</body>
+</html>
