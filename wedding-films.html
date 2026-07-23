@@ -232,26 +232,21 @@
         border: 0;
     }
 
-    .video-thumb {
+    .video-thumb-img {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
         transition: transform 0.5s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    .video-card:hover .video-thumb {
+    .video-card:hover .video-thumb-img {
         transform: scale(1.05);
     }
 
-    .video-thumb::after {
-        content: '';
+    .thumb-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -259,9 +254,13 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.25);
         transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
     }
 
-    .video-card:hover .video-thumb::after {
+    .video-card:hover .thumb-overlay {
         background: rgba(0, 0, 0, 0.1);
     }
 
@@ -449,7 +448,8 @@
         <!-- Popular Video 1 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'xOvZqMwuE1o')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/xOvZqMwuE1o/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/xOvZqMwuE1o/hqdefault.jpg" alt="Moumita & Subhadeep">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
@@ -462,7 +462,8 @@
         <!-- Popular Video 2 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'wISJAyK2IwE')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/wISJAyK2IwE/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/wISJAyK2IwE/hqdefault.jpg" alt="Dr. Shounik & Dr. Pranati">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
@@ -475,7 +476,8 @@
         <!-- Popular Video 3 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, '7z2cnJUImPc')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/7z2cnJUImPc/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/7z2cnJUImPc/hqdefault.jpg" alt="Nilanjana & Pushan">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
@@ -495,7 +497,8 @@
         <!-- All Story Video 1 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'Z9GHxxQ6vY')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/Z9GHxxQ6vY/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/Z9GHxxQ6vY/hqdefault.jpg" alt="Dr. Ankit & Dr. Sutapa">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
@@ -508,7 +511,8 @@
         <!-- All Story Video 2 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'mur8mtBjUrY')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/mur8mtBjUrY/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/mur8mtBjUrY/hqdefault.jpg" alt="Susmina & Ram">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
@@ -521,7 +525,8 @@
         <!-- All Story Video 3 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, '4yKPHbpqooE')">
-                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/4yKPHbpqooE/sddefault.jpg');">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/4yKPHbpqooE/hqdefault.jpg" alt="Kaustav ❤️ Antara">
+                <div class="thumb-overlay">
                     <div class="play-btn-overlay"></div>
                 </div>
             </div>
