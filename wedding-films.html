@@ -212,12 +212,15 @@
         box-shadow: 0 15px 35px rgba(212,175,55,0.2);
     }
 
+    /* Custom Video Player Container & White Play Button Overlay */
     .iframe-container {
         position: relative;
         width: 100%;
         padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
         height: 0;
         background: #000;
+        cursor: pointer;
+        overflow: hidden;
     }
 
     .iframe-container iframe {
@@ -227,6 +230,79 @@
         width: 100%;
         height: 100%;
         border: 0;
+    }
+
+    .video-thumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-card:hover .video-thumb {
+        transform: scale(1.05);
+    }
+
+    .video-thumb::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease;
+    }
+
+    .video-card:hover .video-thumb::after {
+        background: rgba(0, 0, 0, 0.15);
+    }
+
+    /* Custom Transparent White Circle Play Button Styling */
+    .play-btn-overlay {
+        position: relative;
+        z-index: 5;
+        width: 65px;
+        height: 65px;
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        background: rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
+        transition: all 0.35s ease;
+    }
+
+    .play-btn-overlay::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 11px 0 11px 20px;
+        border-color: transparent transparent transparent #ffffff;
+        margin-left: 4px;
+        filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.5));
+    }
+
+    .video-card:hover .play-btn-overlay {
+        transform: scale(1.12);
+        border-color: #d4af37;
+        background: rgba(212, 175, 55, 0.25);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    }
+
+    .video-card:hover .play-btn-overlay::before {
+        border-color: transparent transparent transparent #d4af37;
     }
 
     .couple-info {
@@ -323,6 +399,7 @@
         .hero-film-content h1 { font-size: 26px; }
         .hero-film-content p { font-size: 14px; }
         .section-title { font-size: 24px; }
+        .play-btn-overlay { width: 55px; height: 55px; }
     }
 </style>
 
@@ -373,8 +450,10 @@
     <div class="films-grid">
         <!-- Popular Video 1 -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/xOvZqMwuE1o" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, 'xOvZqMwuE1o')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/xOvZqMwuE1o/maxresdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Moumita & Subhadeep</div>
@@ -384,8 +463,10 @@
 
         <!-- Popular Video 2 -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/wISJAyK2IwE" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, 'wISJAyK2IwE')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/wISJAyK2IwE/maxresdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Dr. Shounik & Dr. Pranati</div>
@@ -395,8 +476,10 @@
 
         <!-- Popular Video 3 -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/7z2cnJUImPc" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, '7z2cnJUImPc')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/7z2cnJUImPc/maxresdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Nilanjana & Pushan</div>
@@ -411,10 +494,12 @@
     <h2 class="section-title">All Wedding Stories</h2>
 
     <div class="films-grid">
-        <!-- Video 1 -->
+        <!-- Video 1 Placeholder -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Bride & Groom Name 4</div>
@@ -422,10 +507,12 @@
             </div>
         </div>
 
-        <!-- Video 2 -->
+        <!-- Video 2 Placeholder -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Bride & Groom Name 5</div>
@@ -433,10 +520,12 @@
             </div>
         </div>
 
-        <!-- Video 3 -->
+        <!-- Video 3 Placeholder -->
         <div class="video-card">
-            <div class="iframe-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg');">
+                    <div class="play-btn-overlay"></div>
+                </div>
             </div>
             <div class="couple-info">
                 <div class="couple-name">Bride & Groom Name 6</div>
@@ -474,6 +563,12 @@
 </footer>
 
 <script>
+// Dynamic YouTube Embed Loader on Click
+function playVideo(container, videoId) {
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+}
+
+// Mobile Menu Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
 
