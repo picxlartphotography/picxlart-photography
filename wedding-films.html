@@ -241,7 +241,8 @@
         transition: transform 0.5s ease;
     }
 
-    .video-card:hover .video-thumb-img {
+    .video-card:hover .video-thumb-img,
+    .reel-card:hover .video-thumb-img {
         transform: scale(1.05);
     }
 
@@ -259,7 +260,8 @@
         z-index: 2;
     }
 
-    .video-card:hover .thumb-overlay {
+    .video-card:hover .thumb-overlay,
+    .reel-card:hover .thumb-overlay {
         background: rgba(0, 0, 0, 0.1);
     }
 
@@ -290,13 +292,15 @@
         filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.6));
     }
 
-    .video-card:hover .play-btn-overlay {
+    .video-card:hover .play-btn-overlay,
+    .reel-card:hover .play-btn-overlay {
         transform: scale(1.15);
         border-color: #d4af37;
         filter: drop-shadow(0px 0px 12px rgba(212, 175, 55, 0.8));
     }
 
-    .video-card:hover .play-btn-overlay::before {
+    .video-card:hover .play-btn-overlay::before,
+    .reel-card:hover .play-btn-overlay::before {
         border-color: transparent transparent transparent #d4af37;
     }
 
@@ -320,7 +324,49 @@
         margin-top: 6px;
     }
 
-    /* REELS / SHORTS SLIDER STYLING (9:16 FORMAT) */
+    /* View More YouTube Channel Button */
+    .more-btn-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .yt-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+        color: #d4af37;
+        border: 1.5px solid #d4af37;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        transition: all 0.35s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .yt-more-btn i {
+        font-size: 18px;
+        color: #ff0000;
+        transition: transform 0.3s ease;
+    }
+
+    .yt-more-btn:hover {
+        background: #d4af37;
+        color: #0d0d0d;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .yt-more-btn:hover i {
+        color: #0d0d0d;
+        transform: scale(1.2);
+    }
+
+    /* REELS / SHORTS SLIDER STYLING (CLEAN WITHOUT TEXT) */
     .reels-slider-wrapper {
         position: relative;
         max-width: 1300px;
@@ -361,7 +407,7 @@
     .reel-iframe-container {
         position: relative;
         width: 100%;
-        padding-bottom: 177.77%; /* 9:16 Vertical Ratio */
+        padding-bottom: 177.77%; /* 9:16 Ratio */
         height: 0;
         background: #000;
         cursor: pointer;
@@ -578,11 +624,12 @@
     </div>
 </section>
 
-<!-- Section 2: Other Picxlart Films -->
+<!-- Section 2: Other Picxlart Films (9 Video Spaces + YouTube Button) -->
 <section style="background: #080808; border-top: 1px solid rgba(212,175,55,0.1);">
     <h2 class="section-title">Other Picxlart Films</h2>
 
     <div class="films-grid">
+        <!-- Film 1 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, '_Z9GHxxQ6vY')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/_Z9GHxxQ6vY/hqdefault.jpg" alt="Dr. Ankit & Dr. Sutapa">
@@ -596,6 +643,7 @@
             </div>
         </div>
 
+        <!-- Film 2 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'mur8mtBjUrY')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/mur8mtBjUrY/hqdefault.jpg" alt="Susmina & Ram">
@@ -609,6 +657,7 @@
             </div>
         </div>
 
+        <!-- Film 3 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, '4yKPHbpqooE')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/4yKPHbpqooE/hqdefault.jpg" alt="Kaustav & Antara">
@@ -622,6 +671,7 @@
             </div>
         </div>
 
+        <!-- Film 4 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'AlPmYuU0zhk')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/AlPmYuU0zhk/hqdefault.jpg" alt="Babai & Supriya">
@@ -635,6 +685,7 @@
             </div>
         </div>
 
+        <!-- Film 5 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'vElsOvDi4kU')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/vElsOvDi4kU/hqdefault.jpg" alt="Malyashree & Arjun">
@@ -648,6 +699,7 @@
             </div>
         </div>
 
+        <!-- Film 6 -->
         <div class="video-card">
             <div class="iframe-container" onclick="playVideo(this, 'ayGn9gJe3Ik')">
                 <img class="video-thumb-img" src="https://i.ytimg.com/vi/ayGn9gJe3Ik/hqdefault.jpg" alt="Shuvra & Abhinaba">
@@ -660,10 +712,59 @@
                 <div class="film-tag">Cinematic Wedding Trailer</div>
             </div>
         </div>
+
+        <!-- Film 7 Placeholder -->
+        <div class="video-card">
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Upcoming Film 7">
+                <div class="thumb-overlay">
+                    <div class="play-btn-overlay"></div>
+                </div>
+            </div>
+            <div class="couple-info">
+                <div class="couple-name">Couple / Event Name 7</div>
+                <div class="film-tag">Cinematic Wedding Film</div>
+            </div>
+        </div>
+
+        <!-- Film 8 Placeholder -->
+        <div class="video-card">
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Upcoming Film 8">
+                <div class="thumb-overlay">
+                    <div class="play-btn-overlay"></div>
+                </div>
+            </div>
+            <div class="couple-info">
+                <div class="couple-name">Couple / Event Name 8</div>
+                <div class="film-tag">Cinematic Wedding Film</div>
+            </div>
+        </div>
+
+        <!-- Film 9 Placeholder -->
+        <div class="video-card">
+            <div class="iframe-container" onclick="playVideo(this, 'dQw4w9WgXcQ')">
+                <img class="video-thumb-img" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Upcoming Film 9">
+                <div class="thumb-overlay">
+                    <div class="play-btn-overlay"></div>
+                </div>
+            </div>
+            <div class="couple-info">
+                <div class="couple-name">Couple / Event Name 9</div>
+                <div class="film-tag">Cinematic Wedding Film</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Channel Button -->
+    <div class="more-btn-container">
+        <a href="https://www.youtube.com/@Picxlart" target="_blank" class="yt-more-btn">
+            <i class="fab fa-youtube"></i> View More On YouTube
+        </a>
     </div>
 </section>
 
-<!-- Section 3: Trending Reels & Shorts (7 YouTube Shorts) -->
+<!-- Section 3: Trending Reels & Shorts (Clean - No Text below) -->
 <section>
     <h2 class="section-title">Trending Reels & Shorts</h2>
 
@@ -679,10 +780,6 @@
                         <div class="play-btn-overlay"></div>
                     </div>
                 </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Picxlart Highlights</div>
-                    <div class="film-tag">YouTube Short</div>
-                </div>
             </div>
 
             <!-- Short 2 -->
@@ -692,10 +789,6 @@
                     <div class="thumb-overlay">
                         <div class="play-btn-overlay"></div>
                     </div>
-                </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Wedding Moments</div>
-                    <div class="film-tag">YouTube Short</div>
                 </div>
             </div>
 
@@ -707,10 +800,6 @@
                         <div class="play-btn-overlay"></div>
                     </div>
                 </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Cinematic Teaser</div>
-                    <div class="film-tag">YouTube Short</div>
-                </div>
             </div>
 
             <!-- Short 4 -->
@@ -720,10 +809,6 @@
                     <div class="thumb-overlay">
                         <div class="play-btn-overlay"></div>
                     </div>
-                </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Royal Glimpse</div>
-                    <div class="film-tag">YouTube Short</div>
                 </div>
             </div>
 
@@ -735,10 +820,6 @@
                         <div class="play-btn-overlay"></div>
                     </div>
                 </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Bridal Entry</div>
-                    <div class="film-tag">YouTube Short</div>
-                </div>
             </div>
 
             <!-- Short 6 -->
@@ -749,10 +830,6 @@
                         <div class="play-btn-overlay"></div>
                     </div>
                 </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Love Story</div>
-                    <div class="film-tag">YouTube Short</div>
-                </div>
             </div>
 
             <!-- Short 7 -->
@@ -762,10 +839,6 @@
                     <div class="thumb-overlay">
                         <div class="play-btn-overlay"></div>
                     </div>
-                </div>
-                <div class="couple-info">
-                    <div class="couple-name" style="font-size:15px;">Wedding Magic</div>
-                    <div class="film-tag">YouTube Short</div>
                 </div>
             </div>
         </div>
