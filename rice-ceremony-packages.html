@@ -269,29 +269,540 @@
         background: #171717;
         border: 1.5px solid #d4af37;
         border-radius: 20px;
-        Ekhane apnar **Traditional Classic** package-ti sundor bhabe organize kore dewa holo, sathe **Optional Indigo Photobook Upgrade**-er note-tio add kore dewa hoyeche:
+        width: 100%;
+        max-width: 650px;
+        padding: 35px 40px;
+        position: relative;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        animation: modalFade 0.3s ease-out;
+    }
 
----
+    @keyframes modalFade {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
 
-### **Traditional Classic Package**
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        color: #d4af37;
+        font-size: 26px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
 
-**Traditional Rice Ceremony / Birthday – ₹17,000**  
-* **Duration:** 1 Day  
+    .modal-close:hover {
+        transform: scale(1.2);
+    }
 
-**Deliverables:**
-* All Raw Photos  
-* Edited Photos  
-* 9x12 Magazine Album  
-* Full HD Video (Approx. 20 Minutes)  
+    .modal-header-tag {
+        color: #d4af37;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 5px;
+    }
 
-> 📌 **Optional Upgrade:**  
-> Indigo Photobook 12x18 (12x36 open size) is available on request *(Extra charges applicable)*.
+    .modal-title {
+        font-size: 26px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        padding-bottom: 10px;
+    }
 
----
+    .modal-list {
+        list-style: none;
+        margin-bottom: 25px;
+    }
 
-### 📝 Note for Previous Package (Ager Jetateo Add Korte Cheyechilen):
+    .modal-list li {
+        color: #e0e0e0;
+        font-size: 14px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
-Ager package-er sesheo eivabe point-ti add kore nite paren:
+    .modal-list li i {
+        color: #d4af37;
+        font-size: 14px;
+    }
 
-> 📌 **Optional Upgrade:**  
-> Premium Indigo Photobook 12x18 (12x36 open size) available on request *(Extra charges applicable)*.
+    .modal-note {
+        font-size: 12px;
+        color: #888888;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 15px;
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 768px) {
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.97);
+            flex-direction: column;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+
+        .nav-menu a {
+            font-size: 15px;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        section { padding: 40px 5%; }
+
+        .pkg-card {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 25px 20px;
+            gap: 20px;
+        }
+
+        .btn-view-inclusions {
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-content { padding: 25px 20px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Top Navigation Bar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Picxlart Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="films.html">Films</a>
+        <a href="packages.html" style="color:#d4af37;">Packages</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Page Header Banner -->
+<div class="hero-pkg-container">
+    <div class="hero-pkg-content">
+        <h1>Rice Ceremony & Birthday Packages</h1>
+        <p>Preserve the golden milestones of your child's Mukhe Bhaat and Birthday celebrations. Handcrafted visual storytelling tailored to frame every emotion and ceremony with perfection.</p>
+    </div>
+</div>
+
+<!-- Main Package Section -->
+<section>
+    
+    <!-- Category 1: Traditional Packages -->
+    <h2 class="category-title"><i class="fas fa-gem" style="margin-right:10px;"></i> Traditional Packages</h2>
+
+    <!-- Package 1 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">PHOTOGRAPHY ONLY ESSENTIAL</div>
+            <div class="pkg-title">Traditional Photography Solo</div>
+            <div class="pkg-desc">Designed for intimate single-day celebrations requiring pure high-resolution photo coverage, complete raw media access, and a 9x12 Magazine Photobook (with an optional 12x18 Indigo Photobook upgrade on request).</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg1')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 2 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">COMPLETE TRADITIONAL COVERAGE</div>
+            <div class="pkg-title">Traditional Classic</div>
+            <div class="pkg-desc">Comprehensive single-day photography and videography package capturing key ritual moments, bundled with a 9x12 Magazine Photobook (optional 12x18 Indigo Photobook upgrade on request) and Full HD video.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg2')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 3 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">ENHANCED TRADITIONAL ALBUM & TEASER</div>
+            <div class="pkg-title">Traditional Premium</div>
+            <div class="pkg-desc">Elevated single-day visual documentation offering an upgraded Indigo 12x18 signature album, Full HD video coverage, and a highlight teaser reel.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg3')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 4 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">EXTENDED TRADITIONAL FILM STORY</div>
+            <div class="pkg-title">Traditional Deluxe</div>
+            <div class="pkg-desc">A full-day visual celebration structured with large-format Indigo photobooks, high-definition full event films, and custom edited digital memories.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg4')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Category 2: Cinematic Packages -->
+    <h2 class="category-title" style="margin-top: 60px;"><i class="fas fa-film" style="margin-right:10px;"></i> Cinematic Packages</h2>
+
+    <!-- Package 5 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">CINEMATIC ESSENTIALS</div>
+            <div class="pkg-title">Cinematic Starter</div>
+            <div class="pkg-desc">Ideal for families seeking a modern aesthetic. Features cinematic FHD video teasers, complete raw media access, and a custom Indigo 12x18 Photobook layout.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg5')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 6 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">POPULAR CHOICE WITH COMPLIMENTARY SHOOT</div>
+            <div class="pkg-title">Cinematic Standard</div>
+            <div class="pkg-desc">Includes a Canvera Standard 12x18 photobook, full cinematic teaser, and a complimentary 30-min to 1-hour baby portrait session.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg6')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 7 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">SOCIAL MEDIA READY & PREMIUM ALBUM</div>
+            <div class="pkg-title">Cinematic Standard Plus</div>
+            <div class="pkg-desc">Upgrade your memories with a Canvera Premium Photobook, trending Instagram Reels, cinematic FHD teaser, and full HD main event video documentation.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg7')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 8 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">2-DAY DEDICATED PORTRAIT EXPERIENCE</div>
+            <div class="pkg-title">Cinematic Premium</div>
+            <div class="pkg-desc">Offers a dedicated 2-day shoot framework (1 Day Main Event + 1 Dedicated Day Baby Portrait Session) bundled with Canvera photobooks and cinematic films.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg8')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 9 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">ONLINE VIEWING & REELS INCLUDED</div>
+            <div class="pkg-title">Cinematic Elite</div>
+            <div class="pkg-desc">Features 2-day coverage, Canvera Premium Photobook with digital online viewing access, custom Instagram Reels, and an extended 25-30 min cinematic documentary.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg9')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 10 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">SUPERBOOK 15X20 & 4K CINEMA</div>
+            <div class="pkg-title">Cinematic Super</div>
+            <div class="pkg-desc">A grand celebration setup incorporating a massive Canvera Premium Superbook (15x20 size / 15x40 spread) alongside ultra-high-definition 4K cinematic film trailers.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg10')">VIEW INCLUSIONS</button>
+    </div>
+
+    <!-- Package 11 -->
+    <div class="pkg-card">
+        <div class="pkg-info">
+            <div class="pkg-tagline">THE ULTIMATE ROYAL LUXURY</div>
+            <div class="pkg-title">Premium Cinematic - Royal Bliss</div>
+            <div class="pkg-desc">The flagship Rice Ceremony & Birthday experience offering Canvera Royal Infinite Ornato Album layouts, 4K Master Teasers, 2-day multi-session shoots, and complete digital media archives.</div>
+        </div>
+        <button class="btn-view-inclusions" onclick="openModal('pkg11')">VIEW INCLUSIONS</button>
+    </div>
+
+</section>
+
+<!-- Popup Modal Container -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-header-tag" id="mTag">PACKAGE INCLUSIONS</div>
+        <h3 class="modal-title" id="mTitle">Package Name</h3>
+        <ul class="modal-list" id="mList">
+            <!-- Dynamic Content Load -->
+        </ul>
+        <div class="modal-note">
+            <i class="fas fa-info-circle"></i> <strong>Note:</strong> Travelling, lodging, and fooding charges are excluded. Package options can be customized based on requirements.
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Data Store for Modal Inclusions
+const packageData = {
+    pkg1: {
+        tag: "PHOTOGRAPHY ONLY ESSENTIAL",
+        title: "Traditional Photography Solo",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "High-Resolution Edited Photos",
+            "All Raw Unedited Photos Provided",
+            "9x12 Magazine Album (Default)",
+            "Optional Upgrade: 12x18 (12x36) Indigo Photobook available on request (Extra charges applicable)"
+        ]
+    },
+    pkg2: {
+        tag: "COMPLETE TRADITIONAL COVERAGE",
+        title: "Traditional Classic",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Full Event Traditional Photography",
+            "Full HD Video Documentation (Approx. 20 Mins)",
+            "High-Resolution Edited Photos & Raw Media",
+            "9x12 Magazine Album (Default)",
+            "Optional Upgrade: 12x18 (12x36) Indigo Photobook available on request (Extra charges applicable)"
+        ]
+    },
+    pkg3: {
+        tag: "ENHANCED TRADITIONAL ALBUM & TEASER",
+        title: "Traditional Premium",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Full HD Event Video Documentation (Approx. 20 Mins)",
+            "Full HD Highlight Teaser Video",
+            "High-Resolution Edited Photos & Raw Media",
+            "Signature Indigo 12x18 (12x36) Photobook Album"
+        ]
+    },
+    pkg4: {
+        tag: "EXTENDED TRADITIONAL FILM STORY",
+        title: "Traditional Deluxe",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Complete Traditional Photography & Video",
+            "Full HD Event Video Documentation",
+            "Full HD Highlight Teaser Video",
+            "Signature Indigo 12x18 (12x36) Photobook Album",
+            "All Raw & High-Resolution Edited Media"
+        ]
+    },
+    pkg5: {
+        tag: "CINEMATIC ESSENTIALS",
+        title: "Cinematic Starter",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Cinematic FHD Teaser Video",
+            "Full HD Event Video Film (20-25 Mins)",
+            "High-Resolution Edited Photos & All Raw Media",
+            "Indigo 12x18 (12x36) Photobook Album"
+        ]
+    },
+    pkg6: {
+        tag: "POPULAR CHOICE WITH COMPLIMENTARY SHOOT",
+        title: "Cinematic Standard",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Complimentary Baby Portrait Shoot (30 Mins - 1 Hr)",
+            "Canvera Standard 12x18 (12x36) Photobook Album",
+            "Cinematic FHD Teaser Video",
+            "Full HD Event Video Film (20-25 Mins)",
+            "All Raw & High-Resolution Edited Media"
+        ]
+    },
+    pkg7: {
+        tag: "SOCIAL MEDIA READY & PREMIUM ALBUM",
+        title: "Cinematic Standard Plus",
+        items: [
+            "Duration: 1 Day Event Coverage",
+            "Trending Instagram / Social Media Reels",
+            "Canvera Premium 12x18 (12x36) Photobook Album",
+            "Cinematic FHD Teaser Video",
+            "Full HD Event Video Film (20-25 Mins)",
+            "All Raw & High-Resolution Edited Photos"
+        ]
+    },
+    pkg8: {
+        tag: "2-DAY DEDICATED PORTRAIT EXPERIENCE",
+        title: "Cinematic Premium",
+        items: [
+            "Duration: 1 Day Event + 1 Dedicated Day Baby Portrait Shoot",
+            "Canvera Standard 12x18 (12x36) Photobook Album",
+            "Cinematic FHD Teaser Video",
+            "Full HD Event Video Film (20-25 Mins)",
+            "All High-Resolution Edited & Raw Photos Provided"
+        ]
+    },
+    pkg9: {
+        tag: "ONLINE VIEWING & REELS INCLUDED",
+        title: "Cinematic Elite",
+        items: [
+            "Duration: 1 Day Event + 1 Dedicated Day Baby Portrait Shoot",
+            "Canvera Premium 12x18 (12x36) Album with Online Viewing Access",
+            "Custom Instagram / Social Media Reels",
+            "Cinematic FHD Teaser Video",
+            "Full HD Event Film (25-30 Mins)",
+            "All Raw Media & High-Resolution Edited Photos"
+        ]
+    },
+    pkg10: {
+        tag: "SUPERBOOK 15X20 & 4K CINEMA",
+        title: "Cinematic Super",
+        items: [
+            "Duration: 1 Day Event + 1 Dedicated Day Baby Portrait Shoot",
+            "Canvera Premium Superbook 15x20 (15x40 Spread) with Online Viewing",
+            "FHD / 4K Cinematic Master Teaser",
+            "Full HD Event Video Film (25-30 Mins)",
+            "All High-Resolution Edited Photos & Complete Raw Archives"
+        ]
+    },
+    pkg11: {
+        tag: "THE ULTIMATE ROYAL LUXURY",
+        title: "Premium Cinematic - Royal Bliss",
+        items: [
+            "Duration: 1 Day Event + 1 Dedicated Day Baby Portrait Shoot",
+            "Canvera Premium / Royal Infinite Ornato 12x18 (12x36) Album",
+            "Digital Online Viewing Album Access",
+            "4K Ultra HD Cinematic Teaser",
+            "Full HD Event Video Film (25-30 Mins)",
+            "All High-Resolution Edited Photos & Complete Raw Archives"
+        ]
+    }
+};
+
+// Open Modal Function
+function openModal(pkgId) {
+    const data = packageData[pkgId];
+    if(!data) return;
+
+    document.getElementById('mTag').innerText = data.tag;
+    document.getElementById('mTitle').innerText = data.title;
+    
+    const listContainer = document.getElementById('mList');
+    listContainer.innerHTML = '';
+
+    data.items.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="fas fa-check-circle"></i> ${item}`;
+        listContainer.appendChild(li);
+    });
+
+    document.getElementById('modalOverlay').classList.add('active');
+}
+
+// Close Modal Function
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+}
+
+// Close Modal when clicking outside box
+window.onclick = function(event) {
+    const modal = document.getElementById('modalOverlay');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// Mobile Menu Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+</script>
+
+</body>
+</html>
