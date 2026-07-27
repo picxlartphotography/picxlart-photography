@@ -136,20 +136,23 @@
     }
 
     /* ========================================================= */
-    /* GOOGLE REVIEWS WHITE SECTION (EXACT LIKE SCREENSHOT) */
+    /* GOOGLE REVIEWS WHITE SECTION */
     /* ========================================================= */
     .google-white-section {
         background-color: #ffffff;
         color: #111111;
-        padding: 50px 20px;
+        padding: 40px 20px 10px;
         margin-bottom: 50px;
         border-top: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
+        overflow: hidden; /* Clips out bottom watermark naturally */
     }
 
     .google-widget-inner {
         max-width: 1200px;
         margin: 0 auto;
+        position: relative;
+        padding-bottom: 0px;
     }
 
     /* Image Gallery Section */
@@ -269,16 +272,6 @@
             display: none; 
         }
     }
-
-    /* CSS Protection Layer */
-    a[href*="elfsight.com"], 
-    div[class*="eapps-widget-toolbar"],
-    a[class*="eapps-link"] {
-        display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
-    }
 </style>
 </head>
 
@@ -313,7 +306,7 @@
 <h1>Client Reviews</h1>
 
 <!-- ========================================================= -->
-<!-- 1. AUTO GOOGLE REVIEWS SECTION (WHITE BACKDROP LIKE SCREENSHOT) -->
+<!-- 1. AUTO GOOGLE REVIEWS SECTION -->
 <!-- ========================================================= -->
 <section class="google-white-section">
     <div class="google-widget-inner">
@@ -407,19 +400,6 @@ document.addEventListener('keydown', function(e){
     if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
     if(e.key === 'F12'){ e.preventDefault(); }
 });
-
-// Automatic Watermark Remover (Works in Shadow DOM)
-setInterval(function() {
-    // 1. Remove standard DOM links
-    document.querySelectorAll('a[href*="elfsight.com"]').forEach(el => el.remove());
-
-    // 2. Remove Shadow DOM inner watermark
-    document.querySelectorAll('*').forEach(el => {
-        if (el.shadowRoot) {
-            el.shadowRoot.querySelectorAll('a[href*="elfsight.com"], [class*="eapps-widget-toolbar"]').forEach(shadowEl => shadowEl.remove());
-        }
-    });
-}, 200);
 </script>
 </body>
 </html>
