@@ -269,6 +269,21 @@
             display: none; 
         }
     }
+
+    /* ========================================================= */
+    /* ELFSIGHT WATERMARK & BRANDING HIDE */
+    /* ========================================================= */
+    a[href*="elfsight.com"], 
+    div[class*="eapps-widget-toolbar"],
+    div[class*="WidgetTitle__WidgetTitleContainer"],
+    a[class*="eapps-link"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        pointer-events: none !important;
+    }
 </style>
 </head>
 
