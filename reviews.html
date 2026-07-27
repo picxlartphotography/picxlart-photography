@@ -270,18 +270,13 @@
         }
     }
 
-    /* ========================================================= */
-    /* ELFSIGHT WATERMARK & BRANDING HIDE */
-    /* ========================================================= */
+    /* CSS Protection Layer */
     a[href*="elfsight.com"], 
     div[class*="eapps-widget-toolbar"],
-    div[class*="WidgetTitle__WidgetTitleContainer"],
     a[class*="eapps-link"] {
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
-        height: 0 !important;
-        width: 0 !important;
         pointer-events: none !important;
     }
 </style>
@@ -412,6 +407,19 @@ document.addEventListener('keydown', function(e){
     if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
     if(e.key === 'F12'){ e.preventDefault(); }
 });
+
+// Automatic Watermark Remover (Works in Shadow DOM)
+setInterval(function() {
+    // 1. Remove standard DOM links
+    document.querySelectorAll('a[href*="elfsight.com"]').forEach(el => el.remove());
+
+    // 2. Remove Shadow DOM inner watermark
+    document.querySelectorAll('*').forEach(el => {
+        if (el.shadowRoot) {
+            el.shadowRoot.querySelectorAll('a[href*="elfsight.com"], [class*="eapps-widget-toolbar"]').forEach(shadowEl => shadowEl.remove());
+        }
+    });
+}, 200);
 </script>
 </body>
 </html>
