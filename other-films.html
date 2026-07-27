@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Other Cinematic Films - Picxlart Photography & Events Co.</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+
+    .nav-menu{
+        display:flex;
+        gap:35px;
+        align-items: center;
+    }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+        width: 100%;
+    }
+
+    .nav-menu a:hover{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
+
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
+
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
+
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+    }
+
+    /* Top Hero Header Section */
+    .hero-film-container {
+        position: relative;
+        margin-top: 60px;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 80px 20px;
+        background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+        border-bottom: 1px solid rgba(212,175,55,0.2);
+        overflow: hidden;
+    }
+
+    .hero-film-content {
+        position: relative;
+        z-index: 2;
+        max-width: 850px;
+    }
+
+    .hero-film-content h1 {
+        font-size: 38px;
+        color: #d4af37;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-film-content p {
+        font-size: 16px;
+        color: #cccccc;
+        letter-spacing: 1.5px;
+        line-height: 1.7;
+    }
+
+    /* Section Structure */
+    section {
+        padding: 70px 8%;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 30px;
+        color: #d4af37;
+        margin-bottom: 45px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: #d4af37;
+        margin: 12px auto 0;
+    }
+
+    /* LANDSCAPE FILMS CAROUSEL / SLIDER STYLING */
+    .films-slider-wrapper {
+        position: relative;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 45px;
+    }
+
+    .films-carousel-container {
+        display: flex;
+        gap: 25px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px 15px 40px 15px;
+        scrollbar-width: none;
+    }
+
+    .films-carousel-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .video-card {
+        flex: 0 0 calc(33.333% - 17px);
+        min-width: 300px;
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .video-card:hover {
+        transform: translateY(-8px);
+        border-color: #d4af37;
+        box-shadow: 0 15px 35px rgba(212,175,55,0.25);
+    }
+
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        background: #000;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .video-thumb-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .video-card:hover .video-thumb-img,
+    .reel-card:hover .video-thumb-img {
+        transform: scale(1.05);
+    }
+
+    .thumb-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .video-card:hover .thumb-overlay,
+    .reel-card:hover .thumb-overlay {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .play-btn-overlay {
+        position: relative;
+        z-index: 5;
+        width: 65px;
+        height: 65px;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.6));
+        transition: all 0.35s ease;
+    }
+
+    .play-btn-overlay::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 11px 0 11px 20px;
+        border-color: transparent transparent transparent #ffffff;
+        margin-left: 4px;
+        filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.6));
+    }
+
+    .video-card:hover .play-btn-overlay,
+    .reel-card:hover .play-btn-overlay {
+        transform: scale(1.15);
+        border-color: #d4af37;
+        filter: drop-shadow(0px 0px 12px rgba(212, 175, 55, 0.8));
+    }
+
+    .video-card:hover .play-btn-overlay::before,
+    .reel-card:hover .play-btn-overlay::before {
+        border-color: transparent transparent transparent #d4af37;
+    }
+
+    .couple-info {
+        padding: 22px 15px;
+        text-align: center;
+    }
+
+    .couple-name {
+        font-size: 19px;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+
+    .film-tag {
+        font-size: 12px;
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-top: 6px;
+    }
+
+    /* Slider Arrow Navigation Buttons */
+    .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(15, 15, 15, 0.9);
+        border: 2px solid #d4af37;
+        color: #d4af37;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+    }
+
+    .slider-arrow:hover {
+        background: #d4af37;
+        color: #000;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .arrow-left { left: -5px; }
+    .arrow-right { right: -5px; }
+
+    /* REELS / SHORTS SLIDER STYLING */
+    .reels-slider-wrapper {
+        position: relative;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 45px;
+    }
+
+    .reels-container {
+        display: flex;
+        gap: 22px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px 15px 45px 15px;
+        scrollbar-width: none;
+    }
+
+    .reels-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .reel-card {
+        flex: 0 0 calc(25% - 17px);
+        min-width: 240px;
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.25);
+        border-radius: 18px;
+        overflow: hidden;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .reel-card:hover {
+        transform: translateY(-8px);
+        border-color: #d4af37;
+        box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+    }
+
+    .reel-iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 177.77%; /* 9:16 Ratio */
+        height: 0;
+        background: #000;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .reel-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    /* View More YouTube Channel Button */
+    .more-btn-container {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .yt-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+        color: #d4af37;
+        border: 1.5px solid #d4af37;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        transition: all 0.35s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .yt-more-btn i {
+        font-size: 18px;
+        color: #ff0000;
+        transition: transform 0.3s ease;
+    }
+
+    .yt-more-btn:hover {
+        background: #d4af37;
+        color: #0d0d0d;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .yt-more-btn:hover i {
+        color: #0d0d0d;
+        transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container {
+        margin-bottom:25px; 
+        line-height: 2.2;
+    }
+
+    .footer-links-container a {
+        color:#d4af37; 
+        text-decoration:none;
+        font-weight: 500;
+    }
+
+    .footer-divider {
+        color:#333;
+        margin: 0 8px;
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 1024px) {
+        .video-card { flex: 0 0 calc(50% - 15px); }
+        .reel-card { flex: 0 0 calc(33.33% - 15px); }
+    }
+
+    @media (max-width: 768px) {
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.97);
+            flex-direction: column;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+
+        .nav-menu a {
+            font-size: 15px;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .films-slider-wrapper { padding: 0 10px; }
+        .video-card { flex: 0 0 85%; min-width: 250px; }
+
+        .hero-film-content h1 { font-size: 26px; }
+        .hero-film-content p { font-size: 14px; }
+        .section-title { font-size: 24px; }
+        .play-btn-overlay { width: 55px; height: 55px; }
+
+        .reels-slider-wrapper { padding: 0 10px; }
+        .reel-card { flex: 0 0 70%; min-width: 200px; }
+        .slider-arrow { width: 38px; height: 38px; font-size: 16px; }
+        .arrow-left { left: 5px; }
+        .arrow-right { right: 5px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Top Navigation Bar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Picxlart Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="films.html">Wedding Films</a>
+        <a href="other-films.html" style="color:#d4af37;">Other Films</a>
+        <a href="packages.html">Packages</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="index.html#why">Why Picxlart</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Header Hero Banner -->
+<div class="hero-film-container">
+    <div class="hero-film-content">
+        <h1>Cinematic Events & Prewedding Stories</h1>
+        <p>Capturing the magic of pre-weddings, rice ceremonies, birthdays, and special milestones</p>
+    </div>
+</div>
+
+<!-- Section 1: Prewedding Films Carousel -->
+<section>
+    <h2 class="section-title">Prewedding Films</h2>
+    
+    <div class="films-slider-wrapper">
+        <button class="slider-arrow arrow-left" onclick="scrollCarousel('preweddingContainer', -1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="films-carousel-container" id="preweddingContainer">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'xOvZqMwuE1o')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/xOvZqMwuE1o/hqdefault.jpg" alt="Prewedding Film 1">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Moumita & Subhadeep</div>
+                    <div class="film-tag">Cinematic Prewedding Story</div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'wISJAyK2IwE')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/wISJAyK2IwE/hqdefault.jpg" alt="Prewedding Film 2">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Dr. Shounik & Dr. Pranati</div>
+                    <div class="film-tag">Romantic Prewedding Teaser</div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '7z2cnJUImPc')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/7z2cnJUImPc/hqdefault.jpg" alt="Prewedding Film 3">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Nilanjana & Pushan</div>
+                    <div class="film-tag">Love Story Prewedding</div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '4yKPHbpqooE')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/4yKPHbpqooE/hqdefault.jpg" alt="Prewedding Film 4">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Kaustav & Antara</div>
+                    <div class="film-tag">Destination Prewedding</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-right" onclick="scrollCarousel('preweddingContainer', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<!-- Section 2: Rice Ceremony & Birthday Films Carousel -->
+<section style="background: #080808; border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1);">
+    <h2 class="section-title">Rice Ceremony & Birthday Films</h2>
+
+    <div class="films-slider-wrapper">
+        <button class="slider-arrow arrow-left" onclick="scrollCarousel('riceBirthdayContainer', -1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="films-carousel-container" id="riceBirthdayContainer">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '_Z9GHxxQ6vY')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/_Z9GHxxQ6vY/hqdefault.jpg" alt="Rice Ceremony 1">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Baby Aarav's Annaprashan</div>
+                    <div class="film-tag">Cinematic Rice Ceremony</div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'mur8mtBjUrY')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/mur8mtBjUrY/hqdefault.jpg" alt="Birthday Film 1">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Ananya's 1st Birthday</div>
+                    <div class="film-tag">Grand Birthday Celebration</div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'AlPmYuU0zhk')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/AlPmYuU0zhk/hqdefault.jpg" alt="Rice Ceremony 2">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Baby Reyansh's Mukhe Bhaat</div>
+                    <div class="film-tag">Traditional Rice Ceremony</div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'vElsOvDi4kU')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/vElsOvDi4kU/hqdefault.jpg" alt="Birthday Film 2">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Rishav's Birthday Bash</div>
+                    <div class="film-tag">Cinematic Birthday Highlights</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-right" onclick="scrollCarousel('riceBirthdayContainer', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<!-- Section 3: Others Event Films Carousel -->
+<section>
+    <h2 class="section-title">Others Event Films</h2>
+
+    <div class="films-slider-wrapper">
+        <button class="slider-arrow arrow-left" onclick="scrollCarousel('othersContainer', -1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="films-carousel-container" id="othersContainer">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, 'ayGn9gJe3Ik')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/ayGn9gJe3Ik/hqdefault.jpg" alt="Event Film 1">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Anniversary Gala Night</div>
+                    <div class="film-tag">Special Event Film</div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '6Azupod23Y0')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/6Azupod23Y0/hqdefault.jpg" alt="Event Film 2">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Sangeet & Mehendi Night</div>
+                    <div class="film-tag">Celebration Highlights</div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '478cyyMKLS0')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/478cyyMKLS0/hqdefault.jpg" alt="Event Film 3">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Corporate Gala Meet</div>
+                    <div class="film-tag">Event Cinematography</div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="iframe-container" onclick="playVideo(this, '7uPHQnGwT9g')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/7uPHQnGwT9g/hqdefault.jpg" alt="Event Film 4">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+                <div class="couple-info">
+                    <div class="couple-name">Family Get-Together</div>
+                    <div class="film-tag">Memory Highlights</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-right" onclick="scrollCarousel('othersContainer', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- YouTube Channel Button -->
+    <div class="more-btn-container">
+        <a href="https://www.youtube.com/@Picxlart" target="_blank" class="yt-more-btn">
+            <i class="fab fa-youtube"></i> View More On YouTube
+        </a>
+    </div>
+</section>
+
+<!-- Section 4: Trending Reels & Shorts -->
+<section style="background: #080808; border-top: 1px solid rgba(212,175,55,0.1);">
+    <h2 class="section-title">Trending Reels & Shorts</h2>
+
+    <div class="reels-slider-wrapper">
+        <button class="slider-arrow arrow-left" onclick="scrollCarousel('reelsContainer', -1)"><i class="fas fa-chevron-left"></i></button>
+        
+        <div class="reels-container" id="reelsContainer">
+            <!-- Short 1 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'QwEkZTXt9F4')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/QwEkZTXt9F4/hqdefault.jpg" alt="Picxlart Shorts 1">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 2 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'EL8vRVDqWMg')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/EL8vRVDqWMg/hqdefault.jpg" alt="Picxlart Shorts 2">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 3 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'jJeYY1vVVkE')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/jJeYY1vVVkE/hqdefault.jpg" alt="Picxlart Shorts 3">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 4 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'V5FL64-4nGo')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/V5FL64-4nGo/hqdefault.jpg" alt="Picxlart Shorts 4">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 5 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'fwy7VR_fIgk')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/fwy7VR_fIgk/hqdefault.jpg" alt="Picxlart Shorts 5">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 6 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'JzNGKSv3H0c')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/JzNGKSv3H0c/hqdefault.jpg" alt="Picxlart Shorts 6">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Short 7 -->
+            <div class="reel-card">
+                <div class="reel-iframe-container" onclick="playVideo(this, 'F8KTo1c2B0w')">
+                    <img class="video-thumb-img" src="https://i.ytimg.com/vi/F8KTo1c2B0w/hqdefault.jpg" alt="Picxlart Shorts 7">
+                    <div class="thumb-overlay">
+                        <div class="play-btn-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-right" onclick="scrollCarousel('reelsContainer', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment.html">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms.html">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Dynamic YouTube Embed Loader on Click
+function playVideo(container, videoId) {
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+}
+
+// Universal Horizontal Carousel Scroll Script
+function scrollCarousel(containerId, direction) {
+    const container = document.getElementById(containerId);
+    const scrollAmount = 350;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
+
+// Mobile Menu Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+</script>
+
+</body>
+</html>
