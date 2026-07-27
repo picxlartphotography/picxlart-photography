@@ -124,17 +124,35 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Page Content Styling */
+    /* Page Heading */
     h1{
         text-align:center;
         color:#d4af37;
-        margin: 40px 0;
+        margin: 40px 0 30px;
         font-size: 36px;
         font-weight: 600;
         letter-spacing: 2px;
         text-transform: uppercase;
     }
 
+    /* ========================================================= */
+    /* GOOGLE REVIEWS WHITE SECTION (EXACT LIKE SCREENSHOT) */
+    /* ========================================================= */
+    .google-white-section {
+        background-color: #ffffff;
+        color: #111111;
+        padding: 50px 20px;
+        margin-bottom: 50px;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .google-widget-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Image Gallery Section */
     .review-gallery{
         display:grid;
         grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -264,7 +282,6 @@
         </a>
     </div>
 
-    <!-- Packages অপশনটি এখানে সুশৃঙ্খলভাবে যোগ করা হয়েছে -->
     <div class="nav-menu">
         <a href="index.html">Home</a>
         <a href="index.html#gallery">Gallery</a>
@@ -285,6 +302,20 @@
 
 <h1>Client Reviews</h1>
 
+<!-- ========================================================= -->
+<!-- 1. AUTO GOOGLE REVIEWS SECTION (WHITE BACKDROP LIKE SCREENSHOT) -->
+<!-- ========================================================= -->
+<section class="google-white-section">
+    <div class="google-widget-inner">
+        <!-- Elfsight Google Reviews Embed Code -->
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-ea6b21df-7eaf-4246-897b-098e7689a744" data-elfsight-app-lazy></div>
+    </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- 2. ORIGINAL PHOTO REVIEWS GALLERY -->
+<!-- ========================================================= -->
 <div class="review-gallery">
     <img src="review1.jpg" alt="Review 1">
     <img src="review2.jpg" alt="Review 2">
