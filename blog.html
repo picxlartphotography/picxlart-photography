@@ -53,24 +53,11 @@
         box-shadow:0 4px 25px rgba(0,0,0,.5);
     }
 
-    .nav-logo img{
-        height:60px;
-        width:auto;
-        transition: transform 0.3s ease;
-    }
-    
-    .nav-logo img:hover {
-        transform: scale(1.03);
-    }
-
-    .nav-logo a{
-        -webkit-tap-highlight-color: transparent;
-    }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-logo a{ -webkit-tap-highlight-color: transparent; }
         
-    .nav-menu{
-        display:flex;
-        gap:35px;
-    }
+    .nav-menu{ display:flex; gap:35px; }
 
     .nav-menu a{
         color:#e0e0e0;
@@ -87,39 +74,17 @@
     .nav-menu a::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1.5px;
+        bottom: 0; left: 0; width: 0; height: 1.5px;
         background: #d4af37;
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after, .nav-menu a.active::after {
-        width: 100%;
-    }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
 
-    .nav-menu a:hover, .nav-menu a.active{
-        color:#d4af37;
-        text-shadow:0 0 10px rgba(212,175,55,.3);
-    }
-
-    .nav-social{
-        display:flex;
-        gap:20px;
-    }
-
-    .nav-social a{
-        color:#e0e0e0;
-        text-decoration:none;
-        font-size:18px;
-        transition:all .3s ease;
-    }
-
-    .nav-social a:hover{
-        color:#d4af37;
-        transform:translateY(-3px);
-    }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
 
     .menu-toggle {
         display: none;
@@ -132,45 +97,79 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Page Header Section */
-    .blog-header {
+    /* Memories Designer Top Hero Banner */
+    .blog-hero-banner {
         margin-top: 76px;
-        padding: 60px 20px 20px;
+        position: relative;
+        height: 360px;
+        background-image: url('Cover.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        padding: 0 20px;
     }
 
-    .blog-header h1 {
+    .blog-hero-banner::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: 1;
+    }
+
+    .blog-hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+    .blog-hero-content h1 {
+        color: #ffffff;
+        font-size: 38px;
+        font-weight: 400;
+        font-style: italic;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .blog-breadcrumb {
+        font-size: 14px;
         color: #d4af37;
-        font-size: 34px;
-        font-weight: 600;
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 10px;
+        font-weight: 500;
     }
 
-    .blog-header p {
-        color: #b0b0b0;
-        font-size: 14px;
-        max-width: 650px;
-        margin: 0 auto;
-        line-height: 1.6;
-        font-weight: 300;
+    .blog-breadcrumb a { color: #ffffff; text-decoration: none; transition: color 0.3s ease; }
+    .blog-breadcrumb a:hover { color: #d4af37; }
+
+    /* Section Sub Header */
+    .blog-sub-header { text-align: center; padding: 50px 20px 20px; }
+    .blog-sub-header span { color: #d4af37; font-size: 20px; font-style: italic; display: block; margin-bottom: 5px; }
+
+    .blog-sub-header h2 {
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        display: inline-block;
     }
 
-    /* Memories Designer Layout Grid Section */
-    .blog-container {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 30px 20px 90px;
+    .blog-sub-header h2::after {
+        content: '';
+        display: block;
+        width: 70px;
+        height: 2px;
+        background: #d4af37;
+        margin: 12px auto 0;
     }
 
-    .blog-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 35px;
-    }
+    /* Grid Layout Container */
+    .blog-container { max-width: 1240px; margin: 0 auto; padding: 20px 20px 90px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
 
-    /* Individual Card Architecture */
+    /* Blog Card Design */
     .blog-card {
         background: transparent;
         display: flex;
@@ -178,18 +177,20 @@
         border: none;
     }
 
-    /* Image Wrapper with Smooth Zoom Effect for Desktop & Mobile */
-    .blog-thumb {
+    /* Custom Banner Container with Smooth Zoom Effect */
+    .blog-thumb-wrapper {
+        position: relative;
         width: 100%;
-        height: 250px;
+        height: 210px;
         border-radius: 12px;
         overflow: hidden;
-        position: relative;
         margin-bottom: 18px;
         box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        background: #111;
+        border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    .blog-thumb img {
+    .blog-thumb-wrapper img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -197,49 +198,19 @@
         will-change: transform;
     }
 
-    /* Mouse Hover Zoom Effect */
-    .blog-card:hover .blog-thumb img {
-        transform: scale(1.1);
+    /* Mouse Hover & Touch Zoom Effect */
+    .blog-card:hover .blog-thumb-wrapper img,
+    .blog-card:active .blog-thumb-wrapper img,
+    .blog-card:focus-within .blog-thumb-wrapper img {
+        transform: scale(1.08);
     }
 
-    /* Mobile Touch Zoom Effect */
-    .blog-card:active .blog-thumb img,
-    .blog-card:focus-within .blog-thumb img {
-        transform: scale(1.1);
-    }
-
-    .blog-category-tag {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background: rgba(10, 10, 10, 0.85);
-        color: #d4af37;
-        border: 1px solid #d4af37;
-        font-size: 11px;
-        font-weight: 600;
-        padding: 4px 12px;
-        border-radius: 20px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        backdrop-filter: blur(5px);
-    }
-
-    /* Text Content Area */
-    .blog-details {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-
-    .blog-meta-date {
-        font-size: 12px;
-        color: #888888;
-        margin-bottom: 8px;
-        font-weight: 400;
-    }
+    /* Content Area */
+    .blog-details { display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start; }
+    .blog-meta-date { font-size: 13px; color: #888888; margin-bottom: 8px; font-weight: 400; }
 
     .blog-title {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 600;
         color: #ffffff;
         line-height: 1.4;
@@ -247,34 +218,22 @@
         transition: color 0.3s ease;
     }
 
-    .blog-card:hover .blog-title {
-        color: #d4af37;
-    }
-
-    .blog-desc {
-        font-size: 13.5px;
-        color: #aaaaaa;
-        line-height: 1.6;
-        margin-bottom: 16px;
-        flex-grow: 1;
-    }
+    .blog-card:hover .blog-title { color: #d4af37; }
 
     .blog-read-link {
         color: #d4af37;
-        font-size: 13px;
+        font-size: 13.5px;
         font-weight: 600;
         text-decoration: underline;
         text-underline-offset: 4px;
         letter-spacing: 0.5px;
         transition: all 0.3s ease;
-        align-self: flex-start;
+        margin-top: 5px;
     }
 
-    .blog-read-link:hover {
-        color: #ffffff;
-    }
+    .blog-read-link:hover { color: #ffffff; }
 
-    /* Enterprise Footer Architecture */
+    /* Footer Architecture */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -299,29 +258,13 @@
         box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
     }
 
-    .footer-links-container {
-        margin-bottom:25px; 
-        line-height: 2.2;
-    }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
+    .footer-divider { color:#333; margin: 0 8px; }
 
-    .footer-links-container a {
-        color:#d4af37; 
-        text-decoration:none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    .footer-divider {
-        color:#333;
-        margin: 0 8px;
-    }
-
-    /* Responsive Grid System for Mobile & Tablet */
+    /* Responsive Grid System */
     @media (max-width: 1024px) {
-        .blog-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
+        .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     }
 
     @media (max-width: 768px) {
@@ -350,9 +293,10 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .blog-grid { grid-template-columns: 1fr; gap: 35px; }
-        .blog-header h1 { font-size: 26px; }
-        .blog-thumb { height: 220px; }
+        .blog-hero-banner { height: 260px; }
+        .blog-hero-content h1 { font-size: 22px; }
+        .blog-grid { grid-template-columns: 1fr; gap: 30px; }
+        .blog-thumb-wrapper { height: 200px; }
     }
 </style>
 
@@ -389,54 +333,58 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Page Header Title -->
-<div class="blog-header">
-    <h1>PICXLART STORIES & GUIDES</h1>
-    <p>Read our latest stories, wedding photography tips, pre-wedding location guides, and real visual stories from Serampore, West Bengal & across India.</p>
+<!-- Memories Designer Style Header Banner -->
+<div class="blog-hero-banner">
+    <div class="blog-hero-content">
+        <h1>Let our blogs be your guide to the perfect wedding!</h1>
+        <div class="blog-breadcrumb">
+            <a href="/">Home</a> / Blog
+        </div>
+    </div>
 </div>
 
-<!-- Memories Designer Layout Blog Section -->
+<!-- Sub Header -->
+<div class="blog-sub-header">
+    <span>Blogs</span>
+    <h2>Our Latest Blog</h2>
+</div>
+
+<!-- Blog Grid Container -->
 <div class="blog-container">
     <div class="blog-grid">
 
         <!-- Blog Card 1 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb">
-                <img src="Cover1.jpg" alt="Pre Wedding Shoot Locations">
-                <span class="blog-category-tag">Pre-Wedding</span>
+            <div class="blog-thumb-wrapper">
+                <img src="blog-banner-1.jpg" alt="Pre Wedding Shoot Locations">
             </div>
             <div class="blog-details">
                 <div class="blog-meta-date">25 July, 2026</div>
                 <h2 class="blog-title">Top Pre-Wedding Shoot Locations in Hooghly & Kolkata</h2>
-                <p class="blog-desc">Discover breathtaking heritage Rajbaris, ghats of Serampore, and natural spots perfect for modern cinematic pre-wedding photography.</p>
                 <a href="top-prewedding-locations-hooghly-kolkata" class="blog-read-link">Read More</a>
             </div>
         </article>
 
         <!-- Blog Card 2 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb">
-                <img src="Cover2.jpg" alt="Bengali Wedding Photography Timeline">
-                <span class="blog-category-tag">Wedding Tips</span>
+            <div class="blog-thumb-wrapper">
+                <img src="blog-banner-2.jpg" alt="Bengali Wedding Photography Timeline">
             </div>
             <div class="blog-details">
                 <div class="blog-meta-date">18 June, 2026</div>
                 <h2 class="blog-title">How to Plan Your Royal Bengali Wedding Photography Timeline</h2>
-                <p class="blog-desc">From Gaye Holud to Bou Bhat—expert planning advice to capture every emotional ritual without missing a single candid moment.</p>
                 <a href="bengali-wedding-photography-timeline-guide" class="blog-read-link">Read More</a>
             </div>
         </article>
 
         <!-- Blog Card 3 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb">
-                <img src="Cover3.jpg" alt="Destination Photography North Bengal Purulia">
-                <span class="blog-category-tag">Destination</span>
+            <div class="blog-thumb-wrapper">
+                <img src="blog-banner-3.jpg" alt="Destination Photography North Bengal Purulia">
             </div>
             <div class="blog-details">
                 <div class="blog-meta-date">10 May, 2026</div>
                 <h2 class="blog-title">Capturing Love in Offbeat India: North Bengal, Purulia & Beyond</h2>
-                <p class="blog-desc">A visual journey showing how Picxlart travels across India to turn scenic hills, tea gardens, and destination weddings into timeless frames.</p>
                 <a href="destination-wedding-photography-north-bengal-purulia" class="blog-read-link">Read More</a>
             </div>
         </article>
