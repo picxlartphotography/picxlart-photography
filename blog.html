@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Stories | Picxlart Photography</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+    
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    /* Custom Splash Screen */
+    #picxlart-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #080808;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .loader-content { text-align: center; padding: 0 20px; }
+    .intro-welcome-text { font-size: 20px; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; }
+    .intro-brand-logo { max-width: 580px; width: 100%; height: auto; margin: 15px 0; }
+    .intro-tagline-text { font-size: 14px; color: #dfdfdf; letter-spacing: 4px; text-transform: uppercase; }
+
+    #picxlart-preloader.fade-out { opacity: 0; visibility: hidden; }
+
+    /* Top Navbar */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+
+    .nav-logo img{ height:60px; width:auto; }
+    .nav-menu{ display:flex; gap:35px; }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        padding: 4px 0;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; }
+
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Memories Designer Layout Specific Styles */
+    .blog-header {
+        margin-top: 80px;
+        padding: 60px 20px 30px;
+        text-align: center;
+    }
+
+    .blog-header h1 {
+        color: #d4af37;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .blog-header p {
+        color: #b0b0b0;
+        font-size: 15px;
+        max-width: 650px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* Container & Grid */
+    .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px 100px;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    /* Card Styling */
+    .blog-card {
+        background: #141414;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Image Wrapper */
+    .blog-thumb {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        overflow: hidden;
+    }
+
+    .blog-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-thumb img {
+        transform: scale(1.06);
+    }
+
+    .blog-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: #d4af37;
+        color: #000;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Card Details */
+    .blog-details {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .blog-meta {
+        font-size: 12px;
+        color: #777;
+        margin-bottom: 12px;
+    }
+
+    .blog-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+
+    .blog-card:hover .blog-title {
+        color: #d4af37;
+    }
+
+    .blog-desc {
+        font-size: 13px;
+        color: #aaaaaa;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    .blog-btn {
+        display: inline-block;
+        color: #d4af37;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+
+    .blog-btn i {
+        margin-left: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .blog-btn:hover {
+        color: #ffffff;
+    }
+
+    .blog-btn:hover i {
+        transform: translateX(4px);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-btn-premium {
+        display:inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color:black;
+        padding:12px 35px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+
+    @media (max-width: 768px) {
+        .navbar{ padding:12px 24px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+
+        .nav-menu a {
+            font-size: 15px; color: #d4af37 !important;
+            width: 100%; text-align: center; padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .blog-grid { grid-template-columns: 1fr; }
+        .blog-header h1 { font-size: 28px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Custom Splash Screen -->
+<div id="picxlart-preloader">
+    <div class="loader-content">
+        <div class="intro-welcome-text">Welcome to</div>
+        <img src="hero-logo.png" alt="Picxlart Logo" class="intro-brand-logo">
+        <div class="intro-tagline-text">Timeless Moments, Captured For Eternity</div>
+    </div>
+</div>
+
+<!-- Top Navbar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="/">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="nav-menu">
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog" class="active">Blog</a>
+    </div>
+
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Header -->
+<div class="blog-header">
+    <h1>Our Photography Blogs</h1>
+    <p>Read our latest stories, wedding photography tips, pre-wedding shoot guides, and stories from Serampore, West Bengal & across India.</p>
+</div>
+
+<!-- Main Blog Section -->
+<div class="blog-container">
+    <div class="blog-grid">
+
+        <!-- Blog Post 1 -->
+        <article class="blog-card">
+            <div class="blog-thumb">
+                <img src="Cover1.jpg" alt="Pre Wedding Shoot Locations">
+                <span class="blog-category">Pre-Wedding</span>
+            </div>
+            <div class="blog-details">
+                <div class="blog-meta"><i class="far fa-calendar-alt"></i> July 2026</div>
+                <h2 class="blog-title">Top Pre-Wedding Shoot Locations in Hooghly & Kolkata</h2>
+                <p class="blog-desc">Discover breathtaking heritage Rajbaris, riverfront ghats of Serampore, and scenic outdoor spots perfect for cinematic photography.</p>
+                <a href="top-prewedding-locations-hooghly-kolkata" class="blog-btn">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-card">
+            <div class="blog-thumb">
+                <img src="Cover2.jpg" alt="Bengali Wedding Photography Tips">
+                <span class="blog-category">Wedding Tips</span>
+            </div>
+            <div class="blog-details">
+                <div class="blog-meta"><i class="far fa-calendar-alt"></i> June 2026</div>
+                <h2 class="blog-title">How to Plan Your Royal Bengali Wedding Photography Timeline</h2>
+                <p class="blog-desc">From Gaye Holud to Bou Bhat—essential tips for planning your wedding timeline to capture every ritual perfectly.</p>
+                <a href="bengali-wedding-photography-timeline-guide" class="blog-btn">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="blog-card">
+            <div class="blog-thumb">
+                <img src="Cover3.jpg" alt="Destination Photography">
+                <span class="blog-category">Destination</span>
+            </div>
+            <div class="blog-details">
+                <div class="blog-meta"><i class="far fa-calendar-alt"></i> May 2026</div>
+                <h2 class="blog-title">Capturing Love in Offbeat India: North Bengal & Purulia</h2>
+                <p class="blog-desc">Explore how Picxlart travels across India to turn scenic hills, tea gardens, and forests into magical wedding frames.</p>
+                <a href="destination-wedding-photography-north-bengal-purulia" class="blog-btn">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div style="margin-bottom:25px;">
+        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
+    </div>
+
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Preloader
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const preloader = document.getElementById('picxlart-preloader');
+        if (preloader) { preloader.classList.add('fade-out'); }
+    }, 3500);
+});
+
+// Mobile Nav
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+// Security Protections
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
+
+</body>
+</html>
