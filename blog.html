@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -177,7 +176,7 @@
         border: none;
     }
 
-    /* Custom Banner Container with Smooth Zoom Effect */
+    /* Custom Banner Container */
     .blog-thumb-wrapper {
         position: relative;
         width: 100%;
@@ -198,7 +197,6 @@
         will-change: transform;
     }
 
-    /* Mouse Hover & Touch Zoom Effect */
     .blog-card:hover .blog-thumb-wrapper img,
     .blog-card:active .blog-thumb-wrapper img,
     .blog-card:focus-within .blog-thumb-wrapper img {
@@ -262,36 +260,62 @@
     .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* Responsive Grid System */
+    /* Responsive Grid & PERFECT Mobile Menu Fix */
     @media (max-width: 1024px) {
         .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     }
 
     @media (max-width: 768px) {
-        .navbar{ padding:12px 24px; }
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
+
+        .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
 
         .nav-menu {
             position: fixed;
-            top: 60px; left: 0; width: 100%;
+            top: 60px; 
+            left: 0;
+            width: 100%;
+            height: auto; 
             background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            padding: 15px 0 0 0;
-            transform: translateY(-150%);
+            gap: 0;
+            padding: 10px 0 0 0;
+            transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            border-bottom: 3px solid #d4af37;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
         .nav-menu.active { transform: translateY(0); }
 
         .nav-menu a {
-            font-size: 15px; color: #d4af37 !important;
-            width: 100%; text-align: center; padding: 16px 0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
+
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 16px;
+        }
+
+        .nav-menu a::after { display: none; }
 
         .blog-hero-banner { height: 260px; }
         .blog-hero-content h1 { font-size: 22px; }
@@ -306,7 +330,6 @@
 
 <body>
 
-<!-- Top Navbar -->
 <div class="navbar">
    <div class="nav-logo">
         <a href="/" id="logoLink">
@@ -333,7 +356,6 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Memories Designer Style Header Banner -->
 <div class="blog-hero-banner">
     <div class="blog-hero-content">
         <h1>Let our blogs be your guide to the perfect wedding!</h1>
@@ -343,17 +365,14 @@
     </div>
 </div>
 
-<!-- Sub Header -->
 <div class="blog-sub-header">
     <span>Blogs</span>
     <h2>Our Latest Blog</h2>
 </div>
 
-<!-- Blog Grid Container -->
 <div class="blog-container">
     <div class="blog-grid">
 
-        <!-- Blog Card 1 -->
         <article class="blog-card" tabindex="0">
             <div class="blog-thumb-wrapper">
                 <img src="blog-banner-1.jpg" alt="Pre Wedding Shoot Locations">
@@ -365,7 +384,6 @@
             </div>
         </article>
 
-        <!-- Blog Card 2 -->
         <article class="blog-card" tabindex="0">
             <div class="blog-thumb-wrapper">
                 <img src="blog-banner-2.jpg" alt="Pre Wedding Photoshoot in Kolkata">
@@ -377,7 +395,6 @@
             </div>
         </article>
 
-        <!-- Blog Card 3 -->
         <article class="blog-card" tabindex="0">
             <div class="blog-thumb-wrapper">
                 <img src="blog-banner-3.jpg" alt="Destination Photography North Bengal Purulia">
@@ -392,7 +409,6 @@
     </div>
 </div>
 
-<!-- Footer -->
 <footer>
     <div style="margin-bottom:25px;">
         <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
@@ -426,7 +442,7 @@
 </footer>
 
 <script>
-// Mobile Drawer Navigation
+// Mobile Drawer Navigation Script (Exact Home Page Logic)
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -434,6 +450,14 @@ mobileMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     navMenu.classList.toggle('active');
     mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
 });
 
 // Security Protections
