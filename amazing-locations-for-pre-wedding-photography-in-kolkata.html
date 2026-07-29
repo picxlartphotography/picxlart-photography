@@ -31,28 +31,25 @@
         overflow-x:hidden;
     }
 
-    /* Top Navbar Layout & Styling */
+    /* Top Navbar Styling */
     .navbar{
         position:fixed;
         top:0;
         left:0;
         width:100%;
-        background:rgba(10,10,10,0.95);
-        backdrop-filter:blur(12px);
-        -webkit-backdrop-filter:blur(12px);
+        background:#0a0a0a;
         display:flex;
         justify-content:space-between;
         align-items:center;
-        padding:8px 40px;
+        padding:10px 25px;
         z-index:99999;
         border-bottom:2px solid #d4af37;
-        box-shadow:0 4px 25px rgba(0,0,0,.5);
     }
 
-    .nav-logo img{ height:55px; width:auto; }
-    .nav-logo a{ -webkit-tap-highlight-color: transparent; }
+    .nav-logo img{ height:48px; width:auto; display:block; }
+    .nav-logo a{ text-decoration:none; }
         
-    .nav-menu{ display:flex; gap:35px; }
+    .nav-menu{ display:flex; gap:25px; }
 
     .nav-menu a{
         color:#e0e0e0;
@@ -62,39 +59,35 @@
         text-transform: uppercase;
         font-size: 13px;
         transition: all 0.3s ease;
-        padding: 4px 0;
     }
 
     .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; }
 
-    .nav-social{ display:flex; gap:20px; }
-    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social{ display:flex; gap:18px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; }
     .nav-social a:hover{ color:#d4af37; }
 
     .menu-toggle {
         display: none;
         color: #d4af37;
-        font-size: 26px;
+        font-size: 24px;
         cursor: pointer;
-        z-index: 1000000;
-        padding: 5px;
     }
 
     /* Article Hero Banner Header */
     .article-hero {
-        margin-top: 76px;
+        margin-top: 70px;
         position: relative;
-        min-height: 380px;
+        min-height: 320px;
         background-color: #1a1a1a;
         background-image: url('kolkata-blog-hero.jpg');
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 40px 20px;
+        padding: 30px 15px;
     }
 
     .article-hero::before {
@@ -105,77 +98,76 @@
         z-index: 1;
     }
 
-    .article-hero-content { position: relative; z-index: 2; max-width: 950px; }
+    .article-hero-content { position: relative; z-index: 2; max-width: 900px; }
 
     .article-tag {
         background: #d4af37;
         color: #000;
         font-size: 11px;
         font-weight: 700;
-        padding: 5px 16px;
+        padding: 4px 14px;
         border-radius: 20px;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
         display: inline-block;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
     .article-hero-content h1 {
         color: #ffffff;
-        font-size: 34px;
+        font-size: 28px;
         font-weight: 600;
         line-height: 1.35;
-        margin-bottom: 18px;
+        margin-bottom: 15px;
     }
 
     .article-meta {
-        font-size: 13px;
+        font-size: 12px;
         color: #cccccc;
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 15px;
         flex-wrap: wrap;
     }
 
-    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-meta span { display: flex; align-items: center; gap: 5px; }
     .article-meta i { color: #d4af37; }
 
     /* Main Article Content Container */
     .article-container {
-        max-width: 880px;
+        max-width: 850px;
         margin: 0 auto;
-        padding: 40px 20px 80px;
-        line-height: 1.85;
-        font-size: 15.5px;
+        padding: 30px 15px 60px;
+        line-height: 1.8;
+        font-size: 15px;
         color: #dddddd;
     }
 
-    .article-container p { margin-bottom: 22px; font-weight: 300; }
+    .article-container p { margin-bottom: 20px; font-weight: 300; }
 
     .location-box {
-        background: rgba(25, 25, 25, 0.8);
-        border: 1px solid rgba(212, 175, 55, 0.2);
+        background: #181818;
+        border: 1px solid rgba(212, 175, 55, 0.25);
         border-left: 4px solid #d4af37;
-        padding: 22px 25px;
-        border-radius: 8px;
-        margin: 25px 0 30px;
+        padding: 18px 20px;
+        border-radius: 6px;
+        margin: 20px 0;
     }
 
-    .location-box h4 {
+    .location-box h3 {
         color: #d4af37;
-        font-size: 18.5px;
-        margin-bottom: 10px;
+        font-size: 18px;
+        margin-bottom: 8px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
     }
 
     .location-badge {
         display: inline-block;
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 600;
-        padding: 3px 10px;
+        padding: 2px 8px;
         border-radius: 4px;
         text-transform: uppercase;
     }
@@ -186,58 +178,54 @@
 
     .article-img-frame {
         width: 100%;
-        margin: 35px 0;
-        border-radius: 12px;
+        margin: 25px 0;
+        border-radius: 8px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.3);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         background: #1a1a1a;
     }
 
     .article-img-frame img {
         width: 100%;
         height: auto;
-        max-height: 550px;
-        object-fit: cover;
         display: block;
     }
 
     .cta-box {
         background: #141414;
         border: 1px solid #d4af37;
-        padding: 40px 30px;
-        border-radius: 16px;
+        padding: 30px 20px;
+        border-radius: 12px;
         text-align: center;
-        margin-top: 50px;
+        margin-top: 40px;
     }
 
     .cta-box h3 {
         color: #d4af37;
-        font-size: 24px;
-        margin-bottom: 12px;
+        font-size: 22px;
+        margin-bottom: 10px;
     }
 
     .cta-box p {
         color: #cccccc;
         font-size: 14px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .cta-btn {
         display: inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        background: #d4af37;
         color: #000;
-        padding: 14px 35px;
-        border-radius: 30px;
+        padding: 12px 30px;
+        border-radius: 25px;
         font-weight: 700;
         text-decoration: none;
         text-transform: uppercase;
-        letter-spacing: 1px;
     }
 
     footer {
         text-align: center;
-        padding: 50px 20px;
+        padding: 40px 15px;
         background: #080808;
         color: #777777;
         font-size: 13px;
@@ -246,57 +234,61 @@
 
     .footer-btn-premium {
         display:inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        background: #d4af37;
         color:black;
-        padding:12px 35px;
-        border-radius:30px;
+        padding:10px 28px;
+        border-radius:25px;
         text-decoration:none;
         font-weight:700;
-        font-size:14px;
+        font-size:13px;
         text-transform: uppercase;
     }
 
-    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container { margin-bottom:20px; line-height: 2.2; }
     .footer-links-container a { color:#d4af37; text-decoration:none; }
-    .footer-divider { color:#333; margin: 0 8px; }
+    .footer-divider { color:#333; margin: 0 6px; }
 
+    /* Mobile Responsive Styles */
     @media(max-width:768px){
-        .navbar{ padding:10px 20px; }
-        .nav-logo img{ height:42px; }
+        .navbar{ padding:10px 15px; }
+        .nav-logo img{ height:38px; }
         .menu-toggle { display: block !important; }
         .nav-social { display: none !important; }
 
         .nav-menu {
             position: fixed;
-            top: 62px; 
+            top: 60px; 
             left: 0;
             width: 100%;
-            background: #0a0a0a;
+            background: #0d0d0d;
             flex-direction: column;
             align-items: center;
-            padding: 10px 0;
-            display: none;
-            z-index: 999998;
-            border-bottom: 2px solid #d4af37; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            border-bottom: 2px solid #d4af37;
         }
 
-        .nav-menu.active { display: flex !important; }
+        .nav-menu.open {
+            max-height: 400px;
+            padding: 10px 0;
+        }
 
         .nav-menu a {
-            font-size: 14px;
+            font-size: 13px;
             color: #d4af37 !important;
             width: 100%;
             text-align: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .article-hero { margin-top: 62px; min-height: 260px; padding: 30px 15px; }
+        .article-hero { margin-top: 60px; min-height: 220px; padding: 20px 10px; }
         .article-hero-content h1 { font-size: 20px; }
-        .article-container { padding: 25px 15px 50px; }
-        .location-box { padding: 16px 18px; margin: 20px 0; }
-        .location-box h4 { font-size: 16px; }
+        .article-container { padding: 20px 12px 40px; }
+        .location-box { padding: 14px 15px; margin: 15px 0; }
+        .location-box h3 { font-size: 16px; }
     }
 </style>
 </head>
@@ -310,7 +302,7 @@
         </a>
     </div>
 
-    <div class="nav-menu">
+    <div class="nav-menu" id="navMenu">
         <a href="/">Home</a>
         <a href="/#gallery">Gallery</a>
         <a href="films">Films</a>
@@ -348,14 +340,10 @@
     <p>Whether you dream of a romantic sunset ride on a traditional wooden boat or a vintage retro tram ride, our team at <strong>Picxlart Photography</strong> has put together this ultimate guide featuring <strong>all 25 top pre-wedding photoshoot locations in Kolkata</strong>.</p>
 
     <div class="location-box">
-        <h4>1. Princep Ghat & River Ganges <span class="location-badge badge-free">Free Outdoor Spot</span></h4>
+        <h3>1. Princep Ghat & River Ganges <span class="location-badge badge-free">Free Outdoor Spot</span></h3>
         <p>The Corinthian white pillars of Princep Ghat with the majestic Vidyasagar Setu in the backdrop offer Kolkata's most iconic view. Renting a decorated wooden boat on the river Ganges during golden hour creates magical couple portraits.</p>
     </div>
 
     <div class="location-box">
-        <h4>2. Smaranika Tram Museum <span class="location-badge badge-paid">Heritage Vibe / Entry Fee</span></h4>
-        <p>Located near Maidan, this restored vintage tram café lets couples relive classic Calcuttan romance. Dressing up in a traditional Dhuti-Panjabi and Chapa saree brings out authentic nostalgic vibes.</p>
-    </div>
-
-    <div class="location-box">
-        <h4>3. Acharya Jagadish Chandra Bose Botanical Garden <span class="
+        <h3>2. Smaranika Tram Museum <span class="location-badge badge-paid">Heritage Vibe / Entry Fee</span></h3>
+        <p>
