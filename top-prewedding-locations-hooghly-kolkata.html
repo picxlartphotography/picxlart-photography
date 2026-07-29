@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -41,7 +40,7 @@
         top:0;
         left:0;
         width:100%;
-        background:rgba(10,10,10,0.95);
+        background:rgba(10,10,10,0.92);
         backdrop-filter:blur(12px);
         -webkit-backdrop-filter:blur(12px);
         display:flex;
@@ -51,6 +50,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
     }
 
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
@@ -218,7 +218,6 @@
 
     .location-box ul li strong { color: #ffffff; }
 
-    /* In-Article Image Frame */
     .article-img-frame {
         width: 100%;
         margin: 35px 0;
@@ -234,7 +233,6 @@
         display: block;
     }
 
-    /* Dedicated Kolkata Blog Box Notice */
     .dedicated-blog-notice {
         background: rgba(212, 175, 55, 0.08);
         border: 1px dashed #d4af37;
@@ -257,7 +255,6 @@
     }
 
     .dedicated-blog-notice a {
-        color: #ffffff;
         background: #d4af37;
         color: #000;
         padding: 8px 22px;
@@ -273,7 +270,6 @@
         transform: translateY(-2px);
     }
 
-    /* CTA Box Area */
     .cta-box {
         background: linear-gradient(135deg, rgba(30,30,30,0.9), rgba(15,15,15,0.95));
         border: 1px solid #d4af37;
@@ -315,7 +311,6 @@
         background: linear-gradient(135deg, #f4d06f, #d4af37);
     }
 
-    /* Footer Styles */
     footer {
         text-align: center;
         padding: 50px 20px;
@@ -343,36 +338,67 @@
     .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
     .footer-divider { color:#333; margin: 0 8px; }
 
+    /* EXACT INDEX.HTML MOBILE MEDIA QUERIES */
     @media(max-width:768px){
-        .navbar{ padding:12px 24px; }
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
+
+        .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
 
         .nav-menu {
             position: fixed;
-            top: 60px; left: 0; width: 100%;
+            top: 60px; 
+            left: 0;
+            width: 100%;
+            height: auto; 
             background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
+            gap: 0;
             padding: 15px 0 0 0;
-            transform: translateY(-150%);
+            transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            border-bottom: 3px solid #d4af37;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
         .nav-menu.active { transform: translateY(0); }
 
         .nav-menu a {
-            font-size: 15px; color: #d4af37 !important;
-            width: 100%; text-align: center; padding: 16px 0;
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
+
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        .nav-menu a::after { display: none; }
 
         .article-hero { height: 340px; }
         .article-hero-content h1 { font-size: 24px; }
         .article-container { padding: 35px 18px 60px; }
         .location-box { padding: 18px 15px; }
+    }
+
+    @media (max-width: 480px) {
+        .navbar { padding: 12px 20px; }
     }
 </style>
 
@@ -382,7 +408,6 @@
 
 <body>
 
-<!-- Top Navbar -->
 <div class="navbar">
    <div class="nav-logo">
         <a href="/" id="logoLink">
@@ -409,7 +434,6 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Article Hero Header -->
 <div class="article-hero">
     <div class="article-hero-content">
         <span class="article-tag">Pre-Wedding Guide</span>
@@ -422,7 +446,6 @@
     </div>
 </div>
 
-<!-- Article Content -->
 <article class="article-container">
 
     <p>A pre-wedding shoot is more than taking pretty pictures—it is about capturing your chemistry in a backdrop that matches your personality. Whether you love grand aristocratic Rajbaris, rustic European colonial architecture, serene riverfronts, or endless golden mustard fields, <strong>Hooghly and Kolkata offer incredible diversity for every couple</strong>.</p>
@@ -432,7 +455,6 @@
     <h2>Part 1: Historic & Royal Heritage Locations in Hooghly</h2>
     <p>Hooghly is world-famous for its European colonial history (Danish, French, Portuguese, and British) combined with grand Bengali zamindari mansions.</p>
 
-    <!-- Location 1: Serampore Rajbari -->
     <div class="location-box">
         <h4>1. Serampore Rajbari <span class="location-badge badge-paid">Paid Spot</span></h4>
         <p>If you dream of a royal traditional Bengali look, Serampore Rajbari is one of the finest choices. The grand aristocratic courtyard, classic pillars, and vintage aura create magnificent frames.</p>
@@ -443,7 +465,6 @@
         </ul>
     </div>
 
-    <!-- Location 2: Garalgacha Jamidar Bari -->
     <div class="location-box">
         <h4>2. Garalgacha Jamidar Bari (Dankuni) <span class="location-badge badge-paid">Paid Spot</span></h4>
         <p>Located near Dankuni on the Baluhati - Chanditala Road (approx. 25-30 km from Kolkata), this historic property offers an authentic zamindari setting with classic Thakur Dalan, traditional courtyards, and the adjacent lush Mukherjee Gardens.</p>
@@ -454,7 +475,6 @@
         </ul>
     </div>
 
-    <!-- Location 3: The Denmark Tavern -->
     <div class="location-box">
         <h4>3. The Denmark Tavern (Serampore) <span class="location-badge badge-paid">Paid Spot</span></h4>
         <p>Situated on N.N. Roy Street along the Serampore riverfront, this 238-year-old restored Danish building and café offers vintage European architecture, high ceilings, rustic brickwork, and warm outdoor lighting.</p>
@@ -464,7 +484,6 @@
         </ul>
     </div>
 
-    <!-- Location 4: St. Olav’s Church -->
     <div class="location-box">
         <h4>4. St. Olav’s Church (Serampore) <span class="location-badge badge-free">Free Outdoor Area</span></h4>
         <p>Located in Tin Bazar and built in 1806, this iconic white church features classic Danish colonial pillars and serene historical courtyards.</p>
@@ -477,7 +496,6 @@
         <img src="hooghly-prewedding-shoot.jpg" alt="Pre-wedding Shoot in Serampore Hooghly">
     </div>
 
-    <!-- Location 5: Hooghly Imambara -->
     <div class="location-box">
         <h4>5. Hooghly Imambara (Chinsurah) <span class="location-badge badge-free">Public / Entry Ticket</span></h4>
         <p>Famous for its grand Victorian clock towers, long arched hallways, and high balconies overlooking the Hooghly River. It gives a timeless, vintage aesthetic.</p>
@@ -486,13 +504,11 @@
         </ul>
     </div>
 
-    <!-- Location 6: Hangseshwari Temple -->
     <div class="location-box">
         <h4>6. Hangseshwari Temple (Bansberia) <span class="location-badge badge-hybrid">Flexible Entry / Permission Needed</span></h4>
         <p>Famous for its unique 13-towered lotus-inspired architecture and the adjacent stone Anant Vasudeva temple. Photography inside the main temple sanctuary is generally restricted, but outdoor frames can be done upon request or local permissions. Small maintenance fees may sometimes apply.</p>
     </div>
 
-    <!-- Location 7: Bandel Church -->
     <div class="location-box">
         <h4>7. Bandel Church (Basilica of the Holy Rosary) <span class="location-badge badge-free">Public</span></h4>
         <p>Built in 1599, offering European stone facades, quiet green lawns, and a peaceful ambiance. (Open from 8:00 AM to 4:50 PM).</p>
@@ -500,7 +516,6 @@
 
     <h2>Part 2: Scenic Riverfronts, Islands & Natural Landscapes in Hooghly</h2>
 
-    <!-- Location 8: Sabuj Deep River Island -->
     <div class="location-box">
         <h4>8. Sabuj Deep River Island (Balagarh) <span class="location-badge badge-hybrid">Scenic Island / Off-Peak Shooting</span></h4>
         <p>A breathtaking 100-acre river island situated at the confluence of the Behula and Hooghly rivers in Balagarh (Hooghly district). While popular as a picnic spot, off-peak hours offer a peaceful, serene environment for pre-wedding photography.</p>
@@ -511,19 +526,16 @@
         </ul>
     </div>
 
-    <!-- Location 9: Serampore Jolkol & Ghat -->
     <div class="location-box">
         <h4>9. Serampore Jolkol & Serampore Ghat <span class="location-badge badge-free">Free Public Spot</span></h4>
         <p>Located near Serampore College, the historic Jolkol area and Serampore Riverfront offer a rustic, old-world charm along the riverbank. Perfect for casual evening frames and ferry ride shots.</p>
     </div>
 
-    <!-- Location 10: Mustard Fields & Rural Greenery -->
     <div class="location-box">
         <h4>10. Singur & Nalikul Mustard Fields (Sorsekhet) <span class="location-badge badge-free">Natural Spot</span></h4>
         <p>If you love vibrant, natural, DDLJ-style romantic frames, heading towards rural Hooghly (Singur, Nalikul, and surrounding villages) during winter (December–January) unlocks endless bright yellow mustard fields (Sorsekhet), open green horizons, mud houses, and peaceful village paths.</p>
     </div>
 
-    <!-- Location 11: Chandannagar Strand -->
     <div class="location-box">
         <h4>11. Chandannagar Strand <span class="location-badge badge-free">Scenic Nature</span></h4>
         <p>A beautiful paved promenade decorated with vintage French-colonial lamps—unbeatable for romantic sunset silhouettes along the Hooghly riverbank.</p>
@@ -532,19 +544,16 @@
     <h2>Part 3: Iconic Pre-Wedding Locations in Kolkata</h2>
     <p>Kolkata brings high-energy urban vibes, historic monuments, and luxury resort options.</p>
 
-    <!-- Location 12 -->
     <div class="location-box">
         <h4>12. Princep Ghat & Hooghly Riverfront <span class="location-badge badge-free">Free Public Spot</span></h4>
         <p>The iconic Greek-style white pillars of Princep Ghat with the Vidyasagar Setu in the background make this Kolkata's #1 shoot spot. You can also hire a traditional wooden boat for romantic river shots at golden hour.</p>
     </div>
 
-    <!-- Location 13 -->
     <div class="location-box">
         <h4>13. Eco Park & Eco Island (New Town) <span class="location-badge badge-paid">Paid Entry</span></h4>
         <p>Offering huge variety in a single place—from modern glass bridges and green tea gardens to replicas of the 7 Wonders of the World.</p>
     </div>
 
-    <!-- Location 14 -->
     <div class="location-box">
         <h4>14. Sovabazar Rajbari & Bow Barracks <span class="location-badge badge-free">Heritage Vibe</span></h4>
         <p>For classic yellow taxis, narrow heritage alleys, red-brick European houses (Bow Barracks), or grand traditional Thakur Dalan (Sovabazar Rajbari), Kolkata's North district is unmatched.</p>
@@ -554,13 +563,11 @@
         <img src="kolkata-prewedding-shoot.jpg" alt="Cinematic Pre Wedding Shoot Kolkata">
     </div>
 
-    <!-- Location 15 -->
     <div class="location-box">
         <h4>15. Luxury Resorts (Bawali Rajbari, Ibiza Resort, Vedic Village) <span class="location-badge badge-paid">Paid Booking</span></h4>
         <p>If you prefer complete privacy, changing room luxury, and royal aesthetics, private resort properties around Kolkata provide breathtaking photo opportunities.</p>
     </div>
 
-    <!-- Dedicated Kolkata Blog Notice Box -->
     <div class="dedicated-blog-notice">
         <h3>Looking for More Exclusive Kolkata Locations?</h3>
         <p>We have a separate, dedicated guide focusing entirely on Kolkata's top vintage streets, luxury resorts, and hidden gems!</p>
@@ -575,7 +582,6 @@
         <li><strong>Plan Travel Routes:</strong> If you reside around Serampore/Hooghly, combining Serampore Rajbari with Denmark Tavern or Chandannagar Strand saves time and travel fatigue.</li>
     </ul>
 
-    <!-- CTA Box -->
     <div class="cta-box">
         <h3>Ready to Capture Your Love Story?</h3>
         <p>At Picxlart, we turn your romantic moments into cinematic visual stories. Based in Hooghly, we serve across Kolkata, West Bengal, and Destination Weddings Pan-India.</p>
@@ -586,7 +592,6 @@
 
 </article>
 
-<!-- Enterprise Footer -->
 <footer>
     <div style="margin-bottom:25px;">
         <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
@@ -620,14 +625,26 @@
 </footer>
 
 <script>
-// Mobile Navigation Drawer
+// Mobile Navigation Drawer Script (Exact Home Page Logic)
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
 
 mobileMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     navMenu.classList.toggle('active');
-    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
 });
 
 // Security Protections
