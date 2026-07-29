@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
@@ -18,54 +18,68 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:'Poppins', sans-serif;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
     }
     
-    body{
-        background:#0d0d0d;
-        color:#f5f5f5;
-        overflow-x:hidden;
+    body {
+        background: #0d0d0d;
+        color: #f5f5f5;
+        overflow-x: hidden;
     }
 
-    /* Top Navbar Styling */
-    .navbar{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        background:#0a0a0a;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:10px 25px;
-        z-index:99999;
-        border-bottom:2px solid #d4af37;
+    /* Top Navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: #0a0a0a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 99999;
+        border-bottom: 2px solid #d4af37;
     }
 
-    .nav-logo img{ height:48px; width:auto; display:block; }
-    .nav-logo a{ text-decoration:none; }
-        
-    .nav-menu{ display:flex; gap:25px; }
+    .nav-logo img {
+        height: 42px;
+        width: auto;
+        display: block;
+    }
 
-    .nav-menu a{
-        color:#e0e0e0;
-        text-decoration:none;
-        font-weight:500;
-        letter-spacing: 1px;
+    .nav-menu {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        font-weight: 500;
         text-transform: uppercase;
         font-size: 13px;
-        transition: all 0.3s ease;
+        transition: 0.3s;
     }
 
-    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; }
+    .nav-menu a:hover, .nav-menu a.active {
+        color: #d4af37;
+    }
 
-    .nav-social{ display:flex; gap:18px; }
-    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; }
-    .nav-social a:hover{ color:#d4af37; }
+    .nav-social {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-social a {
+        color: #e0e0e0;
+        font-size: 16px;
+    }
 
     .menu-toggle {
         display: none;
@@ -74,20 +88,13 @@
         cursor: pointer;
     }
 
-    /* Article Hero Banner Header */
+    /* Hero Banner Header */
     .article-hero {
-        margin-top: 70px;
+        margin-top: 65px;
         position: relative;
-        min-height: 320px;
-        background-color: #1a1a1a;
-        background-image: url('kolkata-blog-hero.jpg');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 40px 15px;
+        background: #1a1a1a url('kolkata-blog-hero.jpg') center/cover no-repeat;
         text-align: center;
-        padding: 30px 15px;
     }
 
     .article-hero::before {
@@ -98,14 +105,19 @@
         z-index: 1;
     }
 
-    .article-hero-content { position: relative; z-index: 2; max-width: 900px; }
+    .article-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
     .article-tag {
         background: #d4af37;
         color: #000;
         font-size: 11px;
         font-weight: 700;
-        padding: 4px 14px;
+        padding: 4px 12px;
         border-radius: 20px;
         text-transform: uppercase;
         display: inline-block;
@@ -114,10 +126,10 @@
 
     .article-hero-content h1 {
         color: #ffffff;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 600;
         line-height: 1.35;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
     .article-meta {
@@ -129,10 +141,9 @@
         flex-wrap: wrap;
     }
 
-    .article-meta span { display: flex; align-items: center; gap: 5px; }
     .article-meta i { color: #d4af37; }
 
-    /* Main Article Content Container */
+    /* Main Content Container */
     .article-container {
         max-width: 850px;
         margin: 0 auto;
@@ -142,20 +153,24 @@
         color: #dddddd;
     }
 
-    .article-container p { margin-bottom: 20px; font-weight: 300; }
+    .article-container p {
+        margin-bottom: 18px;
+        font-weight: 300;
+    }
 
+    /* Spot Cards */
     .location-box {
-        background: #181818;
+        background: #161616;
         border: 1px solid rgba(212, 175, 55, 0.25);
         border-left: 4px solid #d4af37;
-        padding: 18px 20px;
+        padding: 16px 18px;
         border-radius: 6px;
-        margin: 20px 0;
+        margin: 18px 0;
     }
 
     .location-box h3 {
         color: #d4af37;
-        font-size: 18px;
+        font-size: 17px;
         margin-bottom: 8px;
         display: flex;
         flex-wrap: wrap;
@@ -164,7 +179,6 @@
     }
 
     .location-badge {
-        display: inline-block;
         font-size: 10px;
         font-weight: 600;
         padding: 2px 8px;
@@ -191,6 +205,7 @@
         display: block;
     }
 
+    /* CTA Box */
     .cta-box {
         background: #141414;
         border: 1px solid #d4af37;
@@ -202,7 +217,7 @@
 
     .cta-box h3 {
         color: #d4af37;
-        font-size: 22px;
+        font-size: 20px;
         margin-bottom: 10px;
     }
 
@@ -216,79 +231,76 @@
         display: inline-block;
         background: #d4af37;
         color: #000;
-        padding: 12px 30px;
+        padding: 10px 25px;
         border-radius: 25px;
         font-weight: 700;
         text-decoration: none;
         text-transform: uppercase;
     }
 
+    /* Footer */
     footer {
         text-align: center;
-        padding: 40px 15px;
+        padding: 35px 15px;
         background: #080808;
         color: #777777;
-        font-size: 13px;
+        font-size: 12px;
         border-top: 1px solid #1a1a1a;
     }
 
     .footer-btn-premium {
-        display:inline-block;
+        display: inline-block;
         background: #d4af37;
-        color:black;
-        padding:10px 28px;
-        border-radius:25px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:13px;
+        color: black;
+        padding: 8px 24px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 12px;
         text-transform: uppercase;
+        margin-bottom: 20px;
     }
 
-    .footer-links-container { margin-bottom:20px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; }
-    .footer-divider { color:#333; margin: 0 6px; }
+    .footer-links-container {
+        margin-bottom: 15px;
+        line-height: 2;
+    }
 
-    /* Mobile Responsive Styles */
-    @media(max-width:768px){
-        .navbar{ padding:10px 15px; }
-        .nav-logo img{ height:38px; }
-        .menu-toggle { display: block !important; }
-        .nav-social { display: none !important; }
+    .footer-links-container a {
+        color: #d4af37;
+        text-decoration: none;
+    }
+
+    /* Mobile Clean Rules */
+    @media (max-width: 768px) {
+        .menu-toggle { display: block; }
+        .nav-social { display: none; }
 
         .nav-menu {
-            position: fixed;
-            top: 60px; 
+            display: none;
+            position: absolute;
+            top: 65px;
             left: 0;
             width: 100%;
-            background: #0d0d0d;
+            background: #0a0a0a;
             flex-direction: column;
-            align-items: center;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
+            padding: 15px 0;
             border-bottom: 2px solid #d4af37;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
         }
 
-        .nav-menu.open {
-            max-height: 400px;
-            padding: 10px 0;
+        .nav-menu.show {
+            display: flex;
         }
 
         .nav-menu a {
-            font-size: 13px;
-            color: #d4af37 !important;
-            width: 100%;
+            padding: 10px;
             text-align: center;
-            padding: 10px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .article-hero { margin-top: 60px; min-height: 220px; padding: 20px 10px; }
         .article-hero-content h1 { font-size: 20px; }
-        .article-container { padding: 20px 12px 40px; }
-        .location-box { padding: 14px 15px; margin: 15px 0; }
-        .location-box h3 { font-size: 16px; }
+        .location-box h3 { font-size: 15px; }
     }
 </style>
 </head>
@@ -296,13 +308,11 @@
 <body>
 
 <div class="navbar">
-   <div class="nav-logo">
-        <a href="/">
-            <img src="logo.png" alt="Picxlart Logo">
-        </a>
+    <div class="nav-logo">
+        <a href="/"><img src="logo.png" alt="Picxlart Logo"></a>
     </div>
 
-    <div class="nav-menu" id="navMenu">
+    <div class="nav-menu" id="mobileNav">
         <a href="/">Home</a>
         <a href="/#gallery">Gallery</a>
         <a href="films">Films</a>
@@ -318,7 +328,7 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <div class="menu-toggle" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </div>
 
 <div class="article-hero">
@@ -346,4 +356,39 @@
 
     <div class="location-box">
         <h3>2. Smaranika Tram Museum <span class="location-badge badge-paid">Heritage Vibe / Entry Fee</span></h3>
-        <p>
+        <p>Located near Maidan, this restored vintage tram café lets couples relive classic Calcuttan romance. Dressing up in a traditional Dhuti-Panjabi and Chapa saree brings out authentic nostalgic vibes.</p>
+    </div>
+
+    <div class="location-box">
+        <h3>3. Acharya Jagadish Chandra Bose Botanical Garden <span class="location-badge badge-paid">Lush Greenery</span></h3>
+        <p>Spanning over 270 acres in Shibpur, it offers giant lily pads, winding shaded pathways, and the world-famous Great Banyan Tree for natural, tranquil frames.</p>
+    </div>
+
+    <div class="location-box">
+        <h3>4. Rabindra Sarobar Lake <span class="location-badge badge-free">Nature / Serene</span></h3>
+        <p>A calm artificial lake in South Kolkata surrounded by dense greenery, stone paved walkways, and vintage lamp posts. Perfect for early morning couple walks and natural frames.</p>
+    </div>
+
+    <div class="location-box">
+        <h3>5. Eco Park & Eco Island <span class="location-badge badge-paid">Paid Entry</span></h3>
+        <p>Featuring replicas of the Seven Wonders of the World, tea gardens, lakeside bridges, and colorful wall art—allowing multiple themes in a single shoot location.</p>
+    </div>
+
+    <div class="article-img-frame">
+        <img src="kolkata-heritage-shoot.jpg" alt="Pre Wedding Shoot North Kolkata Heritage">
+    </div>
+
+    <div class="location-box">
+        <h3>6. Mallick Ghat Flower Market <span class="location-badge badge-free">Vibrant Street Vibe</span></h3>
+        <p>One of Asia’s largest flower markets located near Howrah Bridge. Mounds of bright yellow marigolds and sunflowers provide a unique, lively, and cinematic street photography setting.</p>
+    </div>
+
+    <div class="location-box">
+        <h3>7. Bow Barracks <span class="location-badge badge-free">Vintage European Vibe</span></h3>
+        <p>Tucked behind Bowbazar, the red-brick Anglo-Indian colonial buildings and narrow alleys exude cozy retro charm and unique architectural frames.</p>
+    </div>
+
+    <div class="location-box">
+        <h3>8. Victoria Memorial <span class="location-badge badge-hybrid">Ticketed Entry</span></h3>
+        <p>The white marble monument, vast manicured lawns, and reflections in surrounding ponds bring British-era architectural elegance and grand royal aesthetic.</p>
+    </div>
