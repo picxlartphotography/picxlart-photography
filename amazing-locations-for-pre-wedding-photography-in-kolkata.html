@@ -216,7 +216,7 @@
 
     .location-box ul li strong { color: #ffffff; }
 
-    /* In-Article Image Frame - Optimized Mobile & Desktop */
+    /* In-Article Image Frame - Mobile Safe */
     .article-img-frame {
         width: 100%;
         margin: 25px 0 35px;
@@ -228,11 +228,10 @@
     }
 
     .article-img-frame img {
-        width: 100%;
-        height: auto;
-        display: block;
-        max-width: 100%;
-        object-fit: cover;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        display: block !important;
     }
 
     /* CTA Box Area */
@@ -432,7 +431,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-princep-ghat-shoot.jpg" alt="Pre Wedding Shoot at Princep Ghat Kolkata" onerror="this.src='kolkata-princep-ghat-shoot.JPG';">
+        <img src="kolkata-princep-ghat-shoot.jpg" alt="Pre Wedding Shoot at Princep Ghat Kolkata" data-basename="kolkata-princep-ghat-shoot">
     </div>
 
     <!-- Location 2 -->
@@ -456,7 +455,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-rabindra-sarobar-shoot.jpg" alt="Pre Wedding Shoot Rabindra Sarobar Lake Kolkata" onerror="this.src='kolkata-rabindra-sarobar-shoot.JPG';">
+        <img src="kolkata-rabindra-sarobar-shoot.jpg" alt="Pre Wedding Shoot Rabindra Sarobar Lake Kolkata" data-basename="kolkata-rabindra-sarobar-shoot">
     </div>
 
     <!-- Location 5 -->
@@ -465,7 +464,7 @@
         <p>Spanning 480 acres, Eco Park is a modern outdoor studio featuring replicas of the Seven Wonders of the World (Eiffel Tower, Taj Mahal, etc.), tea garden landscapes, glass bridges, and lakeside walkways. Requires advance booking permission. Drone photography and aerial frames in the Seven Architecture zone deliver grand royal pre-wedding visuals.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-eco-park-shoot.jpg" alt="Pre Wedding Shoot Eco Park New Town Kolkata" onerror="this.src='kolkata-eco-park-shoot.JPG';">
+        <img src="kolkata-eco-park-shoot.jpg" alt="Pre Wedding Shoot Eco Park New Town Kolkata" data-basename="kolkata-eco-park-shoot">
     </div>
 
     <!-- Location 6 -->
@@ -474,7 +473,7 @@
         <p>Nestled beneath Howrah Bridge, Asia's largest wholesale flower market offers thousands of bright yellow marigold garlands and intense street culture for vibrant, artistic documentary-style pre-wedding frames.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-heritage-shoot.jpg" alt="Pre Wedding Shoot Mallick Ghat Flower Market" onerror="this.src='kolkata-heritage-shoot.JPG';">
+        <img src="kolkata-heritage-shoot.jpg" alt="Pre Wedding Shoot Mallick Ghat Flower Market" data-basename="kolkata-heritage-shoot">
     </div>
 
     <!-- Location 7 -->
@@ -483,7 +482,7 @@
         <p>Tucked behind Bowbazar, these red-brick Anglo-Indian colonial apartments, green window shutters, and narrow brick alleys exude old-world European charm and retro aesthetic.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-bow-barracks-shoot.jpg" alt="Pre Wedding Shoot Bow Barracks Kolkata" onerror="this.src='kolkata-bow-barracks-shoot.JPG';">
+        <img src="kolkata-bow-barracks-shoot.jpg" alt="Pre Wedding Shoot Bow Barracks Kolkata" data-basename="kolkata-bow-barracks-shoot">
     </div>
 
     <!-- Location 8 -->
@@ -492,7 +491,7 @@
         <p>The imposing white Makrana marble palace, sprawling green lawns, reflection pools, and manicured flowerbeds deliver British-era architectural grandeur. Normal entry tickets allow photo shoots; video instruments require prior special permission from the authority.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-victoria-memorial-shoot.jpg" alt="Pre Wedding Shoot Victoria Memorial Kolkata" onerror="this.onerror=null; this.src='kolkata-victoria-memorial-shoot.JPG';">
+        <img src="kolkata-victoria-memorial-shoot.jpg" alt="Pre Wedding Shoot Victoria Memorial Kolkata" data-basename="kolkata-victoria-memorial-shoot">
     </div>
 
     <!-- Location 9 -->
@@ -505,7 +504,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-maidan-shoot.jpg" alt="Pre Wedding Shoot Kolkata Maidan" onerror="this.onerror=null; this.src='kolkata-maidan-shoot.JPG';">
+        <img src="kolkata-maidan-shoot.jpg" alt="Pre Wedding Shoot Kolkata Maidan" data-basename="kolkata-maidan-shoot">
     </div>
 
     <!-- Location 10 -->
@@ -560,7 +559,7 @@
         <p>The historic potters' neighborhood along the riverbank where artisan sculptors craft clay idols of gods and goddesses. Offers raw, artistic, and culturally rich storytelling frames. Small nominal token fees are sometimes requested by local artisan committees.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-kumartuli-shoot.jpg" alt="Pre Wedding Shoot Kumartuli Kolkata" onerror="this.onerror=null; this.src='kolkata-kumartuli-shoot.JPG';">
+        <img src="kolkata-kumartuli-shoot.jpg" alt="Pre Wedding Shoot Kumartuli Kolkata" data-basename="kolkata-kumartuli-shoot">
     </div>
 
     <!-- Location 18 -->
@@ -569,7 +568,7 @@
         <p>The world's largest second-hand book market. Stacks of old books, vintage coffee houses, yellow taxis, and historic university buildings create a nostalgic setting for intellectual, book-loving couples looking to wrap their love story in literary charm.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-college-street-shoot.jpg" alt="Pre Wedding Shoot College Street Boi Para Kolkata" onerror="this.onerror=null; this.src='kolkata-college-street-shoot.JPG';">
+        <img src="kolkata-college-street-shoot.jpg" alt="Pre Wedding Shoot College Street Boi Para Kolkata" data-basename="kolkata-college-street-shoot">
     </div>
 
     <!-- Location 19 -->
@@ -659,8 +658,9 @@
 </footer>
 
 <script>
-// Mobile Navigation Script
+// Mobile Navigation & Smart Image Extension Auto-Recovery
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Drawer
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var navMenu = document.querySelector('.nav-menu');
 
@@ -679,6 +679,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Auto Image extension recovery for mobile browsers (jpg, JPG, png, PNG, jpeg)
+    var imgs = document.querySelectorAll('.article-img-frame img');
+    imgs.forEach(function(img) {
+        var base = img.getAttribute('data-basename');
+        if (!base) return;
+
+        var formats = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG'];
+        var tryIndex = 0;
+
+        img.onerror = function() {
+            tryIndex++;
+            if (tryIndex < formats.length) {
+                img.src = base + formats[tryIndex];
+            } else {
+                img.onerror = null; // stop loop if all fail
+            }
+        };
+    });
 });
 </script>
 
