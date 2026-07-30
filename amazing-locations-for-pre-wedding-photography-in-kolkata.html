@@ -32,6 +32,10 @@
         background:#0d0d0d;
         color:#f5f5f5;
         overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
     }
 
     /* Top Navbar Layout & Styling */
@@ -40,7 +44,7 @@
         top:0;
         left:0;
         width:100%;
-        background:rgba(10,10,10,0.95);
+        background:rgba(10,10,10,0.92);
         backdrop-filter:blur(12px);
         -webkit-backdrop-filter:blur(12px);
         display:flex;
@@ -50,6 +54,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
     }
 
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
@@ -101,7 +106,6 @@
         margin-top: 76px;
         position: relative;
         height: 420px;
-        background-color: #1a1a1a;
         background-image: url('kolkata-blog-hero.jpg');
         background-size: cover;
         background-position: center;
@@ -235,9 +239,9 @@
         display: block;
     }
 
-    /* CTA Box Area */
+    /* Exact Hooghly Page CTA Box Design */
     .cta-box {
-        background: linear-gradient(135deg, rgba(30,30,30,0.9), rgba(15,15,15,0.95));
+        background: rgba(20, 20, 20, 0.6);
         border: 1px solid #d4af37;
         padding: 40px 30px;
         border-radius: 16px;
@@ -248,19 +252,24 @@
 
     .cta-box h3 {
         color: #d4af37;
-        font-size: 24px;
-        margin-bottom: 12px;
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 15px;
     }
 
     .cta-box p {
-        color: #cccccc;
-        font-size: 14px;
+        color: #e0e0e0;
+        font-size: 15px;
         margin-bottom: 25px;
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
     }
 
     .cta-btn {
         display: inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        background: #d4af37;
         color: #000;
         padding: 14px 35px;
         border-radius: 30px;
@@ -272,9 +281,9 @@
     }
 
     .cta-btn:hover {
+        background: #ffffff;
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(212,175,55,0.4);
-        background: linear-gradient(135deg, #f4d06f, #d4af37);
     }
 
     /* Footer Architecture */
@@ -363,6 +372,8 @@
         .article-hero-content h1 { font-size: 24px; }
         .article-container { padding: 35px 18px 60px; }
         .location-box { padding: 18px 15px; }
+        .cta-box { padding: 30px 18px; }
+        .cta-box h3 { font-size: 22px; }
     }
 
     @media (max-width: 480px) {
@@ -617,12 +628,12 @@
         <p>A restored 1920s vintage townhouse with retro Bengali decor, courtyard verandas, antique furniture, and classic 20th-century Calcuttan nostalgia. Shooting requires prior paid permission from management.</p>
     </div>
 
-    <!-- CTA Box Area -->
+    <!-- EXACT HOOGHLY PAGE CTA BOX -->
     <div class="cta-box">
-        <h3>Plan Your Kolkata Pre-Wedding Shoot With Us!</h3>
-        <p>At Picxlart, we specialize in cinematic storytelling and natural candid romance. Contact us today to customize your pre-wedding concept and itinerary.</p>
-        <a href="https://wa.me/917003521139?text=Hello%20Picxlart!%20I%20want%20to%20plan%20a%20pre-wedding%20shoot%20in%20Kolkata." target="_blank" class="cta-btn">
-            <i class="fab fa-whatsapp"></i> Chat With Our Team
+        <h3>Ready to Capture Your Love Story?</h3>
+        <p>At Picxlart, we turn your romantic moments into cinematic visual stories. Based in Hooghly, we serve across Kolkata, West Bengal, and Destination Weddings Pan-India.</p>
+        <a href="https://wa.me/917003521139?text=Hello%20Picxlart!%20I%20read%20your%20blog%20and%20want%20to%20plan%20a%20pre-wedding%20shoot." target="_blank" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> BOOK YOUR PRE-WEDDING SHOOT
         </a>
     </div>
 
