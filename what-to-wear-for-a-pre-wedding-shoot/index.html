@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What To Wear For a Pre Wedding Shoot: 15 Perfect Outfit Ideas | Picxlart Blog</title>
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="../favicon.png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
         user-select:none;
     }
 
-    /* Top Navbar Layout & Styling */
+    /* Top Navbar Layout & Styling - Fixed Height & Padding */
     .navbar{
         position:fixed;
         top:0;
@@ -50,17 +50,18 @@
         display:flex;
         justify-content:space-between;
         align-items:center;
-        padding:8px 40px;
+        padding:12px 40px;
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
+        min-height: 76px;
     }
 
-    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img{ height:55px; width:auto; display:block; transition: transform 0.3s ease; }
     .nav-logo img:hover { transform: scale(1.03); }
-    .nav-logo a{ -webkit-tap-highlight-color: transparent; }
+    .nav-logo a{ -webkit-tap-highlight-color: transparent; text-decoration:none; }
         
-    .nav-menu{ display:flex; gap:35px; }
+    .nav-menu{ display:flex; gap:35px; align-items:center; }
 
     .nav-menu a{
         color:#e0e0e0;
@@ -85,7 +86,7 @@
     .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
     .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
 
-    .nav-social{ display:flex; gap:20px; }
+    .nav-social{ display:flex; gap:20px; align-items:center; }
     .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
 
@@ -300,11 +301,12 @@
     /* MOBILE MEDIA QUERIES */
     @media(max-width:768px){
         .navbar{
-            padding:12px 24px;
+            padding:12px 20px;
             flex-wrap: nowrap;
+            min-height: 60px;
         }
 
-        .nav-logo img{ height:45px; }
+        .nav-logo img{ height:40px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
 
@@ -362,18 +364,18 @@
 <div class="navbar">
    <div class="nav-logo">
         <a href="/" id="logoLink">
-            <img src="logo.png" alt="Logo">
+            <img src="../logo.png" alt="Picxlart Photography Logo">
         </a>
     </div>
 
     <div class="nav-menu">
         <a href="/">Home</a>
         <a href="/#gallery">Gallery</a>
-        <a href="films">Films</a>
-        <a href="packages">Packages</a>
-        <a href="reviews">Reviews</a>
+        <a href="../films">Films</a>
+        <a href="../packages">Packages</a>
+        <a href="../reviews">Reviews</a>
         <a href="/#why">Why Picxlart</a>
-        <a href="blog" class="active">Blog</a>
+        <a href="../blog" class="active">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -523,24 +525,24 @@
 <!-- Footer Architecture -->
 <footer>
     <div style="margin-bottom:25px;">
-        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
+        <a href="../csr-initiative" class="footer-btn-premium">CSR Initiative</a>
     </div>
 
     <div class="footer-links-container">
         <div>
-            <a href="faq">FAQ</a>
+            <a href="../faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment">Online Payment</a>
+            <a href="../payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy">Privacy Policy</a>
+            <a href="../privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms">Payment Terms</a>
+            <a href="../payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms">Terms & Conditions</a>
+            <a href="../terms">Terms & Conditions</a>
             <span class="footer-divider">|</span>
-            <a href="blog">Blog & Stories</a>
+            <a href="../blog">Blog & Stories</a>
         </div>
     </div>
 
@@ -556,7 +558,6 @@
 <script>
 // Mobile Navigation & Smart Image Extension Auto-Recovery
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Drawer
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var navMenu = document.querySelector('.nav-menu');
 
