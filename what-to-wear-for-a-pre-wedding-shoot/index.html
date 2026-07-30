@@ -106,7 +106,7 @@
         position: relative;
         min-height: 480px;
         background-color: #1a1a1a;
-        background-image: url('what-to-wear-blog-hero.jpg');
+        background-image: url('what-to-wear-blog-hero.jpg?v=1.0');
         background-size: 130% auto;
         background-position: center 85%;
         display: flex;
@@ -436,7 +436,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-1.jpg" alt="Pre Wedding Shoot Couple Outfit Coordination Guide" data-altpath="../what-to-wear-outfit-guide-1.jpg">
+        <img src="what-to-wear-outfit-guide-1.jpg?v=1.0" alt="Pre Wedding Shoot Couple Outfit Coordination Guide">
     </div>
 
     <!-- Point 4 -->
@@ -464,7 +464,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-2.jpg" alt="Pre Wedding Photoshoot Style Tips" data-altpath="../what-to-wear-outfit-guide-2.jpg">
+        <img src="what-to-wear-outfit-guide-2.jpg?v=1.0" alt="Pre Wedding Photoshoot Style Tips">
     </div>
 
     <!-- Point 8 -->
@@ -492,7 +492,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-3.jpg" alt="Pre Wedding Accessories and Shoes Styling Guide" data-altpath="../what-to-wear-outfit-guide-3.jpg">
+        <img src="what-to-wear-outfit-guide-3.jpg?v=1.0" alt="Pre Wedding Accessories and Shoes Styling Guide">
     </div>
 
     <!-- Point 12 -->
@@ -564,7 +564,7 @@
 </footer>
 
 <script>
-// Mobile Navigation & Smart Multi-Path Fallback Script
+// Mobile Navigation Script
 document.addEventListener('DOMContentLoaded', function() {
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var navMenu = document.querySelector('.nav-menu');
@@ -584,17 +584,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // Auto Image Fallback for Mobile View
-    var imgs = document.querySelectorAll('.article-img-frame img');
-    imgs.forEach(function(img) {
-        img.onerror = function() {
-            var altPath = img.getAttribute('data-altpath');
-            if (altPath && img.src !== altPath) {
-                img.src = altPath;
-            }
-        };
-    });
 });
 </script>
 
