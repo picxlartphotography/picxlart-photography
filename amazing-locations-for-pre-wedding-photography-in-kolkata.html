@@ -54,7 +54,6 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:hidden;
     }
 
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
@@ -105,7 +104,8 @@
     .article-hero {
         margin-top: 76px;
         position: relative;
-        height: 420px;
+        min-height: 420px;
+        background-color: #1a1a1a;
         background-image: url('kolkata-blog-hero.jpg');
         background-size: cover;
         background-position: center;
@@ -222,24 +222,28 @@
 
     .location-box ul li strong { color: #ffffff; }
 
-    /* In-Article Image Frame */
+    /* Mobile Responsive In-Article Image Frame Fixes */
     .article-img-frame {
         width: 100%;
+        max-width: 100%;
         margin: 25px 0 35px;
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.3);
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         background: #1a1a1a;
+        display: block;
     }
 
     .article-img-frame img {
         width: 100%;
+        max-width: 100%;
         height: auto;
         display: block;
+        object-fit: cover;
     }
 
-    /* EXACT HOOGHLY PAGE CTA BOX & BUTTON STYLING */
+    /* CTA Box Styling */
     .cta-box {
         background: rgba(20, 20, 20, 0.6);
         border: 1px solid #d4af37;
@@ -282,7 +286,7 @@
     }
 
     .cta-btn:hover {
-        background: #d4af37; /* Kept Golden on Hover */
+        background: #d4af37;
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
     }
@@ -316,12 +320,11 @@
     .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* EXACT INDEX.HTML MOBILE MEDIA QUERIES */
+    /* PERFECT MOBILE MEDIA QUERIES */
     @media(max-width:768px){
         .navbar{
             padding:12px 24px;
             flex-wrap: nowrap;
-            overflow: visible !important;
         }
 
         .nav-logo img{ height:45px; }
@@ -369,21 +372,27 @@
 
         .nav-menu a::after { display: none; }
 
-        .article-hero { height: 340px; }
-        .article-hero-content h1 { font-size: 24px; }
-        .article-container { padding: 35px 18px 60px; }
-        .location-box { padding: 18px 15px; }
+        .article-hero { margin-top: 60px; min-height: 280px; padding: 30px 15px; }
+        .article-hero-content h1 { font-size: 22px; }
+        .article-container { padding: 30px 15px 50px; }
+        .location-box { padding: 18px 15px; margin: 20px 0; }
+        .location-box h4 { font-size: 16.5px; }
+        
+        .article-img-frame {
+            margin: 20px 0 25px;
+            border-radius: 8px;
+        }
+
         .cta-box { padding: 30px 18px; }
         .cta-box h3 { font-size: 22px; }
     }
 
     @media (max-width: 480px) {
-        .navbar { padding: 12px 20px; }
+        .navbar { padding: 12px 18px; }
+        .article-container { padding: 20px 12px 40px; }
     }
 </style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -447,7 +456,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-princep-ghat-shoot.jpg" alt="Pre Wedding Shoot at Princep Ghat Kolkata">
+        <img src="kolkata-princep-ghat-shoot.jpg" alt="Pre Wedding Shoot at Princep Ghat Kolkata" loading="lazy">
     </div>
 
     <!-- Location 2 -->
@@ -471,7 +480,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-rabindra-sarobar-shoot.jpg" alt="Pre Wedding Shoot Rabindra Sarobar Lake Kolkata">
+        <img src="kolkata-rabindra-sarobar-shoot.jpg" alt="Pre Wedding Shoot Rabindra Sarobar Lake Kolkata" loading="lazy">
     </div>
 
     <!-- Location 5 -->
@@ -480,7 +489,7 @@
         <p>Spanning 480 acres, Eco Park is a modern outdoor studio featuring replicas of the Seven Wonders of the World (Eiffel Tower, Taj Mahal, etc.), tea garden landscapes, glass bridges, and lakeside walkways. Requires advance booking permission. Drone photography and aerial frames in the Seven Architecture zone deliver grand royal pre-wedding visuals.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-eco-park-shoot.jpg" alt="Pre Wedding Shoot Eco Park New Town Kolkata">
+        <img src="kolkata-eco-park-shoot.jpg" alt="Pre Wedding Shoot Eco Park New Town Kolkata" loading="lazy">
     </div>
 
     <!-- Location 6 -->
@@ -489,7 +498,7 @@
         <p>Nestled beneath Howrah Bridge, Asia's largest wholesale flower market offers thousands of bright yellow marigold garlands and intense street culture for vibrant, artistic documentary-style pre-wedding frames.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-heritage-shoot.jpg" alt="Pre Wedding Shoot Mallick Ghat Flower Market">
+        <img src="kolkata-heritage-shoot.jpg" alt="Pre Wedding Shoot Mallick Ghat Flower Market" loading="lazy">
     </div>
 
     <!-- Location 7 -->
@@ -498,7 +507,7 @@
         <p>Tucked behind Bowbazar, these red-brick Anglo-Indian colonial apartments, green window shutters, and narrow brick alleys exude old-world European charm and retro aesthetic.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-bow-barracks-shoot.jpg" alt="Pre Wedding Shoot Bow Barracks Kolkata">
+        <img src="kolkata-bow-barracks-shoot.jpg" alt="Pre Wedding Shoot Bow Barracks Kolkata" loading="lazy">
     </div>
 
     <!-- Location 8 -->
@@ -507,7 +516,7 @@
         <p>The imposing white Makrana marble palace, sprawling green lawns, reflection pools, and manicured flowerbeds deliver British-era architectural grandeur. Normal entry tickets allow photo shoots; video instruments require prior special permission from the authority.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-victoria-memorial-shoot.jpg" alt="Pre Wedding Shoot Victoria Memorial Kolkata">
+        <img src="kolkata-victoria-memorial-shoot.jpg" alt="Pre Wedding Shoot Victoria Memorial Kolkata" loading="lazy">
     </div>
 
     <!-- Location 9 -->
@@ -520,7 +529,7 @@
         </ul>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-maidan-shoot.jpg" alt="Pre Wedding Shoot Kolkata Maidan">
+        <img src="kolkata-maidan-shoot.jpg" alt="Pre Wedding Shoot Kolkata Maidan" loading="lazy">
     </div>
 
     <!-- Location 10 -->
@@ -575,7 +584,7 @@
         <p>The historic potters' neighborhood along the riverbank where artisan sculptors craft clay idols of gods and goddesses. Offers raw, artistic, and culturally rich storytelling frames. Small nominal token fees are sometimes requested by local artisan committees.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-kumartuli-shoot.jpg" alt="Pre Wedding Shoot Kumartuli Kolkata">
+        <img src="kolkata-kumartuli-shoot.jpg" alt="Pre Wedding Shoot Kumartuli Kolkata" loading="lazy">
     </div>
 
     <!-- Location 18 -->
@@ -584,7 +593,7 @@
         <p>The world's largest second-hand book market. Stacks of old books, vintage coffee houses, yellow taxis, and historic university buildings create a nostalgic setting for intellectual, book-loving couples looking to wrap their love story in literary charm.</p>
     </div>
     <div class="article-img-frame">
-        <img src="kolkata-college-street-shoot.jpg" alt="Pre Wedding Shoot College Street Boi Para Kolkata">
+        <img src="kolkata-college-street-shoot.jpg" alt="Pre Wedding Shoot College Street Boi Para Kolkata" loading="lazy">
     </div>
 
     <!-- Location 19 -->
