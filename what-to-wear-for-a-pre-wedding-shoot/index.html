@@ -100,15 +100,15 @@
         user-select: none;
     }
 
-    /* Article Hero Banner Header - Cropping Top Watermark Text Out */
+    /* Article Hero Banner Header */
     .article-hero {
         margin-top: 76px;
         position: relative;
         min-height: 480px;
         background-color: #1a1a1a;
         background-image: url('what-to-wear-blog-hero.jpg'), url('../what-to-wear-blog-hero.jpg'), url('what-to-wear-blog-hero.JPG');
-        background-size: 130% auto; /* Zoomed in slightly to crop out embedded logo text */
-        background-position: center 85%; /* Focuses strictly on bottom/middle couple area */
+        background-size: 130% auto;
+        background-position: center 85%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -203,7 +203,7 @@
         color: #cccccc;
     }
 
-    /* In-Article Image Frame */
+    /* In-Article Image Frame - Mobile Safe Styling */
     .article-img-frame {
         width: 100%;
         margin: 25px 0 35px;
@@ -564,7 +564,7 @@
 </footer>
 
 <script>
-// Mobile Navigation & Smart Image Extension Auto-Recovery
+// Mobile Navigation & Smart Multi-Path Image Recovery Handler
 document.addEventListener('DOMContentLoaded', function() {
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var navMenu = document.querySelector('.nav-menu');
@@ -585,21 +585,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Auto Image extension recovery
+    // Auto Image Path and Extension recovery for mobile devices
     var imgs = document.querySelectorAll('.article-img-frame img');
     imgs.forEach(function(img) {
         var base = img.getAttribute('data-basename');
         if (!base) return;
 
+        var paths = ['', '../'];
         var formats = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG'];
-        var tryIndex = 0;
+        var pIndex = 0;
+        var fIndex = 0;
 
         img.onerror = function() {
-            tryIndex++;
-            if (tryIndex < formats.length) {
-                img.src = base + formats[tryIndex];
+            fIndex++;
+            if (fIndex >= formats.length) {
+                fIndex = 0;
+                pIndex++;
+            }
+
+            if (pIndex < paths.length) {
+                img.src = paths[pIndex] + base + formats[fIndex];
             } else {
-                img.onerror = null;
+                img.onerror = null; // stop retry loop
             }
         };
     });
