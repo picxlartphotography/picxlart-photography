@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-DLCSJBGXZ6');
 </script>
 
@@ -14,175 +15,189 @@
 <title>25 Amazing Locations For Pre Wedding Photography In Kolkata | Picxlart Blog</title>
 <link rel="icon" type="image/png" href="favicon.png">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
+    /* Global Reset & Base Typography */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
     }
     
-    body {
-        background: #0d0d0d;
-        color: #f5f5f5;
-        overflow-x: hidden;
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
     }
 
-    /* Top Navbar */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 65px;
-        background: #0a0a0a;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-        z-index: 99999;
-        border-bottom: 2px solid #d4af37;
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
     }
 
-    .nav-logo img {
-        height: 42px;
-        width: auto;
-        display: block;
-    }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-logo a{ -webkit-tap-highlight-color: transparent; }
+        
+    .nav-menu{ display:flex; gap:35px; }
 
-    .nav-menu {
-        display: flex;
-        gap: 20px;
-    }
-
-    .nav-menu a {
-        color: #e0e0e0;
-        text-decoration: none;
-        font-weight: 500;
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
         text-transform: uppercase;
         font-size: 13px;
-        transition: 0.3s;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
     }
 
-    .nav-menu a:hover, .nav-menu a.active {
-        color: #d4af37;
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; width: 0; height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
     }
 
-    .nav-social {
-        display: flex;
-        gap: 15px;
-    }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
 
-    .nav-social a {
-        color: #e0e0e0;
-        font-size: 16px;
-    }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
 
     .menu-toggle {
         display: none;
         color: #d4af37;
-        font-size: 24px;
+        font-size: 28px;
+        font-weight: bold;
         cursor: pointer;
+        z-index: 1000000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hero Banner Header */
+    /* Article Hero Banner Header */
     .article-hero {
-        margin-top: 65px;
+        margin-top: 76px;
         position: relative;
-        padding: 40px 15px;
-        background: #1a1a1a url('kolkata-blog-hero.jpg') center/cover no-repeat;
+        height: 420px;
+        background-image: url('kolkata-blog-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        padding: 0 20px;
     }
 
     .article-hero::before {
         content: '';
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.75);
+        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(13,13,13,1) 100%);
         z-index: 1;
     }
 
-    .article-hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
-        margin: 0 auto;
-    }
+    .article-hero-content { position: relative; z-index: 2; max-width: 950px; }
 
     .article-tag {
         background: #d4af37;
         color: #000;
         font-size: 11px;
         font-weight: 700;
-        padding: 4px 12px;
+        padding: 5px 16px;
         border-radius: 20px;
         text-transform: uppercase;
+        letter-spacing: 1.5px;
         display: inline-block;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
     }
 
     .article-hero-content h1 {
         color: #ffffff;
-        font-size: 26px;
+        font-size: 36px;
         font-weight: 600;
         line-height: 1.35;
-        margin-bottom: 12px;
+        margin-bottom: 18px;
     }
 
     .article-meta {
-        font-size: 12px;
+        font-size: 13px;
         color: #cccccc;
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         flex-wrap: wrap;
     }
 
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
     .article-meta i { color: #d4af37; }
 
-    /* Main Content Container */
+    /* Main Article Content Container */
     .article-container {
-        max-width: 850px;
+        max-width: 880px;
         margin: 0 auto;
-        padding: 30px 15px 60px;
-        line-height: 1.8;
-        font-size: 15px;
+        padding: 50px 20px 80px;
+        line-height: 1.85;
+        font-size: 15.5px;
         color: #dddddd;
     }
 
-    .article-container p {
-        margin-bottom: 18px;
-        font-weight: 300;
-    }
+    .article-container p { margin-bottom: 22px; font-weight: 300; }
 
-    /* Spot Cards */
-    .location-box {
-        background: #161616;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        border-left: 4px solid #d4af37;
-        padding: 16px 18px;
-        border-radius: 6px;
-        margin: 18px 0;
-    }
-
-    .location-box h3 {
+    .article-container h2 {
         color: #d4af37;
-        font-size: 17px;
+        font-size: 25px;
+        font-weight: 600;
+        margin: 40px 0 18px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .location-box {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-left: 4px solid #d4af37;
+        padding: 22px 25px;
+        border-radius: 8px;
+        margin: 25px 0;
+    }
+
+    .location-box h4 {
+        color: #d4af37;
+        font-size: 18.5px;
         margin-bottom: 8px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px;
     }
 
     .location-badge {
-        font-size: 10px;
+        display: inline-block;
+        font-size: 11px;
         font-weight: 600;
         padding: 2px 8px;
         border-radius: 4px;
+        margin-left: 8px;
         text-transform: uppercase;
     }
 
@@ -190,13 +205,27 @@
     .badge-free { background: #5cb85c; color: #fff; }
     .badge-hybrid { background: #f0ad4e; color: #000; }
 
+    .location-box ul {
+        list-style: none;
+        margin-top: 10px;
+    }
+
+    .location-box ul li {
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #bbbbbb;
+    }
+
+    .location-box ul li strong { color: #ffffff; }
+
+    /* In-Article Image Frame */
     .article-img-frame {
         width: 100%;
-        margin: 25px 0;
-        border-radius: 8px;
+        margin: 35px 0;
+        border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(212, 175, 55, 0.3);
-        background: #1a1a1a;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     .article-img-frame img {
@@ -205,114 +234,155 @@
         display: block;
     }
 
-    /* CTA Box */
+    /* CTA Box Area */
     .cta-box {
-        background: #141414;
+        background: linear-gradient(135deg, rgba(30,30,30,0.9), rgba(15,15,15,0.95));
         border: 1px solid #d4af37;
-        padding: 30px 20px;
-        border-radius: 12px;
+        padding: 40px 30px;
+        border-radius: 16px;
         text-align: center;
-        margin-top: 40px;
+        margin-top: 50px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
     }
 
     .cta-box h3 {
         color: #d4af37;
-        font-size: 20px;
-        margin-bottom: 10px;
+        font-size: 24px;
+        margin-bottom: 12px;
     }
 
     .cta-box p {
         color: #cccccc;
         font-size: 14px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .cta-btn {
         display: inline-block;
-        background: #d4af37;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
         color: #000;
-        padding: 10px 25px;
-        border-radius: 25px;
+        padding: 14px 35px;
+        border-radius: 30px;
         font-weight: 700;
         text-decoration: none;
         text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
     }
 
-    /* Footer */
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+    }
+
+    /* Footer Architecture */
     footer {
         text-align: center;
-        padding: 35px 15px;
+        padding: 50px 20px;
         background: #080808;
         color: #777777;
-        font-size: 12px;
+        font-size: 13px;
         border-top: 1px solid #1a1a1a;
     }
 
     .footer-btn-premium {
-        display: inline-block;
-        background: #d4af37;
-        color: black;
-        padding: 8px 24px;
-        border-radius: 20px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 12px;
+        display:inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color:black;
+        padding:12px 35px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        letter-spacing: 1px;
         text-transform: uppercase;
-        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
     }
 
-    .footer-links-container {
-        margin-bottom: 15px;
-        line-height: 2;
-    }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
+    .footer-divider { color:#333; margin: 0 8px; }
 
-    .footer-links-container a {
-        color: #d4af37;
-        text-decoration: none;
-    }
+    /* EXACT INDEX.HTML MOBILE MEDIA QUERIES */
+    @media(max-width:768px){
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
 
-    /* Mobile Clean Rules */
-    @media (max-width: 768px) {
+        .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
-        .nav-social { display: none; }
+        .nav-social { display: none !important; }
 
         .nav-menu {
-            display: none;
-            position: absolute;
-            top: 65px;
+            position: fixed;
+            top: 60px; 
             left: 0;
             width: 100%;
-            background: #0a0a0a;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
-            padding: 15px 0;
-            border-bottom: 2px solid #d4af37;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%); 
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
-        .nav-menu.show {
-            display: flex;
-        }
+        .nav-menu.active { transform: translateY(0); }
 
         .nav-menu a {
-            padding: 10px;
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
             text-align: center;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .article-hero-content h1 { font-size: 20px; }
-        .location-box h3 { font-size: 15px; }
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        .nav-menu a::after { display: none; }
+
+        .article-hero { height: 340px; }
+        .article-hero-content h1 { font-size: 24px; }
+        .article-container { padding: 35px 18px 60px; }
+        .location-box { padding: 18px 15px; }
+    }
+
+    @media (max-width: 480px) {
+        .navbar { padding: 12px 20px; }
     }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="navbar">
-    <div class="nav-logo">
-        <a href="/"><img src="logo.png" alt="Picxlart Logo"></a>
+   <div class="nav-logo">
+        <a href="/" id="logoLink">
+            <img src="logo.png" alt="Logo">
+        </a>
     </div>
 
-    <div class="nav-menu" id="mobileNav">
+    <div class="nav-menu">
         <a href="/">Home</a>
         <a href="/#gallery">Gallery</a>
         <a href="films">Films</a>
@@ -328,7 +398,7 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
 <div class="article-hero">
@@ -337,7 +407,7 @@
         <h1>25 Amazing Locations For Pre Wedding Photography In Kolkata</h1>
         <div class="article-meta">
             <span><i class="far fa-user"></i> By Picxlart Team</span>
-            <span><i class="far fa-calendar-alt"></i> June 2026</span>
+            <span><i class="far fa-calendar-alt"></i> July 2026</span>
             <span><i class="far fa-clock"></i> 10 Min Read</span>
         </div>
     </div>
@@ -349,29 +419,35 @@
 
     <p>Whether you dream of a romantic sunset ride on a traditional wooden boat or a vintage retro tram ride, our team at <strong>Picxlart Photography</strong> has put together this ultimate guide featuring <strong>all 25 top pre-wedding photoshoot locations in Kolkata</strong>.</p>
 
+    <h2>Part 1: Iconic Heritage, Riverfronts & Public Landmarks</h2>
+
     <div class="location-box">
-        <h3>1. Princep Ghat & River Ganges <span class="location-badge badge-free">Free Outdoor Spot</span></h3>
-        <p>The Corinthian white pillars of Princep Ghat with the majestic Vidyasagar Setu in the backdrop offer Kolkata's most iconic view. Renting a decorated wooden boat on the river Ganges during golden hour creates magical couple portraits.</p>
+        <h4>1. Princep Ghat & River Ganges <span class="location-badge badge-free">Free Outdoor Spot</span></h4>
+        <p>The Corinthian white pillars of Princep Ghat set against the iconic Vidyasagar Setu suspension bridge offer Kolkata's most romantic backdrop. Hiring a traditional wooden boat on the Ganges at sunset unlocks breathtaking golden-hour couple silhouettes.</p>
+        <ul>
+            <li><strong>Best Timing:</strong> Early morning (6:00 AM – 8:00 AM) or Golden Hour Sunset (4:30 PM – 6:00 PM).</li>
+            <li><strong>Ideal Vibe:</strong> Romantic, traditional saree & dhoti, flowing western gowns.</li>
+        </ul>
     </div>
 
     <div class="location-box">
-        <h3>2. Smaranika Tram Museum <span class="location-badge badge-paid">Heritage Vibe / Entry Fee</span></h3>
-        <p>Located near Maidan, this restored vintage tram café lets couples relive classic Calcuttan romance. Dressing up in a traditional Dhuti-Panjabi and Chapa saree brings out authentic nostalgic vibes.</p>
+        <h4>2. Smaranika Tram Museum <span class="location-badge badge-paid">Heritage Vibe / Entry Fee</span></h4>
+        <p>Located near CTC Maidan, this air-conditioned vintage tram car and museum allows couples to capture classic 1970s Calcuttan romance among wooden seats, vintage tickets, and nostalgic interiors.</p>
     </div>
 
     <div class="location-box">
-        <h3>3. Acharya Jagadish Chandra Bose Botanical Garden <span class="location-badge badge-paid">Lush Greenery</span></h3>
-        <p>Spanning over 270 acres in Shibpur, it offers giant lily pads, winding shaded pathways, and the world-famous Great Banyan Tree for natural, tranquil frames.</p>
+        <h4>3. Acharya Jagadish Chandra Bose Botanical Garden <span class="location-badge badge-paid">Lush Greenery</span></h4>
+        <p>Spanning over 270 acres in Shibpur (Howrah), this botanical paradise features giant Amazonian lily pads, arched mahogany avenues, and the world-famous Great Banyan Tree for peaceful, nature-centric photography.</p>
     </div>
 
     <div class="location-box">
-        <h3>4. Rabindra Sarobar Lake <span class="location-badge badge-free">Nature / Serene</span></h3>
-        <p>A calm artificial lake in South Kolkata surrounded by dense greenery, stone paved walkways, and vintage lamp posts. Perfect for early morning couple walks and natural frames.</p>
+        <h4>4. Rabindra Sarobar Lake <span class="location-badge badge-free">Nature / Serene</span></h4>
+        <p>A tranquil artificial lake in South Kolkata surrounded by thick green canopies, stone-paved walkways, iron bridges, and vintage lamp posts. Perfect for casual morning couple portraits.</p>
     </div>
 
     <div class="location-box">
-        <h3>5. Eco Park & Eco Island <span class="location-badge badge-paid">Paid Entry</span></h3>
-        <p>Featuring replicas of the Seven Wonders of the World, tea gardens, lakeside bridges, and colorful wall art—allowing multiple themes in a single shoot location.</p>
+        <h4>5. Eco Park & Eco Island (New Town) <span class="location-badge badge-paid">Paid Entry</span></h4>
+        <p>Spanning 480 acres, Eco Park is a modern outdoor studio featuring replicas of the Seven Wonders of the World, tea garden landscapes, glass bridges, and lakeside walkways—allowing multiple themes in a single trip.</p>
     </div>
 
     <div class="article-img-frame">
@@ -379,16 +455,182 @@
     </div>
 
     <div class="location-box">
-        <h3>6. Mallick Ghat Flower Market <span class="location-badge badge-free">Vibrant Street Vibe</span></h3>
-        <p>One of Asia’s largest flower markets located near Howrah Bridge. Mounds of bright yellow marigolds and sunflowers provide a unique, lively, and cinematic street photography setting.</p>
+        <h4>6. Mallick Ghat Flower Market <span class="location-badge badge-free">Vibrant Street Vibe</span></h4>
+        <p>Nestled beneath Howrah Bridge, Asia's largest wholesale flower market offers thousands of bright yellow marigold garlands and intense street culture for vibrant, artistic documentary-style pre-wedding frames.</p>
     </div>
 
     <div class="location-box">
-        <h3>7. Bow Barracks <span class="location-badge badge-free">Vintage European Vibe</span></h3>
-        <p>Tucked behind Bowbazar, the red-brick Anglo-Indian colonial buildings and narrow alleys exude cozy retro charm and unique architectural frames.</p>
+        <h4>7. Bow Barracks <span class="location-badge badge-free">Vintage European Vibe</span></h4>
+        <p>Tucked behind Bowbazar, these red-brick Anglo-Indian colonial apartments, green window shutters, and narrow brick alleys exude old-world European charm and retro aesthetic.</p>
     </div>
 
     <div class="location-box">
-        <h3>8. Victoria Memorial <span class="location-badge badge-hybrid">Ticketed Entry</span></h3>
-        <p>The white marble monument, vast manicured lawns, and reflections in surrounding ponds bring British-era architectural elegance and grand royal aesthetic.</p>
+        <h4>8. Victoria Memorial Grounds <span class="location-badge badge-hybrid">Ticketed Entry</span></h4>
+        <p>The imposing white Makrana marble palace, sprawling green lawns, reflection pools, and manicured flowerbeds deliver British-era architectural grandeur and royal elegance.</p>
     </div>
+
+    <div class="location-box">
+        <h4>9. Kolkata Maidan <span class="location-badge badge-free">Open Grasslands</span></h4>
+        <p>Vast green meadows with grazing horses, vintage tram lines cutting through, and soft misty morning light—unbeatable for natural, airy, and romantic candid portraits.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>10. South Park Street Cemetery <span class="location-badge badge-hybrid">Gothic / Heritage</span></h4>
+        <p>For couples who appreciate artistic Gothic architecture, moss-covered stone obelisks, towering ancient trees, and dramatic shadowy light play right in Park Street.</p>
+    </div>
+
+    <h2>Part 2: Cultural Royal Palaces & Literary Nostalgia</h2>
+
+    <div class="location-box">
+        <h4>11. Jorasanko Thakur Bari <span class="location-badge badge-paid">Cultural Heritage</span></h4>
+        <p>The ancestral mansion of Nobel Laureate Rabindranath Tagore. Featuring classic red-brick verandahs, grand courtyards, and traditional aristocratic Bengali heritage.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>12. The Rajbari Bawali <span class="location-badge badge-paid">Luxury Heritage Resort</span></h4>
+        <p>A beautifully restored 300-year-old zamindari palace located near Budge Budge. Grand brick arches, vintage courtyards, antique furniture, and royal pond-side setups make it Kolkata's top luxury pre-wedding resort.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>13. Howrah Bridge (Rabindra Setu) <span class="location-badge badge-free">Iconic Landmark</span></h4>
+        <p>The iconic steel cantilever bridge spanning the Hooghly River. Shots taken from nearby ghats or ferry decks capture the quintessential soul of Kolkata.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>14. Indian Museum Grounds <span class="location-badge badge-paid">Historic Corridor</span></h4>
+        <p>The oldest museum in India features grand white Ionic columns, high arched corridors, and quiet inner quadrangles ideal for architectural fashion portraiture.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>15. Marble Palace (North Kolkata) <span class="location-badge badge-free">Special Permission Required</span></h4>
+        <p>A 19th-century palatial mansion in Chorbagan adorned with Italian marble walls, antique sculptures, Victorian chandeliers, and private manicured gardens.</p>
+    </div>
+
+    <div class="article-img-frame">
+        <img src="kolkata-resort-shoot.jpg" alt="Luxury Pre Wedding Resort Shoot Kolkata">
+    </div>
+
+    <h2>Part 3: Artistic Streets, Sacred Spaces & Modern Horizons</h2>
+
+    <div class="location-box">
+        <h4>16. St. Paul’s Cathedral <span class="location-badge badge-free">Indo-Gothic Heritage</span></h4>
+        <p>An architectural marvel featuring Indo-Gothic spires, stained glass windows, and quiet green surroundings right adjacent to Victoria Memorial.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>17. Kumartuli <span class="location-badge badge-free">Artistic Street</span></h4>
+        <p>The historic potters' neighborhood along the riverbank where artisan sculptors craft clay idols of gods and goddesses. Offers raw, artistic, and culturally rich storytelling frames.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>18. College Street (Boi Para) <span class="location-badge badge-free">Literary Nostalgia</span></h4>
+        <p>The world's largest second-hand book market. Stacks of old books, vintage coffee houses, yellow taxis, and historic university buildings create a nostalgic setting for intellectual, book-loving couples.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>19. Sovabazar Rajbari <span class="location-badge badge-hybrid">Traditional Thakur Dalan</span></h4>
+        <p>Famous for its magnificent traditional open courtyard (Thakur Dalan), classic colonnades, and royal heritage—perfect for traditional silk saree and dhoti-panjabi portraits.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>20. Nicco Park <span class="location-badge badge-paid">Fun & Playful Vibe</span></h4>
+        <p>Ideal for energetic, fun-loving couples wanting joyful candid photos on amusement rides, merry-go-rounds, and vibrant lakeside backgrounds.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>21. Vidyasagar Setu Lookout (Second Hooghly Bridge) <span class="location-badge badge-free">Modern Skyline</span></h4>
+        <p>Offers dramatic modern cable-stayed bridge architecture and panoramic sunset river views across the Kolkata-Howrah skyline.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>22. Birla Mandir <span class="location-badge badge-free">Marble Architecture</span></h4>
+        <p>An intricately carved white Rajasthani-style marble temple delivering divine elegance and pure traditional aesthetic.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>23. Belur Math <span class="location-badge badge-free">Peaceful Riverside</span></h4>
+        <p>Situated on the west bank of Hooghly river, featuring peaceful green lawns, spiritual architecture, and calm riverbank seating.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>24. Chintamoni Kar Bird Sanctuary (Narendrapur) <span class="location-badge badge-paid">Dense Forest Trail</span></h4>
+        <p>A lush green bird sanctuary in South Kolkata filled with tall bamboo groves, orchard trails, and quiet forest paths for nature lovers.</p>
+    </div>
+
+    <div class="location-box">
+        <h4>25. Calcutta Bungalow (Shyambazar) <span class="location-badge badge-paid">Restored 1920s Heritage Townhouse</span></h4>
+        <p>A restored 1920s vintage townhouse with retro Bengali decor, courtyard verandas, antique furniture, and classic 20th-century Calcuttan nostalgia.</p>
+    </div>
+
+    <div class="cta-box">
+        <h3>Plan Your Kolkata Pre-Wedding Shoot With Us!</h3>
+        <p>At Picxlart, we specialize in cinematic storytelling and natural candid romance. Contact us today to customize your pre-wedding concept and itinerary.</p>
+        <a href="https://wa.me/917003521139?text=Hello%20Picxlart!%20I%20want%20to%20plan%20a%20pre-wedding%20shoot%20in%20Kolkata." target="_blank" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> Chat With Our Team
+        </a>
+    </div>
+
+</article>
+
+<footer>
+    <div style="margin-bottom:25px;">
+        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
+    </div>
+
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+// Mobile Navigation Script (Exact Home Page Logic)
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+// Security Protections
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
+
+</body>
+</html>
