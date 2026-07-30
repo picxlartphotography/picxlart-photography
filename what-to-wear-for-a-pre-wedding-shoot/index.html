@@ -38,7 +38,7 @@
         user-select:none;
     }
 
-    /* Top Navbar Layout & Styling - Fixed Height & Padding */
+    /* Top Navbar Layout & Styling */
     .navbar{
         position:fixed;
         top:0;
@@ -100,15 +100,15 @@
         user-select: none;
     }
 
-    /* Article Hero Banner Header */
+    /* Article Hero Banner Header - Adjusted Position to Highlight Couple */
     .article-hero {
         margin-top: 76px;
         position: relative;
-        min-height: 420px;
+        min-height: 480px;
         background-color: #1a1a1a;
-        background-image: url('what-to-wear-blog-hero.jpg');
+        background-image: url('what-to-wear-blog-hero.jpg'), url('../what-to-wear-blog-hero.jpg'), url('what-to-wear-blog-hero.JPG');
         background-size: cover;
-        background-position: center;
+        background-position: center bottom; /* Shifted to reveal couple */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -120,7 +120,7 @@
         content: '';
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(13,13,13,1) 100%);
+        background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(13,13,13,0.95) 100%);
         z-index: 1;
     }
 
@@ -145,6 +145,7 @@
         font-weight: 600;
         line-height: 1.35;
         margin-bottom: 18px;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.8);
     }
 
     .article-meta {
@@ -349,7 +350,7 @@
             padding-bottom: 22px;
         }
 
-        .article-hero { height: 340px; min-height: 340px; margin-top: 60px; }
+        .article-hero { height: 360px; min-height: 360px; margin-top: 60px; background-position: center 30%; }
         .article-hero-content h1 { font-size: 24px; }
         .article-container { padding: 35px 18px 60px; }
         .info-card { padding: 18px 15px; }
