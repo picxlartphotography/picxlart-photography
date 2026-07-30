@@ -100,7 +100,7 @@
         user-select: none;
     }
 
-    /* Article Hero Banner Header - Desktop Framing */
+    /* Article Hero Banner Header - Shifted Image Upwards */
     .article-hero {
         margin-top: 76px;
         position: relative;
@@ -108,7 +108,7 @@
         background-color: #1a1a1a;
         background-image: url('what-to-wear-blog-hero.jpg'), url('../what-to-wear-blog-hero.jpg'), url('what-to-wear-blog-hero.JPG');
         background-size: cover;
-        background-position: center 60%;
+        background-position: center 15%; /* Image shifted upwards */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -299,7 +299,7 @@
     .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* PERFECT MOBILE MEDIA QUERIES - Fixes Logo overlapping issue */
+    /* MOBILE MEDIA QUERIES */
     @media(max-width:768px){
         .navbar{
             padding:10px 18px;
@@ -350,13 +350,13 @@
             padding-bottom: 22px;
         }
 
-        /* Banner Shift Upward to Clear Logo Overlap */
+        /* Mobile Image Shifted High Upward */
         .article-hero { 
             margin-top: 60px; 
             height: 390px; 
             min-height: 390px; 
             padding: 50px 15px 20px;
-            background-position: center 25%; /* Shifted Image Higher Up */
+            background-position: center 10%; /* Image shifted way up */
         }
 
         .article-hero-content h1 { font-size: 21px; margin-bottom: 12px; }
