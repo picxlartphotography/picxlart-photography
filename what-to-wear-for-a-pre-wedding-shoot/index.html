@@ -436,7 +436,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-1.jpg" alt="Pre Wedding Shoot Couple Outfit Coordination Guide">
+        <img src="what-to-wear-outfit-guide-1.jpg" alt="Pre Wedding Shoot Couple Outfit Coordination Guide" data-altpath="../what-to-wear-outfit-guide-1.jpg">
     </div>
 
     <!-- Point 4 -->
@@ -464,7 +464,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-2.jpg" alt="Pre Wedding Photoshoot Style Tips">
+        <img src="what-to-wear-outfit-guide-2.jpg" alt="Pre Wedding Photoshoot Style Tips" data-altpath="../what-to-wear-outfit-guide-2.jpg">
     </div>
 
     <!-- Point 8 -->
@@ -492,7 +492,7 @@
     </div>
 
     <div class="article-img-frame">
-        <img src="what-to-wear-outfit-guide-3.jpg" alt="Pre Wedding Accessories and Shoes Styling Guide">
+        <img src="what-to-wear-outfit-guide-3.jpg" alt="Pre Wedding Accessories and Shoes Styling Guide" data-altpath="../what-to-wear-outfit-guide-3.jpg">
     </div>
 
     <!-- Point 12 -->
@@ -564,7 +564,7 @@
 </footer>
 
 <script>
-// Mobile Navigation Script
+// Mobile Navigation & Smart Multi-Path Fallback Script
 document.addEventListener('DOMContentLoaded', function() {
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var navMenu = document.querySelector('.nav-menu');
@@ -584,6 +584,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Auto Image Fallback for Mobile View
+    var imgs = document.querySelectorAll('.article-img-frame img');
+    imgs.forEach(function(img) {
+        img.onerror = function() {
+            var altPath = img.getAttribute('data-altpath');
+            if (altPath && img.src !== altPath) {
+                img.src = altPath;
+            }
+        };
+    });
 });
 </script>
 
