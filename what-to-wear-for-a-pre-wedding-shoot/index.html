@@ -100,7 +100,7 @@
         user-select: none;
     }
 
-    /* Article Hero Banner Header - Perfect Framing Focus */
+    /* Article Hero Banner Header */
     .article-hero {
         margin-top: 76px;
         position: relative;
@@ -108,7 +108,7 @@
         background-color: #1a1a1a;
         background-image: url('what-to-wear-blog-hero.jpg'), url('../what-to-wear-blog-hero.jpg'), url('what-to-wear-blog-hero.JPG');
         background-size: cover;
-        background-position: center 70%; /* Perfect Vertical Framing Alignment */
+        background-position: center 70%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -299,7 +299,7 @@
     .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* MOBILE MEDIA QUERIES */
+    /* PERFECT MOBILE MEDIA QUERIES - Adjusted to avoid Logo overlapping */
     @media(max-width:768px){
         .navbar{
             padding:12px 20px;
@@ -350,9 +350,17 @@
             padding-bottom: 22px;
         }
 
-        .article-hero { height: 380px; min-height: 380px; margin-top: 60px; background-position: center 50%; }
-        .article-hero-content h1 { font-size: 24px; }
-        .article-container { padding: 35px 18px 60px; }
+        /* Banner adjustment for mobile */
+        .article-hero { 
+            margin-top: 60px; 
+            height: 380px; 
+            min-height: 380px; 
+            padding: 40px 15px 20px;
+            background-position: center 65%; 
+        }
+
+        .article-hero-content h1 { font-size: 22px; margin-bottom: 12px; }
+        .article-container { padding: 30px 18px 60px; }
         .info-card { padding: 18px 15px; }
     }
 </style>
