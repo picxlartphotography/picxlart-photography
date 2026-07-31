@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Corporate Photography | Picxlart</title>
@@ -45,7 +55,6 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:hidden;
     }
 
     .nav-logo img{
@@ -61,6 +70,7 @@
     .nav-menu{
         display:flex;
         gap:35px;
+        align-items: center;
     }
 
     .nav-menu a{
@@ -86,11 +96,11 @@
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after {
+    .nav-menu a:hover::after, .nav-menu a.active::after {
         width: 100%;
     }
 
-    .nav-menu a:hover{
+    .nav-menu a:hover, .nav-menu a.active{
         color:#d4af37;
         text-shadow:0 0 10px rgba(212,175,55,.3);
     }
@@ -216,6 +226,21 @@
         border-top: 1px solid #1a1a1a;
     }
 
+    .footer-btn-premium {
+        display:inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color:black;
+        padding:12px 35px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+
     .footer-links-container {
         margin-bottom:25px; 
         line-height: 2.2;
@@ -242,7 +267,6 @@
         .navbar{
             padding:12px 24px;
             flex-wrap: nowrap;
-            overflow: visible !important;
         }
 
         .nav-logo img{
@@ -292,14 +316,15 @@
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
-        
+
+        /* ❌ REMOVE Underline Effect on Mobile ❌ */
+        .nav-menu a::after {
+            display: none !important; 
+        }
+
         .nav-menu a:last-child {
             border-bottom: none;
             padding-bottom: 22px;
-        }
-
-        .nav-menu a::after {
-            display: none; 
         }
     }
 </style>
@@ -310,19 +335,19 @@
 <!-- Header Navigation Bar Architecture -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Logo">
         </a>
     </div>
 
-    <!-- Films সহ সম্পূর্ণ নেভিগেশন মেনু -->
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html">Films</a>
-        <a href="packages.html">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -331,7 +356,6 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- Mobile Navigation Toggle Button -->
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
@@ -360,22 +384,33 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 
 <!-- Footer Enterprise Framework -->
 <footer>
+    <div style="margin-bottom:25px;">
+        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
+    </div>
+
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
-    <p style="margin-top:20px;">
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
         © 2026 Picxlart Photography & Events Co. All Rights Reserved.
     </p>
 </footer>
@@ -418,7 +453,6 @@ navLinks.forEach(link => {
     });
 });
 
-// Security Controls
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
