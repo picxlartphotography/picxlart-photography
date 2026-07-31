@@ -92,11 +92,11 @@
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after {
+    .nav-menu a:hover::after, .nav-menu a.active::after {
         width: 100%;
     }
 
-    .nav-menu a:hover{
+    .nav-menu a:hover, .nav-menu a.active{
         color:#d4af37;
         text-shadow:0 0 10px rgba(212,175,55,.3);
     }
@@ -125,6 +125,7 @@
         font-weight: bold;
         cursor: pointer;
         z-index: 1000000;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Top Hero Header Section */
@@ -482,6 +483,21 @@
         border-top: 1px solid #1a1a1a;
     }
 
+    .footer-btn-premium {
+        display:inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color:black;
+        padding:12px 35px;
+        border-radius:30px;
+        text-decoration:none;
+        font-weight:700;
+        font-size:14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+
     .footer-links-container {
         margin-bottom:25px; 
         line-height: 2.2;
@@ -491,6 +507,11 @@
         color:#d4af37; 
         text-decoration:none;
         font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links-container a:hover {
+        color: #ffffff;
     }
 
     .footer-divider {
@@ -536,6 +557,11 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
+        /* ❌ REMOVE Underline Effect on Mobile ❌ */
+        .nav-menu a::after {
+            display: none !important;
+        }
+
         .films-slider-wrapper { padding: 0 10px; }
         .video-card { flex: 0 0 85%; min-width: 250px; }
 
@@ -565,18 +591,19 @@
 <!-- Top Navigation Bar -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Picxlart Logo">
         </a>
     </div>
 
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html" style="color:#d4af37;">Films</a>
-        <a href="packages.html">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films" class="active">Films</a>
+        <a href="packages">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -833,19 +860,25 @@
 
 <!-- Footer -->
 <footer>
+    <div style="margin-bottom:25px;">
+        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
+    </div>
+
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
 
