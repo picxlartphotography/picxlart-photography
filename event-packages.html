@@ -15,6 +15,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Event & Celebration Packages - Picxlart Photography & Events Co.</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
     /* Global Reset & Base Typography */
@@ -92,11 +94,11 @@
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after {
+    .nav-menu a:hover::after, .nav-menu a.active::after {
         width: 100%;
     }
 
-    .nav-menu a:hover{
+    .nav-menu a:hover, .nav-menu a.active{
         color:#d4af37;
         text-shadow:0 0 10px rgba(212,175,55,.3);
     }
@@ -125,6 +127,7 @@
         font-weight: bold;
         cursor: pointer;
         z-index: 1000000;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Page Header Banner */
@@ -272,6 +275,11 @@
         color:#d4af37; 
         text-decoration:none;
         font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links-container a:hover {
+        color: #ffffff;
     }
 
     .footer-divider {
@@ -292,6 +300,8 @@
             left: 0;
             width: 100%;
             background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
             gap: 0;
             padding: 15px 0 0 0;
@@ -312,14 +322,16 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
+        /* REMOVE Underline Effect on Mobile */
+        .nav-menu a::after {
+            display: none !important;
+        }
+
         .segment-section { padding: 50px 5%; }
         .segment-grid { grid-template-columns: 1fr; gap: 30px; }
         .segment-card { padding: 35px 25px; }
     }
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -327,19 +339,19 @@
 <!-- Top Navigation Bar -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Picxlart Logo">
         </a>
     </div>
 
-    <!-- Films সহ সম্পূর্ণ নেভিগেশন মেনু -->
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html">Films</a>
-        <a href="packages.html" style="color:#d4af37;">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages" class="active">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -370,7 +382,7 @@
                 <h2 class="segment-title">Rice Ceremony & Birthday</h2>
                 <p class="segment-desc">Preserve the golden milestones of your child's Mukhe Bhaat and Birthday celebrations with our signature traditional and cinematic photography packages.</p>
             </div>
-            <a href="rice-ceremony-packages.html" class="btn-explore">EXPLORE PACKAGES</a>
+            <a href="rice-ceremony-packages" class="btn-explore">EXPLORE PACKAGES</a>
         </div>
 
         <!-- Segment 2: Other Events -->
@@ -380,7 +392,7 @@
                 <h2 class="segment-title">Other Events</h2>
                 <p class="segment-desc">Custom visual documentation for Baby Showers, Anniversaries, Corporate Events, and Special Family Get-togethers.</p>
             </div>
-            <a href="other-event-packages.html" class="btn-explore">EXPLORE PACKAGES</a>
+            <a href="other-event-packages" class="btn-explore">EXPLORE PACKAGES</a>
         </div>
 
     </div>
@@ -390,17 +402,19 @@
 <footer>
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
 
