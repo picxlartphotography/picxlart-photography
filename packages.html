@@ -181,7 +181,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Subtle Dark overlay for clear graphics view initially */
+    /* Dark overlay for clear graphics view */
     .tree-card::before {
         content: '';
         position: absolute;
@@ -219,14 +219,12 @@
         background: rgba(0, 0, 0, 0.85);
         font-weight: 600;
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        
-        /* Smooth transformation logic to shift down and hide */
         opacity: 0;
         transform: translateY(30px);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
     }
 
-    /* Premium Hover States for Desktop only */
+    /* Premium Hover States for Desktop */
     @media(min-width:769px) {
         .tree-card:hover{
             transform: translateY(-8px);
@@ -244,7 +242,7 @@
         }
     }
 
-    /* JS Controlled Active Class for Touch Screen perfection */
+    /* Active Class for Touch Screen */
     .tree-card.touch-active{
         transform: translateY(-4px);
         border-color: rgba(212, 175, 55, 0.6);
@@ -267,21 +265,6 @@
         color: #777777;
         font-size: 13px;
         border-top: 1px solid #1a1a1a;
-    }
-
-    .footer-btn-premium {
-        display:inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
-        color:black;
-        padding:12px 35px;
-        border-radius:30px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:14px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
     }
 
     .footer-links-container {
@@ -359,7 +342,7 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* ❌ REMOVE Underline Effect on Mobile ❌ */
+        /* REMOVE Underline Effect on Mobile */
         .nav-menu a::after {
             display: none !important; 
         }
@@ -446,10 +429,6 @@
 
 <!-- Footer -->
 <footer>
-    <div style="margin-bottom:25px;">
-        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
-    </div>
-
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
