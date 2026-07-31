@@ -92,11 +92,11 @@
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after {
+    .nav-menu a:hover::after, .nav-menu a.active::after {
         width: 100%;
     }
 
-    .nav-menu a:hover{
+    .nav-menu a:hover, .nav-menu a.active{
         color:#d4af37;
         text-shadow:0 0 10px rgba(212,175,55,.3);
     }
@@ -359,6 +359,11 @@
         color:#d4af37; 
         text-decoration:none;
         font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links-container a:hover {
+        color: #ffffff;
     }
 
     .footer-divider {
@@ -368,7 +373,7 @@
 
     /* Responsive Breakdown */
     @media (max-width: 768px) {
-        .navbar{ padding:12px 24px; }
+        .navbar{ padding:12px 24px; flex-wrap: nowrap; }
         .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
@@ -399,6 +404,10 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
+        .nav-menu a::after {
+            display: none !important;
+        }
+
         section { padding: 40px 5%; }
 
         .pkg-card {
@@ -426,18 +435,19 @@
 <!-- Top Navigation Bar -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Picxlart Logo">
         </a>
     </div>
 
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html">Films</a>
-        <a href="packages.html" style="color:#d4af37;">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages" class="active">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -597,17 +607,19 @@
 <footer>
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
 
@@ -801,6 +813,13 @@ navLinks.forEach(link => {
         navMenu.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
     });
+});
+
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
 });
 </script>
 
