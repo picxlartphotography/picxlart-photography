@@ -81,6 +81,7 @@
         padding: 4px 0;
     }
 
+    /* Desktop Underline Effect */
     .nav-menu a::after {
         content: '';
         position: absolute;
@@ -125,6 +126,7 @@
         font-weight: bold;
         cursor: pointer;
         z-index: 1000000;
+        -webkit-tap-highlight-color: transparent; /* Fix for mobile tap highlight */
     }
 
     /* Page Header */
@@ -245,7 +247,7 @@
 
     .segment-card:hover .explore-btn {
         background: linear-gradient(135deg, #f4d06f, #d4af37);
-        box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
 
     /* Enterprise Footer */
@@ -325,6 +327,12 @@
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        /* ❌ REMOVE Underline Effect on Mobile ❌ */
+        .nav-menu a::after {
+            display: none !important;
         }
 
         .nav-menu a:last-child {
