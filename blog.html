@@ -242,23 +242,9 @@
         border-top: 1px solid #1a1a1a;
     }
 
-    .footer-btn-premium {
-        display:inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
-        color:black;
-        padding:12px 35px;
-        border-radius:30px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:14px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-    }
-
     .footer-links-container { margin-bottom:25px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
     .footer-divider { color:#333; margin: 0 8px; }
 
     /* EXACT INDEX.HTML MOBILE MEDIA QUERIES */
@@ -406,7 +392,7 @@
             </div>
         </article>
 
-        <!-- Blog 3 (UPDATED) -->
+        <!-- Blog 3 -->
         <article class="blog-card" tabindex="0">
             <div class="blog-thumb-wrapper">
                 <img src="blog-banner-3.jpg" alt="What To Wear For a Pre Wedding Shoot">
@@ -423,10 +409,6 @@
 
 <!-- Footer -->
 <footer>
-    <div style="margin-bottom:25px;">
-        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
-    </div>
-
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
