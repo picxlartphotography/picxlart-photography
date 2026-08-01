@@ -226,21 +226,6 @@
         border-top: 1px solid #1a1a1a;
     }
 
-    .footer-btn-premium {
-        display:inline-block;
-        background: linear-gradient(135deg, #d4af37, #b38f2d);
-        color:black;
-        padding:12px 35px;
-        border-radius:30px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:14px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-    }
-
     .footer-links-container {
         margin-bottom:25px; 
         line-height: 2.2;
@@ -317,7 +302,7 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        /* ❌ REMOVE Underline Effect on Mobile ❌ */
+        /* REMOVE Underline Effect on Mobile */
         .nav-menu a::after {
             display: none !important; 
         }
@@ -366,11 +351,11 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 </p>
 
 <div class="gallery">
-<img src="Corporate1.jpg">
-<img src="Corporate2.jpg">
-<img src="Corporate3.jpg">
-<img src="Corporate4.jpg">
-<img src="Corporate5.jpg">
+<img src="Corporate1.jpg" alt="Corporate Photography 1">
+<img src="Corporate2.jpg" alt="Corporate Photography 2">
+<img src="Corporate3.jpg" alt="Corporate Photography 3">
+<img src="Corporate4.jpg" alt="Corporate Photography 4">
+<img src="Corporate5.jpg" alt="Corporate Photography 5">
 </div>
 
 <div class="btn-container">
@@ -384,10 +369,6 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 
 <!-- Footer Enterprise Framework -->
 <footer>
-    <div style="margin-bottom:25px;">
-        <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
-    </div>
-
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
@@ -416,7 +397,7 @@ Professional coverage for conferences, seminars, business meetings, award ceremo
 </footer>
 
 <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:9999;">
-<img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;">
+<img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;" alt="Enlarged View">
 </div>
 
 <script>
