@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anubandha Package | Picxlart</title>
@@ -79,8 +89,8 @@
         transition: width 0.3s ease;
     }
 
-    .nav-menu a:hover::after { width: 100%; }
-    .nav-menu a:hover{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
 
     .nav-social{ display:flex; gap:20px; }
     .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
@@ -223,7 +233,7 @@
     .hire-us-btn {
         background: transparent;
         color: #d4af37;
-        border: 1px solid #d4af37;
+        border: 1.5px solid #d4af37;
         padding: 14px 35px;
         font-size: 13px;
         font-weight: 600;
@@ -383,10 +393,26 @@
         margin-top: 60px;
     }
 
-    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
-    .footer-links-container a:hover { color: #ffffff; }
-    .footer-divider { color:#333; margin: 0 8px; }
+    .footer-links-container { 
+        margin-bottom:25px; 
+        line-height: 2.2; 
+    }
+
+    .footer-links-container a { 
+        color:#d4af37; 
+        text-decoration:none; 
+        font-weight: 500; 
+        transition: color 0.3s ease; 
+    }
+
+    .footer-links-container a:hover { 
+        color: #ffffff; 
+    }
+
+    .footer-divider { 
+        color:#333; 
+        margin: 0 8px; 
+    }
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
@@ -432,7 +458,7 @@
         }
         
         .nav-menu a:last-child { border-bottom: none; padding-bottom: 22px; }
-        .nav-menu a::after { display: none; }
+        .nav-menu a::after { display: none !important; }
 
         .slider-viewport-container { padding-top: 100px; }
         .carousel-track-wrapper { padding-left: 0; }
@@ -451,19 +477,20 @@
 <!-- Header Top Navigation Bar -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Logo">
         </a>
     </div>
 
     <!-- Films সহ সম্পূর্ণ নেভিগেশন মেনু -->
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html">Films</a>
-        <a href="packages.html">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages" class="active">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -553,9 +580,9 @@
             <h4>1. Core Coverage & Timeline</h4>
             <ul>
                 <li><i class="fas fa-calendar-alt"></i> 3-Day Comprehensive Operational Wedding Timeline.</li>
-                <li><i class="fas fa-heart"></i> **Day 1:** Complete coverage of Wedding Day Rituals.</li>
-                <li><i class="fas fa-dove"></i> **Day 2:** Emotional capture of Vidai & Bodhuboron ceremonies.</li>
-                <li><i class="fas fa-glass-cheers"></i> **Day 3:** Professional documentation of the Grand Reception Gala.</li>
+                <li><i class="fas fa-heart"></i> <strong>Day 1:</strong> Complete coverage of Wedding Day Rituals.</li>
+                <li><i class="fas fa-dove"></i> <strong>Day 2:</strong> Emotional capture of Vidai & Bodhuboron ceremonies.</li>
+                <li><i class="fas fa-glass-cheers"></i> <strong>Day 3:</strong> Professional documentation of the Grand Reception Gala.</li>
                 <li><i class="fas fa-users"></i> Specialized team of Photographers & Cinematographers for all days.</li>
             </ul>
         </div>
@@ -566,7 +593,7 @@
                 <li><i class="fas fa-images"></i> Full Delivery of All Original RAW & High-Res Edited Photos.</li>
                 <li><i class="fas fa-film"></i> 4K / FHD Cinematic Wedding Teaser Movie.</li>
                 <li><i class="fas fa-video"></i> Full HD Full Video till 45 to 50 Minutes.</li>
-                <li><i class="fas fa-camera-retro"></i> **Complimentary Pre-Wedding:** Includes Photo shoot & 3-5 min Cinematic Video (6 Hrs shoot).</li>
+                <li><i class="fas fa-camera-retro"></i> <strong>Complimentary Pre-Wedding:</strong> Includes Photo shoot & 3-5 min Cinematic Video (6 Hrs shoot).</li>
             </ul>
         </div>
 
@@ -586,20 +613,27 @@
 <footer>
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
-    <p style="margin-top:20px;">
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
         © 2026 Picxlart Photography & Events Co. All Rights Reserved.
     </p>
 </footer>
