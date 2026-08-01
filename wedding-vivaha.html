@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vivaha Package | Picxlart</title>
@@ -223,7 +233,7 @@
     .hire-us-btn {
         background: transparent;
         color: #d4af37;
-        border: 1px solid #d4af37;
+        border: 1.5px solid #d4af37;
         padding: 14px 35px;
         font-size: 13px;
         font-weight: 600;
@@ -383,10 +393,26 @@
         margin-top: 60px;
     }
 
-    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
-    .footer-links-container a:hover { color: #ffffff; }
-    .footer-divider { color:#333; margin: 0 8px; }
+    .footer-links-container { 
+        margin-bottom:25px; 
+        line-height: 2.2; 
+    }
+
+    .footer-links-container a { 
+        color:#d4af37; 
+        text-decoration:none; 
+        font-weight: 500; 
+        transition: color 0.3s ease; 
+    }
+
+    .footer-links-container a:hover { 
+        color: #ffffff; 
+    }
+
+    .footer-divider { 
+        color:#333; 
+        margin: 0 8px; 
+    }
 
     /* Complete Multi-Device Responsive Interface */
     @media(max-width:992px) {
@@ -432,7 +458,7 @@
         }
         
         .nav-menu a:last-child { border-bottom: none; padding-bottom: 22px; }
-        .nav-menu a::after { display: none; }
+        .nav-menu a::after { display: none !important; }
 
         .slider-viewport-container { padding-top: 100px; }
         .carousel-track-wrapper { padding-left: 0; }
@@ -451,19 +477,20 @@
 <!-- Header Top Navigation Bar -->
 <div class="navbar">
    <div class="nav-logo">
-        <a href="index.html">
+        <a href="/">
             <img src="logo.png" alt="Logo">
         </a>
     </div>
 
     <!-- Films সহ সম্পূর্ণ নেভিগেশন মেনু -->
     <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="films.html">Films</a>
-        <a href="packages.html">Packages</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="index.html#why">Why Picxlart</a>
+        <a href="/">Home</a>
+        <a href="/#gallery">Gallery</a>
+        <a href="films">Films</a>
+        <a href="packages" class="active">Packages</a>
+        <a href="reviews">Reviews</a>
+        <a href="/#why">Why Picxlart</a>
+        <a href="blog">Blog</a>
     </div>
 
     <div class="nav-social">
@@ -553,11 +580,11 @@
             <h4>1. Grand 5-Day Multi-Event Coverage</h4>
             <ul>
                 <li><i class="fas fa-calendar-alt"></i> 5-Day Extensive Operational Wedding Timeline.</li>
-                <li><i class="fas fa-ring"></i> **Engagement Day:** Complete cinematic & artistic photography coverage.</li>
-                <li><i class="fas fa-music"></i> **Sangeet Day:** Vibrant musical celebration & candid event documentation.</li>
-                <li><i class="fas fa-gem"></i> **Wedding Day:** Multi-angle sacred ritual & traditional coverage.</li>
-                <li><i class="fas fa-dove"></i> **Vidai & Boron:** Deeply emotional ritual & arrival moment documentation.</li>
-                <li><i class="fas fa-glass-cheers"></i> **Reception Gala:** High-end grand reception celebration & aerial coverage.</li>
+                <li><i class="fas fa-ring"></i> <strong>Engagement Day:</strong> Complete cinematic & artistic photography coverage.</li>
+                <li><i class="fas fa-music"></i> <strong>Sangeet Day:</strong> Vibrant musical celebration & candid event documentation.</li>
+                <li><i class="fas fa-gem"></i> <strong>Wedding Day:</strong> Multi-angle sacred ritual & traditional coverage.</li>
+                <li><i class="fas fa-dove"></i> <strong>Vidai & Boron:</strong> Deeply emotional ritual & arrival moment documentation.</li>
+                <li><i class="fas fa-glass-cheers"></i> <strong>Reception Gala:</strong> High-end grand reception celebration & aerial coverage.</li>
             </ul>
         </div>
 
@@ -588,20 +615,27 @@
 <footer>
     <div class="footer-links-container">
         <div>
-            <a href="faq.html">FAQ</a>
+            <a href="faq">FAQ</a>
             <span class="footer-divider">|</span>
-            <a href="payment.html">Online Payment</a>
+            <a href="payment">Online Payment</a>
         </div>
         <div>
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="privacy-policy">Privacy Policy</a>
             <span class="footer-divider">|</span>
-            <a href="payment-terms.html">Payment Terms</a>
+            <a href="payment-terms">Payment Terms</a>
         </div>
         <div>
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
         </div>
     </div>
-    <p style="margin-top:20px;">
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
         © 2026 Picxlart Photography & Events Co. All Rights Reserved.
     </p>
 </footer>
