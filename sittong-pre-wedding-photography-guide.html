@@ -176,6 +176,7 @@
         margin-bottom: 40px;
         border: 1px solid rgba(212, 175, 55, 0.2);
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        background: #111;
     }
 
     .hero-image-box img {
@@ -226,6 +227,7 @@
         margin: 35px 0;
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        background: #111;
     }
 
     .content-image-box img {
@@ -254,6 +256,7 @@
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #111;
     }
 
     .dual-image-grid img {
@@ -335,7 +338,7 @@
         margin: 0 8px;
     }
 
-    /* Responsive Logic Fixes for Mobile */
+    /* Complete Responsive Overrides for Mobile */
     @media(max-width:768px){
         .navbar{ padding:12px 24px; flex-wrap: nowrap; }
         .nav-logo img{ height:45px; }
@@ -370,14 +373,24 @@
         h1 { font-size: 24px; }
         .dual-image-grid { grid-template-columns: 1fr; gap: 15px; }
         .article-container { padding:20px 18px 60px; }
-        .hero-image-box, .content-image-box, .dual-image-grid .grid-img-box {
-            display: block !important;
-            width: 100% !important;
-        }
-        .hero-image-box img, .content-image-box img, .dual-image-grid img {
+
+        /* Mobile Image Force Fix */
+        .hero-image-box, 
+        .content-image-box, 
+        .dual-image-grid .grid-img-box {
             display: block !important;
             width: 100% !important;
             height: auto !important;
+            overflow: visible !important;
+        }
+
+        .hero-image-box img, 
+        .content-image-box img, 
+        .dual-image-grid img {
+            display: block !important;
+            width: 100% !important;
+            height: auto !important;
+            max-width: 100% !important;
         }
     }
 </style>
