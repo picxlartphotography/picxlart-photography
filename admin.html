@@ -23,7 +23,7 @@
         .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; }
 
         /* Left Sidebar */
-        .sidebar { width: 260px; background: #141417; border-right: 1px solid #2a2a30; display: flex; flex-direction: column; padding: 20px 0; }
+        .sidebar { width: 260px; background: #141417; border-right: 1px solid #2a2a30; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
         .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 20px 20px 20px; border-bottom: 1px solid #2a2a30; }
         .sidebar-brand img { height: 45px; }
         .sidebar-brand span { font-weight: 700; color: #d4af37; font-size: 16px; }
@@ -31,6 +31,10 @@
         .menu-list { list-style: none; margin-top: 20px; }
         .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; border-left: 4px solid transparent; }
         .menu-item:hover, .menu-item.active { background: #1a1a1e; color: #d4af37; border-left-color: #d4af37; }
+
+        .logout-btn-container { padding: 15px 20px; border-top: 1px solid #2a2a30; }
+        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
+        .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
 
         /* Main Workspace */
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0f0f11; }
@@ -72,19 +76,26 @@
 
     <!-- LEFT SIDEBAR -->
     <div class="sidebar">
-        <div class="sidebar-brand">
-            <img src="logo.png" alt="Logo">
-            <span>PICXLART</span>
+        <div>
+            <div class="sidebar-brand">
+                <img src="logo.png" alt="Logo">
+                <span>PICXLART</span>
+            </div>
+
+            <ul class="menu-list">
+                <li class="menu-item active" onclick="switchTab('tab-approvals', this)">
+                    <i class="fa-solid fa-user-clock"></i> Pending Approvals
+                </li>
+                <li class="menu-item" onclick="switchTab('tab-database', this)">
+                    <i class="fa-solid fa-users"></i> All Clients Database
+                </li>
+            </ul>
         </div>
 
-        <ul class="menu-list">
-            <li class="menu-item active" onclick="switchTab('tab-approvals', this)">
-                <i class="fa-solid fa-user-clock"></i> Pending Approvals
-            </li>
-            <li class="menu-item" onclick="switchTab('tab-database', this)">
-                <i class="fa-solid fa-users"></i> All Clients Database
-            </li>
-        </ul>
+        <!-- LOGOUT BUTTON AT THE BOTTOM -->
+        <div class="logout-btn-container">
+            <button class="btn-sidebar-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
     </div>
 
     <!-- RIGHT MAIN WORKSPACE -->
@@ -142,7 +153,7 @@
         </div>
     </div>
 
-    <!-- REAL FIREBASE CONFIGURATION & APPROVAL LOGIC -->
+    <!-- REAL FIREBASE CONFIGURATION & LOGIC -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
@@ -156,16 +167,67 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        const INACTIVITY_LIMIT_MS = 10 * 60 * 1000; // 10 Minutes
+        let inactivityTimer;
+
+        // Auto Check Session on Page Load
+        window.onload = function() {
+            checkAdminSession();
+            setupInactivityTracker();
+        };
+
+        function checkAdminSession() {
+            const authTime = localStorage.getItem('adminAuthTime');
+            if (authTime) {
+                const now = new Date().getTime();
+                if (now - parseInt(authTime) < INACTIVITY_LIMIT_MS) {
+                    document.getElementById('admin-login-overlay').style.display = "none";
+                    resetInactivityTimer();
+                    listenForPendingUsers();
+                    return;
+                }
+            }
+            logoutAdmin();
+        }
+
         function verifyAdminLogin() {
             const user = document.getElementById('admin-user').value;
             const pass = document.getElementById('admin-pass').value;
 
             if(user === "admin@picxlart.com" && pass === "picxlart@2026") {
+                localStorage.setItem('adminAuthTime', new Date().getTime().toString());
                 document.getElementById('admin-login-overlay').style.display = "none";
+                document.getElementById('login-error').style.display = "none";
+                resetInactivityTimer();
                 listenForPendingUsers();
             } else {
                 document.getElementById('login-error').style.display = "block";
             }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('adminAuthTime');
+            document.getElementById('admin-login-overlay').style.display = "flex";
+            document.getElementById('admin-user').value = "";
+            document.getElementById('admin-pass').value = "";
+            clearTimeout(inactivityTimer);
+        }
+
+        function resetInactivityTimer() {
+            if (localStorage.getItem('adminAuthTime')) {
+                localStorage.setItem('adminAuthTime', new Date().getTime().toString());
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(() => {
+                    alert("Session expired due to 10 minutes of inactivity. Please log in again.");
+                    logoutAdmin();
+                }, INACTIVITY_LIMIT_MS);
+            }
+        }
+
+        function setupInactivityTracker() {
+            ['mousemove', 'keydown', 'click', 'scroll'].forEach(evt => {
+                document.addEventListener(evt, resetInactivityTimer, false);
+            });
         }
 
         function switchTab(tabId, element) {
