@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal Dashboard - Picxlart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0b0b0d; color: #fff; padding: 30px 15px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card { background: #141417; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+        .card-title { color: #d4af37; font-size: 16px; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .payment-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed #282830; }
+        .stage-item { display: flex; justify-content: space-between; align-items: center; background: #0a0a0c; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="logo.png" style="height: 50px;">
+            <h2 style="color:#d4af37; margin-top:10px;">Welcome, <span id="client-display-name">Client</span></h2>
+            <p style="color:#888; font-size:12px;">Picxlart Official Assignment & Booking Tracking Portal</p>
+        </div>
+
+        <!-- 1. PAYMENT BREAKDOWN -->
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-calculator"></i> My Payment & Dues Summary</div>
+            <div class="payment-row"><span>Total Package Value:</span><strong id="client-total">₹0</strong></div>
+            <div class="payment-row"><span>Advance Amount Paid:</span><strong id="client-adv" style="color:#4caf50;">₹0</strong></div>
+            <div class="payment-row" id="c-row-early" style="display:none;">
+                <span style="color:#ff9800;">1 Month Before Event Required Booking Due:</span>
+                <strong id="client-early-due" style="color:#ff9800;">₹0</strong>
+            </div>
+            <div class="payment-row"><span>Event Day Payable Final Payment:</span><strong id="client-event-due" style="color:#2196F3;">₹0</strong></div>
+            <div class="payment-row" id="c-row-deliv" style="display:none;">
+                <span style="color:#e91e63;">Album / Final Deliverables Delivery Due:</span>
+                <strong id="client-deliv-due" style="color:#e91e63;">₹0</strong>
+            </div>
+        </div>
+
+        <!-- 2. LIVE PROJECT STATUS TRACKER -->
+        <div class="card">
+            <div class="card-title"><i class="fa-solid fa-list-check"></i> Live Project & Shoot Status</div>
+            <div id="client-stages-box">
+                <p style="color:#777; font-size:12px;">Loading project status...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
+            authDomain: "picxlart-portal.firebaseapp.com",
+            projectId: "picxlart-portal",
+            storageBucket: "picxlart-portal.firebasestorage.app",
+            messagingSenderId: "993916901139",
+            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                db.collection("users").doc(user.uid).onSnapshot((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        document.getElementById('client-display-name').innerText = data.name || "Client";
+
+                        // Payment Calculation
+                        const total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
+                        const adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
+                        const req50Adv = total * 0.50;
+
+                        document.getElementById('client-total').innerText = '₹' + total;
+                        document.getElementById('client-adv').innerText = '₹' + adv;
+
+                        if (adv < req50Adv) {
+                            document.getElementById('c-row-early').style.display = 'flex';
+                            document.getElementById('client-early-due').innerText = '₹' + (req50Adv - adv);
+                        } else {
+                            document.getElementById('c-row-early').style.display = 'none';
+                        }
+
+                        const duesDesc = (data.duesAfterAssignment || "").toUpperCase();
+                        let deliveryDue = 0;
+
+                        if (duesDesc.includes("NO DUES") || duesDesc === "") {
+                            document.getElementById('client-event-due').innerText = '₹' + (total - adv);
+                            document.getElementById('c-row-deliv').style.display = 'none';
+                        } else {
+                            const matches = duesDesc.match(/\d+/g);
+                            deliveryDue = matches ? parseFloat(matches[0]) : 5000;
+                            document.getElementById('client-event-due').innerText = '₹' + ((total - adv) - deliveryDue);
+                            document.getElementById('c-row-deliv').style.display = 'flex';
+                            document.getElementById('client-deliv-due').innerText = '₹' + deliveryDue;
+                        }
+
+                        // Project Stages
+                        const stagesBox = document.getElementById('client-stages-box');
+                        stagesBox.innerHTML = "";
+                        const stages = data.projectStages || [];
+
+                        if(stages.length === 0) {
+                            stagesBox.innerHTML = `<p style="color:#888; font-size:12px;">Your event shoot stages will be updated here shortly by Admin.</p>`;
+                        } else {
+                            stages.forEach(stg => {
+                                const badgeColor = stg.completed ? '#4caf50' : '#ff9800';
+                                const badgeText = stg.completed ? '✅ Completed' : '⏳ In Progress';
+                                stagesBox.innerHTML += `
+                                    <div class="stage-item">
+                                        <span style="font-size:13px; font-weight:500;">${stg.name}</span>
+                                        <span style="color:${badgeColor}; font-size:12px; font-weight:600;">${badgeText}</span>
+                                    </div>
+                                `;
+                            });
+                        }
+                    }
+                });
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>
