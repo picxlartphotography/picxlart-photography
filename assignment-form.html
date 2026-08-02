@@ -3,47 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Form - Picxlart</title>
+    <title>Assignment Details Form - Picxlart</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0d0d0d; color: #fff; padding: 40px 20px; }
-        .form-card { background: #18181c; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; width: 100%; max-width: 600px; margin: 0 auto; padding: 30px; }
-        h2 { color: #d4af37; text-align: center; margin-bottom: 20px; font-size: 20px; }
+        body { background-color: #0f0f11; color: #ffffff; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .form-container { background: #1a1a1e; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; width: 100%; max-width: 800px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        
+        .form-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #2a2a30; padding-bottom: 20px; }
+        .form-header img { height: 50px; margin-bottom: 10px; }
+        .form-header h2 { color: #d4af37; font-size: 22px; font-weight: 600; }
+        .form-header p { color: #aaa; font-size: 12px; margin-top: 4px; }
+
+        .section-title { font-size: 15px; color: #d4af37; margin: 25px 0 15px 0; border-left: 3px solid #d4af37; padding-left: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; color: #aaa; margin-bottom: 5px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; background: #0f0f11; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 13px; outline: none; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #d4af37; }
-        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; }
-        .success-box { display: none; text-align: center; padding: 40px 20px; }
+        .form-group label { display: block; font-size: 12px; color: #ccc; margin-bottom: 6px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; background: #0f0f11; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; }
+
+        .terms-box { background: #0f0f11; border: 1px solid #2a2a30; border-radius: 8px; padding: 15px; font-size: 11px; color: #aaa; height: 120px; overflow-y: auto; margin-bottom: 15px; line-height: 1.6; }
+
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 12px; color: #ddd; }
+        .checkbox-group input { width: 16px; height: 16px; accent-color: #d4af37; cursor: pointer; }
+
+        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .success-card { display: none; text-align: center; padding: 50px 20px; }
+        .success-icon { font-size: 60px; color: #4caf50; margin-bottom: 15px; }
+
+        @media (max-width: 600px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="form-card" id="form-container">
-        <h2>Assignment Details Form</h2>
-        <div class="form-group"><label>Event Category / Type</label><input type="text" id="event-type" placeholder="e.g. Wedding, Rice Ceremony"></div>
-        <div class="form-group"><label>Event Date</label><input type="date" id="event-date"></div>
-        <div class="form-group"><label>Contact / WhatsApp No</label><input type="text" id="phone-no" placeholder="+91..."></div>
-        <div class="form-group"><label>Full Address</label><textarea id="address" rows="2" placeholder="Venue Address"></textarea></div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div class="form-group"><label>Total Package Amount (₹)</label><input type="number" id="total-amount"></div>
-            <div class="form-group"><label>Advance Paid (₹)</label><input type="number" id="advance-amount"></div>
+    <div class="form-container" id="main-form-card">
+        <div class="form-header">
+            <img src="logo.png" alt="Picxlart Logo">
+            <h2>Assignment Details Form</h2>
+            <p>Please fill up your event specifications to process your booking acknowledgment.</p>
         </div>
-        <div class="form-group"><label>Job Details / Specific Requirements</label><textarea id="job-details" rows="3" placeholder="Cinematography, Candid, etc..."></textarea></div>
+
+        <!-- SECTION 1: CLIENT & EVENT INFO -->
+        <div class="section-title">1. Client & Event Specifications</div>
         
-        <button class="btn-submit" onclick="submitForm()">Submit Assignment Details</button>
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Event Category / Type</label>
+                <input type="text" id="event-type" placeholder="e.g. Wedding, Pre-Wedding, Rice Ceremony">
+            </div>
+            <div class="form-group">
+                <label>Event Date</label>
+                <input type="date" id="event-date">
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Contact / WhatsApp Number</label>
+                <input type="text" id="phone-no" placeholder="+91 9876543210">
+            </div>
+            <div class="form-group">
+                <label>Alternate Phone Number</label>
+                <input type="text" id="alt-phone" placeholder="Optional">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Full Venue Address</label>
+            <textarea id="address" rows="2" placeholder="Enter complete venue location details"></textarea>
+        </div>
+
+        <!-- SECTION 2: PAYMENT & REQUIREMENTS -->
+        <div class="section-title">2. Package & Payment Details</div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Total Package Amount (₹)</label>
+                <input type="number" id="total-amount" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label>Advance Paid (₹)</label>
+                <input type="number" id="advance-amount" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Specific Job Requirements / Coverage Details</label>
+            <textarea id="job-details" rows="3" placeholder="Specify deliverables e.g., Cinematography, Candid Photography, Drone, Albums etc."></textarea>
+        </div>
+
+        <!-- SECTION 3: TERMS & AGREEMENT -->
+        <div class="section-title">3. Terms & Conditions</div>
+        <div class="terms-box">
+            • Advance amount is non-refundable upon cancellation.<br>
+            • Raw files and deliverables will be provided post final balance settlement.<br>
+            • Meal and accommodation for the photography team during outstation shoots will be managed by the client.<br>
+            • Picxlart Photography reserves the right to use selected photographs for portfolio showcase unless opted out in writing.
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the Terms & Conditions and confirm that the details provided above are accurate.</label>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">Submit Assignment Form</button>
     </div>
 
-    <div class="form-card success-box" id="success-container">
-        <h1 style="color:#4caf50; font-size: 50px; margin-bottom:10px;">✔</h1>
-        <h3 style="color:#fff;">Assignment Submitted Successfully!</h3>
-        <p style="color:#aaa; font-size: 13px; margin-top: 10px;">Thank you! Your details have been recorded. Please wait while Admin reviews your details and issues your Acknowledgement Paper.</p>
+    <!-- SUCCESS MESSAGE -->
+    <div class="form-container success-card" id="success-card">
+        <div class="success-icon">✓</div>
+        <h2 style="color:#fff; font-size:22px;">Assignment Submitted Successfully!</h2>
+        <p style="color:#aaa; font-size:13px; margin-top:10px; line-height:1.6;">
+            Thank you! Your assignment specifications have been recorded in our database.<br>
+            Our Admin team is reviewing your details and will issue your official **Acknowledgement Paper** shortly.
+        </p>
     </div>
 
     <script>
@@ -58,46 +143,53 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
-        
+
         let currentUserUid = null;
 
-        // Verify if user is logged in
+        // Check Login Session
         auth.onAuthStateChanged((user) => {
             if (user) {
                 currentUserUid = user.uid;
-                // If form already submitted previously, show success directly
                 db.collection("users").doc(currentUserUid).get().then(doc => {
                     if(doc.exists && doc.data().formSubmitted) {
-                        document.getElementById('form-container').style.display = 'none';
-                        document.getElementById('success-container').style.display = 'block';
+                        document.getElementById('main-form-card').style.display = 'none';
+                        document.getElementById('success-card').style.display = 'block';
                     }
                 });
             } else {
-                window.location.href = "login.html"; // Block direct access without login
+                window.location.href = "login.html";
             }
         });
 
         function submitForm() {
-            if(!currentUserUid) { alert("Security Error! Please login again."); return; }
+            if(!currentUserUid) { alert("Session expired! Please login again."); return; }
 
-            const eventType = document.getElementById('event-type').value;
+            const eventType = document.getElementById('event-type').value.trim();
             const eventDate = document.getElementById('event-date').value;
-            const phoneNo = document.getElementById('phone-no').value;
-            const address = document.getElementById('address').value;
+            const phoneNo = document.getElementById('phone-no').value.trim();
+            const altPhone = document.getElementById('alt-phone').value.trim();
+            const address = document.getElementById('address').value.trim();
             const totalAmount = document.getElementById('total-amount').value || '0';
             const advanceAmount = document.getElementById('advance-amount').value || '0';
-            const jobDetails = document.getElementById('job-details').value;
+            const jobDetails = document.getElementById('job-details').value.trim();
+            const acceptTerms = document.getElementById('accept-terms').checked;
 
             if(!eventType || !eventDate || !phoneNo) {
-                alert("Please fill in Event Type, Date, and Phone Number!");
+                alert("Please fill in the Event Type, Date, and Contact Number!");
                 return;
             }
 
-            // Save details to the SAME 'users' database for Admin panel to read
+            if(!acceptTerms) {
+                alert("Please check and accept the Terms & Conditions before submitting!");
+                return;
+            }
+
+            // Save in 'users' collection for Admin to read
             db.collection("users").doc(currentUserUid).update({
                 eventType: eventType,
                 eventDate: eventDate,
                 phone: phoneNo,
+                altPhone: altPhone,
                 address: address,
                 totalAmount: totalAmount,
                 advanceAmount: advanceAmount,
@@ -105,10 +197,10 @@
                 formSubmitted: true,
                 submittedAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                document.getElementById('form-container').style.display = 'none';
-                document.getElementById('success-container').style.display = 'block';
+                document.getElementById('main-form-card').style.display = 'none';
+                document.getElementById('success-card').style.display = 'block';
             }).catch((error) => {
-                alert("Error saving form: " + error.message);
+                alert("Error submitting form: " + error.message);
             });
         }
     </script>
