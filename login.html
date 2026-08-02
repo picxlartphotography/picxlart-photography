@@ -1,317 +1,161 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal Login - Picxlart</title>
-    <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase SDK Integration -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #0f0f11;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .login-card {
-            background: #1a1a1e;
-            border: 1px solid #2a2a30;
-            border-radius: 16px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-
-        /* Boro Logo Configuration */
-        .brand-logo-img {
-            height: 90px; /* লোগোর সাইজ বাড়িয়ে ৯০px করা হলো */
-            width: auto;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #a0a0ab;
-            margin-bottom: 25px;
-        }
-
-        .btn-google {
-            width: 100%;
-            background-color: #ffffff;
-            color: #222222;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .btn-google:hover {
-            background-color: #e6e6e6;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            color: #666;
-            margin: 20px 0;
-            font-size: 12px;
-        }
-
-        .divider::before, .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid #333;
-        }
-
-        .divider span {
-            padding: 0 10px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            color: #ccc;
-            margin-bottom: 5px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            background: #0f0f11;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #d4af37;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #d4af37, #aa820a);
-            color: #000;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            opacity: 0.9;
-        }
-
-        .toggle-text {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #aaa;
-        }
-
-        .toggle-text a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Status Alert Box */
-        .alert {
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .alert-warning {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid #d4af37;
-            color: #d4af37;
-        }
-
-        .alert-danger {
-            background: rgba(255, 77, 77, 0.15);
-            border: 1px solid #ff4d4d;
-            color: #ff4d4d;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0d0d0d; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .auth-card { background: #18181c; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 16px; width: 100%; max-width: 400px; padding: 35px 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .logo-img { height: 50px; margin-bottom: 15px; }
+        .status-msg { display: none; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #f4d06f; padding: 12px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; text-align: left; line-height: 1.5; }
+        .btn-google { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; margin-bottom: 15px; }
+        .divider { color: #666; font-size: 11px; margin: 15px 0; }
+        .form-group { text-align: left; margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 11px; color: #aaa; margin-bottom: 4px; }
+        .form-group input { width: 100%; padding: 10px 12px; background: #0f0f11; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 12px; outline: none; }
+        .form-group input:focus { border-color: #d4af37; }
+        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; margin-top: 10px; }
+        .switch-link { color: #d4af37; text-decoration: none; font-weight: 600; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <!-- Boro Logo Image -->
-        <img src="logo.png" alt="Picxlart Logo" class="brand-logo-img">
-        <p class="subtitle" id="page-subtitle">Client Portal Access</p>
+    <div class="auth-card">
+        <img src="logo.png" alt="Picxlart" class="logo-img">
+        <h4 style="color:#aaa; font-size:13px; font-weight:400; margin-bottom:20px;" id="portal-title">Create Your Client Account</h4>
 
-        <!-- Alert Notification Box -->
-        <div id="alert-box" class="alert"></div>
+        <div id="status-box" class="status-msg"></div>
 
-        <!-- Google Login Button -->
-        <button class="btn-google" id="google-login-btn">
-            <i class="fa-brands fa-google" style="color: #ea4335; font-size: 18px;"></i>
-            Continue with Google
+        <button class="btn-google" onclick="loginWithGoogle()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="height:18px;"> Continue with Google
         </button>
 
-        <div class="divider"><span>OR</span></div>
+        <div class="divider">OR</div>
 
-        <!-- Custom Email Form -->
-        <form id="auth-form">
-            <div class="input-group" id="name-field" style="display: none;">
-                <label>Full Name</label>
-                <input type="text" id="user-name" placeholder="Enter your full name">
-            </div>
-
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" id="user-email" placeholder="example@gmail.com" required>
-            </div>
-
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="user-password" placeholder="••••••••" required>
-            </div>
-
-            <button type="submit" class="btn-submit" id="submit-btn">Login</button>
-        </form>
-
-        <div class="toggle-text">
-            <span id="toggle-msg">Don't have an account?</span> 
-            <a href="#" id="toggle-btn">Sign Up</a>
+        <div class="form-group" id="name-group">
+            <label>Full Name</label>
+            <input type="text" id="client-name" placeholder="Enter your full name">
         </div>
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="client-email" placeholder="example@gmail.com">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="client-pass" placeholder="••••••••">
+        </div>
+
+        <button class="btn-submit" id="main-btn" onclick="handleAuth()">Sign Up</button>
+
+        <p style="font-size:12px; color:#888; margin-top:15px;" id="toggle-text">
+            Already have an account? <span class="switch-link" onclick="toggleAuthMode()">Login</span>
+        </p>
     </div>
 
-    <!-- Firebase Modular SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-        // Firebase Configuration
+    <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
             authDomain: "picxlart-portal.firebaseapp.com",
             projectId: "picxlart-portal",
             storageBucket: "picxlart-portal.firebasestorage.app",
             messagingSenderId: "993916901139",
-            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6",
-            measurementId: "G-86G1EFCWB7"
+            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
         };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const googleProvider = new GoogleAuthProvider();
+        let isSignUp = true;
 
-        // UI Elements
-        let isSignUp = false;
-        const toggleBtn = document.getElementById('toggle-btn');
-        const toggleMsg = document.getElementById('toggle-msg');
-        const submitBtn = document.getElementById('submit-btn');
-        const pageSubtitle = document.getElementById('page-subtitle');
-        const nameField = document.getElementById('name-field');
-        const alertBox = document.getElementById('alert-box');
-        const authForm = document.getElementById('auth-form');
-        const googleBtn = document.getElementById('google-login-btn');
-
-        // Toggle Login / Sign Up UI
-        toggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+        function toggleAuthMode() {
             isSignUp = !isSignUp;
-            showAlert("", ""); // Clear alerts
-
-            if (isSignUp) {
-                pageSubtitle.innerText = "Create Your Client Account";
-                submitBtn.innerText = "Sign Up";
-                toggleMsg.innerText = "Already have an account?";
-                toggleBtn.innerText = "Login";
-                nameField.style.display = "block";
-            } else {
-                pageSubtitle.innerText = "Client Portal Access";
-                submitBtn.innerText = "Login";
-                toggleMsg.innerText = "Don't have an account?";
-                toggleBtn.innerText = "Sign Up";
-                nameField.style.display = "none";
-            }
-        });
-
-        // Show Alert Box
-        function showAlert(message, type) {
-            if (!message) {
-                alertBox.style.display = "none";
-                return;
-            }
-            alertBox.innerText = message;
-            alertBox.className = `alert alert-${type}`;
-            alertBox.style.display = "block";
+            document.getElementById('name-group').style.display = isSignUp ? 'block' : 'none';
+            document.getElementById('portal-title').innerText = isSignUp ? 'Create Your Client Account' : 'Client Portal Login';
+            document.getElementById('main-btn').innerText = isSignUp ? 'Sign Up' : 'Login';
+            document.getElementById('toggle-text').innerHTML = isSignUp ? 
+                'Already have an account? <span class="switch-link" onclick="toggleAuthMode()">Login</span>' : 
+                'Don\'t have an account? <span class="switch-link" onclick="toggleAuthMode()">Sign Up</span>';
         }
 
-        // Email / Password Submit Action
-        authForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('user-email').value;
-            const password = document.getElementById('user-password').value;
-            const name = document.getElementById('user-name').value;
+        function showStatus(msg) {
+            const box = document.getElementById('status-box');
+            box.style.display = 'block';
+            box.innerText = msg;
+        }
 
-            try {
-                if (isSignUp) {
-                    // Create New User
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    if (name) {
-                        await updateProfile(userCredential.user, { displayName: name });
+        // Google Authentication Logic
+        function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).then((result) => {
+                const user = result.user;
+                processUserDatabase(user.uid, user.displayName, user.email);
+            }).catch((error) => {
+                showStatus("Google Login Error: " + error.message);
+            });
+        }
+
+        // Email / Password Authentication Logic
+        function handleAuth() {
+            const email = document.getElementById('client-email').value.trim();
+            const pass = document.getElementById('client-pass').value;
+            const name = document.getElementById('client-name').value.trim();
+
+            if(!email || !pass) { alert("Please enter email and password!"); return; }
+
+            if(isSignUp) {
+                if(!name) { alert("Please enter your full name!"); return; }
+                auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
+                    processUserDatabase(cred.user.uid, name, email);
+                }).catch(err => {
+                    if (err.code === 'auth/email-already-in-use') {
+                        showStatus("This email is already registered. Please click 'Login' below.");
+                    } else {
+                        showStatus("Error: " + err.message);
                     }
-                    showAlert("Registration successful! Your account is pending admin approval. Please wait for confirmation.", "warning");
-                } else {
-                    // Login Existing User
-                    await signInWithEmailAndPassword(auth, email, password);
-                    showAlert("Your account is pending admin approval. Please wait for confirmation.", "warning");
-                }
-            } catch (error) {
-                showAlert(error.message.replace("Firebase: ", ""), "danger");
+                });
+            } else {
+                auth.signInWithEmailAndPassword(email, pass).then((cred) => {
+                    processUserDatabase(cred.user.uid, "", email);
+                }).catch(err => showStatus("Login Error: " + err.message));
             }
-        });
+        }
 
-        // Google Sign-In Action
-        googleBtn.addEventListener('click', async () => {
-            try {
-                await signInWithPopup(auth, googleProvider);
-                showAlert("Your account is pending admin approval. Please wait for confirmation.", "warning");
-            } catch (error) {
-                showAlert(error.message.replace("Firebase: ", ""), "danger");
-            }
-        });
+        // Save Record in Firestore Database
+        function processUserDatabase(uid, name, email) {
+            const userRef = db.collection("users").doc(uid);
+
+            userRef.get().then((doc) => {
+                if (!doc.exists) {
+                    // Create New Record with Pending Status
+                    userRef.set({
+                        name: name || email.split('@')[0],
+                        email: email,
+                        status: "pending",
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }).then(() => {
+                        showStatus("Your account is pending admin approval. Please wait for confirmation.");
+                    }).catch(err => {
+                        showStatus("Database Save Error: " + err.message);
+                    });
+                } else {
+                    const data = doc.data();
+                    if (data.status === "approved") {
+                        window.location.href = "assignment-form.html";
+                    } else {
+                        showStatus("Your account is pending admin approval. Please wait for confirmation.");
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
