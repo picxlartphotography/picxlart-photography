@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDK Integration -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -15,32 +14,26 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0f0f11; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Admin Login Lock Screen */
+        /* Login Screen */
         .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 15, 17, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; }
-        .login-card { background: #1a1a1e; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0f0f11; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; }
-        .login-card input:focus { border-color: #d4af37; }
+        .login-card { background: #1a1a1e; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; }
+        .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0f0f11; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; }
         .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; }
 
-        /* Left Sidebar */
+        /* Sidebar */
         .sidebar { width: 260px; background: #141417; border-right: 1px solid #2a2a30; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
         .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 20px 20px 20px; border-bottom: 1px solid #2a2a30; }
         .sidebar-brand img { height: 45px; }
         .sidebar-brand span { font-weight: 700; color: #d4af37; font-size: 16px; }
-
         .menu-list { list-style: none; margin-top: 20px; }
-        .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; border-left: 4px solid transparent; }
+        .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent; }
         .menu-item:hover, .menu-item.active { background: #1a1a1e; color: #d4af37; border-left-color: #d4af37; }
-
         .logout-btn-container { padding: 15px 20px; border-top: 1px solid #2a2a30; }
-        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-        .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
+        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
         /* Main Workspace */
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0f0f11; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #2a2a30; padding-bottom: 15px; }
-        .admin-badge { background: #d4af37; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 12px; }
-
         .card { background: #1a1a1e; border: 1px solid #2a2a30; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
         .card-title { font-size: 16px; color: #d4af37; font-weight: 600; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
 
@@ -48,11 +41,19 @@
         .db-table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .db-table th { background: #141417; color: #d4af37; text-align: left; padding: 12px; border-bottom: 1px solid #2a2a30; }
         .db-table td { padding: 12px; border-bottom: 1px solid #222; color: #ccc; }
+        .db-table tr:hover { background: rgba(212, 175, 55, 0.05); }
 
-        /* Buttons */
-        .btn-approve { background: #4caf50; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 11px; }
-        .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 11px; margin-left: 5px; }
-        .btn-save { background: #4caf50; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        /* Form Details Review */
+        .data-item { font-size: 12px; color: #ddd; background: #0f0f11; padding: 10px; border-radius: 6px; border: 1px solid #222; margin-bottom: 10px; }
+        .data-item strong { color: #d4af37; display: block; margin-bottom: 3px; font-size: 10px; text-transform: uppercase; }
+
+        /* PDF Viewer */
+        .pdf-preview-modal { display: none; background: #ffffff; color: #111111; padding: 25px; border-radius: 8px; margin-top: 20px; border: 2px solid #d4af37; }
+        .btn-action-issue { background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; margin-top: 15px; }
+
+        .btn-approve { background: #4caf50; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; }
+        .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; margin-left: 5px; }
+        .btn-save { background: #4caf50; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -60,13 +61,10 @@
 </head>
 <body>
 
-    <!-- SECRET ADMIN LOGIN LOCK SCREEN -->
     <div class="login-overlay" id="admin-login-overlay">
         <div class="login-card">
             <img src="logo.png" style="height: 60px; margin-bottom: 10px;">
-            <h3 style="color:#d4af37; font-size:16px;">Admin Access Lock</h3>
-            <p style="color:#aaa; font-size:12px; margin-top:4px;">Enter Authorized Admin Credentials</p>
-            
+            <h3 style="color:#d4af37;">Admin Access Lock</h3>
             <input type="email" id="admin-user" placeholder="Admin Username / Email">
             <input type="password" id="admin-pass" placeholder="Admin Password">
             <button class="btn-auth" onclick="verifyAdminLogin()">Unlock Admin Console</button>
@@ -74,86 +72,86 @@
         </div>
     </div>
 
-    <!-- LEFT SIDEBAR -->
     <div class="sidebar">
         <div>
             <div class="sidebar-brand">
                 <img src="logo.png" alt="Logo">
                 <span>PICXLART</span>
             </div>
-
             <ul class="menu-list">
-                <li class="menu-item active" onclick="switchTab('tab-approvals', this)">
-                    <i class="fa-solid fa-user-clock"></i> Pending Approvals
-                </li>
-                <li class="menu-item" onclick="switchTab('tab-database', this)">
-                    <i class="fa-solid fa-users"></i> All Clients Database
-                </li>
+                <li class="menu-item active" onclick="switchTab('tab-approvals', this)"><i class="fa-solid fa-user-clock"></i> Pending Approvals</li>
+                <li class="menu-item" onclick="switchTab('tab-database', this)"><i class="fa-solid fa-users"></i> All Clients Database</li>
+                <li class="menu-item" onclick="switchTab('tab-active', this)"><i class="fa-solid fa-spinner"></i> Active Bookings & PDF</li>
             </ul>
         </div>
-
-        <!-- LOGOUT BUTTON AT THE BOTTOM -->
         <div class="logout-btn-container">
             <button class="btn-sidebar-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
     </div>
 
-    <!-- RIGHT MAIN WORKSPACE -->
     <div class="main-content">
         <div class="top-bar">
             <h2 style="font-size: 18px; color: #fff;"><i class="fa-solid fa-gauge"></i> Admin Console</h2>
-            <div class="admin-badge"><i class="fa-solid fa-user-shield"></i> Authorized Admin</div>
         </div>
 
-        <!-- TAB 1: PENDING ACCOUNT APPROVALS -->
+        <!-- TAB 1: PENDING -->
         <div id="tab-approvals" class="tab-content active">
             <div class="card">
-                <div class="card-title">
-                    <span><i class="fa-solid fa-user-check"></i> Pending Signup Approval Requests</span>
-                </div>
+                <div class="card-title"><span><i class="fa-solid fa-user-check"></i> Pending Signup Requests</span></div>
                 <table class="db-table">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Email Address</th>
-                            <th>Request Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="pending-users-rows">
-                        <!-- Realtime Pending Requests Will Load Here -->
-                    </tbody>
+                    <thead><tr><th>Client Name</th><th>Email</th><th>Action</th></tr></thead>
+                    <tbody id="pending-users-rows"></tbody>
                 </table>
             </div>
         </div>
 
-        <!-- TAB 2: ALL CLIENTS DATABASE -->
+        <!-- TAB 2: ALL CLIENTS -->
         <div id="tab-database" class="tab-content">
             <div class="card">
                 <div class="card-title">
                     <span><i class="fa-solid fa-database"></i> Approved Clients Database</span>
-                    <button class="btn-save" style="background:#ff4d4d;" onclick="clearAllData()"><i class="fa-solid fa-trash"></i> Reset / Clear All Data</button>
                 </div>
                 <table class="db-table">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Event Category</th>
-                            <th>Event Date</th>
-                            <th>Phone / WhatsApp</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="approved-clients-rows">
-                        <!-- Approved Clients Will Load Here -->
-                    </tbody>
+                    <thead><tr><th>Client Name</th><th>Email</th><th>Form Status</th><th>Action</th></tr></thead>
+                    <tbody id="approved-clients-rows"></tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: ACTIVE BOOKINGS & PDF VIEW -->
+        <div id="tab-active" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span><i class="fa-solid fa-folder-open"></i> Managing Client: <span id="current-client-name" style="color:#fff;">Select a client</span></span>
+                    <span id="issue-status-badge" style="font-size: 11px; background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 4px 12px; border-radius: 20px;">Paper Not Issued</span>
+                </div>
+                
+                <div id="review-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <p style="color:#aaa; font-size:12px; grid-column: 1/-1;">Click on any client from the "All Clients Database" table to load their full form details here.</p>
+                </div>
+
+                <button class="btn-action-issue" id="btn-show-pdf" onclick="document.getElementById('pdf-view-box').style.display='block'" style="display:none;"><i class="fa-solid fa-file-pdf"></i> View & Issue PDF Paper</button>
+
+                <!-- PDF Preview Box -->
+                <div class="pdf-preview-modal" id="pdf-view-box">
+                    <div style="text-align: center; border-bottom: 2px solid #111; padding-bottom: 10px; margin-bottom: 15px;">
+                        <img src="logo.png" style="height: 50px;"><br>
+                        <strong style="font-size: 16px;">Assignment Acknowledgement Paper</strong><br>
+                        <span style="font-size: 10px; color: #555;">www.picxlart.com</span>
+                    </div>
+                    <div style="font-size: 12px; line-height: 1.8; color: #222;">
+                        <strong>To Client:</strong> <span id="pdf-client">N/A</span><br>
+                        <strong>Event Category:</strong> <span id="pdf-event">N/A</span><br>
+                        <strong>Contact No:</strong> <span id="pdf-phone">N/A</span><br>
+                        <strong>Event Date:</strong> <span id="pdf-date">N/A</span><br>
+                        <strong>Total Amount:</strong> <span id="pdf-total">N/A</span> | <strong>Advance Paid:</strong> <span id="pdf-adv">N/A</span>
+                    </div>
+                    <button class="btn-action-issue" style="margin-top:20px; width:100%;" onclick="issuePdf()"><i class="fa-solid fa-paper-plane"></i> Final Issue to Client Dashboard</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- REAL FIREBASE CONFIGURATION & LOGIC -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
@@ -161,152 +159,139 @@
             projectId: "picxlart-portal",
             storageBucket: "picxlart-portal.firebasestorage.app",
             messagingSenderId: "993916901139",
-            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6",
-            measurementId: "G-86G1EFCWB7"
+            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        let currentActiveClientDocId = null;
 
-        const INACTIVITY_LIMIT_MS = 10 * 60 * 1000; // 10 Minutes
-        let inactivityTimer;
-
-        // Auto Check Session on Page Load
         window.onload = function() {
-            checkAdminSession();
-            setupInactivityTracker();
+            if(localStorage.getItem('adminAuthTime')) {
+                document.getElementById('admin-login-overlay').style.display = "none";
+                listenForUsers();
+            }
         };
 
-        function checkAdminSession() {
-            const authTime = localStorage.getItem('adminAuthTime');
-            if (authTime) {
-                const now = new Date().getTime();
-                if (now - parseInt(authTime) < INACTIVITY_LIMIT_MS) {
-                    document.getElementById('admin-login-overlay').style.display = "none";
-                    resetInactivityTimer();
-                    listenForPendingUsers();
-                    return;
-                }
-            }
-            logoutAdmin();
-        }
-
         function verifyAdminLogin() {
-            const user = document.getElementById('admin-user').value;
-            const pass = document.getElementById('admin-pass').value;
-
-            if(user === "admin@picxlart.com" && pass === "picxlart@2026") {
-                localStorage.setItem('adminAuthTime', new Date().getTime().toString());
+            if(document.getElementById('admin-user').value === "admin@picxlart.com" && document.getElementById('admin-pass').value === "picxlart@2026") {
+                localStorage.setItem('adminAuthTime', 'true');
                 document.getElementById('admin-login-overlay').style.display = "none";
-                document.getElementById('login-error').style.display = "none";
-                resetInactivityTimer();
-                listenForPendingUsers();
+                listenForUsers();
             } else {
                 document.getElementById('login-error').style.display = "block";
             }
         }
-
+        
         function logoutAdmin() {
             localStorage.removeItem('adminAuthTime');
-            document.getElementById('admin-login-overlay').style.display = "flex";
-            document.getElementById('admin-user').value = "";
-            document.getElementById('admin-pass').value = "";
-            clearTimeout(inactivityTimer);
-        }
-
-        function resetInactivityTimer() {
-            if (localStorage.getItem('adminAuthTime')) {
-                localStorage.setItem('adminAuthTime', new Date().getTime().toString());
-                clearTimeout(inactivityTimer);
-                inactivityTimer = setTimeout(() => {
-                    alert("Session expired due to 10 minutes of inactivity. Please log in again.");
-                    logoutAdmin();
-                }, INACTIVITY_LIMIT_MS);
-            }
-        }
-
-        function setupInactivityTracker() {
-            ['mousemove', 'keydown', 'click', 'scroll'].forEach(evt => {
-                document.addEventListener(evt, resetInactivityTimer, false);
-            });
+            location.reload();
         }
 
         function switchTab(tabId, element) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
         }
 
-        // Listen Realtime for Signup Requests
-        function listenForPendingUsers() {
+        function listenForUsers() {
             db.collection("users").onSnapshot((snapshot) => {
                 const pendingTbody = document.getElementById("pending-users-rows");
                 const approvedTbody = document.getElementById("approved-clients-rows");
-                
                 pendingTbody.innerHTML = "";
                 approvedTbody.innerHTML = "";
-
-                let pendingCount = 0;
 
                 snapshot.forEach((doc) => {
                     const data = doc.data();
                     const userId = doc.id;
 
                     if (data.status === "pending") {
-                        pendingCount++;
-                        pendingTbody.innerHTML += `
-                            <tr>
-                                <td><strong>${data.name || 'New User'}</strong></td>
-                                <td>${data.email}</td>
-                                <td>${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'Today'}</td>
-                                <td><span style="color:#d4af37; font-size:11px;">⚠️ Pending Approval</span></td>
-                                <td>
-                                    <button class="btn-approve" onclick="approveUser('${userId}')"><i class="fa-solid fa-check"></i> Approve</button>
-                                    <button class="btn-reject" onclick="deleteUser('${userId}')"><i class="fa-solid fa-xmark"></i> Reject</button>
-                                </td>
-                            </tr>
-                        `;
+                        pendingTbody.innerHTML += `<tr>
+                            <td><strong>${data.name || 'New User'}</strong></td>
+                            <td>${data.email}</td>
+                            <td>
+                                <button class="btn-approve" onclick="approveUser('${userId}')">Approve</button>
+                                <button class="btn-reject" onclick="deleteUser('${userId}')">Reject</button>
+                            </td>
+                        </tr>`;
                     } else if (data.status === "approved") {
-                        approvedTbody.innerHTML += `
-                            <tr>
-                                <td><strong>${data.name || 'Approved User'}</strong></td>
-                                <td>${data.eventType || 'Form Pending'}</td>
-                                <td>${data.eventDate || 'N/A'}</td>
-                                <td>${data.phone || data.email}</td>
-                                <td><span style="color:#4caf50; font-size:11px;"><i class="fa-solid fa-circle-check"></i> Approved</span></td>
-                            </tr>
-                        `;
+                        let formBadge = data.formSubmitted 
+                            ? '<span style="color:#4caf50; font-size:11px;">✅ Form Submitted</span>' 
+                            : '<span style="color:#ff9800; font-size:11px;">⏳ Form Pending</span>';
+                        
+                        approvedTbody.innerHTML += `<tr style="cursor:pointer;" onclick="openClientDetail('${userId}')">
+                            <td><strong>${data.name || 'User'}</strong></td>
+                            <td>${data.email}</td>
+                            <td>${formBadge}</td>
+                            <td><span style="color:#d4af37;"><i class="fa-solid fa-folder-open"></i> Open Panel</span></td>
+                        </tr>`;
                     }
                 });
-
-                if(pendingCount === 0) {
-                    pendingTbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#888;">No pending approval requests.</td></tr>`;
-                }
             });
         }
 
         function approveUser(userId) {
-            db.collection("users").doc(userId).update({
-                status: "approved"
-            }).then(() => {
-                alert("Client Approved! The user can now access the Assignment Form / Dashboard.");
+            db.collection("users").doc(userId).update({ status: "approved" }).then(() => alert("Client Approved!"));
+        }
+        function deleteUser(userId) {
+            if(confirm("Reject this client?")) db.collection("users").doc(userId).delete();
+        }
+
+        function openClientDetail(docId) {
+            currentActiveClientDocId = docId;
+            db.collection("users").doc(docId).get().then((doc) => {
+                if(doc.exists) {
+                    const data = doc.data();
+                    document.getElementById('current-client-name').innerText = data.name || "Client";
+                    
+                    if(data.formSubmitted) {
+                        document.getElementById('btn-show-pdf').style.display = "inline-block";
+                        
+                        // Fill Form Details
+                        document.getElementById('review-container').innerHTML = `
+                            <div class="data-item"><strong>Event Name</strong> ${data.eventType || 'N/A'}</div>
+                            <div class="data-item"><strong>Event Date</strong> ${data.eventDate || 'N/A'}</div>
+                            <div class="data-item"><strong>Contact No</strong> ${data.phone || 'N/A'}</div>
+                            <div class="data-item"><strong>Address</strong> ${data.address || 'N/A'}</div>
+                            <div class="data-item"><strong>Total Amount</strong> ₹${data.totalAmount || '0'}</div>
+                            <div class="data-item"><strong>Advance Paid</strong> ₹${data.advanceAmount || '0'}</div>
+                            <div class="data-item" style="grid-column: 1/-1;"><strong>Job Details</strong> ${data.jobDetails || 'N/A'}</div>
+                        `;
+                        
+                        // Fill PDF Preview Details
+                        document.getElementById('pdf-client').innerText = data.name || 'N/A';
+                        document.getElementById('pdf-phone').innerText = data.phone || 'N/A';
+                        document.getElementById('pdf-date').innerText = data.eventDate || 'N/A';
+                        document.getElementById('pdf-event').innerText = data.eventType || 'N/A';
+                        document.getElementById('pdf-total').innerText = '₹' + (data.totalAmount || '0');
+                        document.getElementById('pdf-adv').innerText = '₹' + (data.advanceAmount || '0');
+                    } else {
+                        document.getElementById('btn-show-pdf').style.display = "none";
+                        document.getElementById('pdf-view-box').style.display = "none";
+                        document.getElementById('review-container').innerHTML = `<p style="color:#ff9800; grid-column: 1/-1;">Client is approved but has not submitted the assignment form yet.</p>`;
+                    }
+
+                    if(data.paperIssued) {
+                        document.getElementById('issue-status-badge').style.background = "rgba(76, 175, 80, 0.2)";
+                        document.getElementById('issue-status-badge').style.color = "#4caf50";
+                        document.getElementById('issue-status-badge').innerText = "PDF Paper Issued";
+                    } else {
+                        document.getElementById('issue-status-badge').style.background = "rgba(255, 77, 77, 0.2)";
+                        document.getElementById('issue-status-badge').style.color = "#ff4d4d";
+                        document.getElementById('issue-status-badge').innerText = "Paper Not Issued";
+                    }
+
+                    // Auto switch to Active Bookings tab
+                    switchTab('tab-active', document.querySelectorAll('.menu-item')[2]);
+                }
             });
         }
 
-        function deleteUser(userId) {
-            if(confirm("Reject and remove this client request?")) {
-                db.collection("users").doc(userId).delete();
-            }
-        }
-
-        function clearAllData() {
-            if(confirm("Clear all client database records?")) {
-                db.collection("users").get().then((snapshot) => {
-                    snapshot.forEach((doc) => doc.ref.delete());
-                    alert("Reset completed!");
-                });
-            }
+        function issuePdf() {
+            db.collection("users").doc(currentActiveClientDocId).update({ paperIssued: true }).then(() => {
+                alert("PDF Issued to Client!");
+                openClientDetail(currentActiveClientDocId); // Refresh details
+            });
         }
     </script>
 </body>
