@@ -42,22 +42,39 @@
         .db-table td { padding: 12px; border-bottom: 1px solid #222; color: #ccc; }
         .db-table tr:hover { background: rgba(212, 175, 55, 0.05); }
 
-        /* Scrollable Full Form Details Box */
-        .full-form-scroll-box { max-height: 280px; overflow-y: auto; background: #0b0b0d; border: 1px solid #2a2a30; border-radius: 10px; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-        .data-point { background: #141418; padding: 10px; border-radius: 6px; border: 1px solid #222; }
-        .data-point strong { color: #d4af37; display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 3px; }
-        .data-point span { color: #eee; font-size: 12px; }
+        /* Scrollable Full Form Details Box with Proper Spacing */
+        .full-form-scroll-box { max-height: 320px; overflow-y: auto; background: #0b0b0d; border: 1px solid #2a2a30; border-radius: 10px; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .data-point { background: #141418; padding: 12px; border-radius: 8px; border: 1px solid #222; }
+        .data-point strong { color: #d4af37; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .data-point span { color: #eee; font-size: 13px; word-break: break-word; }
 
         /* 3 Buttons Group */
         .action-btn-group { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-ack { padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; }
+        .btn-ack { padding: 11px 20px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
         .btn-view-ack { background: #2196F3; color: #fff; }
         .btn-edit-ack { background: #FF9800; color: #fff; }
         .btn-issue-ack { background: #4CAF50; color: #fff; }
 
-        /* Payment Status Card */
-        .payment-status-card { background: #111114; border: 1px solid #d4af37; border-radius: 10px; padding: 18px; margin-bottom: 25px; }
-        .payment-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px border-style: dashed; border-color: #2a2a30; }
+        /* PREMIUM GLASS-CARD PAYMENT SUMMARY GRID */
+        .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 25px; }
+        .pay-card { background: #141418; border: 1px solid #2a2a30; border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
+        .pay-card-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; }
+        .pay-card-value { font-size: 20px; font-weight: 700; color: #fff; }
+        
+        .pay-card.total { border-color: rgba(212, 175, 55, 0.4); }
+        .pay-card.total .pay-card-value { color: #d4af37; }
+        
+        .pay-card.paid { border-color: rgba(76, 175, 80, 0.4); }
+        .pay-card.paid .pay-card-value { color: #4caf50; }
+        
+        .pay-card.early-due { border-color: rgba(255, 152, 0, 0.4); }
+        .pay-card.early-due .pay-card-value { color: #ff9800; }
+        
+        .pay-card.event-due { border-color: rgba(33, 150, 243, 0.4); }
+        .pay-card.event-due .pay-card-value { color: #2196F3; }
+        
+        .pay-card.delivery-due { border-color: rgba(233, 30, 99, 0.4); }
+        .pay-card.delivery-due .pay-card-value { color: #e91e63; }
 
         /* Project Status Management */
         .status-manager-box { background: #111114; border: 1px solid #222228; border-radius: 10px; padding: 18px; }
@@ -131,7 +148,7 @@
                 </div>
 
                 <!-- 1. SCROLLABLE FORM DETAILS BOX -->
-                <h4 style="color:#d4af37; font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-list-check"></i> Complete Form Specifications (Scrollable)</h4>
+                <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-list-check"></i> Complete Form Specifications (In Sequential Order)</h4>
                 <div class="full-form-scroll-box" id="full-form-data-box">
                     <p style="color:#aaa; font-size:12px; grid-column:1/-1;">Click 'Open Panel' on any approved client in the Database tab to load full form details.</p>
                 </div>
@@ -143,34 +160,40 @@
                     <button class="btn-ack btn-issue-ack" onclick="issueAcknowledgementPaper()"><i class="fa-solid fa-paper-plane"></i> Issue Acknowledgement Paper</button>
                 </div>
 
-                <!-- 3. AUTOMATIC PAYMENT BREAKDOWN -->
-                <h4 style="color:#d4af37; font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-calculator"></i> Automatic Smart Payment Calculator</h4>
-                <div class="payment-status-card" id="payment-calc-box">
-                    <div class="payment-row"><span>Total Package Value:</span><strong id="calc-total">₹0</strong></div>
-                    <div class="payment-row"><span>Advance Paid:</span><strong id="calc-adv" style="color:#4caf50;">₹0</strong></div>
-                    <div class="payment-row"><span>50% Required Booking Advance:</span><strong id="calc-req-adv">₹0</strong></div>
-                    <div class="payment-row" id="row-early-due" style="display:none;">
-                        <span style="color:#ff9800;">1 Month Before Event Required Advance Due:</span>
-                        <strong id="calc-early-due-amt" style="color:#ff9800;">₹0</strong>
+                <!-- 3. AUTOMATIC SMART PAYMENT CALCULATOR (PREMIUM CARDS) -->
+                <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-calculator"></i> Automatic Smart Payment Calculator</h4>
+                <div class="payment-summary-grid">
+                    <div class="pay-card total">
+                        <div class="pay-card-title">Total Package Value</div>
+                        <div class="pay-card-value" id="calc-total">₹0</div>
                     </div>
-                    <div class="payment-row"><span>Event Day Final Payment Due:</span><strong id="calc-event-due" style="color:#2196F3;">₹0</strong></div>
-                    <div class="payment-row" id="row-final-delivery-due" style="display:none;">
-                        <span style="color:#e91e63;">Album / Final Deliverable Submission Due:</span>
-                        <strong id="calc-delivery-due-amt" style="color:#e91e63;">₹0</strong>
+                    <div class="pay-card paid">
+                        <div class="pay-card-title">Advance Paid</div>
+                        <div class="pay-card-value" id="calc-adv">₹0</div>
+                    </div>
+                    <div class="pay-card early-due" id="card-early-due" style="display:none;">
+                        <div class="pay-card-title">1 Month Before Due (50%)</div>
+                        <div class="pay-card-value" id="calc-early-due-amt">₹0</div>
+                    </div>
+                    <div class="pay-card event-due">
+                        <div class="pay-card-title">Event Day Final Due</div>
+                        <div class="pay-card-value" id="calc-event-due">₹0</div>
+                    </div>
+                    <div class="pay-card delivery-due" id="card-delivery-due" style="display:none;">
+                        <div class="pay-card-title">Album/Deliverable Submission Due</div>
+                        <div class="pay-card-value" id="calc-delivery-due-amt">₹0</div>
                     </div>
                 </div>
 
                 <!-- 4. PROJECT STATUS TRACKER -->
-                <h4 style="color:#d4af37; font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-tasks"></i> Live Event / Project Status Management</h4>
+                <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-tasks"></i> Live Event / Project Status Management</h4>
                 <div class="status-manager-box">
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
                         <input type="text" id="new-stage-name" placeholder="Add Event Stage (e.g. Prewedding Shoot, Wedding Edit)" style="flex:1; padding:10px; background:#0b0b0d; border:1px solid #333; border-radius:6px; color:#fff; font-size:12px;">
                         <button class="btn-approve" onclick="addProjectStage()"><i class="fa-solid fa-plus"></i> Add Stage</button>
                     </div>
 
-                    <div id="project-stages-list">
-                        <!-- Dynamic Stages List -->
-                    </div>
+                    <div id="project-stages-list"></div>
                 </div>
             </div>
         </div>
@@ -267,22 +290,51 @@
                     const data = doc.data();
                     document.getElementById('current-client-name').innerText = data.name || "Client";
 
-                    // 1. Render All Form Points in Scrollable Box
+                    // Form Fields Map in Sequential Order with Clean Labels
+                    const sequentialFields = [
+                        { key: 'name', label: 'Client Name' },
+                        { key: 'email', label: 'Email Address' },
+                        { key: 'phone', label: 'Contact Number' },
+                        { key: 'whatsapp', label: 'WhatsApp Number' },
+                        { key: 'eventType', label: 'Event Name' },
+                        { key: 'weddingCategory', label: 'Wedding Category' },
+                        { key: 'address', label: 'Postal Address' },
+                        { key: 'bookingDate', label: 'Booking Date' },
+                        { key: 'assignmentBriefDate', label: 'Assignment Brief Dates' },
+                        { key: 'daysCount', label: 'Days Count' },
+                        { key: 'weddingLagna', label: 'Wedding Lagna / Time' },
+                        { key: 'packageNameAndCost', label: 'Package Name & Actual Cost' },
+                        { key: 'totalAmount', label: 'Total Package Amount' },
+                        { key: 'advanceAmount', label: 'Advance Paid Amount' },
+                        { key: 'tokenBooking', label: 'Token Booking Amount' },
+                        { key: 'finalPaymentDesc', label: 'Final Payment Details' },
+                        { key: 'duesAfterAssignment', label: 'Dues After Assignment' },
+                        { key: 'jobDetails', label: 'Job & Deliverables Selection' },
+                        { key: 'albumDetails', label: 'Album / Photobook Details' },
+                        { key: 'complimentaryAssured', label: 'Complimentary Assured' },
+                        { key: 'complimentaryDetails', label: 'Complimentary Details' },
+                        { key: 'customRequirements', label: 'Custom Requirements' },
+                        { key: 'miscCharges', label: 'Misc Charges' },
+                        { key: 'droneRequired', label: 'Drone Required' },
+                        { key: 'conductedBy', label: 'Assignment Conducted By' },
+                        { key: 'comments', label: 'Client Feedback / Comments' }
+                    ];
+
                     const scrollBox = document.getElementById('full-form-data-box');
                     scrollBox.innerHTML = "";
 
-                    for (const [key, value] of Object.entries(data)) {
-                        if(typeof value !== 'object') {
-                            scrollBox.innerHTML += `
-                                <div class="data-point">
-                                    <strong>${key}</strong>
-                                    <span>${value || 'N/A'}</span>
-                                </div>
-                            `;
-                        }
-                    }
+                    sequentialFields.forEach(item => {
+                        let val = data[item.key] || 'N/A';
+                        if(item.key === 'totalAmount' || item.key === 'advanceAmount') val = '₹' + val;
+                        scrollBox.innerHTML += `
+                            <div class="data-point">
+                                <strong>${item.label}</strong>
+                                <span>${val}</span>
+                            </div>
+                        `;
+                    });
 
-                    // 2. Paper Status Badge
+                    // Paper Status Badge
                     const badge = document.getElementById('issue-status-badge');
                     if(data.paperIssued) {
                         badge.style.background = "rgba(76, 175, 80, 0.2)";
@@ -294,10 +346,10 @@
                         badge.innerText = "Acknowledgement Not Issued";
                     }
 
-                    // 3. Automatic Smart Payment Calculations
+                    // Smart Payment Calculation
                     calculateSmartPayment(data);
 
-                    // 4. Render Project Stages
+                    // Render Project Stages
                     renderProjectStages(data.projectStages || []);
 
                     switchTab('tab-active', document.querySelectorAll('.menu-item')[2]);
@@ -305,6 +357,7 @@
             });
         }
 
+        // ACCURATE SMART PAYMENT CALCULATOR
         function calculateSmartPayment(data) {
             const total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
             const adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
@@ -312,36 +365,41 @@
 
             document.getElementById('calc-total').innerText = '₹' + total;
             document.getElementById('calc-adv').innerText = '₹' + adv;
-            document.getElementById('calc-req-adv').innerText = '₹' + req50Adv;
 
-            // Check if 50% paid
+            // 1 Month Before Event Due (if < 50%)
             if (adv < req50Adv) {
                 const earlyDue = req50Adv - adv;
-                document.getElementById('row-early-due').style.display = 'flex';
+                document.getElementById('card-early-due').style.display = 'block';
                 document.getElementById('calc-early-due-amt').innerText = '₹' + earlyDue;
             } else {
-                document.getElementById('row-early-due').style.display = 'none';
+                document.getElementById('card-early-due').style.display = 'none';
             }
 
-            // Dues logic
-            const duesDesc = (data.duesAfterAssignment || "").toUpperCase();
+            // Parse Dues accurately (Handling 5k, 5000, 5K etc)
+            const duesRaw = (data.duesAfterAssignment || "").toUpperCase().trim();
             let deliveryDue = 0;
 
-            if (duesDesc.includes("NO DUES") || duesDesc === "") {
+            if (duesRaw.includes("NO DUES") || duesRaw === "") {
                 const eventDue = total - adv;
                 document.getElementById('calc-event-due').innerText = '₹' + eventDue;
-                document.getElementById('row-final-delivery-due').style.display = 'none';
+                document.getElementById('card-delivery-due').style.display = 'none';
             } else {
-                // Extract numbers if any (e.g., 5000)
-                const matches = duesDesc.match(/\d+/g);
-                if (matches) {
-                    deliveryDue = parseFloat(matches[0]);
-                } else {
-                    deliveryDue = 5000; // default assumption if specified
+                // Check for 'K' format e.g. 5K -> 5000
+                if(duesRaw.includes("K")) {
+                    const matchK = duesRaw.match(/(\d+)\s*K/);
+                    if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000;
+                } 
+                if(deliveryDue === 0) {
+                    // Match full numbers
+                    const matches = duesRaw.match(/\d+/g);
+                    if(matches) deliveryDue = parseFloat(matches.join(''));
                 }
+
+                if(deliveryDue === 0) deliveryDue = 5000; // fallback if text written without digits
+
                 const eventDue = (total - adv) - deliveryDue;
                 document.getElementById('calc-event-due').innerText = '₹' + eventDue;
-                document.getElementById('row-final-delivery-due').style.display = 'flex';
+                document.getElementById('card-delivery-due').style.display = 'block';
                 document.getElementById('calc-delivery-due-amt').innerText = '₹' + deliveryDue;
             }
         }
