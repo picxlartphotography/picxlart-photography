@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Picxlart</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0f0f11; color: #ffffff; padding: 30px 40px; }
+        
+        .container { width: 100%; max-width: 100%; margin: 0 auto; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a30; padding-bottom: 20px; margin-bottom: 30px; }
+        .brand-logo-img { height: 75px; width: auto; }
+        .user-profile { display: flex; align-items: center; gap: 10px; background: #1a1a1e; padding: 10px 20px; border-radius: 20px; border: 1px solid #d4af37; color: #d4af37; font-size: 15px; font-weight: 500; }
+
+        .card { background: #1a1a1e; border: 1px solid #2a2a30; border-radius: 14px; padding: 30px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card-title { font-size: 18px; color: #d4af37; font-weight: 600; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+
+        /* Payment Grid */
+        .payment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; }
+        .pay-box { background: #141417; border-radius: 12px; padding: 20px; border-left: 5px solid #333; }
+        .pay-box.green { border-left-color: #4caf50; }
+        .pay-box.yellow { border-left-color: #d4af37; }
+        .pay-box.red { border-left-color: #ff4d4d; background: rgba(255,77,77,0.05); }
+        
+        .pay-title { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; }
+        .pay-amount { font-size: 24px; font-weight: 600; color: #fff; margin: 8px 0; }
+        .pay-status { font-size: 13px; font-weight: 600; }
+        .status-paid { color: #4caf50; }
+        .status-due { color: #ff4d4d; }
+        .status-pending { color: #d4af37; }
+
+        /* Project Editing Status List */
+        .status-tracker { display: flex; flex-direction: column; gap: 15px; }
+        .status-item { background: #141417; border: 1px solid #2a2a30; border-radius: 10px; padding: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .status-name { font-size: 15px; font-weight: 600; color: #fff; }
+        .status-desc { font-size: 12px; color: #aaa; margin-top: 4px; }
+        
+        .badge-active { background: rgba(212, 175, 55, 0.15); color: #d4af37; border: 1px solid #d4af37; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-completed { background: rgba(76, 175, 80, 0.15); color: #4caf50; border: 1px solid #4caf50; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-locked { background: #222; color: #666; border: 1px solid #333; padding: 6px 14px; border-radius: 20px; font-size: 12px; }
+
+        /* Buttons */
+        .btn-pay { background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-pay:hover { opacity: 0.9; }
+        
+        /* Compact Received Button */
+        .btn-received { 
+            background: linear-gradient(135deg, #4caf50, #2e7d32); 
+            color: #fff; 
+            border: none; 
+            padding: 12px 28px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px; 
+            transition: 0.3s; 
+            width: auto;
+            margin: 0 auto;
+        }
+        .btn-received:hover { opacity: 0.9; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); }
+
+        .btn-action { background: #2a2a30; color: #fff; border: 1px solid #444; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-action:hover { background: #333; }
+        
+        .btn-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; background: #222; border-color: #333; color: #777; }
+
+        .ack-box { background: #0f0f11; border: 1px dashed #d4af37; padding: 25px; border-radius: 10px; font-size: 14px; color: #ccc; line-height: 1.8; margin-bottom: 20px; }
+
+        /* 🖨️ PERFECT AUTOMATIC PDF PRINT STYLING */
+        @media print {
+            body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
+            .header, .user-profile, .card-title, .payment-card, .status-card, .received-card, #accept-btn, #view-ack-btn, button { display: none !important; }
+            .container { padding: 0 !important; width: 100% !important; }
+            .card { background: #ffffff !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+            .ack-box { background: #ffffff !important; color: #000000 !important; border: 2px solid #000000 !important; padding: 20px !important; font-size: 13px !important; line-height: 1.8 !important; }
+            .ack-box strong { color: #000000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="logo.png" alt="Picxlart Logo" class="brand-logo-img">
+            <div class="user-profile">
+                <i class="fa-solid fa-user-check"></i> <span id="client-display-name">Tanisha Ghosh</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Acknowledgement Paper -->
+        <div class="card" id="printable-ack-area">
+            <div class="card-title">
+                <span><i class="fa-solid fa-file-contract"></i> Assignment Acknowledgement Paper</span>
+                <span id="ack-badge" style="font-size: 13px; padding: 6px 14px; border-radius: 20px; background: rgba(212,175,55,0.2); color: #d4af37; border: 1px solid #d4af37; font-weight:600;">Pending Acceptance</span>
+            </div>
+            
+            <div class="ack-box" id="ack-paper-content">
+                <strong style="color:#d4af37; font-size:16px;">ASSIGNMENT ACKNOWLEDGEMENT LETTER</strong><br>
+                Website: www.picxlart.com | MSME Reg No.: UDYAM-WB-07-0069651<br><br>
+                This confirms that <strong>Picxlart</strong> has officially accepted the booking for <strong>Tanisha Ghosh</strong>.<br>
+                * <strong>Event Name:</strong> Bothside Bengali Wedding<br>
+                * <strong>Event Date:</strong> 15th December 2026<br>
+                * <strong>Total Package Amount:</strong> ₹80,000/-<br>
+                * <strong>Advance Payment Status:</strong> ₹40,000/- (50% Advance Completed)<br>
+                * <strong>Event Day Payment:</strong> ₹35,000/-<br>
+                * <strong>Final Dues (Project/Album Delivery):</strong> ₹5,000/-
+            </div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+                <button class="btn-pay" id="accept-btn" onclick="acceptAcknowledgement()">
+                    <i class="fa-solid fa-check-circle"></i> Accept Acknowledgement
+                </button>
+
+                <button class="btn-action btn-disabled" id="view-ack-btn" onclick="toggleAckPreview()">
+                    <i class="fa-solid fa-eye"></i> View Acknowledgement Paper
+                </button>
+
+                <button class="btn-action" onclick="window.print()">
+                    <i class="fa-solid fa-download"></i> Download / Print PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 2: Live Project Overview -->
+        <div class="card">
+            <div class="card-title">
+                <span><i class="fa-solid fa-camera-retro"></i> Project Details & Overview</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <p style="font-size: 14px; color: #ccc;"><strong>Service Category:</strong> Bengali Wedding Photography & Cinematography</p>
+                <p style="font-size: 14px; color: #ccc;"><strong>Venue:</strong> Kolkata, West Bengal</p>
+                <p style="font-size: 14px; color: #ccc;"><strong>Album Details:</strong> Canvera Premium Photobook 12x18</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Live Payment Tracker -->
+        <div class="card payment-card">
+            <div class="card-title">
+                <span><i class="fa-solid fa-wallet"></i> Payment Breakdown & Status</span>
+                <a href="https://www.picxlart.com" target="_blank" class="btn-pay" style="padding: 10px 20px; font-size: 14px;">
+                    <i class="fa-solid fa-credit-card"></i> Pay Now
+                </a>
+            </div>
+
+            <div class="payment-grid">
+                <div class="pay-box green">
+                    <div class="pay-title">50% Advance Payment</div>
+                    <div class="pay-amount">₹40,000/-</div>
+                    <div class="pay-status status-paid"><i class="fa-solid fa-circle-check"></i> Completed</div>
+                </div>
+
+                <div class="pay-box red">
+                    <div class="pay-title">Event Day Payment</div>
+                    <div class="pay-amount">₹35,000/-</div>
+                    <div class="pay-status status-due"><i class="fa-solid fa-clock"></i> Due on Event Day</div>
+                </div>
+
+                <div class="pay-box yellow">
+                    <div class="pay-title">Final Dues (Album Delivery Day)</div>
+                    <div class="pay-amount">₹5,000/-</div>
+                    <div class="pay-status status-pending"><i class="fa-solid fa-box-open"></i> Pending till Final Delivery</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Editing & Work Progress Status -->
+        <div class="card status-card">
+            <div class="card-title">
+                <span><i class="fa-solid fa-sliders"></i> Project Work & Editing Status</span>
+            </div>
+            
+            <div class="status-tracker">
+                <div class="status-item">
+                    <div>
+                        <div class="status-name">1. Pre-Wedding Shoot Editing & Colour Grading</div>
+                        <div class="status-desc">RAW photo selection & Video Editing in progress</div>
+                    </div>
+                    <div><span class="badge-completed"><i class="fa-solid fa-check"></i> Completed</span></div>
+                </div>
+
+                <div class="status-item">
+                    <div>
+                        <div class="status-name">2. Photobook / Album Design & Printing</div>
+                        <div class="status-desc">Layout creation & Canvera premium print</div>
+                    </div>
+                    <div><span class="badge-active"><i class="fa-solid fa-spinner fa-spin"></i> In Progress (Active)</span></div>
+                </div>
+
+                <div class="status-item">
+                    <div>
+                        <div class="status-name">3. Wedding Teaser & Main Cinema Editing</div>
+                        <div class="status-desc">Video post-production & sound design</div>
+                    </div>
+                    <div><span class="badge-locked"><i class="fa-solid fa-lock"></i> Pending Activation</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Final Deliverables Acceptance & Account Expiry Notice -->
+        <div class="card received-card" style="text-align: center;">
+            <div class="card-title" style="justify-content: center;">
+                <span><i class="fa-solid fa-box-check"></i> Project Delivery Confirmation</span>
+            </div>
+            <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">
+                When you have received all your photos, videos, teaser, and physical photobooks, please click the button below to confirm.
+            </p>
+            
+            <div>
+                <button class="btn-received" id="received-all-btn" onclick="confirmAllReceived()">
+                    <i class="fa-solid fa-box-archive"></i> I Received All Deliverables
+                </button>
+            </div>
+
+            <div id="expiry-notice" style="display: none; margin-top: 20px; background: rgba(212,175,55,0.1); border: 1px solid #d4af37; padding: 15px; border-radius: 8px; font-size: 13px; color: #d4af37;">
+                <i class="fa-solid fa-clock"></i> <strong>Confirmation Recorded!</strong> All deliverables received. Your account will remain active for <strong>45 Days</strong>. An automated email notice will be sent 5 days before deletion.
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function acceptAcknowledgement() {
+            const badge = document.getElementById('ack-badge');
+            const acceptBtn = document.getElementById('accept-btn');
+            const viewBtn = document.getElementById('view-ack-btn');
+            
+            badge.style.background = "rgba(76, 175, 80, 0.2)";
+            badge.style.color = "#4caf50";
+            badge.style.borderColor = "#4caf50";
+            badge.innerText = "Accepted by Client";
+
+            acceptBtn.style.background = "#4caf50";
+            acceptBtn.style.color = "#fff";
+            acceptBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Accepted';
+            acceptBtn.disabled = true;
+            acceptBtn.style.cursor = "not-allowed";
+
+            viewBtn.classList.remove('btn-disabled');
+
+            alert("Thank you! You have accepted the Acknowledgement Paper. Confirmation sent to Admin.");
+        }
+
+        function toggleAckPreview() {
+            const paper = document.getElementById('ack-paper-content');
+            paper.style.display = "block";
+            paper.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function confirmAllReceived() {
+            if (confirm("Are you sure you have received all photos, videos, and photobooks?")) {
+                const btn = document.getElementById('received-all-btn');
+                const notice = document.getElementById('expiry-notice');
+
+                btn.style.background = "#333";
+                btn.style.color = "#888";
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> All Deliverables Received';
+                btn.disabled = true;
+
+                notice.style.display = "inline-flex";
+                alert("Confirmation received! Admin notified. Account lifecycle set to 45 Days.");
+            }
+        }
+    </script>
+</body>
+</html>
