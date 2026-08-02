@@ -10,7 +10,6 @@
     <!-- Firebase SDK Integration -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -33,7 +32,7 @@
         .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; border-left: 4px solid transparent; }
         .menu-item:hover, .menu-item.active { background: #1a1a1e; color: #d4af37; border-left-color: #d4af37; }
 
-        /* Right Content Workspace */
+        /* Main Workspace */
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0f0f11; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #2a2a30; padding-bottom: 15px; }
         .admin-badge { background: #d4af37; color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 12px; }
@@ -41,36 +40,16 @@
         .card { background: #1a1a1e; border: 1px solid #2a2a30; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
         .card-title { font-size: 16px; color: #d4af37; font-weight: 600; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* Database Table */
+        /* Tables */
         .db-table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .db-table th { background: #141417; color: #d4af37; text-align: left; padding: 12px; border-bottom: 1px solid #2a2a30; }
         .db-table td { padding: 12px; border-bottom: 1px solid #222; color: #ccc; }
-        .db-table tr:hover { background: rgba(212, 175, 55, 0.05); cursor: pointer; }
-
-        /* Scrollable Review Container */
-        .form-scroll-container { max-height: 350px; overflow-y: auto; background: #141417; padding: 18px; border-radius: 8px; border: 1px solid #282830; margin-bottom: 20px; }
-        .full-form-review { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-        .data-item { font-size: 12px; color: #ddd; background: #0f0f11; padding: 10px; border-radius: 6px; border: 1px solid #222; }
-        .data-item strong { color: #d4af37; display: block; margin-bottom: 3px; font-size: 10px; text-transform: uppercase; }
-        .full-row { grid-column: 1 / -1; }
-
-        /* Modal Preview & Edits */
-        .pdf-preview-modal { display: none; background: #ffffff; color: #111111; padding: 25px; border-radius: 8px; margin-top: 20px; border: 2px solid #d4af37; }
-        .edit-form-box { display: none; background: #0f0f11; border: 1px dashed #d4af37; padding: 20px; border-radius: 8px; margin-top: 20px; }
-
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 12px; color: #d4af37; margin-bottom: 5px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 12px; background: #141417; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 12px; outline: none; }
 
         /* Buttons */
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .btn-action-view { background: #2a2a30; color: #fff; border: 1px solid #d4af37; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; }
-        .btn-action-edit { background: #1976D2; color: #fff; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; }
-        .btn-action-issue { background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; }
+        .btn-approve { background: #4caf50; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 11px; }
+        .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 11px; margin-left: 5px; }
         .btn-save { background: #4caf50; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; }
 
-        .stage-control-item { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; align-items: center; background: #141417; padding: 12px 16px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #282830; }
-        
         .tab-content { display: none; }
         .tab-content.active { display: block; }
     </style>
@@ -99,14 +78,11 @@
         </div>
 
         <ul class="menu-list">
-            <li class="menu-item active" onclick="switchTab('tab-database', this)">
+            <li class="menu-item active" onclick="switchTab('tab-approvals', this)">
+                <i class="fa-solid fa-user-clock"></i> Pending Approvals
+            </li>
+            <li class="menu-item" onclick="switchTab('tab-database', this)">
                 <i class="fa-solid fa-users"></i> All Clients Database
-            </li>
-            <li class="menu-item" onclick="switchTab('tab-active-bookings', this)">
-                <i class="fa-solid fa-spinner fa-spin"></i> Active & New Bookings
-            </li>
-            <li class="menu-item" onclick="switchTab('tab-archive', this)">
-                <i class="fa-solid fa-box-archive"></i> Archived Projects
             </li>
         </ul>
     </div>
@@ -118,11 +94,34 @@
             <div class="admin-badge"><i class="fa-solid fa-user-shield"></i> Authorized Admin</div>
         </div>
 
-        <!-- TAB 1: ALL CLIENTS DATABASE -->
-        <div id="tab-database" class="tab-content active">
+        <!-- TAB 1: PENDING ACCOUNT APPROVALS -->
+        <div id="tab-approvals" class="tab-content active">
             <div class="card">
                 <div class="card-title">
-                    <span><i class="fa-solid fa-database"></i> Registered Clients Database</span>
+                    <span><i class="fa-solid fa-user-check"></i> Pending Signup Approval Requests</span>
+                </div>
+                <table class="db-table">
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Email Address</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pending-users-rows">
+                        <!-- Realtime Pending Requests Will Load Here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: ALL CLIENTS DATABASE -->
+        <div id="tab-database" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <span><i class="fa-solid fa-database"></i> Approved Clients Database</span>
                     <button class="btn-save" style="background:#ff4d4d;" onclick="clearAllData()"><i class="fa-solid fa-trash"></i> Reset / Clear All Data</button>
                 </div>
                 <table class="db-table">
@@ -132,95 +131,18 @@
                             <th>Event Category</th>
                             <th>Event Date</th>
                             <th>Phone / WhatsApp</th>
-                            <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="client-db-rows">
-                        <!-- Realtime Firebase Data Will Be Loaded Here -->
+                    <tbody id="approved-clients-rows">
+                        <!-- Approved Clients Will Load Here -->
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- TAB 2: ACTIVE BOOKINGS & ACKNOWLEDGEMENT CONTROLLER -->
-        <div id="tab-active-bookings" class="tab-content">
-            <div class="card">
-                <div class="card-title">
-                    <span><i class="fa-solid fa-user-check"></i> Managing Client: <span id="current-client-name" style="color:#fff;">Select a Client</span></span>
-                    <span id="issue-status-badge" style="font-size: 11px; background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 4px 12px; border-radius: 20px;">Paper Not Issued</span>
-                </div>
-
-                <div class="form-scroll-container">
-                    <div class="full-form-review" id="review-container">
-                        <p style="color:#aaa; font-size:12px;">Click on any client from the Database table to load their full submitted assignment details here.</p>
-                    </div>
-                </div>
-
-                <!-- 3 Action Buttons -->
-                <div class="btn-group">
-                    <button class="btn-action-view" onclick="openPdfView()"><i class="fa-solid fa-file-pdf"></i> 1. View Acknowledgement PDF</button>
-                    <button class="btn-action-edit" onclick="openPdfEdit()"><i class="fa-solid fa-pen-to-square"></i> 2. Edit Acknowledgement Paper</button>
-                    <button class="btn-action-issue" id="issue-btn" onclick="issueAcknowledgement()"><i class="fa-solid fa-paper-plane"></i> 3. Issue Acknowledgement Paper</button>
-                </div>
-
-                <!-- PDF Viewer Modal -->
-                <div class="pdf-preview-modal" id="pdf-view-box">
-                    <div style="text-align: center; border-bottom: 2px solid #111; padding-bottom: 10px; margin-bottom: 15px;">
-                        <img src="logo.png" style="height: 50px;"><br>
-                        <strong style="font-size: 16px;">Assignment Paper</strong><br>
-                        <span style="font-size: 10px; color: #555;">www.picxlart.com | MSME Reg: UDYAM-WB-07-0069651</span>
-                    </div>
-
-                    <div style="font-size: 12px; line-height: 1.8; color: #222;">
-                        <strong>To:</strong> <span id="pdf-client-display">N/A</span><br>
-                        <strong>Event:</strong> <span id="pdf-event-display">N/A</span><br>
-                        <strong>Total Amount:</strong> <span id="pdf-total-display">N/A</span> | <strong>Advance:</strong> <span id="pdf-adv-display">N/A</span><br>
-                        <strong>Special Admin Note:</strong> <span id="pdf-note-display">N/A</span>
-                    </div>
-                </div>
-
-                <!-- Edit Form Box -->
-                <div class="edit-form-box" id="pdf-edit-box">
-                    <strong style="color: #d4af37; font-size: 14px;"><i class="fa-solid fa-sliders"></i> EDIT PAPER DETAILS</strong><br><br>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                        <div class="form-group"><label>Client Name</label><input type="text" id="input-client-name"></div>
-                        <div class="form-group"><label>Event Name</label><input type="text" id="input-event-name"></div>
-                        <div class="form-group"><label>Total Package Amount</label><input type="text" id="input-total-pkg"></div>
-                        <div class="form-group"><label>Advance Paid</label><input type="text" id="input-adv-status"></div>
-                    </div>
-                    <div class="form-group"><label>Admin Special Note:</label><textarea id="input-special-note" rows="2"></textarea></div>
-                    <button class="btn-save" onclick="savePdfEdits()"><i class="fa-solid fa-floppy-disk"></i> Save Edits</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title"><span><i class="fa-solid fa-pen-to-square"></i> Package Amendment & Custom Work</span></div>
-                <div class="form-group"><label>Custom Details</label><textarea id="amend-details" rows="2" placeholder="e.g. Added 1 Extra Day..."></textarea></div>
-                <button class="btn-save" onclick="alert('Amendment Updated!')"><i class="fa-solid fa-rotate"></i> Update & Re-Issue</button>
-            </div>
-
-            <div class="card">
-                <div class="card-title"><span><i class="fa-solid fa-sliders"></i> Project Work Stages Control</span></div>
-                <div class="stage-control-item">
-                    <div>1. Pre-Wedding Shoot Editing</div>
-                    <select><option>Activate / Show</option><option>Deactivate / Hide</option></select>
-                    <select><option>Completed</option><option>In Progress</option></select>
-                </div>
-                <button class="btn-save" style="margin-top:10px;" onclick="alert('Stage Settings Saved!')"><i class="fa-solid fa-save"></i> Save Settings</button>
-            </div>
-        </div>
-
-        <!-- TAB 3: ARCHIVED PROJECTS -->
-        <div id="tab-archive" class="tab-content">
-            <div class="card">
-                <div class="card-title"><span><i class="fa-solid fa-box-archive"></i> Archived & Completed Projects</span></div>
-                <p style="font-size:13px; color:#aaa;">Projects older than 45 days or completed are listed here.</p>
-            </div>
-        </div>
     </div>
 
-    <!-- REAL FIREBASE CONFIGURATION & REALTIME LISTENERS -->
+    <!-- REAL FIREBASE CONFIGURATION & APPROVAL LOGIC -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
@@ -234,16 +156,13 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        let currentActiveClientDocId = null;
-
-        // Secret Admin Authentication
         function verifyAdminLogin() {
             const user = document.getElementById('admin-user').value;
             const pass = document.getElementById('admin-pass').value;
 
             if(user === "admin@picxlart.com" && pass === "picxlart@2026") {
                 document.getElementById('admin-login-overlay').style.display = "none";
-                loadRealtimeClientData();
+                listenForPendingUsers();
             } else {
                 document.getElementById('login-error').style.display = "block";
             }
@@ -257,111 +176,73 @@
             element.classList.add('active');
         }
 
-        // Fetch Live Clients from Firebase Firestore
-        function loadRealtimeClientData() {
-            db.collection("clients").onSnapshot((snapshot) => {
-                const tbody = document.getElementById("client-db-rows");
-                tbody.innerHTML = "";
+        // Listen Realtime for Signup Requests
+        function listenForPendingUsers() {
+            db.collection("users").onSnapshot((snapshot) => {
+                const pendingTbody = document.getElementById("pending-users-rows");
+                const approvedTbody = document.getElementById("approved-clients-rows");
+                
+                pendingTbody.innerHTML = "";
+                approvedTbody.innerHTML = "";
 
-                if(snapshot.empty) {
-                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No clients submitted form yet. New submissions will appear here automatically.</td></tr>`;
-                    return;
-                }
+                let pendingCount = 0;
 
                 snapshot.forEach((doc) => {
                     const data = doc.data();
-                    const docId = doc.id;
-                    const row = `
-                        <tr onclick="openClientDetail('${docId}')">
-                            <td><strong>${data.fullName || data.name || 'New Client'}</strong></td>
-                            <td>${data.eventType || data.eventCategory || 'N/A'}</td>
-                            <td>${data.eventDate || 'N/A'}</td>
-                            <td>${data.phone || data.whatsapp || 'N/A'}</td>
-                            <td>${data.address || 'N/A'}</td>
-                            <td><span style="color:#d4af37; font-weight:600;"><i class="fa-solid fa-folder-open"></i> Open Panel</span></td>
-                        </tr>
-                    `;
-                    tbody.innerHTML += row;
+                    const userId = doc.id;
+
+                    if (data.status === "pending") {
+                        pendingCount++;
+                        pendingTbody.innerHTML += `
+                            <tr>
+                                <td><strong>${data.name || 'New User'}</strong></td>
+                                <td>${data.email}</td>
+                                <td>${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'Today'}</td>
+                                <td><span style="color:#d4af37; font-size:11px;">⚠️ Pending Approval</span></td>
+                                <td>
+                                    <button class="btn-approve" onclick="approveUser('${userId}')"><i class="fa-solid fa-check"></i> Approve</button>
+                                    <button class="btn-reject" onclick="deleteUser('${userId}')"><i class="fa-solid fa-xmark"></i> Reject</button>
+                                </td>
+                            </tr>
+                        `;
+                    } else if (data.status === "approved") {
+                        approvedTbody.innerHTML += `
+                            <tr>
+                                <td><strong>${data.name || 'Approved User'}</strong></td>
+                                <td>${data.eventType || 'Form Pending'}</td>
+                                <td>${data.eventDate || 'N/A'}</td>
+                                <td>${data.phone || data.email}</td>
+                                <td><span style="color:#4caf50; font-size:11px;"><i class="fa-solid fa-circle-check"></i> Approved</span></td>
+                            </tr>
+                        `;
+                    }
                 });
-            });
-        }
 
-        function openClientDetail(docId) {
-            currentActiveClientDocId = docId;
-            db.collection("clients").doc(docId).get().then((doc) => {
-                if(doc.exists) {
-                    const data = doc.data();
-                    document.getElementById('current-client-name').innerText = data.fullName || data.name || "Client";
-                    
-                    document.getElementById('review-container').innerHTML = `
-                        <div class="data-item"><strong>Email</strong> ${data.email || 'N/A'}</div>
-                        <div class="data-item"><strong>Event Name</strong> ${data.eventType || 'N/A'}</div>
-                        <div class="data-item"><strong>Client Name</strong> ${data.fullName || data.name || 'N/A'}</div>
-                        <div class="data-item full-row"><strong>Full Address</strong> ${data.address || 'N/A'}</div>
-                        <div class="data-item"><strong>Contact / WhatsApp</strong> ${data.phone || 'N/A'}</div>
-                        <div class="data-item"><strong>Event Date</strong> ${data.eventDate || 'N/A'}</div>
-                        <div class="data-item"><strong>Total Package Amount</strong> ₹${data.totalAmount || '0'}</div>
-                        <div class="data-item"><strong>Advance Amount Paid</strong> ₹${data.advanceAmount || '0'}</div>
-                        <div class="data-item"><strong>Dues Option Selected</strong> ${data.duesOption || 'N/A'}</div>
-                        <div class="data-item full-row"><strong>Job Details</strong> ${data.jobDetails || 'N/A'}</div>
-                    `;
-
-                    document.getElementById('input-client-name').value = data.fullName || data.name || '';
-                    document.getElementById('input-event-name').value = data.eventType || '';
-                    document.getElementById('input-total-pkg').value = '₹' + (data.totalAmount || '0');
-                    document.getElementById('input-adv-status').value = '₹' + (data.advanceAmount || '0');
-
-                    document.getElementById('pdf-client-display').innerText = data.fullName || data.name || 'N/A';
-                    document.getElementById('pdf-event-display').innerText = (data.eventType || '') + " (" + (data.eventDate || '') + ")";
-                    document.getElementById('pdf-total-display').innerText = '₹' + (data.totalAmount || '0');
-                    document.getElementById('pdf-adv-display').innerText = '₹' + (data.advanceAmount || '0');
-
-                    switchTab('tab-active-bookings', document.querySelectorAll('.menu-item')[1]);
+                if(pendingCount === 0) {
+                    pendingTbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#888;">No pending approval requests.</td></tr>`;
                 }
             });
         }
 
-        function openPdfView() {
-            document.getElementById('pdf-view-box').style.display = "block";
-            document.getElementById('pdf-edit-box').style.display = "none";
-        }
-
-        function openPdfEdit() {
-            document.getElementById('pdf-edit-box').style.display = "block";
-            document.getElementById('pdf-view-box').style.display = "none";
-        }
-
-        function savePdfEdits() {
-            document.getElementById('pdf-client-display').innerText = document.getElementById('input-client-name').value;
-            alert("PDF Paper updated! Click 'View Acknowledgement PDF' to verify.");
-        }
-
-        function issueAcknowledgement() {
-            if(!currentActiveClientDocId) {
-                alert("Please select a client from database first!");
-                return;
-            }
-            db.collection("clients").doc(currentActiveClientDocId).update({
-                paperIssued: true,
-                issuedAt: firebase.firestore.FieldValue.serverTimestamp()
+        function approveUser(userId) {
+            db.collection("users").doc(userId).update({
+                status: "approved"
             }).then(() => {
-                const btn = document.getElementById('issue-btn');
-                const badge = document.getElementById('issue-status-badge');
-                btn.style.background = "#4caf50";
-                btn.style.color = "#fff";
-                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> PDF Issued';
-                badge.style.background = "rgba(76, 175, 80, 0.2)";
-                badge.style.color = "#4caf50";
-                badge.innerText = "PDF Issued & Live";
-                alert("Issued to Client Dashboard!");
+                alert("Client Approved! The user can now access the Assignment Form / Dashboard.");
             });
         }
 
+        function deleteUser(userId) {
+            if(confirm("Reject and remove this client request?")) {
+                db.collection("users").doc(userId).delete();
+            }
+        }
+
         function clearAllData() {
-            if(confirm("Are you sure you want to clear all client records from Firebase database?")) {
-                db.collection("clients").get().then((snapshot) => {
+            if(confirm("Clear all client database records?")) {
+                db.collection("users").get().then((snapshot) => {
                     snapshot.forEach((doc) => doc.ref.delete());
-                    alert("Database reset completed successfully!");
+                    alert("Reset completed!");
                 });
             }
         }
