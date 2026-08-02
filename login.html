@@ -75,6 +75,7 @@
         const db = firebase.firestore();
 
         let isSignUp = true;
+        let realtimeUnsubscribe = null;
 
         function toggleAuthMode() {
             isSignUp = !isSignUp;
@@ -92,7 +93,7 @@
             box.innerText = msg;
         }
 
-        // Google Login Logic with Mandatory DB Write
+        // Google Login Logic
         async function loginWithGoogle() {
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
@@ -130,28 +131,34 @@
             }
         }
 
-        // Check or Set Pending Status in Database
+        // Realtime User Check & Automatic Redirect
         async function processUserApproval(uid, name, email) {
             const userRef = db.collection("users").doc(uid);
             const doc = await userRef.get();
 
             if (!doc.exists) {
-                // First time user -> Save as Pending
                 await userRef.set({
                     name: name || email.split('@')[0],
                     email: email,
                     status: "pending",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-                showStatus("Your account is pending admin approval. Please wait for confirmation.");
-            } else {
-                const data = doc.data();
-                if (data.status === "approved") {
-                    window.location.href = "assignment-form.html";
-                } else {
-                    showStatus("Your account is pending admin approval. Please wait for confirmation.");
-                }
             }
+
+            // Realtime Listener for Instant Redirect on Admin Approval
+            if (realtimeUnsubscribe) realtimeUnsubscribe();
+
+            realtimeUnsubscribe = userRef.onSnapshot((snapshot) => {
+                if (snapshot.exists) {
+                    const data = snapshot.data();
+                    if (data.status === "approved") {
+                        // Redirect directly to Client Dashboard
+                        window.location.href = "client-dashboard.html";
+                    } else {
+                        showStatus("Your account is pending admin approval. Please wait for confirmation.");
+                    }
+                }
+            });
         }
     </script>
 </body>
