@@ -131,7 +131,7 @@
             }
         }
 
-        // Realtime User Check & Automatic Redirect
+        // Smart Gatekeeper Logic
         async function processUserApproval(uid, name, email) {
             const userRef = db.collection("users").doc(uid);
             const doc = await userRef.get();
@@ -141,21 +141,33 @@
                     name: name || email.split('@')[0],
                     email: email,
                     status: "pending",
+                    paperIssued: false,
+                    formSubmitted: false,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
             }
 
-            // Realtime Listener for Instant Redirect on Admin Approval
             if (realtimeUnsubscribe) realtimeUnsubscribe();
 
+            // Realtime Monitor for Gatekeeping
             realtimeUnsubscribe = userRef.onSnapshot((snapshot) => {
                 if (snapshot.exists) {
                     const data = snapshot.data();
-                    if (data.status === "approved") {
-                        // Redirect directly to Client Dashboard
-                        window.location.href = "client-dashboard.html";
-                    } else {
+                    
+                    if (data.status === "pending") {
                         showStatus("Your account is pending admin approval. Please wait for confirmation.");
+                    } 
+                    else if (data.status === "approved" && !data.formSubmitted) {
+                        // Approved but hasn't submitted form -> Go to Form
+                        window.location.href = "assignment-form.html";
+                    } 
+                    else if (data.status === "approved" && data.formSubmitted && !data.paperIssued) {
+                        // Form submitted BUT Paper NOT issued yet -> Stay on Holding Page
+                        window.location.href = "assignment-form.html";
+                    } 
+                    else if (data.status === "approved" && data.paperIssued) {
+                        // Paper officially issued by Admin -> UNLOCK DASHBOARD!
+                        window.location.href = "client-dashboard.html";
                     }
                 }
             });
