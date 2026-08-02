@@ -49,7 +49,6 @@
         .btn-edit-ack { background: #FF9800; color: #fff; }
         .btn-issue-ack { background: #4CAF50; color: #fff; }
 
-        /* PAYMENT GRID & EDIT MODE */
         .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 15px; }
         .pay-card { background: #141418; border: 1px solid #2a2a30; border-radius: 10px; padding: 16px; position: relative; }
         .pay-card-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; display: flex; justify-content: space-between; }
@@ -139,7 +138,7 @@
 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                     <h4 style="color:#d4af37; font-size:13px;"><i class="fa-solid fa-calculator"></i> Automatic Smart Payment Calculator</h4>
-                    <button id="btn-save-custom-payments" style="display:none; background:#4caf50; color:#fff; border:none; padding:5px 12px; border-radius:4px; font-size:11px; cursor:pointer;" onclick="saveCustomPayments()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                    <button id="btn-save-custom-payments" style="display:none; background:#4caf50; color:#fff; border:none; padding:6px 14px; border-radius:6px; font-size:12px; cursor:pointer;" onclick="saveCustomPayments()"><i class="fa-solid fa-floppy-disk"></i> Save Changes to Database</button>
                 </div>
 
                 <div class="payment-summary-grid">
@@ -330,23 +329,23 @@
             });
         }
 
-        // PERFECT AUTOMATIC MATHEMATICAL CALCULATION
+        // DYNAMIC RE-CALCULATION LOGIC
         function calculateSmartPayment(data) {
-            // Check if admin manually saved custom calculations
+            let total, adv;
+
+            // If custom payments saved before, load them as defaults
             if(data.customPayments) {
-                document.getElementById('calc-total').innerText = '₹' + data.customPayments.total;
-                document.getElementById('calc-adv').innerText = '₹' + data.customPayments.adv;
-                document.getElementById('calc-early-due-amt').innerText = '₹' + data.customPayments.earlyDue;
-                document.getElementById('calc-event-due').innerText = '₹' + data.customPayments.eventDue;
-                document.getElementById('calc-delivery-due-amt').innerText = '₹' + data.customPayments.deliveryDue;
-                
-                document.getElementById('card-early-due').style.display = data.customPayments.earlyDue > 0 ? 'block' : 'none';
-                document.getElementById('card-delivery-due').style.display = data.customPayments.deliveryDue > 0 ? 'block' : 'none';
-                return;
+                total = data.customPayments.total;
+                adv = data.customPayments.adv;
+            } else {
+                total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
+                adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
             }
 
-            const total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
-            const adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
+            renderPaymentUI(total, adv, data.duesAfterAssignment || "");
+        }
+
+        function renderPaymentUI(total, adv, duesRawText) {
             const req50Adv = total * 0.50;
 
             document.getElementById('calc-total').innerText = '₹' + total;
@@ -363,8 +362,8 @@
                 document.getElementById('calc-early-due-amt').innerText = '₹0';
             }
 
-            // Parse Dues for Project Submission (e.g. 5000, 5K)
-            const duesRaw = (data.duesAfterAssignment || "").toUpperCase().trim();
+            // Parse Dues for Delivery
+            const duesRaw = duesRawText.toUpperCase().trim();
             let deliveryDue = 0;
 
             if (!duesRaw.includes("NO DUES") && duesRaw !== "") {
@@ -393,12 +392,23 @@
             }
         }
 
-        // EDITABLE OVERRIDE FOR ADMIN
+        // EDITABLE ICON CLICK -> INSTANT RE-CALCULATE
         function editPayValue(elemId) {
             const currentVal = document.getElementById(elemId).innerText.replace('₹', '');
-            const newVal = prompt("Enter new custom amount for this field:", currentVal);
+            const newVal = prompt("Enter new value:", currentVal);
+            
             if(newVal !== null && !isNaN(newVal)) {
                 document.getElementById(elemId).innerText = '₹' + parseFloat(newVal);
+
+                // If Total or Advance is edited, trigger AUTO RE-CALCULATION for the rest!
+                if(elemId === 'calc-total' || elemId === 'calc-adv') {
+                    const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
+                    const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
+                    const duesText = currentClientData ? (currentClientData.duesAfterAssignment || "") : "";
+
+                    renderPaymentUI(newTotal, newAdv, duesText);
+                }
+
                 document.getElementById('btn-save-custom-payments').style.display = 'inline-block';
             }
         }
@@ -417,7 +427,7 @@
             db.collection("users").doc(currentActiveUid).update({
                 customPayments: customData
             }).then(() => {
-                alert("Custom Payment Calculations Saved!");
+                alert("Payment Calculations Saved & Synced with Client Dashboard!");
                 document.getElementById('btn-save-custom-payments').style.display = 'none';
             });
         }
