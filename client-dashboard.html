@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal Dashboard - Picxlart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -14,42 +14,79 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: #0b0b0d; color: #fff; padding: 30px 15px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .card { background: #141417; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; padding: 25px; margin-bottom: 20px; }
-        .card-title { color: #d4af37; font-size: 16px; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .payment-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed #282830; }
-        .stage-item { display: flex; justify-content: space-between; align-items: center; background: #0a0a0c; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #222; }
+        .container { max-width: 850px; margin: 0 auto; }
+        
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222228; padding-bottom: 20px; }
+        .header img { height: 55px; margin-bottom: 8px; }
+        .header h2 { color: #d4af37; font-size: 22px; font-weight: 600; }
+        
+        .card { background: #141417; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 14px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .card-title { color: #d4af37; font-size: 15px; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* PREMIUM GLASS-CARD PAYMENT SUMMARY GRID */
+        .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 15px; }
+        .pay-card { background: #0a0a0c; border: 1px solid #2a2a30; border-radius: 10px; padding: 16px; }
+        .pay-card-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; }
+        .pay-card-value { font-size: 19px; font-weight: 700; color: #fff; }
+        
+        .pay-card.total { border-color: rgba(212, 175, 55, 0.4); }
+        .pay-card.total .pay-card-value { color: #d4af37; }
+        
+        .pay-card.paid { border-color: rgba(76, 175, 80, 0.4); }
+        .pay-card.paid .pay-card-value { color: #4caf50; }
+        
+        .pay-card.early-due { border-color: rgba(255, 152, 0, 0.4); }
+        .pay-card.early-due .pay-card-value { color: #ff9800; }
+        
+        .pay-card.event-due { border-color: rgba(33, 150, 243, 0.4); }
+        .pay-card.event-due .pay-card-value { color: #2196F3; }
+        
+        .pay-card.delivery-due { border-color: rgba(233, 30, 99, 0.4); }
+        .pay-card.delivery-due .pay-card-value { color: #e91e63; }
+
+        .stage-item { display: flex; justify-content: space-between; align-items: center; background: #0a0a0c; padding: 14px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <!-- HEADER -->
-        <div style="text-align: center; margin-bottom: 30px;">
-            <img src="logo.png" style="height: 50px;">
-            <h2 style="color:#d4af37; margin-top:10px;">Welcome, <span id="client-display-name">Client</span></h2>
+        <div class="header">
+            <img src="logo.png" alt="Picxlart Logo">
+            <h2>Welcome, <span id="client-display-name">Client</span></h2>
             <p style="color:#888; font-size:12px;">Picxlart Official Assignment & Booking Tracking Portal</p>
         </div>
 
-        <!-- 1. PAYMENT BREAKDOWN -->
+        <!-- 1. PREMIUM PAYMENT SUMMARY -->
         <div class="card">
-            <div class="card-title"><i class="fa-solid fa-calculator"></i> My Payment & Dues Summary</div>
-            <div class="payment-row"><span>Total Package Value:</span><strong id="client-total">₹0</strong></div>
-            <div class="payment-row"><span>Advance Amount Paid:</span><strong id="client-adv" style="color:#4caf50;">₹0</strong></div>
-            <div class="payment-row" id="c-row-early" style="display:none;">
-                <span style="color:#ff9800;">1 Month Before Event Required Booking Due:</span>
-                <strong id="client-early-due" style="color:#ff9800;">₹0</strong>
-            </div>
-            <div class="payment-row"><span>Event Day Payable Final Payment:</span><strong id="client-event-due" style="color:#2196F3;">₹0</strong></div>
-            <div class="payment-row" id="c-row-deliv" style="display:none;">
-                <span style="color:#e91e63;">Album / Final Deliverables Delivery Due:</span>
-                <strong id="client-deliv-due" style="color:#e91e63;">₹0</strong>
+            <div class="card-title"><i class="fa-solid fa-calculator"></i> My Payment & Dues Breakdown</div>
+            <div class="payment-summary-grid">
+                <div class="pay-card total">
+                    <div class="pay-card-title">Total Package Value</div>
+                    <div class="pay-card-value" id="client-total">₹0</div>
+                </div>
+                <div class="pay-card paid">
+                    <div class="pay-card-title">Advance Paid</div>
+                    <div class="pay-card-value" id="client-adv">₹0</div>
+                </div>
+                <div class="pay-card early-due" id="c-card-early" style="display:none;">
+                    <div class="pay-card-title">1 Month Before Due (50%)</div>
+                    <div class="pay-card-value" id="client-early-due">₹0</div>
+                </div>
+                <div class="pay-card event-due">
+                    <div class="pay-card-title">Event Day Final Due</div>
+                    <div class="pay-card-value" id="client-event-due">₹0</div>
+                </div>
+                <div class="pay-card delivery-due" id="c-card-deliv" style="display:none;">
+                    <div class="pay-card-title">Album/Deliverable Submission Due</div>
+                    <div class="pay-card-value" id="client-deliv-due">₹0</div>
+                </div>
             </div>
         </div>
 
         <!-- 2. LIVE PROJECT STATUS TRACKER -->
         <div class="card">
-            <div class="card-title"><i class="fa-solid fa-list-check"></i> Live Project & Shoot Status</div>
+            <div class="card-title"><i class="fa-solid fa-list-check"></i> Live Event / Shoot Progress Status</div>
             <div id="client-stages-box">
                 <p style="color:#777; font-size:12px;">Loading project status...</p>
             </div>
@@ -85,27 +122,36 @@
                         document.getElementById('client-adv').innerText = '₹' + adv;
 
                         if (adv < req50Adv) {
-                            document.getElementById('c-row-early').style.display = 'flex';
+                            document.getElementById('c-card-early').style.display = 'block';
                             document.getElementById('client-early-due').innerText = '₹' + (req50Adv - adv);
                         } else {
-                            document.getElementById('c-row-early').style.display = 'none';
+                            document.getElementById('c-card-early').style.display = 'none';
                         }
 
-                        const duesDesc = (data.duesAfterAssignment || "").toUpperCase();
+                        // Parse Dues
+                        const duesRaw = (data.duesAfterAssignment || "").toUpperCase().trim();
                         let deliveryDue = 0;
 
-                        if (duesDesc.includes("NO DUES") || duesDesc === "") {
+                        if (duesRaw.includes("NO DUES") || duesRaw === "") {
                             document.getElementById('client-event-due').innerText = '₹' + (total - adv);
-                            document.getElementById('c-row-deliv').style.display = 'none';
+                            document.getElementById('c-card-deliv').style.display = 'none';
                         } else {
-                            const matches = duesDesc.match(/\d+/g);
-                            deliveryDue = matches ? parseFloat(matches[0]) : 5000;
+                            if(duesRaw.includes("K")) {
+                                const matchK = duesRaw.match(/(\d+)\s*K/);
+                                if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000;
+                            } 
+                            if(deliveryDue === 0) {
+                                const matches = duesRaw.match(/\d+/g);
+                                if(matches) deliveryDue = parseFloat(matches.join(''));
+                            }
+                            if(deliveryDue === 0) deliveryDue = 5000;
+
                             document.getElementById('client-event-due').innerText = '₹' + ((total - adv) - deliveryDue);
-                            document.getElementById('c-row-deliv').style.display = 'flex';
+                            document.getElementById('c-card-deliv').style.display = 'block';
                             document.getElementById('client-deliv-due').innerText = '₹' + deliveryDue;
                         }
 
-                        // Project Stages
+                        // Project Stages Render
                         const stagesBox = document.getElementById('client-stages-box');
                         stagesBox.innerHTML = "";
                         const stages = data.projectStages || [];
