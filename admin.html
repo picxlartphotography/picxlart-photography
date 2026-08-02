@@ -16,7 +16,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0f0f11; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Admin Login Modal Lock Screen */
+        /* Admin Login Lock Screen */
         .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 15, 17, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; }
         .login-card { background: #1a1a1e; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0f0f11; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; }
@@ -137,14 +137,7 @@
                         </tr>
                     </thead>
                     <tbody id="client-db-rows">
-                        <tr onclick="openClientDetail('Sayan Banerjee')">
-                            <td><strong>Sayan Banerjee</strong></td>
-                            <td>Rice Ceremony</td>
-                            <td>28-06-2026</td>
-                            <td>8697365794</td>
-                            <td>Behala, Kolkata</td>
-                            <td><span style="color:#d4af37; font-weight:600;"><i class="fa-solid fa-folder-open"></i> Open Panel</span></td>
-                        </tr>
+                        <!-- Realtime Firebase Data Will Be Loaded Here -->
                     </tbody>
                 </table>
             </div>
@@ -154,25 +147,13 @@
         <div id="tab-active-bookings" class="tab-content">
             <div class="card">
                 <div class="card-title">
-                    <span><i class="fa-solid fa-user-check"></i> Managing Client: <span id="current-client-name" style="color:#fff;">Sayan Banerjee</span></span>
+                    <span><i class="fa-solid fa-user-check"></i> Managing Client: <span id="current-client-name" style="color:#fff;">Select a Client</span></span>
                     <span id="issue-status-badge" style="font-size: 11px; background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 4px 12px; border-radius: 20px;">Paper Not Issued</span>
                 </div>
 
                 <div class="form-scroll-container">
-                    <div class="full-form-review">
-                        <div class="data-item"><strong>Form Email</strong> 85.sayan@gmail.com</div>
-                        <div class="data-item"><strong>Event Name</strong> Rice Ceremony</div>
-                        <div class="data-item"><strong>Client Name</strong> Sayan Banerjee</div>
-                        <div class="data-item full-row"><strong>Full Address</strong> 104/3/4, Satyen Roy Rd, Behala</div>
-                        <div class="data-item"><strong>Contact / WhatsApp</strong> 8697365794</div>
-                        <div class="data-item"><strong>Event Date</strong> 28-06-2026</div>
-                        <div class="data-item"><strong>Total Package Amount</strong> ₹24,500/-</div>
-                        <div class="data-item"><strong>Advance Amount Paid</strong> ₹12,250/-</div>
-                        <div class="data-item"><strong>Dues Option Selected</strong> NO DUES</div>
-                        <div class="data-item full-row"><strong>Job Details</strong> Photography, Videography, Photobook, RAW Photos</div>
-                        <div class="data-item full-row" style="border-color: #d4af37;">
-                            <strong>23 Rules Acceptance</strong> <span style="color:#4caf50; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Agreed & Accepted All Rules</span>
-                        </div>
+                    <div class="full-form-review" id="review-container">
+                        <p style="color:#aaa; font-size:12px;">Click on any client from the Database table to load their full submitted assignment details here.</p>
                     </div>
                 </div>
 
@@ -192,9 +173,9 @@
                     </div>
 
                     <div style="font-size: 12px; line-height: 1.8; color: #222;">
-                        <strong>To:</strong> <span id="pdf-client-display">Sayan Banerjee</span><br>
-                        <strong>Event:</strong> <span id="pdf-event-display">Rice Ceremony</span> (28th June 2026)<br>
-                        <strong>Total Amount:</strong> <span id="pdf-total-display">₹24,500/-</span> | <strong>Advance:</strong> <span id="pdf-adv-display">₹12,250/-</span><br>
+                        <strong>To:</strong> <span id="pdf-client-display">N/A</span><br>
+                        <strong>Event:</strong> <span id="pdf-event-display">N/A</span><br>
+                        <strong>Total Amount:</strong> <span id="pdf-total-display">N/A</span> | <strong>Advance:</strong> <span id="pdf-adv-display">N/A</span><br>
                         <strong>Special Admin Note:</strong> <span id="pdf-note-display">N/A</span>
                     </div>
                 </div>
@@ -203,10 +184,10 @@
                 <div class="edit-form-box" id="pdf-edit-box">
                     <strong style="color: #d4af37; font-size: 14px;"><i class="fa-solid fa-sliders"></i> EDIT PAPER DETAILS</strong><br><br>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                        <div class="form-group"><label>Client Name</label><input type="text" id="input-client-name" value="Sayan Banerjee"></div>
-                        <div class="form-group"><label>Event Name</label><input type="text" id="input-event-name" value="Rice Ceremony"></div>
-                        <div class="form-group"><label>Total Package Amount</label><input type="text" id="input-total-pkg" value="₹24,500/-"></div>
-                        <div class="form-group"><label>Advance Paid</label><input type="text" id="input-adv-status" value="₹12,250/-"></div>
+                        <div class="form-group"><label>Client Name</label><input type="text" id="input-client-name"></div>
+                        <div class="form-group"><label>Event Name</label><input type="text" id="input-event-name"></div>
+                        <div class="form-group"><label>Total Package Amount</label><input type="text" id="input-total-pkg"></div>
+                        <div class="form-group"><label>Advance Paid</label><input type="text" id="input-adv-status"></div>
                     </div>
                     <div class="form-group"><label>Admin Special Note:</label><textarea id="input-special-note" rows="2"></textarea></div>
                     <button class="btn-save" onclick="savePdfEdits()"><i class="fa-solid fa-floppy-disk"></i> Save Edits</button>
@@ -239,7 +220,7 @@
         </div>
     </div>
 
-    <!-- REAL FIREBASE CONFIGURATION & LOGIC -->
+    <!-- REAL FIREBASE CONFIGURATION & REALTIME LISTENERS -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
@@ -253,6 +234,8 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        let currentActiveClientDocId = null;
+
         // Secret Admin Authentication
         function verifyAdminLogin() {
             const user = document.getElementById('admin-user').value;
@@ -260,6 +243,7 @@
 
             if(user === "admin@picxlart.com" && pass === "picxlart@2026") {
                 document.getElementById('admin-login-overlay').style.display = "none";
+                loadRealtimeClientData();
             } else {
                 document.getElementById('login-error').style.display = "block";
             }
@@ -273,9 +257,68 @@
             element.classList.add('active');
         }
 
-        function openClientDetail(clientName) {
-            document.getElementById('current-client-name').innerText = clientName;
-            switchTab('tab-active-bookings', document.querySelectorAll('.menu-item')[1]);
+        // Fetch Live Clients from Firebase Firestore
+        function loadRealtimeClientData() {
+            db.collection("clients").onSnapshot((snapshot) => {
+                const tbody = document.getElementById("client-db-rows");
+                tbody.innerHTML = "";
+
+                if(snapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No clients submitted form yet. New submissions will appear here automatically.</td></tr>`;
+                    return;
+                }
+
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const docId = doc.id;
+                    const row = `
+                        <tr onclick="openClientDetail('${docId}')">
+                            <td><strong>${data.fullName || data.name || 'New Client'}</strong></td>
+                            <td>${data.eventType || data.eventCategory || 'N/A'}</td>
+                            <td>${data.eventDate || 'N/A'}</td>
+                            <td>${data.phone || data.whatsapp || 'N/A'}</td>
+                            <td>${data.address || 'N/A'}</td>
+                            <td><span style="color:#d4af37; font-weight:600;"><i class="fa-solid fa-folder-open"></i> Open Panel</span></td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            });
+        }
+
+        function openClientDetail(docId) {
+            currentActiveClientDocId = docId;
+            db.collection("clients").doc(docId).get().then((doc) => {
+                if(doc.exists) {
+                    const data = doc.data();
+                    document.getElementById('current-client-name').innerText = data.fullName || data.name || "Client";
+                    
+                    document.getElementById('review-container').innerHTML = `
+                        <div class="data-item"><strong>Email</strong> ${data.email || 'N/A'}</div>
+                        <div class="data-item"><strong>Event Name</strong> ${data.eventType || 'N/A'}</div>
+                        <div class="data-item"><strong>Client Name</strong> ${data.fullName || data.name || 'N/A'}</div>
+                        <div class="data-item full-row"><strong>Full Address</strong> ${data.address || 'N/A'}</div>
+                        <div class="data-item"><strong>Contact / WhatsApp</strong> ${data.phone || 'N/A'}</div>
+                        <div class="data-item"><strong>Event Date</strong> ${data.eventDate || 'N/A'}</div>
+                        <div class="data-item"><strong>Total Package Amount</strong> ₹${data.totalAmount || '0'}</div>
+                        <div class="data-item"><strong>Advance Amount Paid</strong> ₹${data.advanceAmount || '0'}</div>
+                        <div class="data-item"><strong>Dues Option Selected</strong> ${data.duesOption || 'N/A'}</div>
+                        <div class="data-item full-row"><strong>Job Details</strong> ${data.jobDetails || 'N/A'}</div>
+                    `;
+
+                    document.getElementById('input-client-name').value = data.fullName || data.name || '';
+                    document.getElementById('input-event-name').value = data.eventType || '';
+                    document.getElementById('input-total-pkg').value = '₹' + (data.totalAmount || '0');
+                    document.getElementById('input-adv-status').value = '₹' + (data.advanceAmount || '0');
+
+                    document.getElementById('pdf-client-display').innerText = data.fullName || data.name || 'N/A';
+                    document.getElementById('pdf-event-display').innerText = (data.eventType || '') + " (" + (data.eventDate || '') + ")";
+                    document.getElementById('pdf-total-display').innerText = '₹' + (data.totalAmount || '0');
+                    document.getElementById('pdf-adv-display').innerText = '₹' + (data.advanceAmount || '0');
+
+                    switchTab('tab-active-bookings', document.querySelectorAll('.menu-item')[1]);
+                }
+            });
         }
 
         function openPdfView() {
@@ -294,21 +337,32 @@
         }
 
         function issueAcknowledgement() {
-            const btn = document.getElementById('issue-btn');
-            const badge = document.getElementById('issue-status-badge');
-            btn.style.background = "#4caf50";
-            btn.style.color = "#fff";
-            btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> PDF Issued';
-            btn.disabled = true;
-            badge.style.background = "rgba(76, 175, 80, 0.2)";
-            badge.style.color = "#4caf50";
-            badge.innerText = "PDF Issued & Live";
-            alert("Issued to Client Dashboard!");
+            if(!currentActiveClientDocId) {
+                alert("Please select a client from database first!");
+                return;
+            }
+            db.collection("clients").doc(currentActiveClientDocId).update({
+                paperIssued: true,
+                issuedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                const btn = document.getElementById('issue-btn');
+                const badge = document.getElementById('issue-status-badge');
+                btn.style.background = "#4caf50";
+                btn.style.color = "#fff";
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> PDF Issued';
+                badge.style.background = "rgba(76, 175, 80, 0.2)";
+                badge.style.color = "#4caf50";
+                badge.innerText = "PDF Issued & Live";
+                alert("Issued to Client Dashboard!");
+            });
         }
 
         function clearAllData() {
-            if(confirm("Are you sure you want to clear/delete all test client records from database?")) {
-                alert("Database reset completed successfully!");
+            if(confirm("Are you sure you want to clear all client records from Firebase database?")) {
+                db.collection("clients").get().then((snapshot) => {
+                    snapshot.forEach((doc) => doc.ref.delete());
+                    alert("Database reset completed successfully!");
+                });
             }
         }
     </script>
