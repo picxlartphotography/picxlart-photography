@@ -4,130 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment Details Form - Picxlart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK Integration -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0f0f11; color: #ffffff; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        
-        .form-container { background: #1a1a1e; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; width: 100%; max-width: 800px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        
-        .form-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #2a2a30; padding-bottom: 20px; }
-        .form-header img { height: 50px; margin-bottom: 10px; }
-        .form-header h2 { color: #d4af37; font-size: 22px; font-weight: 600; }
-        .form-header p { color: #aaa; font-size: 12px; margin-top: 4px; }
+        body { background-color: #0b0b0d; color: #ffffff; min-height: 100vh; padding: 30px 15px; display: flex; justify-content: center; align-items: center; }
 
-        .section-title { font-size: 15px; color: #d4af37; margin: 25px 0 15px 0; border-left: 3px solid #d4af37; padding-left: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-card { background: #141417; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 16px; width: 100%; max-width: 850px; padding: 40px 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .header-brand { text-align: center; border-bottom: 1px solid #26262c; padding-bottom: 25px; margin-bottom: 30px; }
+        .header-brand img { height: 55px; margin-bottom: 10px; }
+        .header-brand h2 { color: #d4af37; font-size: 22px; letter-spacing: 0.5px; }
+        .header-brand p { color: #888; font-size: 12px; margin-top: 5px; }
 
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 12px; color: #ccc; margin-bottom: 6px; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; background: #0f0f11; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; transition: 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; }
+        .section-header { display: flex; align-items: center; gap: 10px; color: #d4af37; font-size: 15px; font-weight: 600; text-transform: uppercase; margin: 30px 0 18px 0; border-left: 3px solid #d4af37; padding-left: 12px; }
 
-        .terms-box { background: #0f0f11; border: 1px solid #2a2a30; border-radius: 8px; padding: 15px; font-size: 11px; color: #aaa; height: 120px; overflow-y: auto; margin-bottom: 15px; line-height: 1.6; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
 
-        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 12px; color: #ddd; }
-        .checkbox-group input { width: 16px; height: 16px; accent-color: #d4af37; cursor: pointer; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 12px; color: #bbb; margin-bottom: 6px; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; background: #0a0a0c; border: 1px solid #2a2a30; border-radius: 8px; color: #fff; font-size: 13px; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
 
-        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+        .terms-card { background: #0a0a0c; border: 1px solid #26262c; border-radius: 8px; padding: 16px; font-size: 11px; color: #999; height: 130px; overflow-y: auto; line-height: 1.7; margin-bottom: 20px; }
 
-        .success-card { display: none; text-align: center; padding: 50px 20px; }
-        .success-icon { font-size: 60px; color: #4caf50; margin-bottom: 15px; }
+        .checkbox-container { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #ccc; margin-bottom: 25px; cursor: pointer; }
+        .checkbox-container input { width: 18px; height: 18px; accent-color: #d4af37; margin-top: 2px; }
 
-        @media (max-width: 600px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-submit:hover { opacity: 0.95; transform: translateY(-2px); }
+
+        .success-box { display: none; text-align: center; padding: 50px 20px; }
+        .success-box i { font-size: 65px; color: #4caf50; margin-bottom: 20px; }
+
+        @media (max-width: 650px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .form-card { padding: 25px 18px; } }
     </style>
 </head>
 <body>
 
-    <div class="form-container" id="main-form-card">
-        <div class="form-header">
+    <div class="form-card" id="form-wrapper">
+        <div class="header-brand">
             <img src="logo.png" alt="Picxlart Logo">
-            <h2>Assignment Details Form</h2>
-            <p>Please fill up your event specifications to process your booking acknowledgment.</p>
+            <h2>ASSIGNMENT DETAILS FORM</h2>
+            <p>Complete your booking parameters and specifications to issue your official acknowledgement paper.</p>
         </div>
 
-        <!-- SECTION 1: CLIENT & EVENT INFO -->
-        <div class="section-title">1. Client & Event Specifications</div>
-        
+        <!-- SECTION 1: CLIENT DETAILS -->
+        <div class="section-header"><i class="fa-solid fa-user"></i> 1. Client Information</div>
         <div class="grid-2">
             <div class="form-group">
-                <label>Event Category / Type</label>
-                <input type="text" id="event-type" placeholder="e.g. Wedding, Pre-Wedding, Rice Ceremony">
+                <label>Client Full Name *</label>
+                <input type="text" id="client-name" placeholder="Enter primary client name">
             </div>
             <div class="form-group">
-                <label>Event Date</label>
-                <input type="date" id="event-date">
-            </div>
-        </div>
-
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Contact / WhatsApp Number</label>
+                <label>Contact / WhatsApp Number *</label>
                 <input type="text" id="phone-no" placeholder="+91 9876543210">
             </div>
-            <div class="form-group">
-                <label>Alternate Phone Number</label>
-                <input type="text" id="alt-phone" placeholder="Optional">
-            </div>
         </div>
-
-        <div class="form-group">
-            <label>Full Venue Address</label>
-            <textarea id="address" rows="2" placeholder="Enter complete venue location details"></textarea>
-        </div>
-
-        <!-- SECTION 2: PAYMENT & REQUIREMENTS -->
-        <div class="section-title">2. Package & Payment Details</div>
-
         <div class="grid-2">
             <div class="form-group">
-                <label>Total Package Amount (₹)</label>
-                <input type="number" id="total-amount" placeholder="0.00">
+                <label>Alternative Contact Number</label>
+                <input type="text" id="alt-phone" placeholder="Optional emergency contact">
             </div>
             <div class="form-group">
-                <label>Advance Paid (₹)</label>
-                <input type="number" id="advance-amount" placeholder="0.00">
+                <label>Email Address</label>
+                <input type="email" id="client-email-form" placeholder="client@example.com">
+            </div>
+        </div>
+
+        <!-- SECTION 2: EVENT DETAILS -->
+        <div class="section-header"><i class="fa-solid fa-calendar-days"></i> 2. Event Specifications</div>
+        <div class="grid-3">
+            <div class="form-group">
+                <label>Event Category / Function *</label>
+                <select id="event-type">
+                    <option value="">Select Category</option>
+                    <option value="Wedding Photography">Wedding Photography</option>
+                    <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
+                    <option value="Rice Ceremony">Rice Ceremony / Annaprashan</option>
+                    <option value="Engagement / Ring Ceremony">Engagement / Ring Ceremony</option>
+                    <option value="Birthday / Anniversary">Birthday / Anniversary</option>
+                    <option value="Commercial / Corporate">Commercial / Corporate</option>
+                    <option value="Other Function">Other Function</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Event Start Date *</label>
+                <input type="date" id="event-date">
+            </div>
+            <div class="form-group">
+                <label>Total Event Days / Sessions</label>
+                <input type="text" id="event-duration" placeholder="e.g. 1 Day / 2 Days">
             </div>
         </div>
 
         <div class="form-group">
-            <label>Specific Job Requirements / Coverage Details</label>
-            <textarea id="job-details" rows="3" placeholder="Specify deliverables e.g., Cinematography, Candid Photography, Drone, Albums etc."></textarea>
+            <label>Complete Venue Address & Location Details *</label>
+            <textarea id="address" rows="2" placeholder="Full address, landmark, hall/hotel name..."></textarea>
         </div>
 
-        <!-- SECTION 3: TERMS & AGREEMENT -->
-        <div class="section-title">3. Terms & Conditions</div>
-        <div class="terms-box">
-            • Advance amount is non-refundable upon cancellation.<br>
-            • Raw files and deliverables will be provided post final balance settlement.<br>
-            • Meal and accommodation for the photography team during outstation shoots will be managed by the client.<br>
-            • Picxlart Photography reserves the right to use selected photographs for portfolio showcase unless opted out in writing.
+        <!-- SECTION 3: PACKAGE & PAYMENT -->
+        <div class="section-header"><i class="fa-solid fa-file-invoice-dollar"></i> 3. Commercials & Deliverables</div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Total Agreed Package Amount (₹) *</label>
+                <input type="number" id="total-amount" placeholder="e.g. 50000">
+            </div>
+            <div class="form-group">
+                <label>Advance Payment Paid (₹) *</label>
+                <input type="number" id="advance-amount" placeholder="e.g. 15000">
+            </div>
         </div>
 
-        <div class="checkbox-group">
+        <div class="form-group">
+            <label>Coverage Requirements & Deliverables Details</label>
+            <textarea id="job-details" rows="3" placeholder="List details: Traditional Photo, Candid Photo, Cinematic Video, Teaser, Albums (Size/Pages), Drone, Frame..."></textarea>
+        </div>
+
+        <!-- SECTION 4: TERMS & CONDITIONS -->
+        <div class="section-header"><i class="fa-solid fa-shield-halved"></i> 4. Terms & Policy Confirmation</div>
+        <div class="terms-card">
+            1. <strong>Advance Policy:</strong> Advance booking amount is strictly non-refundable upon cancellation.<br>
+            2. <strong>Payment Schedule:</strong> Remaining balance must be settled prior to or on the final day of the event before raw file delivery.<br>
+            3. <strong>Logistics:</strong> Outstation travel, food, and accommodation for the photography crew are to be arranged/reimbursed by the client.<br>
+            4. <strong>Copyrights & Portfolio:</strong> Picxlart Photography reserves the rights to use photographs/videos for promotional and portfolio purposes unless agreed otherwise in writing.
+        </div>
+
+        <div class="checkbox-container">
             <input type="checkbox" id="accept-terms">
-            <label for="accept-terms">I agree to the Terms & Conditions and confirm that the details provided above are accurate.</label>
+            <label for="accept-terms">I have carefully reviewed the terms and confirm that all above assignment details are correct and authorized by me.</label>
         </div>
 
-        <button class="btn-submit" onclick="submitForm()">Submit Assignment Form</button>
+        <button class="btn-submit" onclick="submitAssignmentForm()"><i class="fa-solid fa-paper-plane"></i> Submit Assignment Details</button>
     </div>
 
-    <!-- SUCCESS MESSAGE -->
-    <div class="form-container success-card" id="success-card">
-        <div class="success-icon">✓</div>
-        <h2 style="color:#fff; font-size:22px;">Assignment Submitted Successfully!</h2>
-        <p style="color:#aaa; font-size:13px; margin-top:10px; line-height:1.6;">
-            Thank you! Your assignment specifications have been recorded in our database.<br>
-            Our Admin team is reviewing your details and will issue your official **Acknowledgement Paper** shortly.
+    <!-- SUCCESS MESSAGE CARD -->
+    <div class="form-card success-box" id="success-wrapper">
+        <i class="fa-solid fa-circle-check"></i>
+        <h2 style="color:#fff; font-size:22px; margin-bottom: 10px;">Assignment Submitted Successfully!</h2>
+        <p style="color:#aaa; font-size:13px; line-height:1.7;">
+            Thank you! Your assignment specifications have been successfully recorded.<br>
+            Please wait while Admin reviews your details and issues your <strong>Official Acknowledgement Paper</strong> in your portal.
         </p>
     </div>
 
@@ -144,16 +168,24 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        let currentUserUid = null;
+        let currentUid = null;
 
-        // Check Login Session
+        // Auto Check User Login
         auth.onAuthStateChanged((user) => {
             if (user) {
-                currentUserUid = user.uid;
-                db.collection("users").doc(currentUserUid).get().then(doc => {
+                currentUid = user.uid;
+                if(user.email) {
+                    document.getElementById('client-email-form').value = user.email;
+                }
+                if(user.displayName) {
+                    document.getElementById('client-name').value = user.displayName;
+                }
+
+                // Check if user already submitted the form
+                db.collection("users").doc(currentUid).get().then(doc => {
                     if(doc.exists && doc.data().formSubmitted) {
-                        document.getElementById('main-form-card').style.display = 'none';
-                        document.getElementById('success-card').style.display = 'block';
+                        document.getElementById('form-wrapper').style.display = 'none';
+                        document.getElementById('success-wrapper').style.display = 'block';
                     }
                 });
             } else {
@@ -161,35 +193,41 @@
             }
         });
 
-        function submitForm() {
-            if(!currentUserUid) { alert("Session expired! Please login again."); return; }
+        function submitAssignmentForm() {
+            if(!currentUid) { alert("Session expired! Please login again."); return; }
 
-            const eventType = document.getElementById('event-type').value.trim();
-            const eventDate = document.getElementById('event-date').value;
+            const clientName = document.getElementById('client-name').value.trim();
             const phoneNo = document.getElementById('phone-no').value.trim();
             const altPhone = document.getElementById('alt-phone').value.trim();
+            const email = document.getElementById('client-email-form').value.trim();
+            const eventType = document.getElementById('event-type').value;
+            const eventDate = document.getElementById('event-date').value;
+            const duration = document.getElementById('event-duration').value.trim();
             const address = document.getElementById('address').value.trim();
             const totalAmount = document.getElementById('total-amount').value || '0';
             const advanceAmount = document.getElementById('advance-amount').value || '0';
             const jobDetails = document.getElementById('job-details').value.trim();
-            const acceptTerms = document.getElementById('accept-terms').checked;
+            const accepted = document.getElementById('accept-terms').checked;
 
-            if(!eventType || !eventDate || !phoneNo) {
-                alert("Please fill in the Event Type, Date, and Contact Number!");
+            if(!clientName || !phoneNo || !eventType || !eventDate || !address) {
+                alert("Please fill in all required fields (Name, Phone, Category, Date, Address)!");
                 return;
             }
 
-            if(!acceptTerms) {
-                alert("Please check and accept the Terms & Conditions before submitting!");
+            if(!accepted) {
+                alert("Please check and accept the Terms & Policy before submitting!");
                 return;
             }
 
-            // Save in 'users' collection for Admin to read
-            db.collection("users").doc(currentUserUid).update({
-                eventType: eventType,
-                eventDate: eventDate,
+            // Save directly into 'users' collection so Admin Panel instantly gets full data
+            db.collection("users").doc(currentUid).update({
+                name: clientName,
                 phone: phoneNo,
                 altPhone: altPhone,
+                email: email,
+                eventType: eventType,
+                eventDate: eventDate,
+                eventDuration: duration,
                 address: address,
                 totalAmount: totalAmount,
                 advanceAmount: advanceAmount,
@@ -197,10 +235,10 @@
                 formSubmitted: true,
                 submittedAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                document.getElementById('main-form-card').style.display = 'none';
-                document.getElementById('success-card').style.display = 'block';
+                document.getElementById('form-wrapper').style.display = 'none';
+                document.getElementById('success-wrapper').style.display = 'block';
             }).catch((error) => {
-                alert("Error submitting form: " + error.message);
+                alert("Submission Error: " + error.message);
             });
         }
     </script>
