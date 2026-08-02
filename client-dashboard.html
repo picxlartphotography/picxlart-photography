@@ -111,6 +111,13 @@
                 db.collection("users").doc(user.uid).onSnapshot((doc) => {
                     if (doc.exists) {
                         const data = doc.data();
+
+                        // SECURITY LOCK: Redirect back if Acknowledgement Paper is NOT issued yet
+                        if (!data.paperIssued) {
+                            window.location.href = "assignment-form.html";
+                            return;
+                        }
+
                         document.getElementById('client-display-name').innerText = data.name || "Client";
 
                         // Payment Calculation
