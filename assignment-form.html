@@ -3,244 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Details Form - Picxlart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Assignment Form - Picxlart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDK Integration -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0b0b0d; color: #ffffff; min-height: 100vh; padding: 30px 15px; display: flex; justify-content: center; align-items: center; }
+        body { background-color: #0f0f11; color: #ffffff; padding: 30px 15px; }
+        
+        .form-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #1a1a1e; 
+            border: 1px solid #2a2a30; 
+            border-radius: 16px; 
+            padding: 40px 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #2a2a30; padding-bottom: 20px; }
+        .brand-logo-img { height: 80px; width: auto; margin-bottom: 15px; }
+        .title { font-size: 24px; font-weight: 600; color: #d4af37; letter-spacing: 1px; }
+        .contact-links { margin-top: 15px; font-size: 13px; color: #aaa; line-height: 1.8; }
+        .contact-links a { color: #d4af37; text-decoration: none; }
+        
+        .form-section { background: #141417; border: 1px solid #282830; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .section-title { font-size: 16px; color: #d4af37; font-weight: 600; margin-bottom: 15px; border-bottom: 1px solid #2a2a30; padding-bottom: 8px; }
+        
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 13px; color: #ddd; margin-bottom: 8px; font-weight: 500; }
+        .form-group label span { color: #ff4d4d; }
+        
+        .form-group input[type="text"], 
+        .form-group input[type="email"], 
+        .form-group input[type="tel"], 
+        .form-group input[type="date"], 
+        .form-group select, 
+        .form-group textarea { 
+            width: 100%; 
+            padding: 12px; 
+            background: #0f0f11; 
+            border: 1px solid #333; 
+            border-radius: 8px; 
+            color: #fff; 
+            font-size: 14px; 
+            outline: none; 
+            transition: 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; }
+        
+        /* Grid Layouts */
+        .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 650px) { .row-2 { grid-template-columns: 1fr; } }
 
-        .form-card { background: #141417; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 16px; width: 100%; max-width: 850px; padding: 40px 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+        /* Radio & Checkbox Styling */
+        .options-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+        .option-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #ccc; cursor: pointer; }
+        .option-item input { accent-color: #d4af37; width: 18px; height: 18px; cursor: pointer; }
 
-        .header-brand { text-align: center; border-bottom: 1px solid #26262c; padding-bottom: 25px; margin-bottom: 30px; }
-        .header-brand img { height: 55px; margin-bottom: 10px; }
-        .header-brand h2 { color: #d4af37; font-size: 22px; letter-spacing: 0.5px; }
-        .header-brand p { color: #888; font-size: 12px; margin-top: 5px; }
+        /* Rules Box */
+        .rules-box { 
+            max-height: 250px; 
+            overflow-y: auto; 
+            background: #0f0f11; 
+            border: 1px solid #333; 
+            padding: 15px; 
+            border-radius: 8px; 
+            font-size: 12px; 
+            color: #bbb; 
+            line-height: 1.7; 
+            margin-bottom: 15px; 
+        }
+        .rules-box ol { padding-left: 18px; }
+        .rules-box li { margin-bottom: 8px; }
 
-        .section-header { display: flex; align-items: center; gap: 10px; color: #d4af37; font-size: 15px; font-weight: 600; text-transform: uppercase; margin: 30px 0 18px 0; border-left: 3px solid #d4af37; padding-left: 12px; }
+        .btn-submit { 
+            width: 100%; 
+            background: linear-gradient(135deg, #d4af37, #aa820a); 
+            color: #000; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            transition: 0.3s; 
+        }
+        .btn-submit:hover { opacity: 0.9; }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
-
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 12px; color: #bbb; margin-bottom: 6px; font-weight: 500; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; background: #0a0a0c; border: 1px solid #2a2a30; border-radius: 8px; color: #fff; font-size: 13px; outline: none; transition: 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #d4af37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
-
-        .terms-card { background: #0a0a0c; border: 1px solid #26262c; border-radius: 8px; padding: 16px; font-size: 11px; color: #999; height: 130px; overflow-y: auto; line-height: 1.7; margin-bottom: 20px; }
-
-        .checkbox-container { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #ccc; margin-bottom: 25px; cursor: pointer; }
-        .checkbox-container input { width: 18px; height: 18px; accent-color: #d4af37; margin-top: 2px; }
-
-        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-submit:hover { opacity: 0.95; transform: translateY(-2px); }
-
-        .success-box { display: none; text-align: center; padding: 50px 20px; }
-        .success-box i { font-size: 65px; color: #4caf50; margin-bottom: 20px; }
-
-        @media (max-width: 650px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .form-card { padding: 25px 18px; } }
+        /* Success Screen */
+        .success-screen { display: none; text-align: center; padding: 50px 20px; }
+        .green-tick { font-size: 75px; color: #4caf50; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
-    <div class="form-card" id="form-wrapper">
-        <div class="header-brand">
-            <img src="logo.png" alt="Picxlart Logo">
-            <h2>ASSIGNMENT DETAILS FORM</h2>
-            <p>Complete your booking parameters and specifications to issue your official acknowledgement paper.</p>
-        </div>
-
-        <!-- SECTION 1: CLIENT DETAILS -->
-        <div class="section-header"><i class="fa-solid fa-user"></i> 1. Client Information</div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Client Full Name *</label>
-                <input type="text" id="client-name" placeholder="Enter primary client name">
-            </div>
-            <div class="form-group">
-                <label>Contact / WhatsApp Number *</label>
-                <input type="text" id="phone-no" placeholder="+91 9876543210">
-            </div>
-        </div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Alternative Contact Number</label>
-                <input type="text" id="alt-phone" placeholder="Optional emergency contact">
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="client-email-form" placeholder="client@example.com">
+    <div class="form-container" id="form-card">
+        <div class="header">
+            <img src="logo.png" alt="Picxlart Logo" class="brand-logo-img">
+            <h1 class="title">Assignment Form</h1>
+            <div class="contact-links">
+                After submitting the form we'll send full details through Whatsapp and mail.<br>
+                <strong>Facebook:</strong> <a href="https://www.facebook.com/picxlart/" target="_blank">facebook.com/picxlart/</a> | 
+                <strong>Instagram:</strong> <a href="https://www.instagram.com/picxlartindia/" target="_blank">instagram.com/picxlartindia/</a><br>
+                <strong>Website:</strong> <a href="https://www.picxlart.com" target="_blank">www.picxlart.com</a> | 
+                <strong>MSME Reg No.:</strong> UDYAM-WB-07-0069651
             </div>
         </div>
 
-        <!-- SECTION 2: EVENT DETAILS -->
-        <div class="section-header"><i class="fa-solid fa-calendar-days"></i> 2. Event Specifications</div>
-        <div class="grid-3">
-            <div class="form-group">
-                <label>Event Category / Function *</label>
-                <select id="event-type">
-                    <option value="">Select Category</option>
-                    <option value="Wedding Photography">Wedding Photography</option>
-                    <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
-                    <option value="Rice Ceremony">Rice Ceremony / Annaprashan</option>
-                    <option value="Engagement / Ring Ceremony">Engagement / Ring Ceremony</option>
-                    <option value="Birthday / Anniversary">Birthday / Anniversary</option>
-                    <option value="Commercial / Corporate">Commercial / Corporate</option>
-                    <option value="Other Function">Other Function</option>
-                </select>
+        <form id="full-assignment-form">
+            
+            <div class="form-section">
+                <div class="section-title">Client & Contact Information</div>
+                
+                <div class="form-group">
+                    <label>Email Address <span>*</span></label>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Event Name <span>*</span></label>
+                    <select id="event-name" required>
+                        <option value="">-- Choose Event --</option>
+                        <option value="Bothside Bengali Wedding">Bothside Bengali Wedding</option>
+                        <option value="Bothside Non Bengali Wedding">Bothside Non Bengali Wedding</option>
+                        <option value="Groom Side Wedding">Groom Side Wedding</option>
+                        <option value="Bride Side Wedding">Bride Side Wedding</option>
+                        <option value="Normal Prewedding">Normal Prewedding</option>
+                        <option value="Premium Prewedding">Premium Prewedding</option>
+                        <option value="Post Wedding">Post Wedding</option>
+                        <option value="Rice Ceremony">Rice Ceremony</option>
+                        <option value="Engagement Ceremony">Engagement Ceremony</option>
+                        <option value="Musical Event">Musical Event</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Threading Ceremony">Threading Ceremony</option>
+                        <option value="Registry Marriage">Registry Marriage</option>
+                        <option value="Reception Event">Reception Event</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Name of the Client <span>*</span></label>
+                    <input type="text" id="client-name" placeholder="Your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Postal Address <span>*</span></label>
+                    <textarea id="postal-address" rows="2" placeholder="Your full address" required></textarea>
+                </div>
+
+                <div class="row-2">
+                    <div class="form-group">
+                        <label>Contact No <span>*</span></label>
+                        <input type="tel" id="contact-no" placeholder="Contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp No <span>*</span></label>
+                        <input type="tel" id="whatsapp-no" placeholder="WhatsApp number" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>E-Mail ID <span>*</span></label>
+                    <input type="email" id="c-email" placeholder="Re-enter Email ID" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Event Start Date *</label>
-                <input type="date" id="event-date">
+
+            <div class="form-section">
+                <div class="section-title">Assignment & Date Details</div>
+                
+                <div class="form-group">
+                    <label>Assignment Dates (Mention in brief details) <span>*</span></label>
+                    <input type="text" id="assignment-dates-brief" placeholder="e.g. 10th & 12th Dec" required>
+                </div>
+
+                <div class="row-2">
+                    <div class="form-group">
+                        <label>Booking Date <span>*</span></label>
+                        <input type="date" id="booking-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Days <span>*</span></label>
+                        <select id="days-count" required>
+                            <option value="">-- Select Days --</option>
+                            <option value="1 Day">1 Day</option>
+                            <option value="2 Days">2 Days</option>
+                            <option value="3 Days">3 Days</option>
+                            <option value="4 Days">4 Days</option>
+                            <option value="5 Days">5 Days</option>
+                            <option value="6 Days">6 Days</option>
+                            <option value="7 Days">7 Days</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Wedding type or Category of Event <span>*</span></label>
+                    <div class="options-list">
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Bengali Wedding" required> Bengali Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Bengali Brahmin Wedding"> Bengali Brahmin Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Hindu Wedding"> Hindu Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Non Bengali Wedding"> Non Bengali Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Christian Wedding"> Christian Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Jain Wedding"> Jain Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Nepalese Bengali Wedding"> Nepalese Bengali Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Bengali & Hindu Wedding"> Bengali & Hindu Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Muslim Wedding"> Muslim Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Other Indian Wedding"> Other Indian Wedding</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Rice Ceremony / Birthday / Threading"> Rice Ceremony / Birthday / Threading</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Musical Event"> Musical Event</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Short Film Making"> Short Film Making</label>
+                        <label class="option-item"><input type="radio" name="wedding_cat" value="Music Album"> Music Album</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>If other Indian Wedding Category, Please mention here</label>
+                    <input type="text" id="other-wedding-cat" placeholder="Mention category if any">
+                </div>
+
+                <div class="form-group">
+                    <label>Any Complimentary Work Assured by Team Picxlart <span>*</span></label>
+                    <div class="options-list" style="flex-direction: row; gap: 20px;">
+                        <label class="option-item"><input type="radio" name="complimentary" value="Yes" required> Yes</label>
+                        <label class="option-item"><input type="radio" name="complimentary" value="No"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Assured Complimentary Work Details</label>
+                    <input type="text" id="complimentary-details" placeholder="Details of complimentary work">
+                </div>
+
+                <div class="form-group">
+                    <label>Wedding Lagna or Subh Muhurat / time <span>*</span></label>
+                    <input type="text" id="wedding-lagna" placeholder="e.g. Night 11:30 PM" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Total Event Days / Sessions</label>
-                <input type="text" id="event-duration" placeholder="e.g. 1 Day / 2 Days">
+
+            <div class="form-section">
+                <div class="section-title">Package & Payment Breakdown</div>
+                
+                <div class="form-group">
+                    <label>Mention package name with package actual cost <span>*</span></label>
+                    <input type="text" id="pkg-name-cost" placeholder="Package name & cost" required>
+                </div>
+
+                <div class="row-2">
+                    <div class="form-group">
+                        <label>Total assignment package amount <span>*</span></label>
+                        <input type="number" id="total-pkg-amt" placeholder="e.g. 80000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Advance Amount <span>*</span></label>
+                        <input type="number" id="advance-amt" placeholder="e.g. 40000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Token Booking (minimum remain time 3 months from assignment date)</label>
+                    <input type="number" id="token-booking" placeholder="Token amount if any">
+                </div>
+
+                <div class="form-group">
+                    <label>Final Payment (Wedding Day or Assignment Day Payment) <span>*</span></label>
+                    <input type="text" id="final-payment-desc" placeholder="Final payment details" required>
+                </div>
+
+                <div class="form-group">
+                    <label>If any dues after assignment date mention here, otherwise please mention "NO DUES" <span>*</span></label>
+                    <input type="text" id="dues-after-assignment" placeholder="e.g. NO DUES or Max 5k on album delivery" required>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label>Complete Venue Address & Location Details *</label>
-            <textarea id="address" rows="2" placeholder="Full address, landmark, hall/hotel name..."></textarea>
-        </div>
+            <div class="form-section">
+                <div class="section-title">Job & Deliverables Selection</div>
+                
+                <div class="form-group">
+                    <label>Job Details <span>*</span></label>
+                    <div class="options-list">
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Photography"> Photography</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Videography"> Videography</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Cinematography"> Cinematography</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Photobook"> Photobook</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Teaser / Trailer"> Teaser / Trailer</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="All RAW Photos"> All RAW Photos</label>
+                        <label class="option-item"><input type="checkbox" name="job_details" value="Edited Photos"> Edited Photos</label>
+                    </div>
+                </div>
 
-        <!-- SECTION 3: PACKAGE & PAYMENT -->
-        <div class="section-header"><i class="fa-solid fa-file-invoice-dollar"></i> 3. Commercials & Deliverables</div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Total Agreed Package Amount (₹) *</label>
-                <input type="number" id="total-amount" placeholder="e.g. 50000">
+                <div class="form-group">
+                    <label>Album or Photobook Details <span>*</span></label>
+                    <select id="album-details" required>
+                        <option value="">-- Choose Album Type --</option>
+                        <option value="9 x 12 Printed Magazine book Standard">9 x 12 Printed Magazine book Standard</option>
+                        <option value="9 x 12 Printed Hard Cover Photobook Premium">9 x 12 Printed Hard Cover Photobook Premium</option>
+                        <option value="Canvera standard Photobook 12x18">Canvera standard Photobook 12x18</option>
+                        <option value="Canvera Premium Photobook 12x18">Canvera Premium Photobook 12x18</option>
+                        <option value="Indigo Standard Photobook 12x18">Indigo Standard Photobook 12x18</option>
+                        <option value="Indigo Premium Photobook 12x18">Indigo Premium Photobook 12x18</option>
+                        <option value="Canvera Royal book">Canvera Royal book</option>
+                        <option value="Canvera Superbook">Canvera Superbook</option>
+                        <option value="No Album Require">No Album Require</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Customised or any extra requirements</label>
+                    <input type="text" id="custom-req" placeholder="Custom requirements if any">
+                </div>
+
+                <div class="form-group">
+                    <label>Misc. (Extra Charge applicable)</label>
+                    <div class="options-list">
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Next day morning Sidurdaan"> Next day morning Sidurdaan</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Late night wedding Lagan (after 12AM)"> Late night wedding Lagan (after 12AM)</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Sangeet"> Sangeet</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Sangeet & Mehendi"> Sangeet & Mehendi</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Mehendi"> Mehendi</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Aiburobhat"> Aiburobhat</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="2 day wedding (Basi Biye for Bengali Wedding)"> 2 day wedding (Basi Biye for Bengali Wedding)</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Extra day baby shoot (4 to 5 Hrs)"> Extra day baby shoot (4 to 5 Hrs)</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Extra day prewedding"> Extra day prewedding</label>
+                        <label class="option-item"><input type="checkbox" name="misc_charge" value="Drone Shoot"> Drone Shoot</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>If Drone Shoot required <span>*</span></label>
+                    <div class="options-list">
+                        <label class="option-item"><input type="radio" name="drone_req" value="1 Day" required> 1 Day</label>
+                        <label class="option-item"><input type="radio" name="drone_req" value="2 Days"> 2 Days</label>
+                        <label class="option-item"><input type="radio" name="drone_req" value="3 Days"> 3 Days</label>
+                        <label class="option-item"><input type="radio" name="drone_req" value="4 or more days"> 4 or more days</label>
+                        <label class="option-item"><input type="radio" name="drone_req" value="Not Required"> Not Required</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>For Canvera Photobook please upload a ID Proof</label>
+                    <input type="file" id="id-proof" style="background:#0f0f11; padding:8px; border:1px solid #333; border-radius:6px; color:#aaa; font-size:12px;">
+                </div>
             </div>
-            <div class="form-group">
-                <label>Advance Payment Paid (₹) *</label>
-                <input type="number" id="advance-amount" placeholder="e.g. 15000">
+
+            <div class="form-section">
+                <div class="section-title">Rule & Norms: Please read carefully and accept <span>*</span></div>
+                
+                <div class="rules-box">
+                    <ol>
+                        <li>For any event, client need to inform the entire work details.</li>
+                        <li>For Late night wedding / lagan will increase the package value.</li>
+                        <li>Package charges may exceed for outstation work.</li>
+                        <li>For any customize package after booking, will increase the package value.</li>
+                        <li><strong>5.A.</strong> Work time 8AM to 12.00AM maximum for Bengali wedding.<br><strong>5.B.</strong> Work time 8AM to 12.00AM onwards work for Bengali or non Bengali wedding, charges applicable / different package**</li>
+                        <li>For wedding reception 12.30AM</li>
+                        <li>If time boundation is over extra charges will be applicable per hour and persons basis. ** Conditions apply.</li>
+                        <li>Booking Amount 50%. Rest of 50% have to pay assignment day.</li>
+                        <li>After booking a slot, if client want to cancel the booking for any circumstances then advance amount will not refund. Can be adjusted with other work.</li>
+                        <li>After booking a date slot, if the date change or postpone to another date then client need to inform us ASAP.</li>
+                        <li>For any outdoor shoot like Prewedding post wedding etc. - Client need to pay spot charges or any misc. charges to them.</li>
+                        <li><strong>Travelling Allowance / Fooding / Accommodation is not included with package.</strong></li>
+                        <li>Payment Terms will not change in any circumstances.</li>
+                        <li><strong>Delivery date maximum 3 months after submitting selected photos.</strong></li>
+                        <li>Complimentary work correction is not acceptable.</li>
+                        <li>Client have to manage the time for couple photo shoot should be done by us within our fixed time, any demand after our fixed time will not be acceptable. If required more, thereafter the charge will be hourly basis for each photography person.</li>
+                        <li>The team is not responsible if you do not complete the photo shoot within our fixed time.</li>
+                        <li>If drone shoots are required, the client will need to obtain the necessary permissions from local PS. The client will also be responsible for any disturbances or issues that may arise</li>
+                        <li><strong>Final / 2nd payment is mandatory on the day of wedding or programme reception day.</strong></li>
+                        <li><strong>Using laser lights is strictly prohibited.</strong> If they are used and any camera damage occurs as a result, the client will be responsible for covering the full cost of the damage.</li>
+                        <li><strong>Data will not be transferred if Final / 2nd payment is not made.</strong></li>
+                        <li>We do not provide props for any shoot.</li>
+                        <li>Raw Video data is not transferable, only raw photos will be transfer.</li>
+                        <li>If at any time any of our instruments get damaged by the client or any others relatives of clients, then the cost of the damage will have to be borne by the client.</li>
+                    </ol>
+                </div>
+
+                <div class="form-group">
+                    <label class="option-item" style="color: #d4af37; font-weight: 600;">
+                        <input type="checkbox" id="rules-agree" required> I Agree to all Rules & Norms
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Any reactions or comments</label>
+                    <textarea id="client-comments" rows="2" placeholder="Your feedback or notes"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Assignment Conducted By from Team Picxlart (Mention his / her name) <span>*</span></label>
+                    <input type="text" id="conducted-by" placeholder="Team member name" required>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label>Coverage Requirements & Deliverables Details</label>
-            <textarea id="job-details" rows="3" placeholder="List details: Traditional Photo, Candid Photo, Cinematic Video, Teaser, Albums (Size/Pages), Drone, Frame..."></textarea>
-        </div>
-
-        <!-- SECTION 4: TERMS & CONDITIONS -->
-        <div class="section-header"><i class="fa-solid fa-shield-halved"></i> 4. Terms & Policy Confirmation</div>
-        <div class="terms-card">
-            1. <strong>Advance Policy:</strong> Advance booking amount is strictly non-refundable upon cancellation.<br>
-            2. <strong>Payment Schedule:</strong> Remaining balance must be settled prior to or on the final day of the event before raw file delivery.<br>
-            3. <strong>Logistics:</strong> Outstation travel, food, and accommodation for the photography crew are to be arranged/reimbursed by the client.<br>
-            4. <strong>Copyrights & Portfolio:</strong> Picxlart Photography reserves the rights to use photographs/videos for promotional and portfolio purposes unless agreed otherwise in writing.
-        </div>
-
-        <div class="checkbox-container">
-            <input type="checkbox" id="accept-terms">
-            <label for="accept-terms">I have carefully reviewed the terms and confirm that all above assignment details are correct and authorized by me.</label>
-        </div>
-
-        <button class="btn-submit" onclick="submitAssignmentForm()"><i class="fa-solid fa-paper-plane"></i> Submit Assignment Details</button>
+            <button type="submit" class="btn-submit">Submit Assignment Form</button>
+        </form>
     </div>
 
-    <!-- SUCCESS MESSAGE CARD -->
-    <div class="form-card success-box" id="success-wrapper">
-        <i class="fa-solid fa-circle-check"></i>
-        <h2 style="color:#fff; font-size:22px; margin-bottom: 10px;">Assignment Submitted Successfully!</h2>
-        <p style="color:#aaa; font-size:13px; line-height:1.7;">
-            Thank you! Your assignment specifications have been successfully recorded.<br>
-            Please wait while Admin reviews your details and issues your <strong>Official Acknowledgement Paper</strong> in your portal.
+    <div class="form-container success-screen" id="success-screen">
+        <div class="green-tick"><i class="fa-solid fa-circle-check"></i></div>
+        <h2 style="color: #fff; font-size: 22px; margin-bottom: 10px;">Assignment Submitted Successfully!</h2>
+        <p style="color: #aaa; font-size: 14px; line-height: 1.6;">
+            Thank you! Your assignment details have been recorded.<br>
+            Please wait while Admin reviews your details and issues your <strong>Acknowledgement Paper</strong>.
         </p>
     </div>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
-            authDomain: "picxlart-portal.firebaseapp.com",
-            projectId: "picxlart-portal",
-            storageBucket: "picxlart-portal.firebasestorage.app",
-            messagingSenderId: "993916901139",
-            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        let currentUid = null;
-
-        // Auto Check User Login
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                currentUid = user.uid;
-                if(user.email) {
-                    document.getElementById('client-email-form').value = user.email;
-                }
-                if(user.displayName) {
-                    document.getElementById('client-name').value = user.displayName;
-                }
-
-                // Check if user already submitted the form
-                db.collection("users").doc(currentUid).get().then(doc => {
-                    if(doc.exists && doc.data().formSubmitted) {
-                        document.getElementById('form-wrapper').style.display = 'none';
-                        document.getElementById('success-wrapper').style.display = 'block';
-                    }
-                });
-            } else {
-                window.location.href = "login.html";
-            }
+        document.getElementById('full-assignment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('form-card').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+            window.scrollTo(0, 0);
         });
-
-        function submitAssignmentForm() {
-            if(!currentUid) { alert("Session expired! Please login again."); return; }
-
-            const clientName = document.getElementById('client-name').value.trim();
-            const phoneNo = document.getElementById('phone-no').value.trim();
-            const altPhone = document.getElementById('alt-phone').value.trim();
-            const email = document.getElementById('client-email-form').value.trim();
-            const eventType = document.getElementById('event-type').value;
-            const eventDate = document.getElementById('event-date').value;
-            const duration = document.getElementById('event-duration').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const totalAmount = document.getElementById('total-amount').value || '0';
-            const advanceAmount = document.getElementById('advance-amount').value || '0';
-            const jobDetails = document.getElementById('job-details').value.trim();
-            const accepted = document.getElementById('accept-terms').checked;
-
-            if(!clientName || !phoneNo || !eventType || !eventDate || !address) {
-                alert("Please fill in all required fields (Name, Phone, Category, Date, Address)!");
-                return;
-            }
-
-            if(!accepted) {
-                alert("Please check and accept the Terms & Policy before submitting!");
-                return;
-            }
-
-            // Save directly into 'users' collection so Admin Panel instantly gets full data
-            db.collection("users").doc(currentUid).update({
-                name: clientName,
-                phone: phoneNo,
-                altPhone: altPhone,
-                email: email,
-                eventType: eventType,
-                eventDate: eventDate,
-                eventDuration: duration,
-                address: address,
-                totalAmount: totalAmount,
-                advanceAmount: advanceAmount,
-                jobDetails: jobDetails,
-                formSubmitted: true,
-                submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                document.getElementById('form-wrapper').style.display = 'none';
-                document.getElementById('success-wrapper').style.display = 'block';
-            }).catch((error) => {
-                alert("Submission Error: " + error.message);
-            });
-        }
     </script>
 </body>
 </html>
