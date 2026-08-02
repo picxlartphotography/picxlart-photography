@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase SDK Integration -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0f0f11; color: #ffffff; padding: 30px 15px; }
@@ -38,6 +43,7 @@
         .form-group input[type="email"], 
         .form-group input[type="tel"], 
         .form-group input[type="date"], 
+        .form-group input[type="number"], 
         .form-group select, 
         .form-group textarea { 
             width: 100%; 
@@ -410,12 +416,109 @@
         </p>
     </div>
 
+    <!-- FIREBASE BACKEND CONNECTOR SCRIPT -->
     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
+            authDomain: "picxlart-portal.firebaseapp.com",
+            projectId: "picxlart-portal",
+            storageBucket: "picxlart-portal.firebasestorage.app",
+            messagingSenderId: "993916901139",
+            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let currentUser = null;
+
+        // Auto verify user authentication
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+                if(user.email) {
+                    document.getElementById('email').value = user.email;
+                    document.getElementById('c-email').value = user.email;
+                }
+                if(user.displayName) {
+                    document.getElementById('client-name').value = user.displayName;
+                }
+
+                // If already submitted, show success screen
+                db.collection("users").doc(user.uid).get().then((doc) => {
+                    if (doc.exists && doc.data().formSubmitted) {
+                        document.getElementById('form-card').style.display = 'none';
+                        document.getElementById('success-screen').style.display = 'block';
+                    }
+                });
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        // Save data to Firebase on Form Submit
         document.getElementById('full-assignment-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            document.getElementById('form-card').style.display = 'none';
-            document.getElementById('success-screen').style.display = 'block';
-            window.scrollTo(0, 0);
+
+            if (!currentUser) {
+                alert("Session expired! Please login again.");
+                return;
+            }
+
+            // Get selected Job Details checkboxes
+            let selectedJobs = [];
+            document.querySelectorAll('input[name="job_details"]:checked').forEach(cb => selectedJobs.push(cb.value));
+
+            // Get selected Misc Charges
+            let selectedMisc = [];
+            document.querySelectorAll('input[name="misc_charge"]:checked').forEach(cb => selectedMisc.push(cb.value));
+
+            // Get radio values safely
+            const weddingCat = document.querySelector('input[name="wedding_cat"]:checked')?.value || "";
+            const complimentary = document.querySelector('input[name="complimentary"]:checked')?.value || "";
+            const droneReq = document.querySelector('input[name="drone_req"]:checked')?.value || "";
+
+            const formData = {
+                name: document.getElementById('client-name').value,
+                email: document.getElementById('email').value,
+                eventType: document.getElementById('event-name').value,
+                address: document.getElementById('postal-address').value,
+                phone: document.getElementById('contact-no').value,
+                whatsapp: document.getElementById('whatsapp-no').value,
+                assignmentBriefDate: document.getElementById('assignment-dates-brief').value,
+                bookingDate: document.getElementById('booking-date').value,
+                eventDate: document.getElementById('booking-date').value,
+                daysCount: document.getElementById('days-count').value,
+                weddingCategory: weddingCat,
+                otherWeddingCategory: document.getElementById('other-wedding-cat').value,
+                complimentaryAssured: complimentary,
+                complimentaryDetails: document.getElementById('complimentary-details').value,
+                weddingLagna: document.getElementById('wedding-lagna').value,
+                packageNameAndCost: document.getElementById('pkg-name-cost').value,
+                totalAmount: document.getElementById('total-pkg-amt').value || "0",
+                advanceAmount: document.getElementById('advance-amt').value || "0",
+                tokenBooking: document.getElementById('token-booking').value || "0",
+                finalPaymentDesc: document.getElementById('final-payment-desc').value,
+                duesAfterAssignment: document.getElementById('dues-after-assignment').value,
+                jobDetails: selectedJobs.join(", "),
+                albumDetails: document.getElementById('album-details').value,
+                customRequirements: document.getElementById('custom-req').value,
+                miscCharges: selectedMisc.join(", "),
+                droneRequired: droneReq,
+                comments: document.getElementById('client-comments').value,
+                conductedBy: document.getElementById('conducted-by').value,
+                formSubmitted: true,
+                submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            // Save inside Firebase 'users' collection for Admin to read
+            db.collection("users").doc(currentUser.uid).update(formData).then(() => {
+                document.getElementById('form-card').style.display = 'none';
+                document.getElementById('success-screen').style.display = 'block';
+                window.scrollTo(0, 0);
+            }).catch((err) => {
+                alert("Error saving data: " + err.message);
+            });
         });
     </script>
 </body>
