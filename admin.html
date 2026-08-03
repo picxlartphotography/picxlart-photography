@@ -190,7 +190,6 @@
         </div>
     </div>
 
-    <!-- PREVIEW MODAL OVERLAY -->
     <div class="modal-overlay" id="preview-modal">
         <div class="preview-box" id="pdf-preview-content">
             <span class="preview-close" onclick="document.getElementById('preview-modal').style.display='none'">&times;</span>
@@ -480,7 +479,7 @@
             });
         }
 
-        // RENDER 6-PAGE PREVIEW (PAGE 3 GENERATED IN HTML FOR PERFECT ALIGNMENT)
+        // RENDER 6-PAGE PREVIEW (PAGE 2 PERFECT ARIAL FONT & SPACING)
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -491,16 +490,41 @@
                 <!-- PAGE 1 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
-                <!-- PAGE 2: LETTER PAGE (PERFECT ALIGNMENT) -->
+                <!-- PAGE 2: LETTER PAGE (PERFECT ARIAL FONT OVER VACANT IMAGE) -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay">
-                        <div style="position:absolute; top:30.2%; left:18.8%; font-size:16px; font-weight:600; color:#aa820a; font-family:'Times New Roman', serif;">${clientName}</div>
-                        <div style="position:absolute; top:39.0%; left:20.8%; font-size:16px; font-weight:700; color:#000000; font-family:'Times New Roman', serif;">${clientName}</div>
+                    <div class="pdf-data-overlay" style="padding: 240px 65px 0 65px; color: #000; font-family: Arial, sans-serif; pointer-events:none;">
+                        
+                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 30px;">
+                            To : <span style="font-weight: bold; color:#111;">${clientName}</span>
+                        </p>
+                        
+                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 25px;">
+                            Dear <span style="font-weight: bold; color:#111;">${clientName}</span>,
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                            We sincerely thank you for choosing us to be a part of your special day.
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                            It means a lot to us.
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                            Kindly find your booking confirmation and assignment details attached.
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 50px; font-weight: 500;">
+                            We look forward to creating wonderful memories for you.
+                        </p>
+                        
+                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 8px;">Sincerely,</p>
+                        <p style="font-size: 16px; font-weight: bold;">Team Picxlart</p>
                     </div>
                 </div>
 
-                <!-- PAGE 3: FULLY HTML/CSS GENERATED PAGE (NO OVERLAP EVER) -->
+                <!-- PAGE 3: FULLY HTML/CSS GENERATED PAGE -->
                 <div class="pdf-page-wrap" style="padding: 25px 35px; background:#fff; min-height:1000px; color:#000; font-family:Arial, sans-serif;">
                     <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:8px;">Work Details / Filled Details by Client</h2>
                     <ul style="list-style:none; padding:0; font-size:12px; line-height:1.9;">
