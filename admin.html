@@ -367,13 +367,17 @@
                     calculateSmartPayment(currentClientData);
                     renderProjectStages(currentClientData.projectStages || []);
                     
-                    // --- AUTO-INITIALIZE INITIAL BOOKING LOG IF MISSING ---
+                    // --- AUTO-INITIALIZE INITIAL BOOKING LOG (WITH TIME) IF MISSING ---
                     let history = currentClientData.paymentHistory || [];
                     let adv = parseFloat(currentClientData.advanceAmount) || 0;
                     let tot = parseFloat(currentClientData.totalAmount) || 0;
 
                     if (history.length === 0 && adv > 0) {
-                        const initDateStr = (currentClientData.bookingDate || getFormattedDateTime()) + " (Initial Booking)";
+                        // Adding exact time along with the date for initial booking
+                        let timeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+                        let dateStr = currentClientData.bookingDate || new Date().toLocaleDateString('en-IN');
+                        const initDateStr = dateStr + ", " + timeStr + " (Initial Booking)";
+                        
                         history.push({
                             date: initDateStr,
                             paidNow: adv,
@@ -474,11 +478,10 @@
 
             let updateObj = { 
                 customPayments: customData,
-                advanceAmount: newAdv, // Update core value too
+                advanceAmount: newAdv, 
                 totalAmount: newTotal
             };
 
-            // LOGGING LOGIC
             if (newAdv > oldAdv) {
                 let history = currentClientData.paymentHistory || [];
                 const paidNow = newAdv - oldAdv;
