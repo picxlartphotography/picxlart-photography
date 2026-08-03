@@ -3,65 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Portal Access - Picxlart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Client Login - Picxlart Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDK Integration -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0d0d0d; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .auth-card { background: #18181c; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 16px; width: 100%; max-width: 400px; padding: 35px 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .logo-img { height: 50px; margin-bottom: 15px; }
-        .status-msg { display: none; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #f4d06f; padding: 12px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; text-align: left; line-height: 1.5; }
-        .btn-google { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; margin-bottom: 15px; }
-        .divider { color: #666; font-size: 11px; margin: 15px 0; }
-        .form-group { text-align: left; margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 11px; color: #aaa; margin-bottom: 4px; }
-        .form-group input { width: 100%; padding: 10px 12px; background: #0f0f11; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 12px; outline: none; }
-        .form-group input:focus { border-color: #d4af37; }
-        .btn-submit { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; margin-top: 10px; }
-        .switch-link { color: #d4af37; text-decoration: none; font-weight: 600; cursor: pointer; }
+        body { 
+            background-color: #0b0b0d; 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-image: radial-gradient(circle at top right, #1a1a24, #0b0b0d);
+        }
+
+        .login-container {
+            background: #121215;
+            border: 1px solid #d4af37;
+            border-radius: 16px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            text-align: center;
+            position: relative;
+        }
+
+        .login-container img { height: 60px; margin-bottom: 10px; }
+        
+        .login-container h2 {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .login-container p {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #d4af37;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 14px 14px 40px;
+            background: #0d0d0f;
+            border: 1px solid #2a2a30;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #d4af37, #aa820a);
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 15px;
+            display: none;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ff4d4d;
+        }
+
+        .signup-link {
+            display: block;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .signup-link span { color: #d4af37; font-weight: 600; }
+        .signup-link:hover span { text-decoration: underline; }
+
+        /* Loader */
+        .loader { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 1s infinite linear; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div class="auth-card">
-        <img src="logo.png" alt="Picxlart" class="logo-img">
-        <h4 style="color:#aaa; font-size:13px; font-weight:400; margin-bottom:20px;" id="portal-title">Create Your Client Account</h4>
+    <div class="login-container">
+        <img src="logo.png" alt="Picxlart Logo">
+        <h2>Client Portal</h2>
+        <p>Login to track your project & payments</p>
 
-        <div id="status-box" class="status-msg"></div>
+        <form id="login-form">
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="Registered Email Address" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
 
-        <button class="btn-google" onclick="loginWithGoogle()">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="height:18px;"> Continue with Google
-        </button>
+            <div id="error-message" class="error-msg"></div>
 
-        <div class="divider">OR</div>
+            <button type="submit" class="btn-login" id="login-btn">
+                <span id="btn-text">Secure Login</span>
+                <div class="loader" id="btn-loader"></div>
+            </button>
+        </form>
 
-        <div class="form-group" id="name-group">
-            <label>Full Name</label>
-            <input type="text" id="client-name" placeholder="Enter your full name">
-        </div>
-        <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="client-email" placeholder="example@gmail.com">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="client-pass" placeholder="••••••••">
-        </div>
-
-        <button class="btn-submit" id="main-btn" onclick="handleAuth()">Sign Up</button>
-
-        <p style="font-size:12px; color:#888; margin-top:15px;" id="toggle-text">
-            Already have an account? <span class="switch-link" onclick="toggleAuthMode()">Login</span>
-        </p>
+        <a href="assignment-form.html" class="signup-link">New to Picxlart? <span>Fill Assignment Form</span></a>
     </div>
 
     <script>
+        // Firebase Configuration (Same as your other files)
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
             authDomain: "picxlart-portal.firebaseapp.com",
@@ -70,108 +172,50 @@
             messagingSenderId: "993916901139",
             appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
         };
+        
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        const db = firebase.firestore();
 
-        let isSignUp = true;
-        let realtimeUnsubscribe = null;
-
-        function toggleAuthMode() {
-            isSignUp = !isSignUp;
-            document.getElementById('name-group').style.display = isSignUp ? 'block' : 'none';
-            document.getElementById('portal-title').innerText = isSignUp ? 'Create Your Client Account' : 'Client Portal Login';
-            document.getElementById('main-btn').innerText = isSignUp ? 'Sign Up' : 'Login';
-            document.getElementById('toggle-text').innerHTML = isSignUp ? 
-                'Already have an account? <span class="switch-link" onclick="toggleAuthMode()">Login</span>' : 
-                'Don\'t have an account? <span class="switch-link" onclick="toggleAuthMode()">Sign Up</span>';
-        }
-
-        function showStatus(msg) {
-            const box = document.getElementById('status-box');
-            box.style.display = 'block';
-            box.innerText = msg;
-        }
-
-        // Google Login Logic
-        async function loginWithGoogle() {
-            try {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                const result = await auth.signInWithPopup(provider);
-                const user = result.user;
-                await processUserApproval(user.uid, user.displayName, user.email);
-            } catch (error) {
-                showStatus("Google Login Error: " + error.message);
+        // Check if already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = "client-dashboard.html";
             }
-        }
+        });
 
-        // Email / Password Logic
-        async function handleAuth() {
-            const email = document.getElementById('client-email').value.trim();
-            const pass = document.getElementById('client-pass').value;
-            const name = document.getElementById('client-name').value.trim();
+        const loginForm = document.getElementById('login-form');
+        const btnText = document.getElementById('btn-text');
+        const btnLoader = document.getElementById('btn-loader');
+        const errorMsg = document.getElementById('error-message');
 
-            if(!email || !pass) { alert("Please enter email and password!"); return; }
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
 
-            try {
-                if(isSignUp) {
-                    if(!name) { alert("Please enter your full name!"); return; }
-                    const cred = await auth.createUserWithEmailAndPassword(email, pass);
-                    await processUserApproval(cred.user.uid, name, email);
-                } else {
-                    const cred = await auth.signInWithEmailAndPassword(email, pass);
-                    await processUserApproval(cred.user.uid, "", email);
-                }
-            } catch (err) {
-                if (err.code === 'auth/email-already-in-use') {
-                    showStatus("This email is already registered. Please click 'Login' below.");
-                } else {
-                    showStatus("Error: " + err.message);
-                }
-            }
-        }
+            // UI Loading state
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'block';
+            errorMsg.style.display = 'none';
 
-        // Smart Gatekeeper Logic
-        async function processUserApproval(uid, name, email) {
-            const userRef = db.collection("users").doc(uid);
-            const doc = await userRef.get();
-
-            if (!doc.exists) {
-                await userRef.set({
-                    name: name || email.split('@')[0],
-                    email: email,
-                    status: "pending",
-                    paperIssued: false,
-                    formSubmitted: false,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-            }
-
-            if (realtimeUnsubscribe) realtimeUnsubscribe();
-
-            // Realtime Monitor for Gatekeeping
-            realtimeUnsubscribe = userRef.onSnapshot((snapshot) => {
-                if (snapshot.exists) {
-                    const data = snapshot.data();
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Success! Auth listener will auto-redirect
+                })
+                .catch((error) => {
+                    btnText.style.display = 'block';
+                    btnLoader.style.display = 'none';
                     
-                    if (data.status === "pending") {
-                        showStatus("Your account is pending admin approval. Please wait for confirmation.");
-                    } 
-                    else if (data.status === "approved" && !data.formSubmitted) {
-                        // Approved but hasn't submitted form -> Go to Form
-                        window.location.href = "assignment-form.html";
-                    } 
-                    else if (data.status === "approved" && data.formSubmitted && !data.paperIssued) {
-                        // Form submitted BUT Paper NOT issued yet -> Stay on Holding Page
-                        window.location.href = "assignment-form.html";
-                    } 
-                    else if (data.status === "approved" && data.paperIssued) {
-                        // Paper officially issued by Admin -> UNLOCK DASHBOARD!
-                        window.location.href = "client-dashboard.html";
-                    }
-                }
-            });
-        }
+                    let errorMessage = "Failed to login. Please try again.";
+                    if(error.code === 'auth/user-not-found') errorMessage = "No client found with this email.";
+                    if(error.code === 'auth/wrong-password') errorMessage = "Incorrect password.";
+                    if(error.code === 'auth/too-many-requests') errorMessage = "Too many attempts. Try again later.";
+                    
+                    errorMsg.innerText = errorMessage;
+                    errorMsg.style.display = 'block';
+                });
+        });
     </script>
 </body>
 </html>
