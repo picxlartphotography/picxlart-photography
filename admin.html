@@ -479,7 +479,7 @@
             });
         }
 
-        // RENDER PREVIEW WITH CACHE-BUSTING
+        // RENDER PREVIEW WITH 1.5 INCH DOWNWARD ADJUSTMENT (PADDING 320PX)
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -490,10 +490,10 @@
                 <!-- PAGE 1 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
-                <!-- PAGE 2: VACANT IMAGE + PERFECT FIXED OVERLAY TEXT -->
+                <!-- PAGE 2: LOWERED BY 1.5 INCH (PADDING TOP: 320PX) -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="padding: 248px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
+                    <div class="pdf-data-overlay" style="padding: 320px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
                         <p style="font-size: 15px; font-weight: bold; margin-bottom: 28px;">
                             To : <span style="font-weight: bold; color:#111;">${clientName}</span>
                         </p>
@@ -523,7 +523,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3: FULLY HTML/CSS GENERATED PAGE -->
+                <!-- PAGE 3 -->
                 <div class="pdf-page-wrap" style="padding: 25px 35px; background:#fff; min-height:1000px; color:#000; font-family:Arial, sans-serif;">
                     <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:8px;">Work Details / Filled Details by Client</h2>
                     <ul style="list-style:none; padding:0; font-size:12px; line-height:1.9;">
