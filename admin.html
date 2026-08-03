@@ -479,7 +479,7 @@
             });
         }
 
-        // DYNAMIC 6-PAGE PREVIEW GENERATOR
+        // DYNAMIC 6-PAGE PREVIEW GENERATOR (PAGE 4 ENHANCED FONT & CENTERED MARGINS)
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -523,7 +523,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3: FULLY DYNAMIC INTELLIGENT PAGE -->
+                <!-- PAGE 3 -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
                     <img src="acknowledgement-page3.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
                     
@@ -564,14 +564,14 @@
                     </div>
                 </div>
 
-                <!-- PAGE 4: FULLY DYNAMIC INTELLIGENT RULES PAGE -->
+                <!-- PAGE 4: FULLY CENTERED & ENHANCED FONT PAGE -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
                     <img src="acknowledgement-page4.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
                     
-                    <div style="position:relative; z-index:2; padding: 90px 45px 120px 45px; font-size:11px; line-height:1.75; color:#000;">
-                        <h2 style="text-align:center; font-size:17px; font-weight:bold; margin-bottom:18px; border-bottom:2px solid #8b6d21; padding-bottom:6px; font-family:Arial, sans-serif; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
+                    <div style="position:relative; z-index:2; padding: 100px 50px 110px 50px; font-size:11.5px; line-height:1.8; color:#000;">
+                        <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:6px; font-family:Arial, sans-serif; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
                         
-                        <ol style="padding-left:18px; margin:0 0 20px 0; font-size:10.5px; line-height:1.65;">
+                        <ol style="padding-left:20px; margin:0 0 25px 0; font-size:11.5px; line-height:1.7;">
                             <li>For any event, client need to inform the entire work details.</li>
                             <li>For Late night wedding / lagan will increase the package value.</li>
                             <li>Package charges may exceed for outstation work.</li>
@@ -599,7 +599,7 @@
                             <li>If at any time any of our instruments get damaged by the client or any others relatives of clients, then the cost of the damage will have to be borne by the client.</li>
                         </ol>
 
-                        <ul style="list-style:none; padding:0; margin:15px 0 0 0; font-size:11.5px;">
+                        <ul style="list-style:none; padding:0; margin:20px 0 0 0; font-size:12.5px; line-height:2.0;">
                             <li style="margin-bottom:8px;">• Any reactions or comments : <strong>${currentClientData.comments || 'NIL'}</strong></li>
                             <li>• Assignment Conducted By from Team Picxlart (Mention his / her name) : <strong>${currentClientData.conductedBy || 'Team Picxlart'}</strong></li>
                         </ul>
