@@ -479,7 +479,7 @@
             });
         }
 
-        // RENDER 6-PAGE PREVIEW (PAGE 2 PERFECT ARIAL FONT & SPACING)
+        // RENDER PREVIEW WITH CACHE-BUSTING
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -490,37 +490,36 @@
                 <!-- PAGE 1 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
-                <!-- PAGE 2: LETTER PAGE (PERFECT ARIAL FONT OVER VACANT IMAGE) -->
+                <!-- PAGE 2: VACANT IMAGE + PERFECT FIXED OVERLAY TEXT -->
                 <div class="pdf-page-wrap">
-                    <img src="acknowledgement-page2.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="padding: 240px 65px 0 65px; color: #000; font-family: Arial, sans-serif; pointer-events:none;">
-                        
-                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 30px;">
+                    <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
+                    <div class="pdf-data-overlay" style="padding: 248px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
+                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 28px;">
                             To : <span style="font-weight: bold; color:#111;">${clientName}</span>
                         </p>
                         
-                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 25px;">
+                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 25px;">
                             Dear <span style="font-weight: bold; color:#111;">${clientName}</span>,
                         </p>
                         
-                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">
                             We sincerely thank you for choosing us to be a part of your special day.
                         </p>
                         
-                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">
                             It means a lot to us.
                         </p>
                         
-                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 18px; font-weight: 500;">
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">
                             Kindly find your booking confirmation and assignment details attached.
                         </p>
                         
-                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 50px; font-weight: 500;">
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 45px; font-weight: 500;">
                             We look forward to creating wonderful memories for you.
                         </p>
                         
-                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 8px;">Sincerely,</p>
-                        <p style="font-size: 16px; font-weight: bold;">Team Picxlart</p>
+                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 6px;">Sincerely,</p>
+                        <p style="font-size: 15px; font-weight: bold;">Team Picxlart</p>
                     </div>
                 </div>
 
