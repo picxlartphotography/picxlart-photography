@@ -86,6 +86,44 @@
         .pdf-page-wrap { position: relative; width: 100%; max-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; }
         .pdf-page-bg { width: 100%; display: block; }
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+        /* ==========================================================
+           MOBILE RESPONSIVENESS FOR CLIENT DASHBOARD
+        ========================================================== */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; height: auto; }
+            
+            /* Sidebar turns into Top Navigation Header */
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222228; padding: 15px; }
+            .sidebar-brand { padding-bottom: 10px; }
+            .menu-list { display: flex; justify-content: center; margin-top: 10px; }
+            .menu-item { padding: 10px 20px; border-left: none; border-radius: 8px; justify-content: center; }
+            .menu-item.active { background: #d4af37; color: #000; font-weight: 700; }
+            .logout-btn-container { padding: 15px 0 0 0; border-top: none; }
+            
+            /* Main Content Adjustments */
+            .main-content { height: auto; overflow: visible; }
+            .top-nav { padding: 15px 20px; }
+            .welcome-text { font-size: 15px; }
+            .main-scroll-area { padding: 15px; }
+            
+            /* Make buttons stack nicely */
+            .btn-group { flex-direction: column; gap: 10px; }
+            .btn-action { width: 100%; justify-content: center; padding: 12px; font-size: 14px; }
+            
+            /* Fix Grid and Notification Dropdown Position */
+            .payment-summary-grid { grid-template-columns: 1fr 1fr; }
+            .stage-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .noti-dropdown { right: -20px; width: 280px; }
+            
+            /* Modal Adjustments */
+            .preview-box { padding: 15px; height: 90vh; }
+        }
+
+        @media (max-width: 480px) {
+            .payment-summary-grid { grid-template-columns: 1fr; }
+            .noti-dropdown { right: -60px; }
+        }
     </style>
 </head>
 <body>
