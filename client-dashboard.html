@@ -43,7 +43,7 @@
 
         .pdf-page-wrap { position: relative; width: 100%; max-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .pdf-page-bg { width: 100%; display: block; }
-        .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; color: #000; font-size: 13px; font-weight: 500; font-family: 'Poppins', sans-serif; }
+        .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -207,6 +207,9 @@
 
         function openClientPdf() {
             if(!clientDataStore) return;
+
+            const clientName = clientDataStore.name || '';
+
             const area = document.getElementById('pdf-render-area');
             area.innerHTML = `
                 <!-- PAGE 1 -->
@@ -216,70 +219,70 @@
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg" class="pdf-page-bg">
                     <div class="pdf-data-overlay">
-                        <div style="position:absolute; top:30.5%; left:18.5%; font-size:15px; font-weight:600; color:#111;">${clientDataStore.name || ''}</div>
-                        <div style="position:absolute; top:39.2%; left:20.5%; font-size:15px; font-weight:600; color:#111;">${clientDataStore.name || ''}</div>
+                        <div style="position:absolute; top:30.2%; left:18.8%; font-size:16px; font-weight:600; color:#aa820a; font-family:'Times New Roman', serif;">${clientName}</div>
+                        <div style="position:absolute; top:39.0%; left:20.8%; font-size:16px; font-weight:700; color:#000000; font-family:'Times New Roman', serif;">${clientName}</div>
                     </div>
                 </div>
 
                 <!-- PAGE 3 -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page3.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="font-size:11.5px; color:#111; line-height:1.5;">
-                        <div style="position:absolute; top:13.2%; left:39.5%;">${clientDataStore.email || 'N/A'}</div>
-                        <div style="position:absolute; top:15.5%; left:22.0%;">${clientDataStore.eventType || 'N/A'}</div>
-                        <div style="position:absolute; top:17.8%; left:28.8%;">${clientDataStore.name || 'N/A'}</div>
-                        <div style="position:absolute; top:20.1%; left:27.2%; width:65%;">${clientDataStore.address || 'N/A'}</div>
-                        <div style="position:absolute; top:22.4%; left:21.5%;">${clientDataStore.phone || 'N/A'}</div>
-                        <div style="position:absolute; top:24.7%; left:23.5%;">${clientDataStore.whatsapp || 'N/A'}</div>
-                        <div style="position:absolute; top:27.0%; left:18.0%;">${clientDataStore.email || 'N/A'}</div>
-                        <div style="position:absolute; top:29.3%; left:55.0%;width:40%;">${clientDataStore.assignmentBriefDate || 'N/A'}</div>
+                    <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
+                        <div style="position:absolute; top:13.2%; left:40.0%;">${clientDataStore.email || ''}</div>
+                        <div style="position:absolute; top:15.5%; left:22.5%;">${clientDataStore.eventType || ''}</div>
+                        <div style="position:absolute; top:17.8%; left:29.5%;">${clientDataStore.name || ''}</div>
+                        <div style="position:absolute; top:20.1%; left:28.0%; width:65%;">${clientDataStore.address || ''}</div>
+                        <div style="position:absolute; top:22.4%; left:22.0%;">${clientDataStore.phone || ''}</div>
+                        <div style="position:absolute; top:24.7%; left:24.0%;">${clientDataStore.whatsapp || ''}</div>
+                        <div style="position:absolute; top:27.0%; left:18.5%;">${clientDataStore.email || ''}</div>
+                        <div style="position:absolute; top:29.3%; left:56.0%; width:40%;">${clientDataStore.assignmentBriefDate || ''}</div>
                         
-                        <div style="position:absolute; top:33.8%; left:23.2%;">${clientDataStore.bookingDate || 'N/A'}</div>
-                        <div style="position:absolute; top:36.1%; left:15.5%;">${clientDataStore.daysCount || 'N/A'}</div>
-                        <div style="position:absolute; top:38.4%; left:46.0%;">${clientDataStore.weddingCategory || 'N/A'}</div>
-                        <div style="position:absolute; top:40.7%; left:67.5%;">${clientDataStore.otherWeddingCategory || 'N/A'}</div>
-                        <div style="position:absolute; top:43.0%; left:64.0%;">${clientDataStore.complimentaryAssured || 'N/A'}</div>
-                        <div style="position:absolute; top:45.3%; left:49.0%;">${clientDataStore.complimentaryDetails || 'N/A'}</div>
-                        <div style="position:absolute; top:47.6%; left:51.0%;">${clientDataStore.weddingLagna || 'N/A'}</div>
-                        <div style="position:absolute; top:49.9%; left:60.5%;">${clientDataStore.packageNameAndCost || 'N/A'}</div>
+                        <div style="position:absolute; top:33.8%; left:24.0%;">${clientDataStore.bookingDate || ''}</div>
+                        <div style="position:absolute; top:36.1%; left:16.0%;">${clientDataStore.daysCount || ''}</div>
+                        <div style="position:absolute; top:38.4%; left:47.0%;">${clientDataStore.weddingCategory || ''}</div>
+                        <div style="position:absolute; top:40.7%; left:68.0%;">${clientDataStore.otherWeddingCategory || 'NO'}</div>
+                        <div style="position:absolute; top:43.0%; left:65.0%;">${clientDataStore.complimentaryAssured || 'NO'}</div>
+                        <div style="position:absolute; top:45.3%; left:50.0%;">${clientDataStore.complimentaryDetails || 'NO'}</div>
+                        <div style="position:absolute; top:47.6%; left:52.0%;">${clientDataStore.weddingLagna || ''}</div>
+                        <div style="position:absolute; top:49.9%; left:61.5%;">${clientDataStore.packageNameAndCost || ''}</div>
 
-                        <div style="position:absolute; top:54.4%; left:45.0%;">₹${clientDataStore.totalAmount || '0'}</div>
-                        <div style="position:absolute; top:56.7%; left:27.2%;">₹${clientDataStore.advanceAmount || '0'}</div>
-                        <div style="position:absolute; top:59.0%; left:85.0%;">₹${clientDataStore.tokenBooking || '0'}</div>
-                        <div style="position:absolute; top:61.3%; left:71.0%; width:25%;">${clientDataStore.finalPaymentDesc || 'N/A'}</div>
-                        <div style="position:absolute; top:63.6%; left:93.0%;">${clientDataStore.duesAfterAssignment || 'NO DUES'}</div>
-                        <div style="position:absolute; top:65.9%; left:21.5%; width:70%;">${clientDataStore.jobDetails || 'N/A'}</div>
+                        <div style="position:absolute; top:54.4%; left:46.0%;">₹${clientDataStore.totalAmount || '0'}</div>
+                        <div style="position:absolute; top:56.7%; left:28.0%;">₹${clientDataStore.advanceAmount || '0'}</div>
+                        <div style="position:absolute; top:59.0%; left:86.0%;">₹${clientDataStore.tokenBooking || '0'}</div>
+                        <div style="position:absolute; top:61.3%; left:72.0%; width:25%;">${clientDataStore.finalPaymentDesc || 'Rest all payment'}</div>
+                        <div style="position:absolute; top:63.6%; left:93.5%;">${clientDataStore.duesAfterAssignment || 'NO DUES'}</div>
+                        <div style="position:absolute; top:65.9%; left:22.0%; width:70%;">${clientDataStore.jobDetails || ''}</div>
 
-                        <div style="position:absolute; top:70.4%; left:38.8%;">${clientDataStore.albumDetails || 'N/A'}</div>
-                        <div style="position:absolute; top:72.7%; left:50.5%;">${clientDataStore.customRequirements || 'N/A'}</div>
-                        <div style="position:absolute; top:75.0%; left:42.0%;">${clientDataStore.miscCharges || 'N/A'}</div>
-                        <div style="position:absolute; top:77.3%; left:31.0%;">${clientDataStore.droneRequired || 'N/A'}</div>
+                        <div style="position:absolute; top:70.4%; left:39.5%;">${clientDataStore.albumDetails || ''}</div>
+                        <div style="position:absolute; top:72.7%; left:51.5%;">${clientDataStore.customRequirements || 'NIL'}</div>
+                        <div style="position:absolute; top:75.0%; left:43.0%;">${clientDataStore.miscCharges || 'NIL'}</div>
+                        <div style="position:absolute; top:77.3%; left:32.0%;">${clientDataStore.droneRequired || 'NIL'}</div>
                     </div>
                 </div>
 
                 <!-- PAGE 4 -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page4.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="font-size:11px; color:#111;">
-                        <div style="position:absolute; top:81.2%; left:31.5%; width:60%;">${clientDataStore.comments || 'N/A'}</div>
-                        <div style="position:absolute; top:83.8%; left:85.0%; width:10%;">${clientDataStore.conductedBy || 'Team Picxlart'}</div>
+                    <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
+                        <div style="position:absolute; top:81.2%; left:32.0%; width:60%;">${clientDataStore.comments || 'NIL'}</div>
+                        <div style="position:absolute; top:83.8%; left:72.0%; font-size:12px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">Team Picxlart</div>
                     </div>
                 </div>
 
                 <!-- PAGE 5 -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page5.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="font-size:12px; color:#111;">
-                        <div style="position:absolute; top:9.5%; left:20.0%;">${clientDataStore.packageNameAndCost || 'Standard Package'}</div>
-                        <div style="position:absolute; top:13.2%; left:31.0%;">₹${clientDataStore.totalAmount || '0'}</div>
-                        <div style="position:absolute; top:15.0%; left:18.0%;">${clientDataStore.daysCount || '1 Day'}</div>
-                        <div style="position:absolute; top:17.0%; left:42.0%; width:50%;">${clientDataStore.jobDetails || 'N/A'}</div>
+                    <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
+                        <div style="position:absolute; top:9.5%; left:21.0%;">${clientDataStore.packageNameAndCost || ''}</div>
+                        <div style="position:absolute; top:13.2%; left:32.0%;">₹${clientDataStore.totalAmount || '0'}</div>
+                        <div style="position:absolute; top:15.0%; left:19.0%;">${clientDataStore.daysCount || '1 Day'}</div>
+                        <div style="position:absolute; top:17.0%; left:43.0%; width:50%;">${clientDataStore.jobDetails || ''}</div>
 
-                        <div style="position:absolute; top:48.0%; left:28.0%;">₹${clientDataStore.totalAmount || '0'}</div>
-                        <div style="position:absolute; top:50.0%; left:30.0%;">₹${clientDataStore.totalAmount || '0'}</div>
-                        <div style="position:absolute; top:52.0%; left:20.0%;">₹${clientDataStore.advanceAmount || '0'}</div>
-                        <div style="position:absolute; top:54.0%; left:24.0%;">₹${clientDataStore.tokenBooking || '0'}</div>
-                        <div style="position:absolute; top:56.0%; left:42.0%;">₹${(parseFloat(clientDataStore.totalAmount || 0) - parseFloat(clientDataStore.advanceAmount || 0))}</div>
+                        <div style="position:absolute; top:48.0%; left:29.0%;">₹${clientDataStore.totalAmount || '0'}</div>
+                        <div style="position:absolute; top:50.0%; left:31.0%;">₹${clientDataStore.totalAmount || '0'}</div>
+                        <div style="position:absolute; top:52.0%; left:21.0%;">₹${clientDataStore.advanceAmount || '0'}</div>
+                        <div style="position:absolute; top:54.0%; left:25.0%;">₹${clientDataStore.tokenBooking || '0'}</div>
+                        <div style="position:absolute; top:56.0%; left:43.0%;">₹${(parseFloat(clientDataStore.totalAmount || 0) - parseFloat(clientDataStore.advanceAmount || 0))}</div>
                     </div>
                 </div>
 
