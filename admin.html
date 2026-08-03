@@ -395,8 +395,8 @@
                 if(deliveryDue === 0) deliveryDue = 5000;
             }
 
-            const eventDue = total - (adv + earlyDue + deliveryDue);
-            document.getElementById('calc-event-due').innerText = '₹' + Math.max(0, eventDue);
+            const eventDue = Math.max(0, total - (adv + earlyDue + deliveryDue));
+            document.getElementById('calc-event-due').innerText = '₹' + eventDue;
 
             if(deliveryDue > 0) {
                 document.getElementById('card-delivery-due').style.display = 'block';
@@ -445,47 +445,81 @@
             });
         }
 
+        // COMPLETE EDIT MODAL: ALLOWS EDITING ALL CLIENT FORM FIELDS
         function openEditAckModal() {
             if(!currentClientData) { alert("Please select a client first!"); return; }
             
             const body = document.getElementById('preview-html-body');
             body.innerHTML = `
-                <h3 style="color:#d4af37; border-bottom:2px solid #d4af37; padding-bottom:10px; margin-bottom:20px;">Edit Acknowledgement Specifications</h3>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; font-size:12px; color:#fff;">
+                <h3 style="color:#d4af37; border-bottom:2px solid #d4af37; padding-bottom:10px; margin-bottom:20px;">Edit All Client Acknowledgement Specifications</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px; color:#fff; max-height:75vh; overflow-y:auto; padding-right:10px;">
                     <div><label>Client Name:</label><input type="text" id="edit-name" value="${currentClientData.name || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Email Address:</label><input type="text" id="edit-email" value="${currentClientData.email || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Contact Number:</label><input type="text" id="edit-phone" value="${currentClientData.phone || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>WhatsApp Number:</label><input type="text" id="edit-whatsapp" value="${currentClientData.whatsapp || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Event Name:</label><input type="text" id="edit-event" value="${currentClientData.eventType || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Wedding Category:</label><input type="text" id="edit-weddingCat" value="${currentClientData.weddingCategory || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column:1/-1;"><label>Postal Address:</label><input type="text" id="edit-address" value="${currentClientData.address || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Booking Date:</label><input type="text" id="edit-bookingDate" value="${currentClientData.bookingDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Assignment Brief Dates:</label><input type="text" id="edit-briefDate" value="${currentClientData.assignmentBriefDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Days Count:</label><input type="text" id="edit-daysCount" value="${currentClientData.daysCount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Wedding Lagna / Time:</label><input type="text" id="edit-weddingLagna" value="${currentClientData.weddingLagna || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Package Name & Cost:</label><input type="text" id="edit-pkgName" value="${currentClientData.packageNameAndCost || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Total Package Amount (₹):</label><input type="number" id="edit-total" value="${currentClientData.totalAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Advance Amount (₹):</label><input type="number" id="edit-adv" value="${currentClientData.advanceAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div style="grid-column:1/-1;"><label>Job Details:</label><textarea id="edit-jobs" rows="3" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;">${currentClientData.jobDetails || ''}</textarea></div>
+                    <div><label>Token Booking (₹):</label><input type="number" id="edit-token" value="${currentClientData.tokenBooking || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Dues After Assignment:</label><input type="text" id="edit-dues" value="${currentClientData.duesAfterAssignment || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column:1/-1;"><label>Job Details:</label><textarea id="edit-jobs" rows="2" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;">${currentClientData.jobDetails || ''}</textarea></div>
+                    <div><label>Album Details:</label><input type="text" id="edit-album" value="${currentClientData.albumDetails || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Drone Shoot Required:</label><input type="text" id="edit-drone" value="${currentClientData.droneRequired || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Assignment Conducted By:</label><input type="text" id="edit-conducted" value="${currentClientData.conductedBy || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Comments / Reactions:</label><input type="text" id="edit-comments" value="${currentClientData.comments || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                 </div>
-                <button onclick="saveEditedAck()" style="margin-top:20px; background:#4caf50; color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer;">Save Changes</button>
+                <button onclick="saveAllEditedAck()" style="margin-top:20px; background:#4caf50; color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer;"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
             `;
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
-        function saveEditedAck() {
+        function saveAllEditedAck() {
             const updated = {
                 name: document.getElementById('edit-name').value,
+                email: document.getElementById('edit-email').value,
+                phone: document.getElementById('edit-phone').value,
+                whatsapp: document.getElementById('edit-whatsapp').value,
                 eventType: document.getElementById('edit-event').value,
+                weddingCategory: document.getElementById('edit-weddingCat').value,
+                address: document.getElementById('edit-address').value,
+                bookingDate: document.getElementById('edit-bookingDate').value,
+                assignmentBriefDate: document.getElementById('edit-briefDate').value,
+                daysCount: document.getElementById('edit-daysCount').value,
+                weddingLagna: document.getElementById('edit-weddingLagna').value,
+                packageNameAndCost: document.getElementById('edit-pkgName').value,
                 totalAmount: document.getElementById('edit-total').value,
                 advanceAmount: document.getElementById('edit-adv').value,
-                jobDetails: document.getElementById('edit-jobs').value
+                tokenBooking: document.getElementById('edit-token').value,
+                duesAfterAssignment: document.getElementById('edit-dues').value,
+                jobDetails: document.getElementById('edit-jobs').value,
+                albumDetails: document.getElementById('edit-album').value,
+                droneRequired: document.getElementById('edit-drone').value,
+                conductedBy: document.getElementById('edit-conducted').value,
+                comments: document.getElementById('edit-comments').value
             };
 
             db.collection("users").doc(currentActiveUid).update(updated).then(() => {
-                alert("Acknowledgement Details Updated!");
+                alert("All Client Specifications Updated Successfully!");
                 document.getElementById('preview-modal').style.display = 'none';
                 openClientDetail(currentActiveUid);
             });
         }
 
-        // RENDER PREVIEW: INTELLIGENT SMART PAYMENT CALCULATION APPLIED TO PAGE 5
+        // RENDER 6-PAGE PREVIEW
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
             const clientName = currentClientData.name || '';
             const totalAmt = parseFloat(currentClientData.totalAmount || currentClientData.totalPkgAmt || 0);
             const advAmt = parseFloat(currentClientData.advanceAmount || currentClientData.advanceAmt || 0);
+            const tokenAmt = parseFloat(currentClientData.tokenBooking || 0);
             const req50Adv = totalAmt * 0.50;
 
             let earlyDue = 0;
@@ -612,7 +646,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 5: DYNAMIC DATA OVERLAY OVER YOUR BLANK IMAGE -->
+                <!-- PAGE 5 -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; background:#fff; color:#000; font-family:Arial, sans-serif;">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
                     
@@ -633,7 +667,7 @@
                         <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
-                            <li>Token Advance Paid : <strong>₹${advAmt}</strong></li>
+                            <li>Token Advance Paid : <strong>₹${tokenAmt}</strong></li>
                             ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due (To complete 50% Advance) :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
                             <li>Event Day Payment Amount : <strong>₹${eventDue}</strong></li>
                             ${deliveryDue > 0 ? `<li style="color:#c2185b;">Album / Deliverable Submission Due : <strong>₹${deliveryDue}</strong></li>` : ''}
