@@ -42,7 +42,10 @@
 
         .input-group { position: relative; margin-bottom: 16px; text-align: left; }
         .input-group i.left-icon { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #d4af37; font-size: 14px; }
-        .input-group input { width: 100%; padding: 13px 15px 13px 40px; background: #0d0d0f; border: 1px solid #2a2a30; border-radius: 8px; color: #fff; font-size: 13px; transition: 0.3s; }
+        .input-group i.right-icon { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: #888; font-size: 14px; cursor: pointer; transition: color 0.3s; }
+        .input-group i.right-icon:hover { color: #fff; }
+
+        .input-group input { width: 100%; padding: 13px 40px 13px 40px; background: #0d0d0f; border: 1px solid #2a2a30; border-radius: 8px; color: #fff; font-size: 13px; transition: 0.3s; }
         .input-group input:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
         
         .btn-main { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; margin-top: 5px; display: flex; justify-content: center; align-items: center; gap: 8px; }
@@ -88,6 +91,7 @@
                 <div class="input-group">
                     <i class="fa-solid fa-lock left-icon"></i>
                     <input type="password" id="login-password" placeholder="Password" required>
+                    <i class="fa-solid fa-eye right-icon" id="toggle-login-pass" title="Show Password"></i>
                 </div>
                 <button type="submit" class="btn-main" id="login-submit-btn">
                     <span id="login-btn-text">Secure Login</span>
@@ -123,10 +127,12 @@
                 <div class="input-group">
                     <i class="fa-solid fa-lock left-icon"></i>
                     <input type="password" id="signup-password" placeholder="Create Password" required>
+                    <i class="fa-solid fa-eye right-icon" id="toggle-signup-pass" title="Show Password"></i>
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock left-icon"></i>
                     <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+                    <i class="fa-solid fa-eye right-icon" id="toggle-signup-confirm" title="Show Password"></i>
                 </div>
                 
                 <button type="submit" class="btn-main" id="signup-submit-btn">
@@ -159,6 +165,32 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // Eye Icon Toggle Function Helper (2 seconds auto-hide)
+        function setupPasswordToggle(iconId, inputId) {
+            const icon = document.getElementById(iconId);
+            const input = document.getElementById(inputId);
+
+            icon.addEventListener('click', function () {
+                if (input.type === 'text') return;
+                input.type = 'text';
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+                this.style.color = '#d4af37';
+
+                setTimeout(() => {
+                    input.type = 'password';
+                    this.classList.remove('fa-eye-slash');
+                    this.classList.add('fa-eye');
+                    this.style.color = '#888';
+                }, 2000);
+            });
+        }
+
+        // Initialize Eye Toggles for Client Portal
+        setupPasswordToggle('toggle-login-pass', 'login-password');
+        setupPasswordToggle('toggle-signup-pass', 'signup-password');
+        setupPasswordToggle('toggle-signup-confirm', 'signup-confirm');
+
         function switchView(view) {
             document.getElementById('global-msg').style.display = 'none';
             if(view === 'signup') {
@@ -186,7 +218,6 @@
             document.getElementById('login-loader').style.display = 'none';
         }
 
-        // WORKFLOW ROUTER
         function routeUserWorkflow(user) {
             db.collection("users").doc(user.uid).get().then((doc) => {
                 resetLoginLoader();
@@ -223,7 +254,6 @@
             });
         }
 
-        // LOGIN SUBMIT
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value.trim();
@@ -247,7 +277,6 @@
                 });
         });
 
-        // SIGNUP SUBMIT
         document.getElementById('signup-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('signup-name').value.trim();
@@ -288,7 +317,6 @@
             });
         });
 
-        // GOOGLE AUTH
         function handleGoogleAuth() {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider).then((result) => {
