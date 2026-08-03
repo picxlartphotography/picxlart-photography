@@ -194,7 +194,7 @@
                 <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-tasks"></i> Live Event / Project Status Management</h4>
                 <div class="status-manager-box">
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="new-stage-name" placeholder="Add Event Stage (e.g. Prewedding Shoot, Wedding Edit)" style="flex:1; padding:10px; background:#0b0b0d; border:1px solid #333; border-radius:6px; color:#fff; font-size:12px;">
+                        <input type="text" id="new-stage-name" placeholder="Add Event Stage (e.g. Trailer Editing, Album Design)" style="flex:1; padding:10px; background:#0b0b0d; border:1px solid #333; border-radius:6px; color:#fff; font-size:12px;">
                         <button class="btn-approve" onclick="addProjectStage()"><i class="fa-solid fa-plus"></i> Add Stage</button>
                     </div>
                     <div id="project-stages-list"></div>
@@ -787,6 +787,7 @@
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
+        // NEW: FUNCTION TO RENDER PROJECT STAGES WITH DELETE BUTTON
         function renderProjectStages(stages) {
             const container = document.getElementById('project-stages-list');
             container.innerHTML = "";
@@ -806,10 +807,11 @@
                             <strong style="color:#fff; font-size:13px;">${stg.name}</strong><br>
                             <span style="color:${statusColor}; font-size:11px;">${statusText}</span>
                         </div>
-                        <div>
+                        <div style="display:flex; gap:10px; align-items:center;">
                             <button class="btn-approve" onclick="toggleStageStatus(${index})">
                                 ${stg.completed ? 'Mark Incomplete' : 'Mark Complete'}
                             </button>
+                            <i class="fa-solid fa-trash" style="color:#ff4d4d; font-size:14px; cursor:pointer;" onclick="deleteProjectStage(${index})" title="Delete Stage"></i>
                         </div>
                     </div>
                 `;
@@ -844,6 +846,22 @@
                     openClientDetail(currentActiveUid);
                 });
             });
+        }
+
+        // NEW: FUNCTION TO DELETE A PROJECT STAGE
+        function deleteProjectStage(index) {
+            if(confirm("Are you sure you want to delete this event stage?")) {
+                db.collection("users").doc(currentActiveUid).get().then(doc => {
+                    let currentStages = doc.data().projectStages || [];
+                    currentStages.splice(index, 1);
+
+                    db.collection("users").doc(currentActiveUid).update({
+                        projectStages: currentStages
+                    }).then(() => {
+                        openClientDetail(currentActiveUid);
+                    });
+                });
+            }
         }
 
         function issueAcknowledgementPaper() {
