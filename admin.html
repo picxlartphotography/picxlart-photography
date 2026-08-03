@@ -20,9 +20,9 @@
         .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; }
 
         .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
-        .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
-        .sidebar-brand img { height: 45px; }
-        .sidebar-brand span { font-weight: 700; color: #d4af37; font-size: 16px; }
+        .sidebar-brand { display: flex; align-items: center; justify-content: center; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
+        .sidebar-brand img { height: 50px; }
+        
         .menu-list { list-style: none; margin-top: 20px; }
         .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent; }
         .menu-item:hover, .menu-item.active { background: #18181c; color: #d4af37; border-left-color: #d4af37; }
@@ -30,6 +30,10 @@
         .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0d0d0f; }
+        
+        /* HEADER TITLE ADDED ABOVE CARDS */
+        .system-header-title { font-size: 20px; font-weight: 700; color: #d4af37; letter-spacing: 1px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #222228; text-transform: uppercase; }
+
         .card { background: #16161a; border: 1px solid #222228; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
         .card-title { font-size: 16px; color: #d4af37; font-weight: 600; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
 
@@ -85,7 +89,10 @@
 
     <div class="sidebar">
         <div>
-            <div class="sidebar-brand"><img src="logo.png" alt="Logo"><span>PICXLART</span></div>
+            <!-- ONLY LOGO HERE (TEXT REMOVED) -->
+            <div class="sidebar-brand">
+                <img src="logo.png" alt="Picxlart Logo">
+            </div>
             <ul class="menu-list">
                 <li class="menu-item active" onclick="switchTab('tab-approvals', this)"><i class="fa-solid fa-user-clock"></i> Pending Approvals</li>
                 <li class="menu-item" onclick="switchTab('tab-database', this)"><i class="fa-solid fa-users"></i> All Clients Database</li>
@@ -98,6 +105,11 @@
     </div>
 
     <div class="main-content">
+        
+        <!-- HEADER TITLE ADDED -->
+        <h2 class="system-header-title">PICXLART CLIENT MANAGEMENT SYSTEM</h2>
+
+        <!-- TAB 1: PENDING APPROVALS -->
         <div id="tab-approvals" class="tab-content active">
             <div class="card">
                 <div class="card-title"><span><i class="fa-solid fa-user-check"></i> Pending Signup Requests</span></div>
@@ -108,6 +120,7 @@
             </div>
         </div>
 
+        <!-- TAB 2: CLIENT DATABASE -->
         <div id="tab-database" class="tab-content">
             <div class="card">
                 <div class="card-title"><span><i class="fa-solid fa-database"></i> Approved Clients Database</span></div>
@@ -118,6 +131,7 @@
             </div>
         </div>
 
+        <!-- TAB 3: ACTIVE CLIENT MANAGEMENT -->
         <div id="tab-active" class="tab-content">
             <div class="card">
                 <div class="card-title">
@@ -329,11 +343,9 @@
             });
         }
 
-        // DYNAMIC RE-CALCULATION LOGIC
         function calculateSmartPayment(data) {
             let total, adv;
 
-            // If custom payments saved before, load them as defaults
             if(data.customPayments) {
                 total = data.customPayments.total;
                 adv = data.customPayments.adv;
@@ -351,7 +363,6 @@
             document.getElementById('calc-total').innerText = '₹' + total;
             document.getElementById('calc-adv').innerText = '₹' + adv;
 
-            // 1 Month Before Due (50% Target)
             let earlyDue = 0;
             if (adv < req50Adv) {
                 earlyDue = req50Adv - adv;
@@ -362,7 +373,6 @@
                 document.getElementById('calc-early-due-amt').innerText = '₹0';
             }
 
-            // Parse Dues for Delivery
             const duesRaw = duesRawText.toUpperCase().trim();
             let deliveryDue = 0;
 
@@ -378,9 +388,7 @@
                 if(deliveryDue === 0) deliveryDue = 5000;
             }
 
-            // Event Day Final Calculation = Total - (Advance Paid + 1 Month Due + Delivery Due)
             const eventDue = total - (adv + earlyDue + deliveryDue);
-
             document.getElementById('calc-event-due').innerText = '₹' + Math.max(0, eventDue);
 
             if(deliveryDue > 0) {
@@ -392,15 +400,13 @@
             }
         }
 
-        // EDITABLE ICON CLICK -> INSTANT RE-CALCULATE
         function editPayValue(elemId) {
             const currentVal = document.getElementById(elemId).innerText.replace('₹', '');
-            const newVal = prompt("Enter new value:", currentVal);
+            const newVal = prompt("Enter new amount:", currentVal);
             
             if(newVal !== null && !isNaN(newVal)) {
                 document.getElementById(elemId).innerText = '₹' + parseFloat(newVal);
 
-                // If Total or Advance is edited, trigger AUTO RE-CALCULATION for the rest!
                 if(elemId === 'calc-total' || elemId === 'calc-adv') {
                     const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
                     const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
@@ -427,7 +433,7 @@
             db.collection("users").doc(currentActiveUid).update({
                 customPayments: customData
             }).then(() => {
-                alert("Payment Calculations Saved & Synced with Client Dashboard!");
+                alert("Payment Calculations Saved!");
                 document.getElementById('btn-save-custom-payments').style.display = 'none';
             });
         }
