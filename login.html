@@ -80,7 +80,7 @@
 
         .input-group input {
             width: 100%;
-            padding: 14px 40px 14px 40px; /* Space for both left and right icons */
+            padding: 14px 40px 14px 40px;
             background: #0d0d0f;
             border: 1px solid #2a2a30;
             border-radius: 10px;
@@ -177,7 +177,6 @@
         .signup-link span { color: #d4af37; font-weight: 600; }
         .signup-link:hover span { text-decoration: underline; }
 
-        /* Loader */
         .loader { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 1s infinite linear; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
@@ -198,7 +197,6 @@
             <div class="input-group">
                 <i class="fa-solid fa-lock left-icon"></i>
                 <input type="password" id="password" placeholder="Password" required>
-                <!-- Smart Eye Icon Toggle -->
                 <i class="fa-solid fa-eye right-icon" id="toggle-password" title="Show Password"></i>
             </div>
 
@@ -220,7 +218,6 @@
     </div>
 
     <script>
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
             authDomain: "picxlart-portal.firebaseapp.com",
@@ -233,7 +230,6 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Check if already logged in
         auth.onAuthStateChanged((user) => {
             if (user) {
                 window.location.href = "client-dashboard.html";
@@ -245,67 +241,50 @@
         const btnLoader = document.getElementById('btn-loader');
         const errorMsg = document.getElementById('error-message');
 
-        // 1. Password Visibility Logic (2 Seconds Timer)
         const togglePasswordBtn = document.getElementById('toggle-password');
         const passwordInput = document.getElementById('password');
 
         togglePasswordBtn.addEventListener('click', function () {
-            // If it's already text, ignore click (prevents overlapping timers)
             if (passwordInput.type === 'text') return;
-
-            // Show password and change icon
             passwordInput.type = 'text';
             this.classList.remove('fa-eye');
             this.classList.add('fa-eye-slash');
-            this.style.color = '#d4af37'; // Highlight icon in gold when visible
+            this.style.color = '#d4af37';
 
-            // Hide automatically after 2 seconds (2000ms)
             setTimeout(() => {
                 passwordInput.type = 'password';
                 this.classList.remove('fa-eye-slash');
                 this.classList.add('fa-eye');
-                this.style.color = '#888'; // Revert color
+                this.style.color = '#888';
             }, 2000);
         });
 
-        // 2. Email/Password Login
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
             const email = document.getElementById('email').value.trim();
             const password = passwordInput.value;
 
-            // UI Loading state
             btnText.style.display = 'none';
             btnLoader.style.display = 'block';
             errorMsg.style.display = 'none';
 
             auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Success! Auth listener will auto-redirect
-                })
                 .catch((error) => {
                     btnText.style.display = 'block';
                     btnLoader.style.display = 'none';
-                    
                     let errorMessage = "Failed to login. Please try again.";
                     if(error.code === 'auth/user-not-found') errorMessage = "No client found with this email.";
                     if(error.code === 'auth/wrong-password') errorMessage = "Incorrect password.";
                     if(error.code === 'auth/too-many-requests') errorMessage = "Too many attempts. Try again later.";
-                    
                     errorMsg.innerText = errorMessage;
                     errorMsg.style.display = 'block';
                 });
         });
 
-        // 3. Google Sign-In Logic
         const googleBtn = document.getElementById('google-login-btn');
         googleBtn.addEventListener('click', () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
-                .then((result) => {
-                    // Success! Auth listener will auto-redirect
-                })
                 .catch((error) => {
                     errorMsg.innerText = "Google login failed: " + error.message;
                     errorMsg.style.display = 'block';
