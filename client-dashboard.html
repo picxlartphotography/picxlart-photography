@@ -13,10 +13,12 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0b0b0d; color: #fff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        
+        /* FIXED: Changed to flex-direction: row for perfect sidebar layout */
+        body { background-color: #0d0d0f; color: #ffffff; display: flex; flex-direction: row; height: 100vh; overflow: hidden; }
 
-        /* SIDEBAR */
-        .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
+        /* SIDEBAR FIXED */
+        .sidebar { width: 260px; height: 100vh; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; flex-shrink: 0; }
         .sidebar-brand { display: flex; align-items: center; justify-content: center; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
         .sidebar-brand img { height: 50px; }
         
@@ -28,8 +30,8 @@
         .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; display:flex; align-items:center; justify-content:center; gap:8px; transition:0.3s; }
         .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
 
-        /* MAIN CONTENT */
-        .main-content { flex: 1; display: flex; flex-direction: column; background: #0d0d0f; }
+        /* MAIN CONTENT FIXED */
+        .main-content { flex: 1; display: flex; flex-direction: column; background: #0d0d0f; height: 100vh; overflow: hidden; }
         .main-scroll-area { padding: 30px; overflow-y: auto; flex: 1; }
 
         /* TOP NAV & NOTIFICATION */
@@ -191,7 +193,7 @@
         const db = firebase.firestore();
 
         let clientDataStore = null;
-        let currentTotalNotifs = 0; // Tracks total notifications in db
+        let currentTotalNotifs = 0;
 
         // FACEBOOK-STYLE NOTIFICATION SEEN LOGIC
         function toggleNoti() {
@@ -210,7 +212,6 @@
             }
         }
 
-        // Close dropdown when clicked outside
         document.addEventListener('click', function(event) {
             const wrapper = document.querySelector('.noti-wrapper');
             if (!wrapper.contains(event.target)) {
@@ -237,9 +238,7 @@
 
                         document.getElementById('client-display-name').innerText = clientDataStore.name || "Client";
 
-                        // --------------------------------
                         // NOTIFICATION ENGINE
-                        // --------------------------------
                         let notifs = [];
                         notifs.push({ icon: 'fa-solid fa-file-signature', text: 'Your Official Acknowledgement Paper is ready.' });
                         
@@ -265,7 +264,6 @@
                         }
                         document.getElementById('client-stages-box').innerHTML = stagesHtml;
 
-                        // Render Notifications & Seen logic
                         currentTotalNotifs = notifs.length;
                         const savedSeenCount = parseInt(localStorage.getItem('seenNotifCount_' + user.uid)) || 0;
                         const newNotifsCount = currentTotalNotifs - savedSeenCount;
@@ -275,7 +273,7 @@
                             badge.style.display = 'block';
                             badge.innerText = newNotifsCount;
                         } else {
-                            badge.style.display = 'none'; // Keeps it hidden if no new update
+                            badge.style.display = 'none';
                         }
 
                         if(notifs.length > 0) {
@@ -345,25 +343,20 @@
             }
         });
 
-        // CUSTOM PDF FILENAME DOWNLOAD LOGIC
         function triggerPrint() {
             const originalTitle = document.title;
             const safeName = (clientDataStore && clientDataStore.name) ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
             
-            // Temporarily change document title so PDF saves with this perfect name
             document.title = "Acknowledgement_Paper_Picxlart_" + safeName;
             
             setTimeout(() => {
                 window.print();
-                
-                // Restore original title shortly after
                 setTimeout(() => {
                     document.title = originalTitle;
                 }, 2000);
             }, 500);
         }
 
-        // PREVIEW HTML GENERATOR
         function openClientPdf(isDownload) {
             if(!clientDataStore) return;
 
@@ -491,15 +484,20 @@
                 <!-- PAGE 5 -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; background:#fff; color:#000; font-family:Arial, sans-serif;">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
+                    
                     <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
                         <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
                         <p style="margin-bottom:12px; font-size:13.5px;">Package Name :: <strong style="font-size:14px;">${clientDataStore.packageNameAndCost || 'Standard Package'}</strong></p>
+                        
                         <p style="margin-bottom:4px; font-size:13px;">Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
                         <p style="margin-bottom:8px; font-size:13px;">Duration: <strong>${clientDataStore.daysCount || '1 Day'}</strong></p>
                         <p style="margin-bottom:18px; font-size:13px;">Photography Details / Work Details: <strong>${clientDataStore.jobDetails || 'N/A'}</strong></p>
+
                         <p style="font-size:11.5px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
                         <p style="font-size:11.5px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
+
                         <p style="margin-bottom:16px; font-size:13px;">• <strong>Document Submitted :</strong> <strong>${clientDataStore.docSubmitted || 'Not required'}</strong></p>
+
                         <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
                         <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
@@ -521,9 +519,7 @@
             const printBtn = document.getElementById('modal-print-btn');
             if(isDownload) {
                 printBtn.style.display = 'block';
-                setTimeout(() => {
-                    triggerPrint();
-                }, 500);
+                setTimeout(() => { triggerPrint(); }, 500);
             } else {
                 printBtn.style.display = 'none';
             }
