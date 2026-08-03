@@ -56,20 +56,33 @@
         .error-msg { color: #ff4d4d; font-size: 12px; margin-top: 15px; display: none; background: rgba(255, 77, 77, 0.1); padding: 8px; border-radius: 6px; border: 1px solid #ff4d4d; }
 
         /* Dashboard Layout */
-        #admin-dashboard { display: none; padding: 30px; }
-        .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
-        .admin-header h1 { color: #d4af37; font-size: 22px; }
-        .btn-logout { background: #ff4d4d; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; }
-
-        .section-title { font-size: 18px; color: #d4af37; margin-bottom: 15px; }
-        .table-container { background: #121215; border: 1px solid #2a2a30; border-radius: 10px; overflow: hidden; margin-bottom: 30px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
-        th, td { padding: 12px 15px; border-bottom: 1px solid #222; }
-        th { background: #1a1a20; color: #d4af37; }
+        #admin-dashboard { display: none; display: flex; min-height: 100vh; }
         
-        .btn-action { padding: 6px 12px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 11px; margin-right: 5px; }
+        /* Sidebar */
+        .admin-sidebar { width: 260px; background: #121215; border-right: 1px solid #222; padding: 30px 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .sidebar-brand { font-size: 16px; font-weight: 700; color: #d4af37; margin-bottom: 40px; text-align: center; letter-spacing: 1px; }
+        .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-menu li { padding: 12px 15px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #aaa; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .sidebar-menu li:hover, .sidebar-menu li.active { background: rgba(212, 175, 55, 0.1); color: #d4af37; font-weight: 600; }
+        
+        .btn-logout-sidebar { width: 100%; background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s; text-align: center; }
+        .btn-logout-sidebar:hover { background: #ff4d4d; color: #fff; }
+
+        /* Main Content Area */
+        .admin-main-content { flex: 1; padding: 40px; background: #0b0b0d; overflow-y: auto; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        
+        .section-title { font-size: 20px; color: #d4af37; margin-bottom: 20px; font-weight: 600; }
+        .table-container { background: #121215; border: 1px solid #2a2a30; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th, td { padding: 15px 20px; border-bottom: 1px solid #1f1f26; }
+        th { background: #18181d; color: #d4af37; font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.01); }
+
+        .btn-action { padding: 6px 14px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 12px; margin-right: 5px; transition: 0.3s; }
         .btn-approve { background: #4caf50; color: #fff; }
-        .btn-view { background: #d4af37; color: #000; }
+        .btn-approve:hover { background: #3d8b40; }
     </style>
 </head>
 <body>
@@ -95,28 +108,82 @@
         </div>
     </div>
 
-    <!-- ADMIN DASHBOARD CONTENT -->
+    <!-- ADMIN DASHBOARD LAYOUT -->
     <div id="admin-dashboard">
-        <div class="admin-header">
-            <h1>PICXLART CLIENT MANAGEMENT SYSTEM (ADMIN)</h1>
-            <button class="btn-logout" onclick="adminLogout()">Logout</button>
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div>
+                <div class="sidebar-brand">PICXLART ADMIN</div>
+                <ul class="sidebar-menu">
+                    <li class="active" onclick="switchTab('pending', this)"><i class="fa-solid fa-user-clock"></i> Pending Approvals</li>
+                    <li onclick="switchTab('clients', this)"><i class="fa-solid fa-users"></i> All Clients Database</li>
+                    <li onclick="switchTab('active', this)"><i class="fa-solid fa-sliders"></i> Active Client Management</li>
+                </ul>
+            </div>
+            <button class="btn-logout-sidebar" onclick="adminLogout()">Logout</button>
         </div>
 
-        <h2 class="section-title">Pending Signup Requests</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Client Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="pending-table-body">
-                    <tr><td colspan="4" style="text-align: center; color: #777;">Loading requests...</td></tr>
-                </tbody>
-            </table>
+        <!-- Main Content Area -->
+        <div class="admin-main-content">
+            <!-- Pending Approvals Tab -->
+            <div id="tab-pending" class="content-section active">
+                <h2 class="section-title">Pending Signup Requests</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-table-body">
+                            <tr><td colspan="4" style="text-align: center; color: #777;">Loading requests...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- All Clients Database Tab -->
+            <div id="tab-clients" class="content-section">
+                <h2 class="section-title">All Clients Database</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clients-table-body">
+                            <tr><td colspan="4" style="text-align: center; color: #777;">Loading clients...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Active Client Management Tab -->
+            <div id="tab-active" class="content-section">
+                <h2 class="section-title">Active Client Management</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Project Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="active-table-body">
+                            <tr><td colspan="4" style="text-align: center; color: #777;">Loading active clients...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -133,7 +200,7 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // Eye Icon Toggle Logic for Admin
+        // Eye Icon Toggle Logic for Admin Password
         const toggleAdminPass = document.getElementById('toggle-admin-password');
         const adminPassInput = document.getElementById('admin-password');
 
@@ -152,28 +219,75 @@
             }, 2000);
         });
 
-        // Load Pending Users
-        function loadPendingUsers() {
-            const tbody = document.getElementById('pending-table-body');
-            db.collection("users").where("status", "==", "pending").onSnapshot((snapshot) => {
-                tbody.innerHTML = "";
-                if (snapshot.empty) {
-                    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">No pending requests found.</td></tr>`;
-                    return;
-                }
+        // Tab Switching Logic
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabName).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Load Data Functions
+        function loadAdminData() {
+            const pendingBody = document.getElementById('pending-table-body');
+            const clientsBody = document.getElementById('clients-table-body');
+            const activeBody = document.getElementById('active-table-body');
+
+            db.collection("users").onSnapshot((snapshot) => {
+                pendingBody.innerHTML = "";
+                clientsBody.innerHTML = "";
+                activeBody.innerHTML = "";
+
+                let pendingCount = 0;
+                let totalCount = 0;
+                let activeCount = 0;
+
                 snapshot.forEach((doc) => {
                     const user = doc.data();
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${user.name || 'N/A'}</td>
-                        <td>${user.email || 'N/A'}</td>
-                        <td>${user.phone || 'N/A'}</td>
-                        <td>
-                            <button class="btn-action btn-approve" onclick="approveUser('${doc.id}')">Approve</button>
-                        </td>
+                    const userId = doc.id;
+
+                    // 1. Pending Approvals
+                    if (user.status === "pending") {
+                        pendingCount++;
+                        pendingBody.innerHTML += `
+                            <tr>
+                                <td>${user.name || 'N/A'}</td>
+                                <td>${user.email || 'N/A'}</td>
+                                <td>${user.phone || 'N/A'}</td>
+                                <td><button class="btn-action btn-approve" onclick="approveUser('${userId}')">Approve</button></td>
+                            </tr>
+                        `;
+                    }
+
+                    // 2. All Clients Database
+                    totalCount++;
+                    clientsBody.innerHTML += `
+                        <tr>
+                            <td>${user.name || 'N/A'}</td>
+                            <td>${user.email || 'N/A'}</td>
+                            <td>${user.phone || 'N/A'}</td>
+                            <td style="text-transform: capitalize; color: ${user.status === 'approved' ? '#4caf50' : '#d4af37'};">${user.status || 'pending'}</td>
+                        </tr>
                     `;
-                    tbody.appendChild(tr);
+
+                    // 3. Active Client Management
+                    if (user.status === "approved") {
+                        activeCount++;
+                        activeBody.innerHTML += `
+                            <tr>
+                                <td>${user.name || 'N/A'}</td>
+                                <td>${user.email || 'N/A'}</td>
+                                <td>${user.formSubmitted ? 'Form Submitted' : 'Pending Form'}</td>
+                                <td><span style="color: #4caf50; font-weight: 600;">Active</span></td>
+                            </tr>
+                        `;
+                    }
                 });
+
+                if (pendingCount === 0) pendingBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">No pending requests found.</td></tr>`;
+                if (totalCount === 0) clientsBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">No clients found.</td></tr>`;
+                if (activeCount === 0) activeBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">No active clients found.</td></tr>`;
             });
         }
 
@@ -195,8 +309,8 @@
         auth.onAuthStateChanged((user) => {
             if (user) {
                 document.getElementById('auth-lock-screen').style.display = 'none';
-                document.getElementById('admin-dashboard').style.display = 'block';
-                loadPendingUsers();
+                document.getElementById('admin-dashboard').style.display = 'flex';
+                loadAdminData();
             } else {
                 document.getElementById('auth-lock-screen').style.display = 'flex';
                 document.getElementById('admin-dashboard').style.display = 'none';
