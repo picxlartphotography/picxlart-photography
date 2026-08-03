@@ -55,8 +55,21 @@
 
         .error-msg { color: #ff4d4d; font-size: 12px; margin-top: 15px; display: none; background: rgba(255, 77, 77, 0.1); padding: 8px; border-radius: 6px; border: 1px solid #ff4d4d; }
 
-        /* Dashboard Main Layout (Hidden until unlocked) */
+        /* Dashboard Layout */
         #admin-dashboard { display: none; padding: 30px; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
+        .admin-header h1 { color: #d4af37; font-size: 22px; }
+        .btn-logout { background: #ff4d4d; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; }
+
+        .section-title { font-size: 18px; color: #d4af37; margin-bottom: 15px; }
+        .table-container { background: #121215; border: 1px solid #2a2a30; border-radius: 10px; overflow: hidden; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #222; }
+        th { background: #1a1a20; color: #d4af37; }
+        
+        .btn-action { padding: 6px 12px; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 11px; margin-right: 5px; }
+        .btn-approve { background: #4caf50; color: #fff; }
+        .btn-view { background: #d4af37; color: #000; }
     </style>
 </head>
 <body>
@@ -84,8 +97,27 @@
 
     <!-- ADMIN DASHBOARD CONTENT -->
     <div id="admin-dashboard">
-        <h1>PICXLART CLIENT MANAGEMENT SYSTEM</h1>
-        <!-- (Your existing dashboard tables/contents will remain here as they are) -->
+        <div class="admin-header">
+            <h1>PICXLART CLIENT MANAGEMENT SYSTEM (ADMIN)</h1>
+            <button class="btn-logout" onclick="adminLogout()">Logout</button>
+        </div>
+
+        <h2 class="section-title">Pending Signup Requests</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="pending-table-body">
+                    <tr><td colspan="4" style="text-align: center; color: #777;">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
@@ -99,6 +131,7 @@
         };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const db = firebase.firestore();
 
         // Eye Icon Toggle Logic for Admin
         const toggleAdminPass = document.getElementById('toggle-admin-password');
@@ -119,12 +152,51 @@
             }, 2000);
         });
 
-        // Admin Auth Check
+        // Load Pending Users
+        function loadPendingUsers() {
+            const tbody = document.getElementById('pending-table-body');
+            db.collection("users").where("status", "==", "pending").onSnapshot((snapshot) => {
+                tbody.innerHTML = "";
+                if (snapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">No pending requests found.</td></tr>`;
+                    return;
+                }
+                snapshot.forEach((doc) => {
+                    const user = doc.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${user.name || 'N/A'}</td>
+                        <td>${user.email || 'N/A'}</td>
+                        <td>${user.phone || 'N/A'}</td>
+                        <td>
+                            <button class="btn-action btn-approve" onclick="approveUser('${doc.id}')">Approve</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        window.approveUser = function(userId) {
+            db.collection("users").doc(userId).update({
+                status: "approved"
+            }).then(() => {
+                alert("Client approved successfully!");
+            }).catch((err) => {
+                alert("Error: " + err.message);
+            });
+        }
+
+        window.adminLogout = function() {
+            auth.signOut();
+        }
+
+        // Auth State Handler
         auth.onAuthStateChanged((user) => {
             if (user) {
-                // Check if admin email matches or allowed
                 document.getElementById('auth-lock-screen').style.display = 'none';
                 document.getElementById('admin-dashboard').style.display = 'block';
+                loadPendingUsers();
             } else {
                 document.getElementById('auth-lock-screen').style.display = 'flex';
                 document.getElementById('admin-dashboard').style.display = 'none';
