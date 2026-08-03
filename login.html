@@ -224,7 +224,7 @@
         </button>
 
         <div class="signup-link-box">
-            <a href="assignment-form.html">New to Picxlart? <span>Fill Assignment Form</span></a>
+            <a href="assignment-form.html">New to Picxlart? <span>For Booking Please sign up</span></a>
         </div>
     </div>
 
@@ -244,7 +244,6 @@
 
         const errorMsg = document.getElementById('error-message');
 
-        // SMART APPROVAL CHECKER FUNCTION
         function checkAdminApprovalAndRedirect(user) {
             db.collection("users").doc(user.uid).get().then((doc) => {
                 if (doc.exists) {
@@ -252,14 +251,12 @@
                     if (userData.status === "approved") {
                         window.location.href = "client-dashboard.html";
                     } else {
-                        // Not approved yet! Logout and show error
                         auth.signOut().then(() => {
                             errorMsg.innerText = "Your account is pending admin approval. Please wait for approval.";
                             errorMsg.style.display = 'block';
                         });
                     }
                 } else {
-                    // User signed in via Google first time, but didn't fill assignment form yet
                     auth.signOut().then(() => {
                         errorMsg.innerText = "Account not found. Please fill the Assignment Form first.";
                         errorMsg.style.display = 'block';
@@ -270,14 +267,13 @@
             });
         }
 
-        // Auto-check if already logged in
         auth.onAuthStateChanged((user) => {
             if (user) {
+                // Check if already on login page to avoid infinite loops if unapproved
                 checkAdminApprovalAndRedirect(user);
             }
         });
 
-        // Password Eye Toggle
         const togglePasswordBtn = document.getElementById('toggle-password');
         const passwordInput = document.getElementById('password');
 
@@ -296,7 +292,6 @@
             }, 2000);
         });
 
-        // Email Login
         const loginForm = document.getElementById('login-form');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -320,14 +315,10 @@
                 });
         });
 
-        // Google Login with Approval Validation
         const googleBtn = document.getElementById('google-login-btn');
         googleBtn.addEventListener('click', () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
-                .then((result) => {
-                    // onAuthStateChanged will handle the approval check
-                })
                 .catch((error) => {
                     errorMsg.innerText = "Google login failed: " + error.message;
                     errorMsg.style.display = 'block';
