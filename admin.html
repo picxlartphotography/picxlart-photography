@@ -74,7 +74,7 @@
         .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow-y: auto; padding: 25px; position: relative; }
         .preview-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #fff; }
 
-        .pdf-page-wrap { position: relative; width: 100%; max-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .pdf-page-wrap { position: relative; width: 100%; max-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; }
         .pdf-page-bg { width: 100%; display: block; }
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 
@@ -480,7 +480,7 @@
             });
         }
 
-        // PERFECTLY ALIGNED 6-PAGE CANVAS PREVIEW OVER VACANT IMAGES
+        // RENDER 6-PAGE PREVIEW (PAGE 3 GENERATED IN HTML FOR PERFECT ALIGNMENT)
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -491,54 +491,53 @@
                 <!-- PAGE 1 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
-                <!-- PAGE 2: LETTER PAGE (PERFECT ALIGNMENT & FONT MATCH) -->
+                <!-- PAGE 2: LETTER PAGE (PERFECT ALIGNMENT) -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg" class="pdf-page-bg">
                     <div class="pdf-data-overlay">
-                        <!-- To : Client Name -->
                         <div style="position:absolute; top:30.2%; left:18.8%; font-size:16px; font-weight:600; color:#aa820a; font-family:'Times New Roman', serif;">${clientName}</div>
-                        <!-- Dear Client Name -->
                         <div style="position:absolute; top:39.0%; left:20.8%; font-size:16px; font-weight:700; color:#000000; font-family:'Times New Roman', serif;">${clientName}</div>
                     </div>
                 </div>
 
-                <!-- PAGE 3: FILLED DETAILS (ARIAL BOLD & CLEAN LINE SPACING) -->
-                <div class="pdf-page-wrap">
-                    <img src="acknowledgement-page3.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
-                        <div style="position:absolute; top:13.2%; left:40.0%;">${currentClientData.email || ''}</div>
-                        <div style="position:absolute; top:15.5%; left:22.5%;">${currentClientData.eventType || ''}</div>
-                        <div style="position:absolute; top:17.8%; left:29.5%;">${currentClientData.name || ''}</div>
-                        <div style="position:absolute; top:20.1%; left:28.0%; width:65%;">${currentClientData.address || ''}</div>
-                        <div style="position:absolute; top:22.4%; left:22.0%;">${currentClientData.phone || ''}</div>
-                        <div style="position:absolute; top:24.7%; left:24.0%;">${currentClientData.whatsapp || ''}</div>
-                        <div style="position:absolute; top:27.0%; left:18.5%;">${currentClientData.email || ''}</div>
-                        <div style="position:absolute; top:29.3%; left:56.0%; width:40%;">${currentClientData.assignmentBriefDate || ''}</div>
-                        
-                        <div style="position:absolute; top:33.8%; left:24.0%;">${currentClientData.bookingDate || ''}</div>
-                        <div style="position:absolute; top:36.1%; left:16.0%;">${currentClientData.daysCount || ''}</div>
-                        <div style="position:absolute; top:38.4%; left:47.0%;">${currentClientData.weddingCategory || ''}</div>
-                        <div style="position:absolute; top:40.7%; left:68.0%;">${currentClientData.otherWeddingCategory || 'NO'}</div>
-                        <div style="position:absolute; top:43.0%; left:65.0%;">${currentClientData.complimentaryAssured || 'NO'}</div>
-                        <div style="position:absolute; top:45.3%; left:50.0%;">${currentClientData.complimentaryDetails || 'NO'}</div>
-                        <div style="position:absolute; top:47.6%; left:52.0%;">${currentClientData.weddingLagna || ''}</div>
-                        <div style="position:absolute; top:49.9%; left:61.5%;">${currentClientData.packageNameAndCost || ''}</div>
-
-                        <div style="position:absolute; top:54.4%; left:46.0%;">₹${currentClientData.totalAmount || '0'}</div>
-                        <div style="position:absolute; top:56.7%; left:28.0%;">₹${currentClientData.advanceAmount || '0'}</div>
-                        <div style="position:absolute; top:59.0%; left:86.0%;">₹${currentClientData.tokenBooking || '0'}</div>
-                        <div style="position:absolute; top:61.3%; left:72.0%; width:25%;">${currentClientData.finalPaymentDesc || 'Rest all payment'}</div>
-                        <div style="position:absolute; top:63.6%; left:93.5%;">${currentClientData.duesAfterAssignment || 'NO DUES'}</div>
-                        <div style="position:absolute; top:65.9%; left:22.0%; width:70%;">${currentClientData.jobDetails || ''}</div>
-
-                        <div style="position:absolute; top:70.4%; left:39.5%;">${currentClientData.albumDetails || ''}</div>
-                        <div style="position:absolute; top:72.7%; left:51.5%;">${currentClientData.customRequirements || 'NIL'}</div>
-                        <div style="position:absolute; top:75.0%; left:43.0%;">${currentClientData.miscCharges || 'NIL'}</div>
-                        <div style="position:absolute; top:77.3%; left:32.0%;">${currentClientData.droneRequired || 'NIL'}</div>
-                    </div>
+                <!-- PAGE 3: FULLY HTML/CSS GENERATED PAGE (NO OVERLAP EVER) -->
+                <div class="pdf-page-wrap" style="padding: 25px 35px; background:#fff; min-height:1000px; color:#000; font-family:Arial, sans-serif;">
+                    <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:8px;">Work Details / Filled Details by Client</h2>
+                    <ul style="list-style:none; padding:0; font-size:12px; line-height:1.9;">
+                        <li>• <strong>Assignment form filled email :</strong> <span style="font-weight:bold;">${currentClientData.email || 'N/A'}</span></li>
+                        <li>• <strong>Event Name :</strong> <span style="font-weight:bold;">${currentClientData.eventType || 'N/A'}</span></li>
+                        <li>• <strong>Name of the Client :</strong> <span style="font-weight:bold;">${currentClientData.name || 'N/A'}</span></li>
+                        <li>• <strong>Full postal address :</strong> <span style="font-weight:bold;">${currentClientData.address || 'N/A'}</span></li>
+                        <li>• <strong>Contact No :</strong> <span style="font-weight:bold;">${currentClientData.phone || 'N/A'}</span></li>
+                        <li>• <strong>Whatsapp No :</strong> <span style="font-weight:bold;">${currentClientData.whatsapp || 'N/A'}</span></li>
+                        <li>• <strong>Email id :</strong> <span style="font-weight:bold;">${currentClientData.email || 'N/A'}</span></li>
+                        <li>• <strong>Assignment Dates (Mention in brief details) :</strong> <span style="font-weight:bold;">${currentClientData.assignmentBriefDate || 'N/A'}</span></li>
+                        <br>
+                        <li>• <strong>Booking Date :</strong> <span style="font-weight:bold;">${currentClientData.bookingDate || 'N/A'}</span></li>
+                        <li>• <strong>Days :</strong> <span style="font-weight:bold;">${currentClientData.daysCount || 'N/A'}</span></li>
+                        <li>• <strong>Wedding type or Catagory of Event :</strong> <span style="font-weight:bold;">${currentClientData.weddingCategory || 'N/A'}</span></li>
+                        <li>• <strong>If other Indian Wedding Catagory, Please mention here :</strong> <span style="font-weight:bold;">${currentClientData.otherWeddingCategory || 'NO'}</span></li>
+                        <li>• <strong>Any Complimentary Work Assured by Team Picxlart :</strong> <span style="font-weight:bold;">${currentClientData.complimentaryAssured || 'NO'}</span></li>
+                        <li>• <strong>Assured Complimentary Work Details :</strong> <span style="font-weight:bold;">${currentClientData.complimentaryDetails || 'NO'}</span></li>
+                        <li>• <strong>Wedding Lagna or Subh Muhurat / time :</strong> <span style="font-weight:bold;">${currentClientData.weddingLagna || 'N/A'}</span></li>
+                        <li>• <strong>Mention package name with package actual cost :</strong> <span style="font-weight:bold;">${currentClientData.packageNameAndCost || 'N/A'}</span></li>
+                        <br>
+                        <li>• <strong>Total assignment package amount :</strong> <span style="font-weight:bold;">₹${currentClientData.totalAmount || '0'}</span></li>
+                        <li>• <strong>Advance Amount :</strong> <span style="font-weight:bold;">₹${currentClientData.advanceAmount || '0'}</span></li>
+                        <li>• <strong>Token Booking :</strong> <span style="font-weight:bold;">₹${currentClientData.tokenBooking || '0'}</span></li>
+                        <li>• <strong>Final Payment (Wedding Day or Assignment Day Payment) :</strong> <span style="font-weight:bold;">${currentClientData.finalPaymentDesc || 'Rest all payment'}</span></li>
+                        <li>• <strong>If any dues after assignment date mention here, otherwise please mention "NO DUES" :</strong> <span style="font-weight:bold;">${currentClientData.duesAfterAssignment || 'NO DUES'}</span></li>
+                        <li>• <strong>Job Details :</strong> <span style="font-weight:bold;">${currentClientData.jobDetails || 'N/A'}</span></li>
+                        <br>
+                        <li>• <strong>Album or Photobook Details :</strong> <span style="font-weight:bold;">${currentClientData.albumDetails || 'N/A'}</span></li>
+                        <li>• <strong>Customised or any extra requirements :</strong> <span style="font-weight:bold;">${currentClientData.customRequirements || 'NIL'}</span></li>
+                        <li>• <strong>Misc. (Extra Charge applicable) :</strong> <span style="font-weight:bold;">${currentClientData.miscCharges || 'NIL'}</span></li>
+                        <li>• <strong>If Drone Shoot required :</strong> <span style="font-weight:bold;">${currentClientData.droneRequired || 'NIL'}</span></li>
+                    </ul>
+                    <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ddd; font-size:10px; text-align:center; color:#555;">Chatra Mukherjee Para, Serampore, Hooghly, WB | Phone: 700 352 1139 | Email: picxlartphotography@gmail.com</div>
                 </div>
 
-                <!-- PAGE 4: CONDUCTED BY SET TO TEAM PICXLART IN ARIAL BOLD -->
+                <!-- PAGE 4 -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page4.jpg" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
