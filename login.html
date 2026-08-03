@@ -66,7 +66,6 @@
         .loader { display: none; width: 16px; height: 16px; border: 3px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 1s infinite linear; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Hide elements by default */
         #signup-section { display: none; }
     </style>
 </head>
@@ -77,7 +76,6 @@
         <h2 id="form-title">Client Login</h2>
         <p id="form-subtitle">Login to track your project & payments</p>
 
-        <!-- Global Message Box -->
         <div id="global-msg" class="msg-box"></div>
 
         <!-- LOGIN SECTION -->
@@ -91,7 +89,7 @@
                     <i class="fa-solid fa-lock left-icon"></i>
                     <input type="password" id="login-password" placeholder="Password" required>
                 </div>
-                <button type="submit" class="btn-main">
+                <button type="submit" class="btn-main" id="login-submit-btn">
                     <span id="login-btn-text">Secure Login</span>
                     <div class="loader" id="login-loader"></div>
                 </button>
@@ -131,7 +129,7 @@
                     <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
                 </div>
                 
-                <button type="submit" class="btn-main">
+                <button type="submit" class="btn-main" id="signup-submit-btn">
                     <span id="signup-btn-text">Create Account</span>
                     <div class="loader" id="signup-loader"></div>
                 </button>
@@ -146,7 +144,6 @@
                 Already have an account? <span>Login Here</span>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -162,7 +159,6 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // UI Toggles
         function switchView(view) {
             document.getElementById('global-msg').style.display = 'none';
             if(view === 'signup') {
@@ -185,50 +181,49 @@
             msgBox.style.display = 'block';
         }
 
-        // ==========================================
-        // SMART ROUTING LOGIC (The 5-Step Workflow)
-        // ==========================================
+        function resetLoginLoader() {
+            document.getElementById('login-btn-text').style.display = 'block';
+            document.getElementById('login-loader').style.display = 'none';
+        }
+
+        // WORKFLOW ROUTER
         function routeUserWorkflow(user) {
             db.collection("users").doc(user.uid).get().then((doc) => {
+                resetLoginLoader();
                 if (doc.exists) {
                     const data = doc.data();
-                    
-                    // Step 2: Not Approved Yet
                     if (data.status === "pending") {
                         auth.signOut().then(() => {
                             showMsg("Your account is pending admin approval. Please wait.", "error");
-                            switchView('login');
                         });
-                    } 
-                    // Step 3, 4 & 5: Approved Workflow
-                    else if (data.status === "approved") {
+                    } else if (data.status === "approved") {
                         if (data.paperIssued === true) {
-                            // Step 5: Paper Issued -> Go to Dashboard
                             window.location.href = "client-dashboard.html";
                         } else if (data.formSubmitted === true) {
-                            // Step 4: Form Submitted but paper not issued -> Wait
                             auth.signOut().then(() => {
                                 showMsg("Thank you for submitting! Please wait for Admin to issue your Acknowledgement Paper.", "success");
                             });
                         } else {
-                            // Step 3: Approved but form not submitted -> Go to Assignment Form
                             window.location.href = "assignment-form.html";
                         }
+                    } else {
+                        auth.signOut().then(() => {
+                            showMsg("Account status is invalid. Contact admin.", "error");
+                        });
                     }
                 } else {
-                    auth.signOut().then(() => showMsg("Account not found. Please Sign up first.", "error"));
+                    auth.signOut().then(() => {
+                        showMsg("Account data not found in database. Please register first.", "error");
+                    });
                 }
-            }).catch(err => console.log(err));
+            }).catch((err) => {
+                resetLoginLoader();
+                auth.signOut();
+                showMsg("Database error: " + err.message, "error");
+            });
         }
 
-        // Auto-check on page load
-        auth.onAuthStateChanged((user) => {
-            if (user) routeUserWorkflow(user);
-        });
-
-        // ==========================================
-        // 1. EMAIL & PASSWORD LOGIN
-        // ==========================================
+        // LOGIN SUBMIT
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value.trim();
@@ -236,21 +231,23 @@
 
             document.getElementById('login-btn-text').style.display = 'none';
             document.getElementById('login-loader').style.display = 'block';
+            document.getElementById('global-msg').style.display = 'none';
 
-            auth.signInWithEmailAndPassword(email, password).catch((error) => {
-                document.getElementById('login-btn-text').style.display = 'block';
-                document.getElementById('login-loader').style.display = 'none';
-                
-                let errText = "Login failed.";
-                if(error.code === 'auth/user-not-found') errText = "No account found. Please sign up.";
-                if(error.code === 'auth/wrong-password') errText = "Incorrect password.";
-                showMsg(errText, "error");
-            });
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    routeUserWorkflow(userCredential.user);
+                })
+                .catch((error) => {
+                    resetLoginLoader();
+                    let errText = "Login failed.";
+                    if(error.code === 'auth/user-not-found') errText = "No account found with this email.";
+                    if(error.code === 'auth/wrong-password') errText = "Incorrect password.";
+                    if(error.code === 'auth/invalid-email') errText = "Invalid email address.";
+                    showMsg(errText, "error");
+                });
         });
 
-        // ==========================================
-        // 2. EMAIL & PASSWORD SIGNUP
-        // ==========================================
+        // SIGNUP SUBMIT
         document.getElementById('signup-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('signup-name').value.trim();
@@ -266,14 +263,14 @@
 
             document.getElementById('signup-btn-text').style.display = 'none';
             document.getElementById('signup-loader').style.display = 'block';
+            document.getElementById('global-msg').style.display = 'none';
 
             auth.createUserWithEmailAndPassword(email, pass).then((userCredential) => {
-                // Save Initial Data to Firestore
                 db.collection("users").doc(userCredential.user.uid).set({
                     name: name,
                     phone: phone,
                     email: email,
-                    status: "pending", // Waiting for admin
+                    status: "pending",
                     formSubmitted: false,
                     paperIssued: false
                 }).then(() => {
@@ -291,20 +288,15 @@
             });
         });
 
-        // ==========================================
-        // 3. GOOGLE AUTH (Works for both Login & Signup)
-        // ==========================================
+        // GOOGLE AUTH
         function handleGoogleAuth() {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider).then((result) => {
                 const user = result.user;
-                
-                // Check if user already exists in our database
                 db.collection("users").doc(user.uid).get().then((doc) => {
                     if (doc.exists) {
-                        // Old User -> Router will handle login automatically
+                        routeUserWorkflow(user);
                     } else {
-                        // New User -> Register them as pending
                         db.collection("users").doc(user.uid).set({
                             name: user.displayName || "Google User",
                             email: user.email,
@@ -321,7 +313,7 @@
                     }
                 });
             }).catch((error) => {
-                showMsg("Google login failed.", "error");
+                showMsg("Google login failed: " + error.message, "error");
             });
         }
     </script>
