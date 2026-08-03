@@ -13,27 +13,61 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0d0d0f; color: #fff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        body { background-color: #0d0d0f; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
 
-        /* FULL SCREEN DESKTOP CONTAINER */
-        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 35px 50px; flex: 1; display: flex; flex-direction: column; }
+        /* SIDEBAR */
+        .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
+        .sidebar-brand { display: flex; align-items: center; justify-content: center; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
+        .sidebar-brand img { height: 50px; }
         
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222228; padding-bottom: 25px; }
-        .header img { height: 65px; margin-bottom: 10px; }
-        .header h2 { color: #d4af37; font-size: 26px; font-weight: 600; letter-spacing: 0.5px; }
-        .header p { color: #888; font-size: 13px; margin-top: 4px; }
+        .menu-list { list-style: none; margin-top: 20px; }
+        .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent; }
+        .menu-item.active { background: #18181c; color: #d4af37; border-left-color: #d4af37; }
         
-        .btn-download-pdf { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; gap: 12px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25); transition: 0.3s; }
-        .btn-download-pdf:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
+        .logout-btn-container { padding: 15px 20px; border-top: 1px solid #222228; }
+        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; display:flex; align-items:center; justify-content:center; gap:8px; transition:0.3s; }
+        .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
 
-        .card { background: #16161a; border: 1px solid #222228; border-radius: 14px; padding: 30px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-        .card-title { color: #d4af37; font-size: 17px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        /* MAIN CONTENT */
+        .main-content { flex: 1; display: flex; flex-direction: column; background: #0d0d0f; }
+        .main-scroll-area { padding: 30px; overflow-y: auto; flex: 1; }
 
-        .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 10px; }
-        .pay-card { background: #111114; border: 1px solid #2a2a30; border-radius: 12px; padding: 20px; transition: 0.3s; }
-        .pay-card:hover { border-color: #d4af37; }
-        .pay-card-title { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 10px; }
-        .pay-card-value { font-size: 24px; font-weight: 700; color: #fff; }
+        /* TOP NAV & NOTIFICATION */
+        .top-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #222228; background: #121215; }
+        .welcome-text { font-size: 18px; font-weight: 600; color: #d4af37; }
+        .welcome-text span { color: #fff; }
+
+        .noti-wrapper { position: relative; cursor: pointer; }
+        .noti-icon { font-size: 22px; color: #d4af37; transition: 0.3s; }
+        .noti-icon:hover { color: #fff; }
+        .noti-badge { position: absolute; top: -5px; right: -6px; background: #2196F3; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 50%; box-shadow: 0 0 5px rgba(33,150,243,0.5); }
+        
+        .noti-dropdown { position: absolute; top: 35px; right: 0; width: 320px; background: #1a1a1e; border: 1px solid #333; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 100; overflow: hidden; }
+        .noti-dropdown.active { display: flex; animation: fadeIn 0.2s ease-in-out; }
+        .noti-header { padding: 12px 15px; background: #222228; color: #d4af37; font-weight: 600; font-size: 13px; border-bottom: 1px solid #333; }
+        .noti-body { max-height: 300px; overflow-y: auto; }
+        .noti-item { padding: 12px 15px; border-bottom: 1px solid #2a2a30; font-size: 12px; color: #ccc; display: flex; gap: 10px; align-items: flex-start; transition: 0.2s; }
+        .noti-item:hover { background: #222228; color: #fff; }
+        .noti-item i { color: #2196F3; font-size: 14px; margin-top: 2px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* CARDS & BUTTONS */
+        .card { background: #16161a; border: 1px solid #222228; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .card-title { font-size: 15px; color: #d4af37; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        .btn-group { display: flex; gap: 12px; margin-top: 10px; }
+        .btn-action { padding: 9px 18px; border-radius: 6px; font-weight: 600; font-size: 12.5px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-view { background: #2196F3; color: #fff; }
+        .btn-view:hover { background: #1976D2; }
+        .btn-download { background: #4CAF50; color: #fff; }
+        .btn-download:hover { background: #388E3C; }
+
+        /* PAYMENT GRID */
+        .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 10px; }
+        .pay-card { background: #111114; border: 1px solid #2a2a30; border-radius: 10px; padding: 18px; }
+        .pay-card-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; }
+        .pay-card-value { font-size: 20px; font-weight: 700; color: #fff; }
         
         .pay-card.total { border-color: rgba(212, 175, 55, 0.4); } .pay-card.total .pay-card-value { color: #d4af37; }
         .pay-card.paid { border-color: rgba(76, 175, 80, 0.4); } .pay-card.paid .pay-card-value { color: #4caf50; }
@@ -41,8 +75,9 @@
         .pay-card.event-due { border-color: rgba(33, 150, 243, 0.4); } .pay-card.event-due .pay-card-value { color: #2196F3; }
         .pay-card.delivery-due { border-color: rgba(233, 30, 99, 0.4); } .pay-card.delivery-due .pay-card-value { color: #e91e63; }
 
-        .stage-item { display: flex; justify-content: space-between; align-items: center; background: #111114; padding: 16px 20px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #222; }
+        .stage-item { display: flex; justify-content: space-between; align-items: center; background: #111114; padding: 14px 20px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #222; }
 
+        /* MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px; }
         .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow-y: auto; padding: 25px; position: relative; }
 
@@ -53,54 +88,92 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <img src="logo.png" alt="Picxlart Logo">
-            <h2>Welcome, <span id="client-display-name">Client</span></h2>
-            <p>Picxlart Official Assignment & Booking Tracking Portal</p>
+    <div class="sidebar">
+        <div>
+            <div class="sidebar-brand"><img src="logo.png" alt="Picxlart Logo"></div>
+            <ul class="menu-list">
+                <li class="menu-item active"><i class="fa-solid fa-house"></i> My Dashboard</li>
+            </ul>
         </div>
-
-        <button class="btn-download-pdf" onclick="openClientPdf()"><i class="fa-solid fa-file-pdf"></i> View & Print Official 6-Page Acknowledgement Paper</button>
-
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-calculator"></i> My Payment & Dues Breakdown</div>
-            <div class="payment-summary-grid">
-                <div class="pay-card total">
-                    <div class="pay-card-title">Total Package Value</div>
-                    <div class="pay-card-value" id="client-total">₹0</div>
-                </div>
-                <div class="pay-card paid">
-                    <div class="pay-card-title">Advance Paid</div>
-                    <div class="pay-card-value" id="client-adv">₹0</div>
-                </div>
-                <div class="pay-card early-due" id="c-card-early" style="display:none;">
-                    <div class="pay-card-title">1 Month Before Due (50%)</div>
-                    <div class="pay-card-value" id="client-early-due">₹0</div>
-                </div>
-                <div class="pay-card event-due">
-                    <div class="pay-card-title">Event Day Final Due</div>
-                    <div class="pay-card-value" id="client-event-due">₹0</div>
-                </div>
-                <div class="pay-card delivery-due" id="c-card-deliv" style="display:none;">
-                    <div class="pay-card-title">Album/Deliverable Submission Due</div>
-                    <div class="pay-card-value" id="client-deliv-due">₹0</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title"><i class="fa-solid fa-list-check"></i> Live Event / Shoot Progress Status</div>
-            <div id="client-stages-box">
-                <p style="color:#777; font-size:13px;">Your event shoot stages will be updated here shortly by Admin.</p>
-            </div>
+        <div class="logout-btn-container">
+            <button class="btn-sidebar-logout" onclick="logoutClient()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
     </div>
 
+    <div class="main-content">
+        <!-- TOP NAV WITH FACEBOOK STYLE NOTIFICATION BELL -->
+        <div class="top-nav">
+            <div class="welcome-text">Welcome, <span id="client-display-name">Loading...</span></div>
+            
+            <div class="noti-wrapper" onclick="toggleNoti()">
+                <i class="fa-solid fa-bell noti-icon"></i>
+                <span class="noti-badge" id="noti-count">0</span>
+                
+                <div class="noti-dropdown" id="noti-dropdown">
+                    <div class="noti-header">Your Notifications</div>
+                    <div class="noti-body" id="noti-list">
+                        <p style="padding:15px; text-align:center; color:#777; font-size:12px;">No new notifications</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-scroll-area">
+            
+            <!-- ACKNOWLEDGEMENT PAPER CARD -->
+            <div class="card">
+                <h4 style="color:#d4af37; font-size:15px; font-weight:600; margin-bottom: 12px; letter-spacing:0.5px;">My Acknowledgement Paper</h4>
+                <p style="color:#888; font-size:12px; margin-bottom:15px;">Your official booking agreement and specifications are ready.</p>
+                <div class="btn-group">
+                    <button class="btn-action btn-view" onclick="openClientPdf(false)"><i class="fa-solid fa-eye"></i> View</button>
+                    <button class="btn-action btn-download" onclick="openClientPdf(true)"><i class="fa-solid fa-download"></i> Download</button>
+                </div>
+            </div>
+
+            <!-- PAYMENT BREAKDOWN CARD -->
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-calculator"></i> Payment & Dues Breakdown</div>
+                <div class="payment-summary-grid">
+                    <div class="pay-card total">
+                        <div class="pay-card-title">Total Package Value</div>
+                        <div class="pay-card-value" id="client-total">₹0</div>
+                    </div>
+                    <div class="pay-card paid">
+                        <div class="pay-card-title">Advance Paid</div>
+                        <div class="pay-card-value" id="client-adv">₹0</div>
+                    </div>
+                    <div class="pay-card early-due" id="c-card-early" style="display:none;">
+                        <div class="pay-card-title">1 Month Before Due (50%)</div>
+                        <div class="pay-card-value" id="client-early-due">₹0</div>
+                    </div>
+                    <div class="pay-card event-due">
+                        <div class="pay-card-title">Event Day Final Due</div>
+                        <div class="pay-card-value" id="client-event-due">₹0</div>
+                    </div>
+                    <div class="pay-card delivery-due" id="c-card-deliv" style="display:none;">
+                        <div class="pay-card-title">Album/Deliverable Due</div>
+                        <div class="pay-card-value" id="client-deliv-due">₹0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT STAGES CARD -->
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-list-check"></i> Live Event / Shoot Progress Status</div>
+                <div id="client-stages-box">
+                    <p style="color:#777; font-size:12px;">Loading project status...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PREVIEW MODAL -->
     <div class="modal-overlay" id="client-pdf-modal">
         <div class="preview-box">
             <span style="position:absolute; top:15px; right:20px; font-size:24px; cursor:pointer;" onclick="document.getElementById('client-pdf-modal').style.display='none'">&times;</span>
             <div id="pdf-render-area"></div>
-            <button onclick="window.print()" style="margin-top:20px; width:100%; background:#2196F3; color:#fff; border:none; padding:14px; border-radius:8px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-print"></i> Print / Download Official 6-Page PDF</button>
+            <button id="modal-print-btn" onclick="window.print()" style="margin-top:20px; width:100%; background:#2196F3; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:600; cursor:pointer; display:none;"><i class="fa-solid fa-print"></i> Print / Download Official 6-Page PDF</button>
         </div>
     </div>
 
@@ -119,6 +192,26 @@
 
         let clientDataStore = null;
 
+        // Dropdown Toggle Logic
+        function toggleNoti() {
+            document.getElementById('noti-dropdown').classList.toggle('active');
+        }
+
+        // Close dropdown when clicked outside
+        document.addEventListener('click', function(event) {
+            const wrapper = document.querySelector('.noti-wrapper');
+            if (!wrapper.contains(event.target)) {
+                document.getElementById('noti-dropdown').classList.remove('active');
+            }
+        });
+
+        // Logout Logic
+        function logoutClient() {
+            auth.signOut().then(() => {
+                window.location.href = "login.html";
+            });
+        }
+
         auth.onAuthStateChanged((user) => {
             if (user) {
                 db.collection("users").doc(user.uid).onSnapshot((doc) => {
@@ -132,6 +225,43 @@
 
                         document.getElementById('client-display-name').innerText = clientDataStore.name || "Client";
 
+                        // NOTIFICATION ENGINE
+                        let notifs = [];
+                        notifs.push({ icon: 'fa-solid fa-file-signature', text: 'Your Official Acknowledgement Paper is ready.' });
+                        
+                        const stages = clientDataStore.projectStages || [];
+                        let stagesHtml = "";
+                        
+                        if(stages.length === 0) {
+                            stagesHtml = `<p style="color:#777; font-size:12px;">Your event shoot stages will be updated here shortly by Admin.</p>`;
+                        } else {
+                            stages.forEach(stg => {
+                                const badgeColor = stg.completed ? '#4caf50' : '#ff9800';
+                                const badgeText = stg.completed ? '✅ Completed' : '⏳ In Progress';
+                                stagesHtml += `
+                                    <div class="stage-item">
+                                        <span style="font-size:13px; font-weight:500; color:#fff;">${stg.name}</span>
+                                        <span style="color:${badgeColor}; font-size:12px; font-weight:600;">${badgeText}</span>
+                                    </div>
+                                `;
+                                if(stg.completed) {
+                                    notifs.push({ icon: 'fa-solid fa-check-circle', text: `Stage Completed: ${stg.name}` });
+                                }
+                            });
+                        }
+                        document.getElementById('client-stages-box').innerHTML = stagesHtml;
+
+                        // Render Notifications
+                        document.getElementById('noti-count').innerText = notifs.length;
+                        if(notifs.length > 0) {
+                            let notiHtml = "";
+                            notifs.reverse().forEach(n => {
+                                notiHtml += `<div class="noti-item"><i class="${n.icon}"></i> <span>${n.text}</span></div>`;
+                            });
+                            document.getElementById('noti-list').innerHTML = notiHtml;
+                        }
+
+                        // PAYMENT CALCULATION
                         if(clientDataStore.customPayments) {
                             document.getElementById('client-total').innerText = '₹' + clientDataStore.customPayments.total;
                             document.getElementById('client-adv').innerText = '₹' + clientDataStore.customPayments.adv;
@@ -183,25 +313,6 @@
                                 document.getElementById('c-card-deliv').style.display = 'none';
                             }
                         }
-
-                        const stagesBox = document.getElementById('client-stages-box');
-                        stagesBox.innerHTML = "";
-                        const stages = clientDataStore.projectStages || [];
-
-                        if(stages.length === 0) {
-                            stagesBox.innerHTML = `<p style="color:#777; font-size:13px;">Your event shoot stages will be updated here shortly by Admin.</p>`;
-                        } else {
-                            stages.forEach(stg => {
-                                const badgeColor = stg.completed ? '#4caf50' : '#ff9800';
-                                const badgeText = stg.completed ? '✅ Completed' : '⏳ In Progress';
-                                stagesBox.innerHTML += `
-                                    <div class="stage-item">
-                                        <span style="font-size:14px; font-weight:500;">${stg.name}</span>
-                                        <span style="color:${badgeColor}; font-size:13px; font-weight:600;">${badgeText}</span>
-                                    </div>
-                                `;
-                            });
-                        }
                     }
                 });
             } else {
@@ -209,12 +320,14 @@
             }
         });
 
-        function openClientPdf() {
+        // VIEW OR DOWNLOAD LOGIC
+        function openClientPdf(isDownload) {
             if(!clientDataStore) return;
 
             const clientName = clientDataStore.name || '';
-            const totalAmt = parseFloat(clientDataStore.totalAmount || currentClientData.totalPkgAmt || 0);
-            const advAmt = parseFloat(clientDataStore.advanceAmount || currentClientData.advanceAmt || 0);
+            const totalAmt = parseFloat(clientDataStore.totalAmount || clientDataStore.totalPkgAmt || 0);
+            const advAmt = parseFloat(clientDataStore.advanceAmount || clientDataStore.advanceAmt || 0);
+            const tokenAmt = parseFloat(clientDataStore.tokenBooking || 0);
             const req50Adv = totalAmt * 0.50;
 
             let earlyDue = 0;
@@ -361,7 +474,7 @@
                         <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
                         <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
-                            <li>Assigned Package Amount : <strong>₹${totalImgText = totalAmt}</strong></li>
+                            <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Token Advance Paid : <strong>₹${advAmt}</strong></li>
                             ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due (To complete 50% Advance) :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
                             <li>Event Day Payment Amount : <strong>₹${eventDue}</strong></li>
@@ -373,7 +486,18 @@
                 <!-- PAGE 6 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page6.jpg" class="pdf-page-bg"></div>
             `;
+            
             document.getElementById('client-pdf-modal').style.display = 'flex';
+            
+            const printBtn = document.getElementById('modal-print-btn');
+            if(isDownload) {
+                printBtn.style.display = 'block';
+                setTimeout(() => {
+                    window.print();
+                }, 500); // Auto trigger print prompt if download clicked
+            } else {
+                printBtn.style.display = 'none';
+            }
         }
     </script>
 </body>
