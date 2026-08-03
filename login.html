@@ -10,6 +10,7 @@
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -222,7 +223,6 @@
             <i class="fa-brands fa-google"></i> Continue with Google
         </button>
 
-        <!-- SAFE SEPARATE LINK WRAPPER -->
         <div class="signup-link-box">
             <a href="assignment-form.html">New to Picxlart? <span>Fill Assignment Form</span></a>
         </div>
@@ -240,18 +240,44 @@
         
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const db = firebase.firestore();
 
+        const errorMsg = document.getElementById('error-message');
+
+        // SMART APPROVAL CHECKER FUNCTION
+        function checkAdminApprovalAndRedirect(user) {
+            db.collection("users").doc(user.uid).get().then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    if (userData.status === "approved") {
+                        window.location.href = "client-dashboard.html";
+                    } else {
+                        // Not approved yet! Logout and show error
+                        auth.signOut().then(() => {
+                            errorMsg.innerText = "Your account is pending admin approval. Please wait for approval.";
+                            errorMsg.style.display = 'block';
+                        });
+                    }
+                } else {
+                    // User signed in via Google first time, but didn't fill assignment form yet
+                    auth.signOut().then(() => {
+                        errorMsg.innerText = "Account not found. Please fill the Assignment Form first.";
+                        errorMsg.style.display = 'block';
+                    });
+                }
+            }).catch((error) => {
+                console.error("Error checking approval:", error);
+            });
+        }
+
+        // Auto-check if already logged in
         auth.onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = "client-dashboard.html";
+                checkAdminApprovalAndRedirect(user);
             }
         });
 
-        const loginForm = document.getElementById('login-form');
-        const btnText = document.getElementById('btn-text');
-        const btnLoader = document.getElementById('btn-loader');
-        const errorMsg = document.getElementById('error-message');
-
+        // Password Eye Toggle
         const togglePasswordBtn = document.getElementById('toggle-password');
         const passwordInput = document.getElementById('password');
 
@@ -270,19 +296,21 @@
             }, 2000);
         });
 
+        // Email Login
+        const loginForm = document.getElementById('login-form');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = passwordInput.value;
 
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'block';
+            document.getElementById('btn-text').style.display = 'none';
+            document.getElementById('btn-loader').style.display = 'block';
             errorMsg.style.display = 'none';
 
             auth.signInWithEmailAndPassword(email, password)
                 .catch((error) => {
-                    btnText.style.display = 'block';
-                    btnLoader.style.display = 'none';
+                    document.getElementById('btn-text').style.display = 'block';
+                    document.getElementById('btn-loader').style.display = 'none';
                     let errorMessage = "Failed to login. Please try again.";
                     if(error.code === 'auth/user-not-found') errorMessage = "No client found with this email.";
                     if(error.code === 'auth/wrong-password') errorMessage = "Incorrect password.";
@@ -292,10 +320,14 @@
                 });
         });
 
+        // Google Login with Approval Validation
         const googleBtn = document.getElementById('google-login-btn');
         googleBtn.addEventListener('click', () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
+                .then((result) => {
+                    // onAuthStateChanged will handle the approval check
+                })
                 .catch((error) => {
                     errorMsg.innerText = "Google login failed: " + error.message;
                     errorMsg.style.display = 'block';
