@@ -479,13 +479,14 @@
             });
         }
 
-        // RENDER 6-PAGE PREVIEW (PAGE 5 TOTALLY HTML-GENERATED FOR PERFECT RENDER)
+        // RENDER PREVIEW: PAGE 5 DYNAMIC DATA OVERLAY OVER YOUR BLANK IMAGE
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
             const clientName = currentClientData.name || '';
             const totalAmt = parseFloat(currentClientData.totalAmount || 0);
             const advAmt = parseFloat(currentClientData.advanceAmount || 0);
+            const tokenAmt = parseFloat(currentClientData.tokenBooking || 0);
             const finalDue = Math.max(0, totalAmt - advAmt);
 
             const body = document.getElementById('preview-html-body');
@@ -590,45 +591,32 @@
                     </div>
                 </div>
 
-                <!-- PAGE 5: PERFECT FULLY DYNAMIC HTML LAYOUT WITH FOOTER -->
-                <div class="pdf-page-wrap" style="padding: 25px 35px; background:#fff; min-height:1050px; color:#000; font-family:Arial, sans-serif; display:flex; flex-direction:column; justify-space-between;">
-                    <div>
-                        <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:8px; font-family:Arial, sans-serif; color:#000;">OFFICIAL DETAILS</h2>
-                        
-                        <p style="margin-bottom:4px; font-size:13px;"><strong>Package Details :</strong></p>
-                        <p style="margin-bottom:12px; font-size:12px;">Package Name :: <strong>${currentClientData.packageNameAndCost || 'Standard Package'}</strong></p>
+                <!-- PAGE 5: DYNAMIC DATA OVERLAY OVER YOUR BLANK IMAGE -->
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; background:#fff; color:#000; font-family:Arial, sans-serif;">
+                    <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
+                    
+                    <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:11.5px; font-family:Arial, sans-serif; color:#000; line-height:1.75;">
+                        <p style="margin-bottom:4px; font-size:12.5px;">Package Details :</p>
+                        <p style="margin-bottom:12px; font-size:12.5px;">Package Name :: <strong style="font-size:13px;">${currentClientData.packageNameAndCost || 'Standard Package'}</strong></p>
                         
                         <p style="margin-bottom:4px; font-size:12px;">Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
                         <p style="margin-bottom:8px; font-size:12px;">Duration: <strong>${currentClientData.daysCount || '1 Day'}</strong></p>
-                        <p style="margin-bottom:20px; font-size:12px;">Photography Details / Work Details: <strong>${currentClientData.jobDetails || 'N/A'}</strong></p>
+                        <p style="margin-bottom:18px; font-size:12px;">Photography Details / Work Details: <strong>${currentClientData.jobDetails || 'N/A'}</strong></p>
 
-                        <p style="font-size:11px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
-                        <p style="font-size:11px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
+                        <p style="font-size:10.5px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
+                        <p style="font-size:10.5px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
 
                         <p style="margin-bottom:16px; font-size:12px;">• <strong>Document Submitted :</strong> <strong>${currentClientData.docSubmitted || 'Not required'}</strong></p>
 
                         <p style="font-size:13px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
-                        <ul style="list-style:none; padding-left:15px; margin-bottom:20px; line-height:1.9; font-size:12px;">
+                        <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.85; font-size:12px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Advance - <strong>₹${advAmt}</strong></li>
-                            <li>Token Advance : <strong>₹${currentClientData.tokenBooking || '0'}</strong></li>
+                            <li>Token Advance : <strong>₹${tokenAmt}</strong></li>
                             <li>Event day / Final Payment amount - <strong>₹${finalDue}</strong></li>
                         </ul>
-
-                        <p style="font-size:11px; line-height:1.6; margin-bottom:15px; color:#222;">
-                            <strong>**Event Day Final Payment</strong><br>
-                            For any payment related issues no data will be transfer to the end client as client accepted the Rules and Norms section, If Canvera / Indigo increases their photobook price, then it will be added to the package, and client will be informed accordingly.
-                        </p>
-
-                        <p style="font-size:11.5px; margin-bottom:20px;"><strong>Project Submit Period :</strong> Photobook and Full Film will be delivered with in 3 months from the selected photos submit date.</p>
-
-                        <p style="text-align:center; font-weight:bold; margin-bottom:5px; font-size:12px;">Thank you for choosing Picxlart !</p>
-                        <p style="text-align:center; font-size:11px; margin-bottom:15px; color:#444;">We’re excited to be part of your special day and look forward to creating memories forever. Feel free to reach out if you have any questions.</p>
-                        <p style="text-align:center; font-weight:bold; font-size:13px; color:#000;">Thanks once again !</p>
                     </div>
-
-                    <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ddd; font-size:10px; text-align:center; color:#555;">Chatra Mukherjee Para, Serampore, Hooghly, WB | Phone: 700 352 1139 | Email: picxlartphotography@gmail.com</div>
                 </div>
 
                 <!-- PAGE 6 -->
