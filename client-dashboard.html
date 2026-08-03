@@ -13,7 +13,7 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #0d0d0f; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
+        body { background: #0b0b0d; color: #fff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
         /* SIDEBAR */
         .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
@@ -40,7 +40,7 @@
         .noti-wrapper { position: relative; cursor: pointer; }
         .noti-icon { font-size: 22px; color: #d4af37; transition: 0.3s; }
         .noti-icon:hover { color: #fff; }
-        .noti-badge { position: absolute; top: -5px; right: -6px; background: #2196F3; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 50%; box-shadow: 0 0 5px rgba(33,150,243,0.5); }
+        .noti-badge { position: absolute; top: -5px; right: -6px; background: #2196F3; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 50%; box-shadow: 0 0 5px rgba(33,150,243,0.5); display: none; }
         
         .noti-dropdown { position: absolute; top: 35px; right: 0; width: 320px; background: #1a1a1e; border: 1px solid #333; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 100; overflow: hidden; }
         .noti-dropdown.active { display: flex; animation: fadeIn 0.2s ease-in-out; }
@@ -56,8 +56,8 @@
         .card { background: #16161a; border: 1px solid #222228; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .card-title { font-size: 15px; color: #d4af37; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
-        .btn-group { display: flex; gap: 12px; margin-top: 10px; }
-        .btn-action { padding: 9px 18px; border-radius: 6px; font-weight: 600; font-size: 12.5px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-group { display: flex; gap: 12px; margin-top: 15px; }
+        .btn-action { padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
         .btn-view { background: #2196F3; color: #fff; }
         .btn-view:hover { background: #1976D2; }
         .btn-download { background: #4CAF50; color: #fff; }
@@ -120,10 +120,10 @@
 
         <div class="main-scroll-area">
             
-            <!-- ACKNOWLEDGEMENT PAPER CARD -->
+            <!-- ACKNOWLEDGEMENT PAPER BUTTONS -->
             <div class="card">
-                <h4 style="color:#d4af37; font-size:15px; font-weight:600; margin-bottom: 12px; letter-spacing:0.5px;">My Acknowledgement Paper</h4>
-                <p style="color:#888; font-size:12px; margin-bottom:15px;">Your official booking agreement and specifications are ready.</p>
+                <h4 style="color:#d4af37; font-size:15px; font-weight:600; margin-bottom: 8px; letter-spacing:0.5px;">My Acknowledgement Paper</h4>
+                <p style="color:#888; font-size:12px; margin-bottom:10px;">Your official booking agreement and specifications are ready.</p>
                 <div class="btn-group">
                     <button class="btn-action btn-view" onclick="openClientPdf(false)"><i class="fa-solid fa-eye"></i> View</button>
                     <button class="btn-action btn-download" onclick="openClientPdf(true)"><i class="fa-solid fa-download"></i> Download</button>
@@ -173,7 +173,7 @@
         <div class="preview-box">
             <span style="position:absolute; top:15px; right:20px; font-size:24px; cursor:pointer;" onclick="document.getElementById('client-pdf-modal').style.display='none'">&times;</span>
             <div id="pdf-render-area"></div>
-            <button id="modal-print-btn" onclick="window.print()" style="margin-top:20px; width:100%; background:#2196F3; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:600; cursor:pointer; display:none;"><i class="fa-solid fa-print"></i> Print / Download Official 6-Page PDF</button>
+            <button id="modal-print-btn" onclick="triggerPrint()" style="margin-top:20px; width:100%; background:#4CAF50; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:600; cursor:pointer; display:none;"><i class="fa-solid fa-download"></i> Print / Save as PDF</button>
         </div>
     </div>
 
@@ -191,10 +191,23 @@
         const db = firebase.firestore();
 
         let clientDataStore = null;
+        let currentTotalNotifs = 0; // Tracks total notifications in db
 
-        // Dropdown Toggle Logic
+        // FACEBOOK-STYLE NOTIFICATION SEEN LOGIC
         function toggleNoti() {
-            document.getElementById('noti-dropdown').classList.toggle('active');
+            const dropdown = document.getElementById('noti-dropdown');
+            dropdown.classList.toggle('active');
+            
+            if(dropdown.classList.contains('active')) {
+                // Hide badge when dropdown is opened (Seen)
+                document.getElementById('noti-count').style.display = 'none';
+                
+                // Save the seen count to local storage
+                const user = auth.currentUser;
+                if(user) {
+                    localStorage.setItem('seenNotifCount_' + user.uid, currentTotalNotifs);
+                }
+            }
         }
 
         // Close dropdown when clicked outside
@@ -205,7 +218,6 @@
             }
         });
 
-        // Logout Logic
         function logoutClient() {
             auth.signOut().then(() => {
                 window.location.href = "login.html";
@@ -225,7 +237,9 @@
 
                         document.getElementById('client-display-name').innerText = clientDataStore.name || "Client";
 
+                        // --------------------------------
                         // NOTIFICATION ENGINE
+                        // --------------------------------
                         let notifs = [];
                         notifs.push({ icon: 'fa-solid fa-file-signature', text: 'Your Official Acknowledgement Paper is ready.' });
                         
@@ -251,8 +265,19 @@
                         }
                         document.getElementById('client-stages-box').innerHTML = stagesHtml;
 
-                        // Render Notifications
-                        document.getElementById('noti-count').innerText = notifs.length;
+                        // Render Notifications & Seen logic
+                        currentTotalNotifs = notifs.length;
+                        const savedSeenCount = parseInt(localStorage.getItem('seenNotifCount_' + user.uid)) || 0;
+                        const newNotifsCount = currentTotalNotifs - savedSeenCount;
+
+                        const badge = document.getElementById('noti-count');
+                        if(newNotifsCount > 0) {
+                            badge.style.display = 'block';
+                            badge.innerText = newNotifsCount;
+                        } else {
+                            badge.style.display = 'none'; // Keeps it hidden if no new update
+                        }
+
                         if(notifs.length > 0) {
                             let notiHtml = "";
                             notifs.reverse().forEach(n => {
@@ -320,7 +345,25 @@
             }
         });
 
-        // VIEW OR DOWNLOAD LOGIC
+        // CUSTOM PDF FILENAME DOWNLOAD LOGIC
+        function triggerPrint() {
+            const originalTitle = document.title;
+            const safeName = (clientDataStore && clientDataStore.name) ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
+            
+            // Temporarily change document title so PDF saves with this perfect name
+            document.title = "Acknowledgement_Paper_Picxlart_" + safeName;
+            
+            setTimeout(() => {
+                window.print();
+                
+                // Restore original title shortly after
+                setTimeout(() => {
+                    document.title = originalTitle;
+                }, 2000);
+            }, 500);
+        }
+
+        // PREVIEW HTML GENERATOR
         function openClientPdf(isDownload) {
             if(!clientDataStore) return;
 
@@ -331,22 +374,13 @@
             const req50Adv = totalAmt * 0.50;
 
             let earlyDue = 0;
-            if (advAmt < req50Adv) {
-                earlyDue = req50Adv - advAmt;
-            }
+            if (advAmt < req50Adv) { earlyDue = req50Adv - advAmt; }
 
             const duesRaw = (clientDataStore.duesAfterAssignment || "").toUpperCase().trim();
             let deliveryDue = 0;
-
             if (!duesRaw.includes("NO DUES") && duesRaw !== "") {
-                if(duesRaw.includes("K")) {
-                    const matchK = duesRaw.match(/(\d+)\s*K/);
-                    if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000;
-                } 
-                if(deliveryDue === 0) {
-                    const matches = duesRaw.match(/\d+/g);
-                    if(matches) deliveryDue = parseFloat(matches.join(''));
-                }
+                if(duesRaw.includes("K")) { const matchK = duesRaw.match(/(\d+)\s*K/); if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000; } 
+                if(deliveryDue === 0) { const matches = duesRaw.match(/\d+/g); if(matches) deliveryDue = parseFloat(matches.join('')); }
                 if(deliveryDue === 0) deliveryDue = 5000;
             }
 
@@ -457,20 +491,15 @@
                 <!-- PAGE 5 -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; background:#fff; color:#000; font-family:Arial, sans-serif;">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
-                    
                     <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
                         <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
                         <p style="margin-bottom:12px; font-size:13.5px;">Package Name :: <strong style="font-size:14px;">${clientDataStore.packageNameAndCost || 'Standard Package'}</strong></p>
-                        
                         <p style="margin-bottom:4px; font-size:13px;">Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
                         <p style="margin-bottom:8px; font-size:13px;">Duration: <strong>${clientDataStore.daysCount || '1 Day'}</strong></p>
                         <p style="margin-bottom:18px; font-size:13px;">Photography Details / Work Details: <strong>${clientDataStore.jobDetails || 'N/A'}</strong></p>
-
                         <p style="font-size:11.5px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
                         <p style="font-size:11.5px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
-
                         <p style="margin-bottom:16px; font-size:13px;">• <strong>Document Submitted :</strong> <strong>${clientDataStore.docSubmitted || 'Not required'}</strong></p>
-
                         <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
                         <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
@@ -493,8 +522,8 @@
             if(isDownload) {
                 printBtn.style.display = 'block';
                 setTimeout(() => {
-                    window.print();
-                }, 500); // Auto trigger print prompt if download clicked
+                    triggerPrint();
+                }, 500);
             } else {
                 printBtn.style.display = 'none';
             }
