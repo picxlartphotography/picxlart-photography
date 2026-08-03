@@ -178,6 +178,19 @@
                     </div>
                 </div>
 
+                <!-- PAYMENT HISTORY LEDGER -->
+                <h4 style="color:#d4af37; font-size:13px; margin-top:25px; margin-bottom:12px;"><i class="fa-solid fa-clock-rotate-left"></i> Payment History Ledger (Admin Tracking)</h4>
+                <div style="background:#111114; border:1px solid #222228; border-radius:10px; padding:15px; margin-bottom:25px;">
+                    <table class="db-table" style="font-size:12px;">
+                        <thead>
+                            <tr><th>Date</th><th>Amount Paid</th><th>Total Paid</th><th>Remaining Balance</th><th style="text-align:right;">Action</th></tr>
+                        </thead>
+                        <tbody id="payment-history-rows">
+                            <tr><td colspan="5" style="text-align:center; color:#777;">No history tracked yet. Update Advance Amount to log automatically.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-tasks"></i> Live Event / Project Status Management</h4>
                 <div class="status-manager-box">
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
@@ -345,6 +358,8 @@
 
                     calculateSmartPayment(currentClientData);
                     renderProjectStages(currentClientData.projectStages || []);
+                    renderPaymentHistory(currentClientData.paymentHistory || []);
+                    
                     switchTab('tab-active', document.querySelectorAll('.menu-item')[2]);
                 }
             });
@@ -352,7 +367,6 @@
 
         function calculateSmartPayment(data) {
             let total, adv;
-
             if(data.customPayments) {
                 total = data.customPayments.total;
                 adv = data.customPayments.adv;
@@ -360,13 +374,11 @@
                 total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
                 adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
             }
-
             renderPaymentUI(total, adv, data.duesAfterAssignment || "");
         }
 
         function renderPaymentUI(total, adv, duesRawText) {
             const req50Adv = total * 0.50;
-
             document.getElementById('calc-total').innerText = '₹' + total;
             document.getElementById('calc-adv').innerText = '₹' + adv;
 
@@ -382,21 +394,14 @@
 
             const duesRaw = duesRawText.toUpperCase().trim();
             let deliveryDue = 0;
-
             if (!duesRaw.includes("NO DUES") && duesRaw !== "") {
-                if(duesRaw.includes("K")) {
-                    const matchK = duesRaw.match(/(\d+)\s*K/);
-                    if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000;
-                } 
-                if(deliveryDue === 0) {
-                    const matches = duesRaw.match(/\d+/g);
-                    if(matches) deliveryDue = parseFloat(matches.join(''));
-                }
+                if(duesRaw.includes("K")) { const matchK = duesRaw.match(/(\d+)\s*K/); if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000; } 
+                if(deliveryDue === 0) { const matches = duesRaw.match(/\d+/g); if(matches) deliveryDue = parseFloat(matches.join('')); }
                 if(deliveryDue === 0) deliveryDue = 5000;
             }
 
-            const eventDue = Math.max(0, total - (adv + earlyDue + deliveryDue));
-            document.getElementById('calc-event-due').innerText = '₹' + eventDue;
+            const eventDue = total - (adv + earlyDue + deliveryDue);
+            document.getElementById('calc-event-due').innerText = '₹' + Math.max(0, eventDue);
 
             if(deliveryDue > 0) {
                 document.getElementById('card-delivery-due').style.display = 'block';
@@ -418,34 +423,50 @@
                     const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
                     const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
                     const duesText = currentClientData ? (currentClientData.duesAfterAssignment || "") : "";
-
                     renderPaymentUI(newTotal, newAdv, duesText);
                 }
-
                 document.getElementById('btn-save-custom-payments').style.display = 'inline-block';
             }
         }
 
+        // SAVE SMART CALCULATOR AND LOG HISTORY IF ADVANCE INCREASED
         function saveCustomPayments() {
             if(!currentActiveUid) return;
 
+            const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
+            const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
+            const oldAdv = parseFloat((currentClientData.customPayments && currentClientData.customPayments.adv) || currentClientData.advanceAmount || 0);
+
             const customData = {
-                total: parseFloat(document.getElementById('calc-total').innerText.replace('₹', '')),
-                adv: parseFloat(document.getElementById('calc-adv').innerText.replace('₹', '')),
+                total: newTotal,
+                adv: newAdv,
                 earlyDue: parseFloat(document.getElementById('calc-early-due-amt').innerText.replace('₹', '')),
                 eventDue: parseFloat(document.getElementById('calc-event-due').innerText.replace('₹', '')),
                 deliveryDue: parseFloat(document.getElementById('calc-delivery-due-amt').innerText.replace('₹', ''))
             };
 
-            db.collection("users").doc(currentActiveUid).update({
-                customPayments: customData
-            }).then(() => {
-                alert("Payment Calculations Saved!");
+            let updateObj = { customPayments: customData };
+
+            // LOGGING LOGIC
+            if (newAdv > oldAdv) {
+                let history = currentClientData.paymentHistory || [];
+                // If this is the first log, record the initial booking amount too
+                if(history.length === 0 && oldAdv > 0) {
+                    history.push({ date: 'Initial Booking', paidNow: oldAdv, totalPaid: oldAdv, remaining: newTotal - oldAdv });
+                }
+                const dateStr = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+                history.push({ date: dateStr, paidNow: newAdv - oldAdv, totalPaid: newAdv, remaining: newTotal - newAdv });
+                updateObj.paymentHistory = history;
+            }
+
+            db.collection("users").doc(currentActiveUid).update(updateObj).then(() => {
+                alert("Payment Calculations & Ledger Saved!");
                 document.getElementById('btn-save-custom-payments').style.display = 'none';
+                openClientDetail(currentActiveUid);
             });
         }
 
-        // COMPLETE EDIT MODAL: ALLOWS EDITING ALL CLIENT FORM FIELDS
+        // FULL EDIT MODAL
         function openEditAckModal() {
             if(!currentClientData) { alert("Please select a client first!"); return; }
             
@@ -480,8 +501,13 @@
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
+        // SAVE EDITED FORM AND LOG HISTORY IF ADVANCE INCREASED
         function saveAllEditedAck() {
-            const updated = {
+            const oldAdv = parseFloat(currentClientData.advanceAmount || 0);
+            const newAdv = parseFloat(document.getElementById('edit-adv').value || 0);
+            const totalAmt = parseFloat(document.getElementById('edit-total').value || 0);
+
+            let updated = {
                 name: document.getElementById('edit-name').value,
                 email: document.getElementById('edit-email').value,
                 phone: document.getElementById('edit-phone').value,
@@ -505,11 +531,58 @@
                 comments: document.getElementById('edit-comments').value
             };
 
+            // LOGGING LOGIC
+            if (newAdv > oldAdv) {
+                let history = currentClientData.paymentHistory || [];
+                // Record the very first initial booking if history is empty
+                if(history.length === 0 && oldAdv > 0) {
+                    history.push({ date: 'Initial Booking', paidNow: oldAdv, totalPaid: oldAdv, remaining: totalAmt - oldAdv });
+                }
+                const paidNow = newAdv - oldAdv;
+                const dateStr = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+                history.push({
+                    date: dateStr,
+                    paidNow: paidNow,
+                    totalPaid: newAdv,
+                    remaining: totalAmt - newAdv
+                });
+                updated.paymentHistory = history;
+            }
+
             db.collection("users").doc(currentActiveUid).update(updated).then(() => {
-                alert("All Client Specifications Updated Successfully!");
+                alert("All Client Specifications & Payment Ledger Updated Successfully!");
                 document.getElementById('preview-modal').style.display = 'none';
                 openClientDetail(currentActiveUid);
             });
+        }
+
+        // RENDER PAYMENT HISTORY LEDGER
+        function renderPaymentHistory(history) {
+            const tbody = document.getElementById('payment-history-rows');
+            tbody.innerHTML = "";
+            if(!history || history.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#777;">No history tracked yet. Update Advance Amount to log automatically.</td></tr>`;
+                return;
+            }
+            history.forEach((row, index) => {
+                tbody.innerHTML += `<tr>
+                    <td><strong>${row.date}</strong></td>
+                    <td style="color:#4caf50; font-weight:600;">+ ₹${row.paidNow}</td>
+                    <td style="color:#d4af37;">₹${row.totalPaid}</td>
+                    <td style="color:#ff9800;">₹${row.remaining}</td>
+                    <td style="text-align:right;"><i class="fa-solid fa-trash" style="color:#ff4d4d; cursor:pointer;" onclick="deleteHistoryRow(${index})"></i></td>
+                </tr>`;
+            });
+        }
+
+        function deleteHistoryRow(index) {
+            if(confirm("Remove this payment log?")) {
+                let history = currentClientData.paymentHistory || [];
+                history.splice(index, 1);
+                db.collection("users").doc(currentActiveUid).update({ paymentHistory: history }).then(() => {
+                    openClientDetail(currentActiveUid);
+                });
+            }
         }
 
         // RENDER 6-PAGE PREVIEW
@@ -667,7 +740,7 @@
                         <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
-                            <li>Token Advance Paid : <strong>₹${tokenAmt}</strong></li>
+                            <li>Token Advance Paid : <strong>₹${advAmt}</strong></li>
                             ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due (To complete 50% Advance) :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
                             <li>Event Day Payment Amount : <strong>₹${eventDue}</strong></li>
                             ${deliveryDue > 0 ? `<li style="color:#c2185b;">Album / Deliverable Submission Due : <strong>₹${deliveryDue}</strong></li>` : ''}
