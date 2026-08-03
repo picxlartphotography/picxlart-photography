@@ -47,16 +47,16 @@
         .login-container p {
             color: #888;
             font-size: 13px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .input-group {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
-        .input-group i {
+        .input-group i.left-icon {
             position: absolute;
             top: 50%;
             left: 15px;
@@ -65,9 +65,22 @@
             font-size: 14px;
         }
 
+        .input-group i.right-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .input-group i.right-icon:hover { color: #fff; }
+
         .input-group input {
             width: 100%;
-            padding: 14px 14px 14px 40px;
+            padding: 14px 40px 14px 40px; /* Space for both left and right icons */
             background: #0d0d0f;
             border: 1px solid #2a2a30;
             border-radius: 10px;
@@ -93,7 +106,7 @@
             font-size: 15px;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 10px;
+            margin-top: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,6 +117,42 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
         }
+
+        .divider {
+            margin: 20px 0;
+            color: #555;
+            font-size: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            height: 1px;
+            background: #2a2a30;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .btn-google {
+            width: 100%;
+            background: #ffffff;
+            color: #000;
+            border: none;
+            padding: 13px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-google:hover { background: #e0e0e0; }
+        .btn-google i { color: #ea4335; font-size: 18px; }
 
         .error-msg {
             color: #ff4d4d;
@@ -142,13 +191,15 @@
 
         <form id="login-form">
             <div class="input-group">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-envelope left-icon"></i>
                 <input type="email" id="email" placeholder="Registered Email Address" required>
             </div>
             
             <div class="input-group">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock left-icon"></i>
                 <input type="password" id="password" placeholder="Password" required>
+                <!-- Smart Eye Icon Toggle -->
+                <i class="fa-solid fa-eye right-icon" id="toggle-password" title="Show Password"></i>
             </div>
 
             <div id="error-message" class="error-msg"></div>
@@ -159,11 +210,17 @@
             </button>
         </form>
 
+        <div class="divider">OR</div>
+
+        <button type="button" class="btn-google" id="google-login-btn">
+            <i class="fa-brands fa-google"></i> Continue with Google
+        </button>
+
         <a href="assignment-form.html" class="signup-link">New to Picxlart? <span>Fill Assignment Form</span></a>
     </div>
 
     <script>
-        // Firebase Configuration (Same as your other files)
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
             authDomain: "picxlart-portal.firebaseapp.com",
@@ -188,11 +245,35 @@
         const btnLoader = document.getElementById('btn-loader');
         const errorMsg = document.getElementById('error-message');
 
+        // 1. Password Visibility Logic (2 Seconds Timer)
+        const togglePasswordBtn = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+
+        togglePasswordBtn.addEventListener('click', function () {
+            // If it's already text, ignore click (prevents overlapping timers)
+            if (passwordInput.type === 'text') return;
+
+            // Show password and change icon
+            passwordInput.type = 'text';
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+            this.style.color = '#d4af37'; // Highlight icon in gold when visible
+
+            // Hide automatically after 2 seconds (2000ms)
+            setTimeout(() => {
+                passwordInput.type = 'password';
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+                this.style.color = '#888'; // Revert color
+            }, 2000);
+        });
+
+        // 2. Email/Password Login
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
+            const password = passwordInput.value;
 
             // UI Loading state
             btnText.style.display = 'none';
@@ -213,6 +294,20 @@
                     if(error.code === 'auth/too-many-requests') errorMessage = "Too many attempts. Try again later.";
                     
                     errorMsg.innerText = errorMessage;
+                    errorMsg.style.display = 'block';
+                });
+        });
+
+        // 3. Google Sign-In Logic
+        const googleBtn = document.getElementById('google-login-btn');
+        googleBtn.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Success! Auth listener will auto-redirect
+                })
+                .catch((error) => {
+                    errorMsg.innerText = "Google login failed: " + error.message;
                     errorMsg.style.display = 'block';
                 });
         });
