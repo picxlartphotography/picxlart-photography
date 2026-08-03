@@ -30,8 +30,6 @@
         .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0d0d0f; }
-        
-        /* HEADER TITLE ADDED ABOVE CARDS */
         .system-header-title { font-size: 20px; font-weight: 700; color: #d4af37; letter-spacing: 1px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #222228; text-transform: uppercase; }
 
         .card { background: #16161a; border: 1px solid #222228; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
@@ -47,10 +45,12 @@
         .data-point strong { color: #d4af37; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .data-point span { color: #eee; font-size: 13px; word-break: break-word; }
 
+        /* 4 BUTTONS GROUP */
         .action-btn-group { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
-        .btn-ack { padding: 11px 20px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; }
+        .btn-ack { padding: 11px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
         .btn-view-ack { background: #2196F3; color: #fff; }
         .btn-edit-ack { background: #FF9800; color: #fff; }
+        .btn-preview-ack { background: #9C27B0; color: #fff; }
         .btn-issue-ack { background: #4CAF50; color: #fff; }
 
         .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 15px; }
@@ -71,6 +71,11 @@
         .btn-approve { background: #4caf50; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; }
         .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; margin-left: 5px; }
 
+        /* PREVIEW MODAL STYLING */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px; }
+        .preview-box { background: #ffffff; color: #111; border-radius: 12px; width: 100%; max-width: 800px; height: 90vh; overflow-y: auto; padding: 30px; position: relative; font-family: 'Poppins', sans-serif; }
+        .preview-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #333; }
+
         .tab-content { display: none; }
         .tab-content.active { display: block; }
     </style>
@@ -89,10 +94,7 @@
 
     <div class="sidebar">
         <div>
-            <!-- ONLY LOGO HERE (TEXT REMOVED) -->
-            <div class="sidebar-brand">
-                <img src="logo.png" alt="Picxlart Logo">
-            </div>
+            <div class="sidebar-brand"><img src="logo.png" alt="Picxlart Logo"></div>
             <ul class="menu-list">
                 <li class="menu-item active" onclick="switchTab('tab-approvals', this)"><i class="fa-solid fa-user-clock"></i> Pending Approvals</li>
                 <li class="menu-item" onclick="switchTab('tab-database', this)"><i class="fa-solid fa-users"></i> All Clients Database</li>
@@ -105,11 +107,8 @@
     </div>
 
     <div class="main-content">
-        
-        <!-- HEADER TITLE ADDED -->
         <h2 class="system-header-title">PICXLART CLIENT MANAGEMENT SYSTEM</h2>
 
-        <!-- TAB 1: PENDING APPROVALS -->
         <div id="tab-approvals" class="tab-content active">
             <div class="card">
                 <div class="card-title"><span><i class="fa-solid fa-user-check"></i> Pending Signup Requests</span></div>
@@ -120,7 +119,6 @@
             </div>
         </div>
 
-        <!-- TAB 2: CLIENT DATABASE -->
         <div id="tab-database" class="tab-content">
             <div class="card">
                 <div class="card-title"><span><i class="fa-solid fa-database"></i> Approved Clients Database</span></div>
@@ -131,7 +129,6 @@
             </div>
         </div>
 
-        <!-- TAB 3: ACTIVE CLIENT MANAGEMENT -->
         <div id="tab-active" class="tab-content">
             <div class="card">
                 <div class="card-title">
@@ -144,9 +141,11 @@
                     <p style="color:#aaa; font-size:12px; grid-column:1/-1;">Click 'Open Panel' on any approved client in Database to load form details.</p>
                 </div>
 
+                <!-- 4 BUTTONS IN ROW -->
                 <div class="action-btn-group">
-                    <button class="btn-ack btn-view-ack" onclick="alert('Viewing Ack Paper')"><i class="fa-solid fa-eye"></i> View Acknowledgement Paper</button>
-                    <button class="btn-ack btn-edit-ack" onclick="alert('Edit Paper functionality opened')"><i class="fa-solid fa-pen-to-square"></i> Edit Acknowledgement Paper</button>
+                    <button class="btn-ack btn-view-ack" onclick="alert('Viewing Ack Details')"><i class="fa-solid fa-eye"></i> View Acknowledgement Paper</button>
+                    <button class="btn-ack btn-edit-ack" onclick="alert('Edit functionality opened')"><i class="fa-solid fa-pen-to-square"></i> Edit Acknowledgement Paper</button>
+                    <button class="btn-ack btn-preview-ack" onclick="openFinalPreview()"><i class="fa-solid fa-file-pdf"></i> Final Preview</button>
                     <button class="btn-ack btn-issue-ack" onclick="issueAcknowledgementPaper()"><i class="fa-solid fa-paper-plane"></i> Issue Acknowledgement Paper</button>
                 </div>
 
@@ -187,6 +186,14 @@
                     <div id="project-stages-list"></div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- PREVIEW MODAL -->
+    <div class="modal-overlay" id="preview-modal">
+        <div class="preview-box" id="pdf-preview-content">
+            <span class="preview-close" onclick="document.getElementById('preview-modal').style.display='none'">&times;</span>
+            <div id="preview-html-body"></div>
         </div>
     </div>
 
@@ -436,6 +443,50 @@
                 alert("Payment Calculations Saved!");
                 document.getElementById('btn-save-custom-payments').style.display = 'none';
             });
+        }
+
+        // GENERATE FINAL PREVIEW
+        function openFinalPreview() {
+            if(!currentClientData) { alert("Please select a client first!"); return; }
+
+            const body = document.getElementById('preview-html-body');
+            body.innerHTML = `
+                <div style="text-align:center; padding: 40px 20px; border-bottom: 2px solid #d4af37;">
+                    <img src="logo.png" style="height:70px; margin-bottom:10px;"><br>
+                    <h2 style="color:#d4af37; margin:0;">PICXLART</h2>
+                    <p style="font-size:11px; color:#555;">Timeless moments, captured for eternity</p>
+                    <h3 style="margin-top:20px; text-decoration:underline;">ASSIGNMENT ACKNOWLEDGEMENT PAPER</h3>
+                </div>
+
+                <div style="padding: 30px 20px; line-height: 1.8; font-size:13px;">
+                    <p><strong>To:</strong> ${currentClientData.name || 'Client'}</p>
+                    <p>Dear ${currentClientData.name || 'Client'},</p>
+                    <p>We sincerely thank you for choosing Picxlart Photography & Events Co. to be a part of your special day. Kindly find your booking confirmation and assignment details below.</p>
+                    
+                    <hr style="margin:20px 0; border:0; border-top:1px solid #ccc;">
+
+                    <h4 style="color:#d4af37; margin-bottom:10px;">1. Client & Event Work Details</h4>
+                    <ul>
+                        <li><strong>Event Name:</strong> ${currentClientData.eventType || 'N/A'}</li>
+                        <li><strong>Booking Date:</strong> ${currentClientData.bookingDate || 'N/A'}</li>
+                        <li><strong>Assignment Dates:</strong> ${currentClientData.assignmentBriefDate || 'N/A'}</li>
+                        <li><strong>Postal Address:</strong> ${currentClientData.address || 'N/A'}</li>
+                        <li><strong>Contact / WhatsApp:</strong> ${currentClientData.phone || 'N/A'}</li>
+                    </ul>
+
+                    <h4 style="color:#d4af37; margin-top:20px; margin-bottom:10px;">2. Payment & Commercial Details</h4>
+                    <ul>
+                        <li><strong>Total Package Value:</strong> ₹${currentClientData.totalAmount || '0'}</li>
+                        <li><strong>Advance Paid:</strong> ₹${currentClientData.advanceAmount || '0'}</li>
+                        <li><strong>Job & Deliverables:</strong> ${currentClientData.jobDetails || 'N/A'}</li>
+                        <li><strong>Album Details:</strong> ${currentClientData.albumDetails || 'N/A'}</li>
+                    </ul>
+
+                    <p style="margin-top:30px; font-size:11px; color:#777;">Serampore, Hooghly, WB | Phone: 700 352 1139 | Email: picxlartphotography@gmail.com</p>
+                </div>
+            `;
+
+            document.getElementById('preview-modal').style.display = 'flex';
         }
 
         function renderProjectStages(stages) {
