@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Login - Picxlart Portal</title>
+    <title>Client Portal - Picxlart</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,212 +20,133 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            height: 100vh; 
+            min-height: 100vh; 
             background-image: radial-gradient(circle at top right, #1a1a24, #0b0b0d);
+            padding: 20px;
         }
 
-        .login-container {
+        .auth-container {
             background: #121215;
             border: 1px solid #d4af37;
             border-radius: 16px;
             padding: 40px 30px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             text-align: center;
-            position: relative;
         }
 
-        .login-container img { height: 60px; margin-bottom: 10px; }
+        .auth-container img { height: 55px; margin-bottom: 10px; }
+        .auth-container h2 { color: #d4af37; font-size: 22px; font-weight: 600; margin-bottom: 5px; }
+        .auth-container p { color: #888; font-size: 13px; margin-bottom: 25px; }
+
+        .input-group { position: relative; margin-bottom: 16px; text-align: left; }
+        .input-group i.left-icon { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #d4af37; font-size: 14px; }
+        .input-group input { width: 100%; padding: 13px 15px 13px 40px; background: #0d0d0f; border: 1px solid #2a2a30; border-radius: 8px; color: #fff; font-size: 13px; transition: 0.3s; }
+        .input-group input:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
         
-        .login-container h2 {
-            color: #d4af37;
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .login-container p {
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
+        .btn-main { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; margin-top: 5px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
 
-        .input-group {
-            position: relative;
-            margin-bottom: 18px;
-            text-align: left;
-        }
+        .divider { margin: 20px 0; color: #555; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+        .divider::before, .divider::after { content: ""; height: 1px; background: #2a2a30; flex: 1; margin: 0 10px; }
 
-        .input-group i.left-icon {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            color: #d4af37;
-            font-size: 14px;
-        }
-
-        .input-group i.right-icon {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 14px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .input-group i.right-icon:hover { color: #fff; }
-
-        .input-group input {
-            width: 100%;
-            padding: 14px 40px 14px 40px;
-            background: #0d0d0f;
-            border: 1px solid #2a2a30;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #d4af37;
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
-        }
-
-        .btn-login {
-            width: 100%;
-            background: linear-gradient(135deg, #d4af37, #aa820a);
-            color: #000;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .divider {
-            margin: 20px 0;
-            color: #555;
-            font-size: 12px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .divider::before, .divider::after {
-            content: "";
-            height: 1px;
-            background: #2a2a30;
-            flex: 1;
-            margin: 0 10px;
-        }
-
-        .btn-google {
-            width: 100%;
-            background: #ffffff;
-            color: #000;
-            border: none;
-            padding: 13px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
+        .btn-google { width: 100%; background: #ffffff; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .btn-google:hover { background: #e0e0e0; }
-        .btn-google i { color: #ea4335; font-size: 18px; }
+        .btn-google i { color: #ea4335; font-size: 16px; }
 
-        .error-msg {
-            color: #ff4d4d;
-            font-size: 12px;
-            margin-top: 15px;
-            display: none;
-            background: rgba(255, 77, 77, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ff4d4d;
-        }
+        .toggle-link { display: block; margin-top: 25px; font-size: 12.5px; color: #aaa; cursor: pointer; transition: 0.3s; }
+        .toggle-link span { color: #d4af37; font-weight: 600; }
+        .toggle-link:hover { color: #fff; }
 
-        .signup-link-box {
-            margin-top: 25px;
-            font-size: 13px;
-        }
-        
-        .signup-link-box a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+        .msg-box { font-size: 12.5px; margin-top: 15px; display: none; padding: 10px; border-radius: 6px; }
+        .msg-error { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #ff4d4d; }
+        .msg-success { background: rgba(76, 175, 80, 0.1); color: #4caf50; border: 1px solid #4caf50; }
 
-        .signup-link-box a:hover {
-            color: #fff;
-        }
-        
-        .signup-link-box span { 
-            color: #d4af37; 
-            font-weight: 600; 
-        }
-
-        .loader { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 1s infinite linear; }
+        .loader { display: none; width: 16px; height: 16px; border: 3px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 1s infinite linear; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Hide elements by default */
+        #signup-section { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
+    <div class="auth-container">
         <img src="logo.png" alt="Picxlart Logo">
-        <h2>Client Portal</h2>
-        <p>Login to track your project & payments</p>
+        <h2 id="form-title">Client Login</h2>
+        <p id="form-subtitle">Login to track your project & payments</p>
 
-        <form id="login-form">
-            <div class="input-group">
-                <i class="fa-solid fa-envelope left-icon"></i>
-                <input type="email" id="email" placeholder="Registered Email Address" required>
-            </div>
-            
-            <div class="input-group">
-                <i class="fa-solid fa-lock left-icon"></i>
-                <input type="password" id="password" placeholder="Password" required>
-                <i class="fa-solid fa-eye right-icon" id="toggle-password" title="Show Password"></i>
-            </div>
+        <!-- Global Message Box -->
+        <div id="global-msg" class="msg-box"></div>
 
-            <div id="error-message" class="error-msg"></div>
+        <!-- LOGIN SECTION -->
+        <div id="login-section">
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope left-icon"></i>
+                    <input type="email" id="login-email" placeholder="Registered Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock left-icon"></i>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-main">
+                    <span id="login-btn-text">Secure Login</span>
+                    <div class="loader" id="login-loader"></div>
+                </button>
+            </form>
 
-            <button type="submit" class="btn-login" id="login-btn">
-                <span id="btn-text">Secure Login</span>
-                <div class="loader" id="btn-loader"></div>
+            <div class="divider">OR</div>
+            <button type="button" class="btn-google" onclick="handleGoogleAuth()">
+                <i class="fa-brands fa-google"></i> Continue with Google
             </button>
-        </form>
 
-        <div class="divider">OR</div>
-
-        <button type="button" class="btn-google" id="google-login-btn">
-            <i class="fa-brands fa-google"></i> Continue with Google
-        </button>
-
-        <div class="signup-link-box">
-            <a href="assignment-form.html">New to Picxlart? <span>For Booking Please sign up</span></a>
+            <div class="toggle-link" onclick="switchView('signup')">
+                New to Picxlart? <span>For Booking Please sign up</span>
+            </div>
         </div>
+
+        <!-- SIGNUP SECTION -->
+        <div id="signup-section">
+            <form id="signup-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-user left-icon"></i>
+                    <input type="text" id="signup-name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-phone left-icon"></i>
+                    <input type="tel" id="signup-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope left-icon"></i>
+                    <input type="email" id="signup-email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock left-icon"></i>
+                    <input type="password" id="signup-password" placeholder="Create Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock left-icon"></i>
+                    <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+                </div>
+                
+                <button type="submit" class="btn-main">
+                    <span id="signup-btn-text">Create Account</span>
+                    <div class="loader" id="signup-loader"></div>
+                </button>
+            </form>
+
+            <div class="divider">OR</div>
+            <button type="button" class="btn-google" onclick="handleGoogleAuth()">
+                <i class="fa-brands fa-google"></i> Sign up with Google
+            </button>
+
+            <div class="toggle-link" onclick="switchView('login')">
+                Already have an account? <span>Login Here</span>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -237,93 +158,172 @@
             messagingSenderId: "993916901139",
             appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
         };
-        
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        const errorMsg = document.getElementById('error-message');
-
-        function checkAdminApprovalAndRedirect(user) {
-            db.collection("users").doc(user.uid).get().then((doc) => {
-                if (doc.exists) {
-                    const userData = doc.data();
-                    if (userData.status === "approved") {
-                        window.location.href = "client-dashboard.html";
-                    } else {
-                        auth.signOut().then(() => {
-                            errorMsg.innerText = "Your account is pending admin approval. Please wait for approval.";
-                            errorMsg.style.display = 'block';
-                        });
-                    }
-                } else {
-                    auth.signOut().then(() => {
-                        errorMsg.innerText = "Account not found. Please fill the Assignment Form first.";
-                        errorMsg.style.display = 'block';
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error checking approval:", error);
-            });
+        // UI Toggles
+        function switchView(view) {
+            document.getElementById('global-msg').style.display = 'none';
+            if(view === 'signup') {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('signup-section').style.display = 'block';
+                document.getElementById('form-title').innerText = "Client Registration";
+                document.getElementById('form-subtitle').innerText = "Create an account for booking";
+            } else {
+                document.getElementById('signup-section').style.display = 'none';
+                document.getElementById('login-section').style.display = 'block';
+                document.getElementById('form-title').innerText = "Client Login";
+                document.getElementById('form-subtitle').innerText = "Login to track your project & payments";
+            }
         }
 
+        function showMsg(text, type) {
+            const msgBox = document.getElementById('global-msg');
+            msgBox.innerText = text;
+            msgBox.className = type === 'error' ? 'msg-box msg-error' : 'msg-box msg-success';
+            msgBox.style.display = 'block';
+        }
+
+        // ==========================================
+        // SMART ROUTING LOGIC (The 5-Step Workflow)
+        // ==========================================
+        function routeUserWorkflow(user) {
+            db.collection("users").doc(user.uid).get().then((doc) => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    
+                    // Step 2: Not Approved Yet
+                    if (data.status === "pending") {
+                        auth.signOut().then(() => {
+                            showMsg("Your account is pending admin approval. Please wait.", "error");
+                            switchView('login');
+                        });
+                    } 
+                    // Step 3, 4 & 5: Approved Workflow
+                    else if (data.status === "approved") {
+                        if (data.paperIssued === true) {
+                            // Step 5: Paper Issued -> Go to Dashboard
+                            window.location.href = "client-dashboard.html";
+                        } else if (data.formSubmitted === true) {
+                            // Step 4: Form Submitted but paper not issued -> Wait
+                            auth.signOut().then(() => {
+                                showMsg("Thank you for submitting! Please wait for Admin to issue your Acknowledgement Paper.", "success");
+                            });
+                        } else {
+                            // Step 3: Approved but form not submitted -> Go to Assignment Form
+                            window.location.href = "assignment-form.html";
+                        }
+                    }
+                } else {
+                    auth.signOut().then(() => showMsg("Account not found. Please Sign up first.", "error"));
+                }
+            }).catch(err => console.log(err));
+        }
+
+        // Auto-check on page load
         auth.onAuthStateChanged((user) => {
-            if (user) {
-                // Check if already on login page to avoid infinite loops if unapproved
-                checkAdminApprovalAndRedirect(user);
-            }
+            if (user) routeUserWorkflow(user);
         });
 
-        const togglePasswordBtn = document.getElementById('toggle-password');
-        const passwordInput = document.getElementById('password');
-
-        togglePasswordBtn.addEventListener('click', function () {
-            if (passwordInput.type === 'text') return;
-            passwordInput.type = 'text';
-            this.classList.remove('fa-eye');
-            this.classList.add('fa-eye-slash');
-            this.style.color = '#d4af37';
-
-            setTimeout(() => {
-                passwordInput.type = 'password';
-                this.classList.remove('fa-eye-slash');
-                this.classList.add('fa-eye');
-                this.style.color = '#888';
-            }, 2000);
-        });
-
-        const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', (e) => {
+        // ==========================================
+        // 1. EMAIL & PASSWORD LOGIN
+        // ==========================================
+        document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = passwordInput.value;
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
 
-            document.getElementById('btn-text').style.display = 'none';
-            document.getElementById('btn-loader').style.display = 'block';
-            errorMsg.style.display = 'none';
+            document.getElementById('login-btn-text').style.display = 'none';
+            document.getElementById('login-loader').style.display = 'block';
 
-            auth.signInWithEmailAndPassword(email, password)
-                .catch((error) => {
-                    document.getElementById('btn-text').style.display = 'block';
-                    document.getElementById('btn-loader').style.display = 'none';
-                    let errorMessage = "Failed to login. Please try again.";
-                    if(error.code === 'auth/user-not-found') errorMessage = "No client found with this email.";
-                    if(error.code === 'auth/wrong-password') errorMessage = "Incorrect password.";
-                    if(error.code === 'auth/too-many-requests') errorMessage = "Too many attempts. Try again later.";
-                    errorMsg.innerText = errorMessage;
-                    errorMsg.style.display = 'block';
-                });
+            auth.signInWithEmailAndPassword(email, password).catch((error) => {
+                document.getElementById('login-btn-text').style.display = 'block';
+                document.getElementById('login-loader').style.display = 'none';
+                
+                let errText = "Login failed.";
+                if(error.code === 'auth/user-not-found') errText = "No account found. Please sign up.";
+                if(error.code === 'auth/wrong-password') errText = "Incorrect password.";
+                showMsg(errText, "error");
+            });
         });
 
-        const googleBtn = document.getElementById('google-login-btn');
-        googleBtn.addEventListener('click', () => {
+        // ==========================================
+        // 2. EMAIL & PASSWORD SIGNUP
+        // ==========================================
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value.trim();
+            const phone = document.getElementById('signup-phone').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const pass = document.getElementById('signup-password').value;
+            const confirmPass = document.getElementById('signup-confirm').value;
+
+            if (pass !== confirmPass) {
+                showMsg("Passwords do not match!", "error");
+                return;
+            }
+
+            document.getElementById('signup-btn-text').style.display = 'none';
+            document.getElementById('signup-loader').style.display = 'block';
+
+            auth.createUserWithEmailAndPassword(email, pass).then((userCredential) => {
+                // Save Initial Data to Firestore
+                db.collection("users").doc(userCredential.user.uid).set({
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    status: "pending", // Waiting for admin
+                    formSubmitted: false,
+                    paperIssued: false
+                }).then(() => {
+                    auth.signOut().then(() => {
+                        document.getElementById('signup-btn-text').style.display = 'block';
+                        document.getElementById('signup-loader').style.display = 'none';
+                        switchView('login');
+                        showMsg("Registration successful! Please wait for admin approval.", "success");
+                    });
+                });
+            }).catch((error) => {
+                document.getElementById('signup-btn-text').style.display = 'block';
+                document.getElementById('signup-loader').style.display = 'none';
+                showMsg(error.message, "error");
+            });
+        });
+
+        // ==========================================
+        // 3. GOOGLE AUTH (Works for both Login & Signup)
+        // ==========================================
+        function handleGoogleAuth() {
             const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
-                .catch((error) => {
-                    errorMsg.innerText = "Google login failed: " + error.message;
-                    errorMsg.style.display = 'block';
+            auth.signInWithPopup(provider).then((result) => {
+                const user = result.user;
+                
+                // Check if user already exists in our database
+                db.collection("users").doc(user.uid).get().then((doc) => {
+                    if (doc.exists) {
+                        // Old User -> Router will handle login automatically
+                    } else {
+                        // New User -> Register them as pending
+                        db.collection("users").doc(user.uid).set({
+                            name: user.displayName || "Google User",
+                            email: user.email,
+                            phone: "",
+                            status: "pending",
+                            formSubmitted: false,
+                            paperIssued: false
+                        }).then(() => {
+                            auth.signOut().then(() => {
+                                switchView('login');
+                                showMsg("Registration successful! Please wait for admin approval.", "success");
+                            });
+                        });
+                    }
                 });
-        });
+            }).catch((error) => {
+                showMsg("Google login failed.", "error");
+            });
+        }
     </script>
 </body>
 </html>
