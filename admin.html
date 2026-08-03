@@ -479,7 +479,7 @@
             });
         }
 
-        // RENDER PREVIEW (PAGE 3 CONTENT PADDING REDUCED TO 90PX SO FOOTER NEVER CUTS OFF)
+        // DYNAMIC 6-PAGE PREVIEW GENERATOR
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -523,7 +523,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3: FULLY DYNAMIC DYNAMICALLY FITTED CONTENT WITH NO FOOTER OVERLAP -->
+                <!-- PAGE 3: FULLY DYNAMIC INTELLIGENT PAGE -->
                 <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
                     <img src="acknowledgement-page3.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
                     
@@ -564,12 +564,45 @@
                     </div>
                 </div>
 
-                <!-- PAGE 4 -->
-                <div class="pdf-page-wrap">
-                    <img src="acknowledgement-page4.jpg" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="font-size:11px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">
-                        <div style="position:absolute; top:81.2%; left:32.0%; width:60%;">${currentClientData.comments || 'NIL'}</div>
-                        <div style="position:absolute; top:83.8%; left:72.0%; font-size:12px; font-weight:bold; font-family:Arial, sans-serif; color:#000;">Team Picxlart</div>
+                <!-- PAGE 4: FULLY DYNAMIC INTELLIGENT RULES PAGE -->
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
+                    <img src="acknowledgement-page4.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+                    
+                    <div style="position:relative; z-index:2; padding: 90px 45px 120px 45px; font-size:11px; line-height:1.75; color:#000;">
+                        <h2 style="text-align:center; font-size:17px; font-weight:bold; margin-bottom:18px; border-bottom:2px solid #8b6d21; padding-bottom:6px; font-family:Arial, sans-serif; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
+                        
+                        <ol style="padding-left:18px; margin:0 0 20px 0; font-size:10.5px; line-height:1.65;">
+                            <li>For any event, client need to inform the entire work details.</li>
+                            <li>For Late night wedding / lagan will increase the package value.</li>
+                            <li>Package charges may exceed for outstation work.</li>
+                            <li>For any customize package after booking, will increase the package value.</li>
+                            <li>5.A. Work time 8AM to 12.00AM maximum for Bengali wedding.</li>
+                            <li>5.B. Work time 8AM to 12.00AM onwards work for Bengali or non Bengali wedding, charges applicable / different package**</li>
+                            <li>For wedding reception 12.30AM</li>
+                            <li>If time boundation is over extra charges will be applicable per hour and persons basis. ** Conditions apply</li>
+                            <li>Booking Amount 50%. Rest of 50% have to pay assignment day.</li>
+                            <li>After booking a slot, if client want to cancel the booking for any circumstances then advance amount will not refund. Can be adjusted with other work.</li>
+                            <li>After booking a date slot, if the date change or postpone to another date then client need to inform us ASAP.</li>
+                            <li>For any outdoor shoot like Prewedding post wedding etc. - Client need to pay spot charges or any misc. charges to them.</li>
+                            <li>Travelling Allowance / Fooding / Accommodation is not included with package.</li>
+                            <li>Payment Terms will not change in any circumstances.</li>
+                            <li>Delivery date maximum 3 months after submitting selected photos.</li>
+                            <li>Complimentary work correction is not acceptable.</li>
+                            <li>Client have to manage the time for couple photo shoot should be done by us within our fixed time, any demand after our fixed time will not be acceptable. If required more, thereafter the charge will be hourly basis for each photography person.</li>
+                            <li>The team is not responsible if you do not complete the photo shoot within our fixed time.</li>
+                            <li>If drone shoots are required, the client will need to obtain the necessary permissions from Local PS. The client will also be responsible for any disturbances or issues that may arise</li>
+                            <li>Final / 2nd payment is mandatory on the day of wedding or programme reception day.</li>
+                            <li>Using laser lights is strictly prohibited. If they are used and any camera damage occurs as a result, the client will be responsible for covering the full cost of the damage.</li>
+                            <li>Data will not be transferred if Final / 2nd payment is not made.</li>
+                            <li>We do not provide props for any shoot.</li>
+                            <li>Raw Video data is not transferable, only raw photos will be transfer.</li>
+                            <li>If at any time any of our instruments get damaged by the client or any others relatives of clients, then the cost of the damage will have to be borne by the client.</li>
+                        </ol>
+
+                        <ul style="list-style:none; padding:0; margin:15px 0 0 0; font-size:11.5px;">
+                            <li style="margin-bottom:8px;">• Any reactions or comments : <strong>${currentClientData.comments || 'NIL'}</strong></li>
+                            <li>• Assignment Conducted By from Team Picxlart (Mention his / her name) : <strong>${currentClientData.conductedBy || 'Team Picxlart'}</strong></li>
+                        </ul>
                     </div>
                 </div>
 
