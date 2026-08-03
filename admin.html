@@ -14,7 +14,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0d0d0f; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
 
-        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 15, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; }
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 15, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .login-card { background: #16161a; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; }
         .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0b0b0d; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; }
         .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; }
@@ -80,6 +80,54 @@
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+
+        /* ==========================================================
+           MOBILE RESPONSIVENESS ADDED FOR ADMIN PANEL
+        ========================================================== */
+        @media (max-width: 768px) {
+            body { flex-direction: column; height: auto; overflow-y: auto; }
+            
+            /* Sidebar turns into Top Navigation on Mobile */
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222228; padding: 15px; }
+            .sidebar-brand { padding-bottom: 10px; }
+            .menu-list { display: flex; flex-direction: row; overflow-x: auto; gap: 10px; margin-top: 10px; padding-bottom: 5px; }
+            .menu-item { white-space: nowrap; padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; border-radius: 6px; }
+            .menu-item.active { border-left-color: transparent; border-bottom-color: transparent; background: #d4af37; color: #000; font-weight: 700; }
+            .logout-btn-container { padding: 15px 0 0 0; border-top: none; }
+            
+            /* Main Content Adjustments */
+            .main-content { padding: 15px; height: auto; overflow: visible; }
+            .system-header-title { font-size: 16px; text-align: center; }
+            
+            /* Make Tables horizontally scrollable so they don't break the layout */
+            .card { padding: 15px; overflow-x: auto; }
+            .card-title { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .db-table { min-width: 650px; } 
+            
+            /* Form Grid stacks vertically */
+            .full-form-scroll-box { grid-template-columns: 1fr; max-height: 400px; padding: 15px; }
+            
+            /* Buttons take full width */
+            .action-btn-group { flex-direction: column; gap: 10px; }
+            .btn-ack { width: 100%; justify-content: center; }
+            
+            /* Payment Cards Stack */
+            .payment-summary-grid { grid-template-columns: 1fr 1fr; }
+            
+            /* Event Stage Inputs */
+            .status-manager-box > div:first-child { flex-direction: column; }
+            .status-manager-box > div:first-child button { width: 100%; padding: 10px; }
+            
+            /* Modals adjust size */
+            .modal-overlay { padding: 10px; }
+            .preview-box { padding: 15px; height: 90vh; }
+            .preview-close { top: 5px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .payment-summary-grid { grid-template-columns: 1fr; }
+            .login-card { padding: 25px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -152,7 +200,7 @@
 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                     <h4 style="color:#d4af37; font-size:13px;"><i class="fa-solid fa-calculator"></i> Automatic Smart Payment Calculator</h4>
-                    <button id="btn-save-custom-payments" style="display:none; background:#4caf50; color:#fff; border:none; padding:6px 14px; border-radius:6px; font-size:12px; cursor:pointer;" onclick="saveCustomPayments()"><i class="fa-solid fa-floppy-disk"></i> Save Changes to Database</button>
+                    <button id="btn-save-custom-payments" style="display:none; background:#4caf50; color:#fff; border:none; padding:6px 14px; border-radius:6px; font-size:12px; cursor:pointer;" onclick="saveCustomPayments()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
                 </div>
 
                 <div class="payment-summary-grid">
@@ -180,8 +228,8 @@
 
                 <!-- PAYMENT HISTORY LEDGER -->
                 <h4 style="color:#d4af37; font-size:13px; margin-top:25px; margin-bottom:12px;"><i class="fa-solid fa-clock-rotate-left"></i> Payment History Ledger (Admin Tracking)</h4>
-                <div style="background:#111114; border:1px solid #222228; border-radius:10px; padding:15px; margin-bottom:25px;">
-                    <table class="db-table" style="font-size:12px;">
+                <div style="background:#111114; border:1px solid #222228; border-radius:10px; padding:15px; margin-bottom:25px; overflow-x:auto;">
+                    <table class="db-table" style="font-size:12px; min-width: 500px;">
                         <thead>
                             <tr><th>Date & Time</th><th>Amount Paid</th><th>Total Paid</th><th>Remaining Balance</th><th style="text-align:right;">Action</th></tr>
                         </thead>
@@ -295,7 +343,6 @@
             if(confirm("Reject client?")) db.collection("users").doc(userId).delete();
         }
 
-        // Helper function for formatted Date and Time
         function getFormattedDateTime() {
             return new Date().toLocaleString('en-IN', { 
                 day: '2-digit', month: 'short', year: 'numeric', 
@@ -367,13 +414,11 @@
                     calculateSmartPayment(currentClientData);
                     renderProjectStages(currentClientData.projectStages || []);
                     
-                    // --- AUTO-INITIALIZE INITIAL BOOKING LOG (WITH TIME) IF MISSING ---
                     let history = currentClientData.paymentHistory || [];
                     let adv = parseFloat(currentClientData.advanceAmount) || 0;
                     let tot = parseFloat(currentClientData.totalAmount) || 0;
 
                     if (history.length === 0 && adv > 0) {
-                        // Adding exact time along with the date for initial booking
                         let timeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
                         let dateStr = currentClientData.bookingDate || new Date().toLocaleDateString('en-IN');
                         const initDateStr = dateStr + ", " + timeStr + " (Initial Booking)";
@@ -384,7 +429,6 @@
                             totalPaid: adv,
                             remaining: tot - adv
                         });
-                        // Save silently
                         db.collection("users").doc(docId).update({ paymentHistory: history });
                         currentClientData.paymentHistory = history;
                     }
@@ -460,7 +504,6 @@
             }
         }
 
-        // SAVE SMART CALCULATOR AND LOG HISTORY IF ADVANCE INCREASED
         function saveCustomPayments() {
             if(!currentActiveUid) return;
 
@@ -501,7 +544,6 @@
             });
         }
 
-        // FULL EDIT MODAL
         function openEditAckModal() {
             if(!currentClientData) { alert("Please select a client first!"); return; }
             
@@ -509,34 +551,33 @@
             body.innerHTML = `
                 <h3 style="color:#d4af37; border-bottom:2px solid #d4af37; padding-bottom:10px; margin-bottom:20px;">Edit All Client Acknowledgement Specifications</h3>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px; color:#fff; max-height:75vh; overflow-y:auto; padding-right:10px;">
-                    <div><label>Client Name:</label><input type="text" id="edit-name" value="${currentClientData.name || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div><label>Email Address:</label><input type="text" id="edit-email" value="${currentClientData.email || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Client Name:</label><input type="text" id="edit-name" value="${currentClientData.name || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Email Address:</label><input type="text" id="edit-email" value="${currentClientData.email || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Contact Number:</label><input type="text" id="edit-phone" value="${currentClientData.phone || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>WhatsApp Number:</label><input type="text" id="edit-whatsapp" value="${currentClientData.whatsapp || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div><label>Event Name:</label><input type="text" id="edit-event" value="${currentClientData.eventType || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Event Name:</label><input type="text" id="edit-event" value="${currentClientData.eventType || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Wedding Category:</label><input type="text" id="edit-weddingCat" value="${currentClientData.weddingCategory || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div style="grid-column:1/-1;"><label>Postal Address:</label><input type="text" id="edit-address" value="${currentClientData.address || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Booking Date:</label><input type="text" id="edit-bookingDate" value="${currentClientData.bookingDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Assignment Brief Dates:</label><input type="text" id="edit-briefDate" value="${currentClientData.assignmentBriefDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Days Count:</label><input type="text" id="edit-daysCount" value="${currentClientData.daysCount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Wedding Lagna / Time:</label><input type="text" id="edit-weddingLagna" value="${currentClientData.weddingLagna || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div><label>Package Name & Cost:</label><input type="text" id="edit-pkgName" value="${currentClientData.packageNameAndCost || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Package Name & Cost:</label><input type="text" id="edit-pkgName" value="${currentClientData.packageNameAndCost || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Total Package Amount (₹):</label><input type="number" id="edit-total" value="${currentClientData.totalAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Advance Amount (₹):</label><input type="number" id="edit-adv" value="${currentClientData.advanceAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Token Booking (₹):</label><input type="number" id="edit-token" value="${currentClientData.tokenBooking || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Dues After Assignment:</label><input type="text" id="edit-dues" value="${currentClientData.duesAfterAssignment || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div style="grid-column:1/-1;"><label>Job Details:</label><textarea id="edit-jobs" rows="2" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;">${currentClientData.jobDetails || ''}</textarea></div>
-                    <div><label>Album Details:</label><input type="text" id="edit-album" value="${currentClientData.albumDetails || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Album Details:</label><input type="text" id="edit-album" value="${currentClientData.albumDetails || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                     <div><label>Drone Shoot Required:</label><input type="text" id="edit-drone" value="${currentClientData.droneRequired || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div><label>Assignment Conducted By:</label><input type="text" id="edit-conducted" value="${currentClientData.conductedBy || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
-                    <div><label>Comments / Reactions:</label><input type="text" id="edit-comments" value="${currentClientData.comments || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div><label>Conducted By:</label><input type="text" id="edit-conducted" value="${currentClientData.conductedBy || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+                    <div style="grid-column: 1/-1;"><label>Comments / Reactions:</label><input type="text" id="edit-comments" value="${currentClientData.comments || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
                 </div>
-                <button onclick="saveAllEditedAck()" style="margin-top:20px; background:#4caf50; color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer;"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
+                <button onclick="saveAllEditedAck()" style="margin-top:20px; width:100%; background:#4caf50; color:#fff; border:none; padding:12px 20px; border-radius:6px; font-weight:600; cursor:pointer;"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
             `;
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
-        // SAVE EDITED FORM AND LOG HISTORY IF ADVANCE INCREASED
         function saveAllEditedAck() {
             const oldAdv = parseFloat(currentClientData.advanceAmount || 0);
             const newAdv = parseFloat(document.getElementById('edit-adv').value || 0);
@@ -566,7 +607,6 @@
                 comments: document.getElementById('edit-comments').value
             };
 
-            // LOGGING LOGIC FOR EDIT MODAL
             if (newAdv > oldAdv) {
                 let history = currentClientData.paymentHistory || [];
                 const paidNow = newAdv - oldAdv;
@@ -586,7 +626,6 @@
             });
         }
 
-        // RENDER PAYMENT HISTORY LEDGER
         function renderPaymentHistory(history) {
             const tbody = document.getElementById('payment-history-rows');
             tbody.innerHTML = "";
@@ -615,7 +654,6 @@
             }
         }
 
-        // RENDER 6-PAGE PREVIEW
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -787,7 +825,6 @@
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
-        // NEW: FUNCTION TO RENDER PROJECT STAGES WITH DELETE BUTTON
         function renderProjectStages(stages) {
             const container = document.getElementById('project-stages-list');
             container.innerHTML = "";
@@ -848,7 +885,6 @@
             });
         }
 
-        // NEW: FUNCTION TO DELETE A PROJECT STAGE
         function deleteProjectStage(index) {
             if(confirm("Are you sure you want to delete this event stage?")) {
                 db.collection("users").doc(currentActiveUid).get().then(doc => {
