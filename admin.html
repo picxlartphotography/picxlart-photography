@@ -479,7 +479,7 @@
             });
         }
 
-        // RENDER PREVIEW: LOWERED BY ANOTHER 1 INCH (PADDING TOP: 370PX) & GOLDEN COLOR (#c59b27)
+        // DYNAMIC 6-PAGE PREVIEW GENERATOR
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -523,41 +523,45 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3 -->
-                <div class="pdf-page-wrap" style="padding: 25px 35px; background:#fff; min-height:1000px; color:#000; font-family:Arial, sans-serif;">
-                    <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:8px;">Work Details / Filled Details by Client</h2>
-                    <ul style="list-style:none; padding:0; font-size:12px; line-height:1.9;">
-                        <li>• <strong>Assignment form filled email :</strong> <span style="font-weight:bold;">${currentClientData.email || 'N/A'}</span></li>
-                        <li>• <strong>Event Name :</strong> <span style="font-weight:bold;">${currentClientData.eventType || 'N/A'}</span></li>
-                        <li>• <strong>Name of the Client :</strong> <span style="font-weight:bold;">${currentClientData.name || 'N/A'}</span></li>
-                        <li>• <strong>Full postal address :</strong> <span style="font-weight:bold;">${currentClientData.address || 'N/A'}</span></li>
-                        <li>• <strong>Contact No :</strong> <span style="font-weight:bold;">${currentClientData.phone || 'N/A'}</span></li>
-                        <li>• <strong>Whatsapp No :</strong> <span style="font-weight:bold;">${currentClientData.whatsapp || 'N/A'}</span></li>
-                        <li>• <strong>Email id :</strong> <span style="font-weight:bold;">${currentClientData.email || 'N/A'}</span></li>
-                        <li>• <strong>Assignment Dates (Mention in brief details) :</strong> <span style="font-weight:bold;">${currentClientData.assignmentBriefDate || 'N/A'}</span></li>
-                        <br>
-                        <li>• <strong>Booking Date :</strong> <span style="font-weight:bold;">${currentClientData.bookingDate || 'N/A'}</span></li>
-                        <li>• <strong>Days :</strong> <span style="font-weight:bold;">${currentClientData.daysCount || 'N/A'}</span></li>
-                        <li>• <strong>Wedding type or Catagory of Event :</strong> <span style="font-weight:bold;">${currentClientData.weddingCategory || 'N/A'}</span></li>
-                        <li>• <strong>If other Indian Wedding Catagory, Please mention here :</strong> <span style="font-weight:bold;">${currentClientData.otherWeddingCategory || 'NO'}</span></li>
-                        <li>• <strong>Any Complimentary Work Assured by Team Picxlart :</strong> <span style="font-weight:bold;">${currentClientData.complimentaryAssured || 'NO'}</span></li>
-                        <li>• <strong>Assured Complimentary Work Details :</strong> <span style="font-weight:bold;">${currentClientData.complimentaryDetails || 'NO'}</span></li>
-                        <li>• <strong>Wedding Lagna or Subh Muhurat / time :</strong> <span style="font-weight:bold;">${currentClientData.weddingLagna || 'N/A'}</span></li>
-                        <li>• <strong>Mention package name with package actual cost :</strong> <span style="font-weight:bold;">${currentClientData.packageNameAndCost || 'N/A'}</span></li>
-                        <br>
-                        <li>• <strong>Total assignment package amount :</strong> <span style="font-weight:bold;">₹${currentClientData.totalAmount || '0'}</span></li>
-                        <li>• <strong>Advance Amount :</strong> <span style="font-weight:bold;">₹${currentClientData.advanceAmount || '0'}</span></li>
-                        <li>• <strong>Token Booking :</strong> <span style="font-weight:bold;">₹${currentClientData.tokenBooking || '0'}</span></li>
-                        <li>• <strong>Final Payment (Wedding Day or Assignment Day Payment) :</strong> <span style="font-weight:bold;">${currentClientData.finalPaymentDesc || 'Rest all payment'}</span></li>
-                        <li>• <strong>If any dues after assignment date mention here, otherwise please mention "NO DUES" :</strong> <span style="font-weight:bold;">${currentClientData.duesAfterAssignment || 'NO DUES'}</span></li>
-                        <li>• <strong>Job Details :</strong> <span style="font-weight:bold;">${currentClientData.jobDetails || 'N/A'}</span></li>
-                        <br>
-                        <li>• <strong>Album or Photobook Details :</strong> <span style="font-weight:bold;">${currentClientData.albumDetails || 'N/A'}</span></li>
-                        <li>• <strong>Customised or any extra requirements :</strong> <span style="font-weight:bold;">${currentClientData.customRequirements || 'NIL'}</span></li>
-                        <li>• <strong>Misc. (Extra Charge applicable) :</strong> <span style="font-weight:bold;">${currentClientData.miscCharges || 'NIL'}</span></li>
-                        <li>• <strong>If Drone Shoot required :</strong> <span style="font-weight:bold;">${currentClientData.droneRequired || 'NIL'}</span></li>
-                    </ul>
-                    <div style="margin-top:20px; padding-top:10px; border-top:1px solid #ddd; font-size:10px; text-align:center; color:#555;">Chatra Mukherjee Para, Serampore, Hooghly, WB | Phone: 700 352 1139 | Email: picxlartphotography@gmail.com</div>
+                <!-- PAGE 3: FULLY DYNAMIC INTELLIGENT PAGE OVER BLANK LETTERHEAD -->
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1050px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
+                    <img src="acknowledgement-page3.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+                    
+                    <div style="position:relative; z-index:2; padding: 110px 45px 60px 45px; font-size:12px; line-height:1.95; color:#000;">
+                        <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:22px; border-bottom:2px solid #8b6d21; padding-bottom:8px; font-family:Arial, sans-serif; color:#000;">Work Details / Filled Details by Client</h2>
+                        
+                        <ul style="list-style:none; padding:0; margin:0;">
+                            <li>• Assignment form filled email : <strong>${currentClientData.email || 'N/A'}</strong></li>
+                            <li>• Event Name : <strong>${currentClientData.eventType || 'N/A'}</strong></li>
+                            <li>• Name of the Client : <strong>${currentClientData.name || 'N/A'}</strong></li>
+                            <li>• Full postal address : <strong>${currentClientData.address || 'N/A'}</strong></li>
+                            <li>• Contact No : <strong>${currentClientData.phone || 'N/A'}</strong></li>
+                            <li>• Whatsapp No : <strong>${currentClientData.whatsapp || 'N/A'}</strong></li>
+                            <li>• Email id : <strong>${currentClientData.email || 'N/A'}</strong></li>
+                            <li>• Assignment Dates (Mention in brief details) : <strong>${currentClientData.assignmentBriefDate || 'N/A'}</strong></li>
+                            <br>
+                            <li>• Booking Date : <strong>${currentClientData.bookingDate || 'N/A'}</strong></li>
+                            <li>• Days : <strong>${currentClientData.daysCount || 'N/A'}</strong></li>
+                            <li>• Wedding type or Catagory of Event : <strong>${currentClientData.weddingCategory || 'N/A'}</strong></li>
+                            <li>• If other Indian Wedding Catagory, Please mention here : <strong>${currentClientData.otherWeddingCategory || 'no'}</strong></li>
+                            <li>• Any Complimentary Work Assured by Team Picxlart : <strong>${currentClientData.complimentaryAssured || 'No'}</strong></li>
+                            <li>• Assured Complimentary Work Details : <strong>${currentClientData.complimentaryDetails || 'no'}</strong></li>
+                            <li>• Wedding Lagna or Subh Muhurat / time : <strong>${currentClientData.weddingLagna || 'N/A'}</strong></li>
+                            <li>• Mention package name with package actual cost : <strong>${currentClientData.packageNameAndCost || 'N/A'}</strong></li>
+                            <br>
+                            <li>• Total assignment package amount : <strong>₹${currentClientData.totalAmount || '0'}</strong></li>
+                            <li>• Advance Amount : <strong>₹${currentClientData.advanceAmount || '0'}</strong></li>
+                            <li>• Token Booking (minimum remain time 3 months from assignment date) : <strong>₹${currentClientData.tokenBooking || '0'}</strong></li>
+                            <li>• Final Payment (Wedding Day or Assignment Day Payment) : <strong>${currentClientData.finalPaymentDesc || 'Rest all payment'}</strong></li>
+                            <li>• If any dues after assignment date mention here, otherwise please mention "NO DUES" : <strong>${currentClientData.duesAfterAssignment || 'NO DUES'}</strong></li>
+                            <li>• Job Details : <strong>${currentClientData.jobDetails || 'N/A'}</strong></li>
+                            <br>
+                            <li>• Album or Photobook Details : <strong>${currentClientData.albumDetails || 'N/A'}</strong></li>
+                            <li>• Customised or any extra requirements : <strong>${currentClientData.customRequirements || 'NIL'}</strong></li>
+                            <li>• Misc. (Extra Charge applicable) : <strong>${currentClientData.miscCharges || 'NIL'}</strong></li>
+                            <li>• If Drone Shoot required : <strong>${currentClientData.droneRequired || 'Not Required'}</strong></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- PAGE 4 -->
