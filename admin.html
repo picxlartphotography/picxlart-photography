@@ -479,7 +479,7 @@
             });
         }
 
-        // RENDER PREVIEW WITH 1.5 INCH DOWNWARD ADJUSTMENT (PADDING 320PX)
+        // RENDER PREVIEW: LOWERED BY ANOTHER 1 INCH (PADDING TOP: 370PX) & GOLDEN COLOR (#c59b27)
         function render6PagePreview(isPrintable) {
             if(!currentClientData) { alert("Please select a client first!"); return; }
 
@@ -490,16 +490,16 @@
                 <!-- PAGE 1 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
-                <!-- PAGE 2: LOWERED BY 1.5 INCH (PADDING TOP: 320PX) -->
+                <!-- PAGE 2: LOWERED BY ANOTHER 1 INCH (PADDING: 370PX), TO LINE IS GOLDEN (#c59b27) -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="padding: 320px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
-                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 28px;">
-                            To : <span style="font-weight: bold; color:#111;">${clientName}</span>
+                    <div class="pdf-data-overlay" style="padding: 370px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
+                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 28px; color: #c59b27;">
+                            To : <span style="font-weight: bold; color: #c59b27;">${clientName}</span>
                         </p>
                         
-                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 25px;">
-                            Dear <span style="font-weight: bold; color:#111;">${clientName}</span>,
+                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 25px; color: #000;">
+                            Dear <span style="font-weight: bold; color: #000;">${clientName}</span>,
                         </p>
                         
                         <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">
