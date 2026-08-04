@@ -79,11 +79,14 @@
 
         .stage-item { display: flex; justify-content: space-between; align-items: center; background: #111114; padding: 14px 20px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #222; }
 
-        /* MODAL */
+        /* MODAL FIXED FOR PDF SCROLLING */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px; }
-        .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow-y: auto; padding: 25px; position: relative; }
+        
+        /* Changed overflow-y to auto and added proper scrolling support */
+        .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow: auto; padding: 25px; position: relative; }
 
-        .pdf-page-wrap { position: relative; width: 100%; max-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; }
+        /* Fixed width to 794px so it doesn't squish on mobile */
+        .pdf-page-wrap { position: relative; width: 794px; min-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; overflow: hidden; }
         .pdf-page-bg { width: 100%; display: block; }
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 
@@ -211,7 +214,7 @@
     <!-- PREVIEW MODAL -->
     <div class="modal-overlay" id="client-pdf-modal">
         <div class="preview-box">
-            <span style="position:absolute; top:15px; right:20px; font-size:24px; cursor:pointer;" onclick="document.getElementById('client-pdf-modal').style.display='none'">&times;</span>
+            <span style="position:absolute; top:15px; right:20px; font-size:24px; cursor:pointer; z-index:100;" onclick="document.getElementById('client-pdf-modal').style.display='none'">&times;</span>
             <div id="pdf-render-area"></div>
             <button id="modal-print-btn" onclick="triggerPrint()" style="margin-top:20px; width:100%; background:#4CAF50; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:600; cursor:pointer; display:none;"><i class="fa-solid fa-download"></i> Print / Save as PDF</button>
         </div>
