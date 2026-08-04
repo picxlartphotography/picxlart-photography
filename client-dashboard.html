@@ -66,6 +66,7 @@
         .btn-view:hover { background: #1976D2; }
         .btn-download { background: #4CAF50; color: #fff; }
         .btn-download:hover { background: #388E3C; }
+        .btn-download:disabled { opacity: 0.7; cursor: not-allowed; }
 
         /* PAYMENT GRID */
         .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 10px; }
@@ -91,18 +92,19 @@
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 
         /* =========================================================================
-           NEW: FULL-SCREEN LOADING OVERLAY & PERFECT PDF CONTAINER
+           ULTIMATE MOBILE FIX: LOADING OVERLAY & PROPER Z-INDEX TRICK
         ========================================================================= */
         #pdf-loading-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(13, 13, 15, 0.98); z-index: 9999999; 
+            background: #0d0d0f; z-index: 9999999; /* Highest Z-index to cover everything */
             display: none; flex-direction: column; justify-content: center; align-items: center;
             color: #d4af37; font-size: 18px; font-weight: 600; letter-spacing: 1px;
         }
         
         #hidden-pdf-container { 
             position: absolute; top: 0; left: 0; width: 794px; 
-            z-index: 9999998; display: none; background: #fff; opacity: 1; /* Force Browser to paint it! */
+            z-index: 9999998; /* Right below the black loading overlay */
+            display: none; background: #fff; opacity: 1; /* 100% visible to browser engine */
         }
         #hidden-pdf-container .pdf-page-wrap { margin: 0 !important; border: none !important; box-shadow: none !important; }
 
@@ -135,14 +137,14 @@
 </head>
 <body>
 
-    <!-- LOADING OVERLAY -->
+    <!-- FULL SCREEN LOADING OVERLAY -->
     <div id="pdf-loading-overlay">
-        <i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; margin-bottom: 15px;"></i>
+        <i class="fa-solid fa-spinner fa-spin" style="font-size: 45px; margin-bottom: 15px;"></i>
         Generating High-Quality PDF...
-        <span style="font-size: 12px; color: #888; font-weight: 400; margin-top: 10px; text-transform: none;">Please wait while we render your pages.</span>
+        <span style="font-size: 12px; color: #aaa; font-weight: 400; margin-top: 10px; text-transform: none;">Please wait while images are rendering.</span>
     </div>
 
-    <!-- SECRET DIV FOR BACKGROUND PDF GENERATION -->
+    <!-- SECRET DIV (HIDDEN BEHIND OVERLAY) -->
     <div id="hidden-pdf-container"></div>
 
     <div class="sidebar">
@@ -181,8 +183,7 @@
                 <p style="color:#888; font-size:12px; margin-bottom:10px;">Your official booking agreement and specifications are ready.</p>
                 <div class="btn-group">
                     <button class="btn-action btn-view" onclick="openClientPdf()"><i class="fa-solid fa-eye"></i> View</button>
-                    <!-- Download Function -->
-                    <button class="btn-action btn-download" onclick="downloadPdfDirectly()"><i class="fa-solid fa-download"></i> Download PDF</button>
+                    <button class="btn-action btn-download" id="download-btn" onclick="downloadPdfDirectly()"><i class="fa-solid fa-download"></i> Download PDF</button>
                 </div>
             </div>
 
@@ -393,7 +394,7 @@
         });
 
         // ---------------------------------------------------------
-        // CENTRALIZED HTML GENERATOR
+        // ADDED: style="page-break-after: always" TO SPLIT PDF PROPERLY
         // ---------------------------------------------------------
         function generatePdfHtmlStructure() {
             const clientName = clientDataStore.name || '';
@@ -415,10 +416,10 @@
 
             return `
                 <!-- PAGE 1 -->
-                <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
+                <div class="pdf-page-wrap" style="page-break-after: always;"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
                 <!-- PAGE 2 -->
-                <div class="pdf-page-wrap">
+                <div class="pdf-page-wrap" style="page-break-after: always;">
                     <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 370px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
                         <p style="font-size: 16px; font-weight: bold; margin-bottom: 28px; color: #c59b27;">To : <span style="font-weight: bold; color: #c59b27;">${clientName}</span></p>
@@ -433,7 +434,7 @@
                 </div>
 
                 <!-- PAGE 3 -->
-                <div class="pdf-page-wrap">
+                <div class="pdf-page-wrap" style="page-break-after: always;">
                     <img src="acknowledgement-page3.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 90px 45px 120px 45px; font-size:11.5px; line-height:1.85; color:#000; font-family:Arial, sans-serif;">
                         <h2 style="text-align:center; font-size:17px; font-weight:bold; margin-bottom:18px; border-bottom:2px solid #8b6d21; padding-bottom:6px; color:#000;">Work Details / Filled Details by Client</h2>
@@ -472,7 +473,7 @@
                 </div>
 
                 <!-- PAGE 4 -->
-                <div class="pdf-page-wrap">
+                <div class="pdf-page-wrap" style="page-break-after: always;">
                     <img src="acknowledgement-page4.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 100px 50px 110px 50px; font-size:11.5px; line-height:1.8; color:#000; font-family:Arial, sans-serif;">
                         <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:6px; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
@@ -511,7 +512,7 @@
                 </div>
 
                 <!-- PAGE 5 -->
-                <div class="pdf-page-wrap">
+                <div class="pdf-page-wrap" style="page-break-after: always;">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
                         <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
@@ -551,58 +552,75 @@
         }
 
         // ----------------------------------------------------------------------
-        // 100% BULLETPROOF PDF DOWNLOADER (NO MORE WHITE PAGES)
+        // ULTIMATE PDF DOWNLOAD FIX FOR MOBILE (Scroll Bug & Memory Fix)
         // ----------------------------------------------------------------------
         function downloadPdfDirectly() {
             if(!clientDataStore) return;
 
-            // 1. Show the Loading Overlay
+            const btn = document.getElementById('download-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+            btn.disabled = true;
+
+            // Show Loading Screen
             document.getElementById('pdf-loading-overlay').style.display = 'flex';
 
-            // 2. Put the HTML in the hidden container and make it BLOCK so browser paints it
+            // SCROLL TO TOP: Crucial for html2canvas bug on mobile!
+            window.scrollTo(0, 0);
+
+            // Put HTML in hidden container & make it block so browser paints it
             const hiddenContainer = document.getElementById('hidden-pdf-container');
             hiddenContainer.innerHTML = generatePdfHtmlStructure();
             hiddenContainer.style.display = 'block'; 
 
-            // 3. WAIT UNTIL ALL IMAGES ARE LOADED (Forces mobile browser to render images)
+            // WAIT UNTIL ALL IMAGES ARE LOADED
             const images = hiddenContainer.querySelectorAll('img');
             const promises = Array.from(images).map(img => {
                 return new Promise((resolve) => {
                     if (img.complete) resolve();
                     else {
                         img.onload = resolve;
-                        img.onerror = resolve; // Continue even if an image fails
+                        img.onerror = resolve;
                     }
                 });
             });
 
-            // 4. GENERATE PDF AFTER IMAGES LOAD
             Promise.all(promises).then(() => {
-                // Short extra delay just for safety
+                // Extra short delay to ensure DOM is fully repainted
                 setTimeout(() => {
                     const safeName = clientDataStore.name ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
                     
                     const opt = {
                         margin:       0,
                         filename:     `Acknowledgement_Paper_Picxlart_${safeName}.pdf`,
-                        image:        { type: 'jpeg', quality: 0.95 },
-                        // FIXED: Set scale to 1. This prevents Mobile RAM Crash (White Page)
-                        html2canvas:  { scale: 1, useCORS: true, letterRendering: true, scrollY: 0 },
-                        jsPDF:        { unit: 'px', format: [794, 1120], orientation: 'portrait' }
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { 
+                            scale: 1.5, // Reduced from 2 to prevent RAM crash
+                            useCORS: true, 
+                            scrollY: 0, 
+                            scrollX: 0,
+                            windowWidth: 794
+                        },
+                        jsPDF:        { unit: 'px', format: [794, 1120], orientation: 'portrait' },
+                        pagebreak:    { mode: ['css', 'legacy'] } // Instructs html2pdf to process pages 1 by 1
                     };
 
                     html2pdf().set(opt).from(hiddenContainer).save().then(() => {
-                        // Success: Hide everything and clear memory
+                        // Cleanup
                         hiddenContainer.style.display = 'none';
                         hiddenContainer.innerHTML = '';
                         document.getElementById('pdf-loading-overlay').style.display = 'none';
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     }).catch(err => {
                         console.error(err);
                         alert("Download failed. Please check internet connection.");
                         hiddenContainer.style.display = 'none';
                         document.getElementById('pdf-loading-overlay').style.display = 'none';
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
                     });
-                }, 500);
+                }, 1000);
             });
         }
     </script>
