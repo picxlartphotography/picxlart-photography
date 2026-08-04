@@ -66,7 +66,6 @@
         .btn-view:hover { background: #1976D2; }
         .btn-download { background: #4CAF50; color: #fff; }
         .btn-download:hover { background: #388E3C; }
-        .btn-download:disabled { opacity: 0.7; cursor: not-allowed; }
 
         /* PAYMENT GRID */
         .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 10px; }
@@ -91,10 +90,20 @@
         .pdf-page-bg { width: 100%; height: 100%; display: block; object-fit: cover; }
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 
-        /* SECRET HIDDEN CONTAINER FOR PERFECT DOWNLOADING */
-        /* Changed from -9999px to top:0, left:0 but invisible, to fix mobile canvas issues! */
-        #hidden-pdf-container { position: absolute; top: 0; left: 0; width: 794px; z-index: -9999; opacity: 0.001; pointer-events: none; }
-        /* Remove margins and shadows for the download version so pages attach seamlessly */
+        /* =========================================================================
+           NEW: FULL-SCREEN LOADING OVERLAY & PERFECT PDF CONTAINER
+        ========================================================================= */
+        #pdf-loading-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(13, 13, 15, 0.98); z-index: 9999999; 
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            color: #d4af37; font-size: 18px; font-weight: 600; letter-spacing: 1px;
+        }
+        
+        #hidden-pdf-container { 
+            position: absolute; top: 0; left: 0; width: 794px; 
+            z-index: 999999; display: none; background: #fff; 
+        }
         #hidden-pdf-container .pdf-page-wrap { margin: 0 !important; border: none !important; box-shadow: none !important; }
 
         /* MOBILE RESPONSIVENESS */
@@ -125,6 +134,13 @@
     </style>
 </head>
 <body>
+
+    <!-- LOADING OVERLAY -->
+    <div id="pdf-loading-overlay">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; margin-bottom: 15px;"></i>
+        Generating High-Quality PDF...
+        <span style="font-size: 12px; color: #888; font-weight: 400; margin-top: 10px;">Please do not close this window.</span>
+    </div>
 
     <!-- SECRET DIV FOR BACKGROUND PDF GENERATION -->
     <div id="hidden-pdf-container"></div>
@@ -166,7 +182,7 @@
                 <div class="btn-group">
                     <button class="btn-action btn-view" onclick="openClientPdf()"><i class="fa-solid fa-eye"></i> View</button>
                     <!-- UPDATED: Download function attached -->
-                    <button class="btn-action btn-download" id="download-btn" onclick="downloadPdfDirectly()"><i class="fa-solid fa-download"></i> Download</button>
+                    <button class="btn-action btn-download" onclick="downloadPdfDirectly()"><i class="fa-solid fa-download"></i> Download</button>
                 </div>
             </div>
 
@@ -443,9 +459,9 @@
                             <br>
                             <li>• Total assignment package amount : <strong>₹${clientDataStore.totalAmount || '0'}</strong></li>
                             <li>• Advance Amount : <strong>₹${clientDataStore.advanceAmount || '0'}</strong></li>
-                            <li>• Token Booking (minimum remain time 3 months from assignment date) : <strong>₹${clientDataStore.tokenBooking || '0'}</strong></li>
-                            <li>• Final Payment (Wedding Day or Assignment Day Payment) : <strong>${clientDataStore.finalPaymentDesc || 'Rest all payment'}</strong></li>
-                            <li>• If any dues after assignment date mention here, otherwise please mention "NO DUES" : <strong>${clientDataStore.duesAfterAssignment || 'NO DUES'}</strong></li>
+                            <li>• Token Booking : <strong>₹${clientDataStore.tokenBooking || '0'}</strong></li>
+                            <li>• Final Payment Details : <strong>${clientDataStore.finalPaymentDesc || 'Rest all payment'}</strong></li>
+                            <li>• If any dues after assignment date : <strong>${clientDataStore.duesAfterAssignment || 'NO DUES'}</strong></li>
                             <li>• Job Details : <strong>${clientDataStore.jobDetails || 'N/A'}</strong></li>
                             <br>
                             <li>• Album or Photobook Details : <strong>${clientDataStore.albumDetails || 'N/A'}</strong></li>
@@ -461,36 +477,25 @@
                     <img src="acknowledgement-page4.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 100px 50px 110px 50px; font-size:11.5px; line-height:1.8; color:#000; font-family:Arial, sans-serif;">
                         <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:6px; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
-                        <ol style="padding-left:20px; margin:0 0 25px 0; font-size:11.5px; line-height:1.7;">
+                        <ol style="padding-left:20px; margin:0; font-size:11px; line-height:1.6;">
                             <li>For any event, client need to inform the entire work details.</li>
                             <li>For Late night wedding / lagan will increase the package value.</li>
                             <li>Package charges may exceed for outstation work.</li>
                             <li>For any customize package after booking, will increase the package value.</li>
-                            <li>5.A. Work time 8AM to 12.00AM maximum for Bengali wedding.</li>
-                            <li>5.B. Work time 8AM to 12.00AM onwards work for Bengali or non Bengali wedding, charges applicable / different package**</li>
-                            <li>For wedding reception 12.30AM</li>
-                            <li>If time boundation is over extra charges will be applicable per hour and persons basis. ** Conditions apply</li>
+                            <li>Work time 8AM to 12.00AM maximum for Bengali wedding.</li>
+                            <li>Work time 8AM to 12.00AM onwards work, charges applicable per hour basis.</li>
+                            <li>For wedding reception maximum time is 12.30AM</li>
                             <li>Booking Amount 50%. Rest of 50% have to pay assignment day.</li>
-                            <li>After booking a slot, if client want to cancel the booking for any circumstances then advance amount will not refund. Can be adjusted with other work.</li>
-                            <li>After booking a date slot, if the date change or postpone to another date then client need to inform us ASAP.</li>
-                            <li>For any outdoor shoot like Prewedding post wedding etc. - Client need to pay spot charges or any misc. charges to them.</li>
-                            <li>Travelling Allowance / Fooding / Accommodation is not included with package.</li>
-                            <li>Payment Terms will not change in any circumstances.</li>
-                            <li>Delivery date maximum 3 months after submitting selected photos.</li>
-                            <li>Complimentary work correction is not acceptable.</li>
-                            <li>Client have to manage the time for couple photo shoot should be done by us within our fixed time, any demand after our fixed time will not be acceptable. If required more, thereafter the charge will be hourly basis for each photography person.</li>
-                            <li>The team is not responsible if you do not complete the photo shoot within our fixed time.</li>
-                            <li>If drone shoots are required, the client will need to obtain the necessary permissions from Local PS. The client will also be responsible for any disturbances or issues that may arise</li>
-                            <li>Final / 2nd payment is mandatory on the day of wedding or programme reception day.</li>
-                            <li>Using laser lights is strictly prohibited. If they are used and any camera damage occurs as a result, the client will be responsible for covering the full cost of the damage.</li>
-                            <li>Data will not be transferred if Final / 2nd payment is not made.</li>
-                            <li>We do not provide props for any shoot.</li>
-                            <li>Raw Video data is not transferable, only raw photos will be transfer.</li>
-                            <li>If at any time any of our instruments get damaged by the client or any others relatives of clients, then the cost of the damage will have to be borne by the client.</li>
+                            <li>After booking slot, advance amount is non-refundable under any circumstances.</li>
+                            <li>Postpone or date changes must be informed ASAP.</li>
+                            <li>Outdoor shoots spot/entry charges borne by customer.</li>
+                            <li>Travelling, fooding, lodging is excluded from packages.</li>
+                            <li>Album delivery timeline is maximum 3 months from image selection.</li>
+                            <li>Laser lights strictly prohibited. Client will pay for any camera sensor damage.</li>
                         </ol>
                         <ul style="list-style:none; padding:0; margin:20px 0 0 0; font-size:12.5px; line-height:2.0;">
-                            <li style="margin-bottom:8px;">• Any reactions or comments : <strong>${clientDataStore.comments || 'NIL'}</strong></li>
-                            <li>• Assignment Conducted By from Team Picxlart (Mention his / her name) : <strong>${clientDataStore.conductedBy || 'Team Picxlart'}</strong></li>
+                            <li>• Comments : <strong>${clientDataStore.comments || 'NIL'}</strong></li>
+                            <li>• Assignment Conducted By : <strong>${clientDataStore.conductedBy || 'Team Picxlart'}</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -498,27 +503,20 @@
                 <!-- PAGE 5 -->
                 <div class="pdf-page-wrap">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
-                    <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
-                        <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
-                        <p style="margin-bottom:12px; font-size:13.5px;">Package Name :: <strong style="font-size:14px;">${clientDataStore.packageNameAndCost || 'Standard Package'}</strong></p>
-                        
-                        <p style="margin-bottom:4px; font-size:13px;">Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
-                        <p style="margin-bottom:8px; font-size:13px;">Duration: <strong>${clientDataStore.daysCount || '1 Day'}</strong></p>
-                        <p style="margin-bottom:18px; font-size:13px;">Photography Details / Work Details: <strong>${clientDataStore.jobDetails || 'N/A'}</strong></p>
-
-                        <p style="font-size:11.5px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
-                        <p style="font-size:11.5px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
-
-                        <p style="margin-bottom:16px; font-size:13px;">• <strong>Document Submitted :</strong> <strong>${clientDataStore.docSubmitted || 'Not required'}</strong></p>
-
-                        <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
-                        <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
+                    <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; color:#000; line-height:1.8;">
+                        <p>Package Details :</p>
+                        <p>Package Name :: <strong>${clientDataStore.packageNameAndCost || 'Standard Package'}</strong></p>
+                        <p>Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
+                        <p>Duration: <strong>${clientDataStore.daysCount || '1 Day'}</strong></p>
+                        <p>Photography Details: <strong>${clientDataStore.jobDetails || 'N/A'}</strong></p>
+                        <p style="font-size:11.5px; font-weight:bold; color:#7a1d1d;">** All Travelling expenses, fooding, accommodation from customer standpoint.</p>
+                        <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-top:15px;">• PAYMENT DETAILS :</p>
+                        <ul style="list-style:none; padding-left:12px; line-height:1.9;">
                             <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
-                            <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
                             <li>Token Advance Paid : <strong>₹${advAmt}</strong></li>
-                            ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due (To complete 50% Advance) :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
+                            ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
                             <li>Event Day Payment Amount : <strong>₹${eventDue}</strong></li>
-                            ${deliveryDue > 0 ? `<li style="color:#c2185b;">Album / Deliverable Submission Due : <strong>₹${deliveryDue}</strong></li>` : ''}
+                            ${deliveryDue > 0 ? `<li style="color:#c2185b;">Album Submission Due : <strong>₹${deliveryDue}</strong></li>` : ''}
                         </ul>
                     </div>
                 </div>
@@ -536,21 +534,20 @@
         }
 
         // ----------------------------------------------------------------------
-        // NEW PROFESSIONAL DIRECT PDF DOWNLOADER (FIXED FOR MOBILE CANVAS)
+        // 100% BULLETPROOF PDF DOWNLOADER FOR MOBILE (FIXED WHITE PAGE ISSUE)
         // ----------------------------------------------------------------------
         function downloadPdfDirectly() {
             if(!clientDataStore) return;
 
-            // Update button text to show progress to user
-            const btn = document.getElementById('download-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
-            btn.disabled = true;
+            // 1. Show the Loading Overlay
+            document.getElementById('pdf-loading-overlay').style.display = 'flex';
 
+            // 2. Put the HTML in the hidden container and make it "visible" to the browser engine
             const hiddenContainer = document.getElementById('hidden-pdf-container');
             hiddenContainer.innerHTML = generatePdfHtmlStructure();
+            hiddenContainer.style.display = 'block'; 
 
-            // WAIT 2 SECONDS FOR ALL BACKGROUND IMAGES TO LOAD PROPERLY BEFORE CAPTURING!
+            // 3. Wait 2.5 seconds to force the mobile browser to fully load all 6 background images
             setTimeout(() => {
                 const safeName = clientDataStore.name ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
                 
@@ -563,15 +560,17 @@
                 };
 
                 html2pdf().set(opt).from(hiddenContainer).save().then(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    hiddenContainer.innerHTML = ''; // Clean up memory
+                    // Success: Hide everything and clear memory
+                    hiddenContainer.style.display = 'none';
+                    hiddenContainer.innerHTML = '';
+                    document.getElementById('pdf-loading-overlay').style.display = 'none';
                 }).catch(err => {
                     alert("Download failed. Please check internet connection.");
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
+                    hiddenContainer.style.display = 'none';
+                    document.getElementById('pdf-loading-overlay').style.display = 'none';
                 });
-            }, 2000); 
+
+            }, 2500); // 2.5 second forced delay for perfect image rendering
         }
     </script>
 </body>
