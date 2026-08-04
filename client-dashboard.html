@@ -11,8 +11,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    <!-- PREMIUM PDF GENERATION LIBRARY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- REPLACED: Using Core Libraries directly to prevent Mobile RAM Crashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -87,28 +88,30 @@
         .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow: auto; padding: 25px; position: relative; }
 
         /* STANDARD PDF WRAP FOR SCREEN VIEWING */
-        .pdf-page-wrap { position: relative; width: 794px; height: 1120px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; overflow: hidden; }
+        .pdf-page-wrap { position: relative; width: 794px; height: 1120px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; overflow: hidden; page-break-after: always; }
         .pdf-page-bg { width: 100%; height: 100%; display: block; object-fit: cover; }
         .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 
         /* =========================================================================
-           ULTIMATE MOBILE FIX: LOADING OVERLAY & PROPER Z-INDEX TRICK
+           FULL-SCREEN LOADING OVERLAY & SECRET CONTAINER
         ========================================================================= */
         #pdf-loading-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0d0d0f; z-index: 9999999; /* Highest Z-index to cover everything */
+            background: #0d0d0f; z-index: 9999999; 
             display: none; flex-direction: column; justify-content: center; align-items: center;
-            color: #d4af37; font-size: 18px; font-weight: 600; letter-spacing: 1px;
+            color: #d4af37; font-size: 18px; font-weight: 600; letter-spacing: 1px; text-align: center;
         }
         
         #hidden-pdf-container { 
             position: absolute; top: 0; left: 0; width: 794px; 
-            z-index: 9999998; /* Right below the black loading overlay */
-            display: none; background: #fff; opacity: 1; /* 100% visible to browser engine */
+            z-index: 9999998; /* Under the black loading screen */
+            display: none; background: #fff; opacity: 1;
         }
         #hidden-pdf-container .pdf-page-wrap { margin: 0 !important; border: none !important; box-shadow: none !important; }
 
-        /* MOBILE RESPONSIVENESS */
+        /* =========================================================================
+           MOBILE RESPONSIVENESS
+        ========================================================================= */
         @media (max-width: 768px) {
             body { flex-direction: column; overflow-y: auto; height: auto; }
             .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222228; padding: 15px; }
@@ -133,6 +136,20 @@
             .payment-summary-grid { grid-template-columns: 1fr; }
             .noti-dropdown { right: -60px; }
         }
+
+        /* =========================================================================
+           PERFECT NATIVE PRINT CSS (In case they use mobile Print/Save PDF dialog)
+        ========================================================================= */
+        @media print {
+            body * { visibility: hidden; }
+            body { background: #fff !important; }
+            #client-pdf-modal, #client-pdf-modal * { visibility: visible; }
+            #client-pdf-modal { position: absolute; left: 0; top: 0; width: 100%; height: auto; background: transparent; padding: 0; margin: 0; display: block; }
+            .preview-box { width: 100% !important; max-width: none !important; height: auto !important; overflow: visible !important; border: none !important; padding: 0 !important; background: transparent !important; }
+            .pdf-page-wrap { width: 100% !important; height: 100% !important; max-width: none !important; page-break-after: always !important; page-break-inside: avoid !important; margin: 0 !important; border: none !important; box-shadow: none !important; }
+            .pdf-page-bg { width: 100%; height: auto; }
+            .preview-close { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -140,8 +157,8 @@
     <!-- FULL SCREEN LOADING OVERLAY -->
     <div id="pdf-loading-overlay">
         <i class="fa-solid fa-spinner fa-spin" style="font-size: 45px; margin-bottom: 15px;"></i>
-        Generating High-Quality PDF...
-        <span style="font-size: 12px; color: #aaa; font-weight: 400; margin-top: 10px; text-transform: none;">Please wait while images are rendering.</span>
+        Generating Premium PDF...<br>
+        <span style="font-size: 13px; color: #aaa; font-weight: 400; margin-top: 10px; text-transform: none;">Please hold on, building pages securely to prevent errors.</span>
     </div>
 
     <!-- SECRET DIV (HIDDEN BEHIND OVERLAY) -->
@@ -394,7 +411,7 @@
         });
 
         // ---------------------------------------------------------
-        // ADDED: style="page-break-after: always" TO SPLIT PDF PROPERLY
+        // CENTRALIZED HTML GENERATOR
         // ---------------------------------------------------------
         function generatePdfHtmlStructure() {
             const clientName = clientDataStore.name || '';
@@ -416,10 +433,10 @@
 
             return `
                 <!-- PAGE 1 -->
-                <div class="pdf-page-wrap" style="page-break-after: always;"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
+                <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
 
                 <!-- PAGE 2 -->
-                <div class="pdf-page-wrap" style="page-break-after: always;">
+                <div class="pdf-page-wrap">
                     <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 370px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
                         <p style="font-size: 16px; font-weight: bold; margin-bottom: 28px; color: #c59b27;">To : <span style="font-weight: bold; color: #c59b27;">${clientName}</span></p>
@@ -434,7 +451,7 @@
                 </div>
 
                 <!-- PAGE 3 -->
-                <div class="pdf-page-wrap" style="page-break-after: always;">
+                <div class="pdf-page-wrap">
                     <img src="acknowledgement-page3.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 90px 45px 120px 45px; font-size:11.5px; line-height:1.85; color:#000; font-family:Arial, sans-serif;">
                         <h2 style="text-align:center; font-size:17px; font-weight:bold; margin-bottom:18px; border-bottom:2px solid #8b6d21; padding-bottom:6px; color:#000;">Work Details / Filled Details by Client</h2>
@@ -473,7 +490,7 @@
                 </div>
 
                 <!-- PAGE 4 -->
-                <div class="pdf-page-wrap" style="page-break-after: always;">
+                <div class="pdf-page-wrap">
                     <img src="acknowledgement-page4.jpg?v=2" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 100px 50px 110px 50px; font-size:11.5px; line-height:1.8; color:#000; font-family:Arial, sans-serif;">
                         <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:6px; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
@@ -512,7 +529,7 @@
                 </div>
 
                 <!-- PAGE 5 -->
-                <div class="pdf-page-wrap" style="page-break-after: always;">
+                <div class="pdf-page-wrap">
                     <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
                     <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
                         <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
@@ -544,7 +561,6 @@
             `;
         }
 
-        // VIEW BUTTON LOGIC
         function openClientPdf() {
             if(!clientDataStore) return;
             document.getElementById('pdf-render-area').innerHTML = generatePdfHtmlStructure();
@@ -552,76 +568,77 @@
         }
 
         // ----------------------------------------------------------------------
-        // ULTIMATE PDF DOWNLOAD FIX FOR MOBILE (Scroll Bug & Memory Fix)
+        // THE ULTIMATE MOBILE CRASH-PROOF PDF DOWNLOADER 
+        // Generates 1 page at a time to prevent RAM Crash & White Pages!
         // ----------------------------------------------------------------------
-        function downloadPdfDirectly() {
+        async function downloadPdfDirectly() {
             if(!clientDataStore) return;
 
             const btn = document.getElementById('download-btn');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
             btn.disabled = true;
 
-            // Show Loading Screen
+            // 1. Show the Loading Overlay
             document.getElementById('pdf-loading-overlay').style.display = 'flex';
 
-            // SCROLL TO TOP: Crucial for html2canvas bug on mobile!
-            window.scrollTo(0, 0);
-
-            // Put HTML in hidden container & make it block so browser paints it
+            // 2. Setup the hidden container and make it BLOCK so browser paints it
             const hiddenContainer = document.getElementById('hidden-pdf-container');
             hiddenContainer.innerHTML = generatePdfHtmlStructure();
             hiddenContainer.style.display = 'block'; 
+            window.scrollTo(0, 0);
 
-            // WAIT UNTIL ALL IMAGES ARE LOADED
-            const images = hiddenContainer.querySelectorAll('img');
-            const promises = Array.from(images).map(img => {
-                return new Promise((resolve) => {
-                    if (img.complete) resolve();
-                    else {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    }
-                });
-            });
-
-            Promise.all(promises).then(() => {
-                // Extra short delay to ensure DOM is fully repainted
-                setTimeout(() => {
-                    const safeName = clientDataStore.name ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
-                    
-                    const opt = {
-                        margin:       0,
-                        filename:     `Acknowledgement_Paper_Picxlart_${safeName}.pdf`,
-                        image:        { type: 'jpeg', quality: 0.98 },
-                        html2canvas:  { 
-                            scale: 1.5, // Reduced from 2 to prevent RAM crash
-                            useCORS: true, 
-                            scrollY: 0, 
-                            scrollX: 0,
-                            windowWidth: 794
-                        },
-                        jsPDF:        { unit: 'px', format: [794, 1120], orientation: 'portrait' },
-                        pagebreak:    { mode: ['css', 'legacy'] } // Instructs html2pdf to process pages 1 by 1
-                    };
-
-                    html2pdf().set(opt).from(hiddenContainer).save().then(() => {
-                        // Cleanup
-                        hiddenContainer.style.display = 'none';
-                        hiddenContainer.innerHTML = '';
-                        document.getElementById('pdf-loading-overlay').style.display = 'none';
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
-                    }).catch(err => {
-                        console.error(err);
-                        alert("Download failed. Please check internet connection.");
-                        hiddenContainer.style.display = 'none';
-                        document.getElementById('pdf-loading-overlay').style.display = 'none';
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
+            try {
+                // 3. Wait for all background images to load fully
+                const images = hiddenContainer.querySelectorAll('img');
+                await Promise.all(Array.from(images).map(img => {
+                    return new Promise((resolve) => {
+                        if (img.complete) resolve();
+                        else { img.onload = resolve; img.onerror = resolve; }
                     });
-                }, 1000);
-            });
+                }));
+
+                // Extra safety delay for DOM rendering
+                await new Promise(r => setTimeout(r, 500));
+
+                // 4. Initialize Core PDF Engine
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'px', [794, 1120]);
+                const pages = hiddenContainer.querySelectorAll('.pdf-page-wrap');
+
+                // 5. LOOP: Process exactly 1 page at a time! (Bypasses Mobile RAM Limits)
+                for (let i = 0; i < pages.length; i++) {
+                    const canvas = await html2canvas(pages[i], {
+                        scale: 1.5, // Crisp resolution without crashing
+                        useCORS: true,
+                        logging: false,
+                        scrollY: 0,
+                        windowWidth: 794
+                    });
+                    
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    
+                    if (i > 0) {
+                        doc.addPage([794, 1120], 'p');
+                    }
+                    doc.addImage(imgData, 'JPEG', 0, 0, 794, 1120);
+                }
+
+                // 6. Save the final multi-page PDF
+                const safeName = clientDataStore.name ? clientDataStore.name.replace(/\s+/g, '_') : 'Client';
+                doc.save(`Acknowledgement_Paper_Picxlart_${safeName}.pdf`);
+
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong while creating the PDF. Please try again.");
+            } finally {
+                // 7. Clean up memory and UI
+                hiddenContainer.style.display = 'none';
+                hiddenContainer.innerHTML = '';
+                document.getElementById('pdf-loading-overlay').style.display = 'none';
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         }
     </script>
 </body>
