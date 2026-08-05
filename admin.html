@@ -8,18 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> <!-- Firebase Auth Added -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0d0d0f; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
 
-        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 13, 15, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .login-card { background: #16161a; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; }
-        .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0b0b0d; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; }
-        .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; }
+        /* =========================================================================
+           NEW PREMIUM LOGIN SCREEN WITH IMAGE BACKGROUND & BLUR
+        ========================================================================= */
+        .login-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; 
+            overflow: hidden;
+        }
 
+        .login-overlay::before {
+            content: '';
+            position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; 
+            background: url('cover page design wooden1.jpg') center/cover no-repeat;
+            filter: blur(6px) brightness(0.35); 
+            z-index: -1; 
+        }
+
+        .login-card { background: #16161a; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0b0b0d; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; }
+        .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; transition: 0.3s; }
+        .btn-auth:hover { opacity: 0.9; }
+
+        /* SIDEBAR & MAIN CONTENT */
         .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
         .sidebar-brand { display: flex; align-items: center; justify-content: center; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
         .sidebar-brand img { height: 50px; }
@@ -28,7 +46,8 @@
         .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent; }
         .menu-item:hover, .menu-item.active { background: #18181c; color: #d4af37; border-left-color: #d4af37; }
         .logout-btn-container { padding: 15px 20px; border-top: 1px solid #222228; }
-        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
 
         .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0d0d0f; }
         .system-header-title { font-size: 20px; font-weight: 700; color: #d4af37; letter-spacing: 1px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #222228; text-transform: uppercase; }
@@ -257,7 +276,6 @@
         let currentActiveUid = null;
         let currentClientData = null;
 
-        // NEW FIREBASE AUTHENTICATION LOGIC FOR ADMIN
         window.onload = function() {
             auth.onAuthStateChanged((user) => {
                 if (user && user.email === "admin@picxlart.com") {
