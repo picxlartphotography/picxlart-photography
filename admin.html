@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> <!-- Firebase Auth Added -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <style>
@@ -71,10 +72,8 @@
         .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; margin-left: 5px; }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px; }
-        
-        /* FIXED: Changed overflow-y to auto for modal and added width/min-width to pdf-page-wrap */
         .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow: auto; padding: 25px; position: relative; }
-        .preview-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #fff; z-index: 100; }
+        .preview-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #fff; z-index: 100;}
 
         .pdf-page-wrap { position: relative; width: 794px; min-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; overflow: hidden; }
         .pdf-page-bg { width: 100%; display: block; }
@@ -83,44 +82,26 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* ==========================================================
-           MOBILE RESPONSIVENESS ADDED FOR ADMIN PANEL
-        ========================================================== */
+        /* MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
             body { flex-direction: column; height: auto; overflow-y: auto; }
-            
-            /* Sidebar turns into Top Navigation on Mobile */
             .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222228; padding: 15px; }
             .sidebar-brand { padding-bottom: 10px; }
             .menu-list { display: flex; flex-direction: row; overflow-x: auto; gap: 10px; margin-top: 10px; padding-bottom: 5px; }
             .menu-item { white-space: nowrap; padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; border-radius: 6px; }
             .menu-item.active { border-left-color: transparent; border-bottom-color: transparent; background: #d4af37; color: #000; font-weight: 700; }
             .logout-btn-container { padding: 15px 0 0 0; border-top: none; }
-            
-            /* Main Content Adjustments */
             .main-content { padding: 15px; height: auto; overflow: visible; }
             .system-header-title { font-size: 16px; text-align: center; }
-            
-            /* Make Tables horizontally scrollable so they don't break the layout */
             .card { padding: 15px; overflow-x: auto; }
             .card-title { flex-direction: column; gap: 10px; align-items: flex-start; }
             .db-table { min-width: 650px; } 
-            
-            /* Form Grid stacks vertically */
             .full-form-scroll-box { grid-template-columns: 1fr; max-height: 400px; padding: 15px; }
-            
-            /* Buttons take full width */
             .action-btn-group { flex-direction: column; gap: 10px; }
             .btn-ack { width: 100%; justify-content: center; }
-            
-            /* Payment Cards Stack */
             .payment-summary-grid { grid-template-columns: 1fr 1fr; }
-            
-            /* Event Stage Inputs */
             .status-manager-box > div:first-child { flex-direction: column; }
             .status-manager-box > div:first-child button { width: 100%; padding: 10px; }
-            
-            /* Modals adjust size */
             .modal-overlay { padding: 10px; }
             .preview-box { padding: 15px; height: 90vh; }
             .preview-close { top: 5px; right: 10px; }
@@ -137,10 +118,10 @@
     <div class="login-overlay" id="admin-login-overlay">
         <div class="login-card">
             <img src="logo.png" style="height: 55px; margin-bottom: 10px;">
-            <h3 style="color:#d4af37;">Admin Access Lock</h3>
+            <h3 style="color:#d4af37;">Secure Admin Access</h3>
             <input type="email" id="admin-user" placeholder="Admin Email">
             <input type="password" id="admin-pass" placeholder="Password">
-            <button class="btn-auth" onclick="verifyAdminLogin()">Unlock Dashboard</button>
+            <button class="btn-auth" id="login-btn" onclick="verifyAdminLogin()">Unlock Dashboard</button>
         </div>
     </div>
 
@@ -270,29 +251,55 @@
             appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
         };
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
         const db = firebase.firestore();
 
         let currentActiveUid = null;
         let currentClientData = null;
 
+        // NEW FIREBASE AUTHENTICATION LOGIC FOR ADMIN
         window.onload = function() {
-            if(localStorage.getItem('adminAuthTime')) {
-                document.getElementById('admin-login-overlay').style.display = "none";
-                listenForUsers();
-            }
+            auth.onAuthStateChanged((user) => {
+                if (user && user.email === "admin@picxlart.com") {
+                    document.getElementById('admin-login-overlay').style.display = "none";
+                    listenForUsers();
+                } else {
+                    document.getElementById('admin-login-overlay').style.display = "flex";
+                }
+            });
         };
 
         function verifyAdminLogin() {
-            if(document.getElementById('admin-user').value === "admin@picxlart.com" && document.getElementById('admin-pass').value === "picxlart@2026") {
-                localStorage.setItem('adminAuthTime', 'true');
-                document.getElementById('admin-login-overlay').style.display = "none";
-                listenForUsers();
+            const email = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+            const loginBtn = document.getElementById('login-btn');
+
+            if(email !== "admin@picxlart.com") {
+                alert("Unauthorized Email! Only the authorized Admin can login.");
+                return;
             }
+
+            loginBtn.innerText = "Verifying...";
+            loginBtn.disabled = true;
+
+            auth.signInWithEmailAndPassword(email, pass)
+                .then((userCredential) => {
+                    document.getElementById('admin-login-overlay').style.display = "none";
+                    loginBtn.innerText = "Unlock Dashboard";
+                    loginBtn.disabled = false;
+                    listenForUsers();
+                })
+                .catch((error) => {
+                    alert("Invalid Admin Credentials!");
+                    loginBtn.innerText = "Unlock Dashboard";
+                    loginBtn.disabled = false;
+                });
         }
 
         function logoutAdmin() {
-            localStorage.removeItem('adminAuthTime');
-            location.reload();
+            auth.signOut().then(() => {
+                location.reload();
+            });
         }
 
         function switchTab(tabId, element) {
@@ -820,8 +827,6 @@
 
                 <!-- PAGE 6 -->
                 <div class="pdf-page-wrap"><img src="acknowledgement-page6.jpg" class="pdf-page-bg"></div>
-
-                ${isPrintable ? `<button onclick="window.print()" style="margin-top:20px; width:100%; background:#4caf50; color:#fff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-print"></i> Print / Save Official 6-Page PDF</button>` : ''}
             `;
 
             document.getElementById('preview-modal').style.display = 'flex';
