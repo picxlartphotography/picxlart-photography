@@ -1,123 +1,840 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
+<!-- Google Tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-DLCSJBGXZ6');
+
+</script>
+
+
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pre Wedding Shoot | Picxlart</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
 
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body { background:#0a0a0a; color:#f5f5f5; padding-top: 100px; }
 
-    /* Premium Gallery Layout */
-    .gallery-container {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 20px;
+    /* Global Base Styling */
+
+    *{
+
+        margin:0;
+
+        padding:0;
+
+        box-sizing:border-box;
+
+        font-family:'Poppins', sans-serif;
+
     }
 
-    h1 {
-        text-align: center;
-        font-size: 40px;
-        color: #d4af37;
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        margin-bottom: 50px;
-        font-weight: 300;
+
+
+    body{
+
+        background:#0d0d0d;
+
+        color:#f5f5f5;
+
+        margin:0;
+
+        padding-top:90px;
+
+        overflow-x:hidden;
+
+        -webkit-user-select:none;
+
+        -moz-user-select:none;
+
+        -ms-user-select:none;
+
+        user-select:none;
+
     }
 
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        gap: 25px;
+
+
+    /* Top Navbar Layout & Styling */
+
+    .navbar{
+
+        position:fixed;
+
+        top:0;
+
+        left:0;
+
+        width:100%;
+
+        background:rgba(10,10,10,0.92);
+
+        backdrop-filter:blur(12px);
+
+        -webkit-backdrop-filter:blur(12px);
+
+        display:flex;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+        padding:8px 40px;
+
+        z-index:99999;
+
+        border-bottom:2px solid #d4af37;
+
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+
     }
 
-    .gallery-item {
-        overflow: hidden;
-        background: #111;
-        aspect-ratio: 3/2; /* ছবির অনুপাত ঠিক রাখার জন্য */
+
+
+    .nav-logo img{
+
+        height:60px;
+
+        width:auto;
+
+        transition: transform 0.3s ease;
+
     }
 
-    .gallery img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease, filter 0.6s ease;
-        cursor: pointer;
-        filter: grayscale(20%);
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05);
-        filter: grayscale(0%);
-    }
-
-    /* Navbar remains similar but polished */
-    .navbar { position:fixed; top:0; width:100%; background:rgba(10,10,10,0.95); display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:999; border-bottom:1px solid #222; }
-    .nav-logo img { height:50px; }
     
-    .nav-menu { display:flex; gap:30px; }
-    .nav-menu a { color:#fff; text-decoration:none; font-size:12px; letter-spacing:2px; text-transform:uppercase; transition:0.3s; }
-    .nav-menu a:hover { color:#d4af37; }
 
-    /* Lightbox */
-    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:9999; }
-    #lightbox img { max-width:90%; max-height:85%; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    .nav-logo img:hover {
+
+        transform: scale(1.03);
+
+    }
+
+        
+
+    .nav-menu{
+
+        display:flex;
+
+        gap:35px;
+
+        align-items: center;
+
+    }
+
+
+
+    .nav-menu a{
+
+        color:#e0e0e0;
+
+        text-decoration:none;
+
+        font-weight:500;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        font-size: 13px;
+
+        transition: all 0.3s ease;
+
+        position: relative;
+
+        padding: 4px 0;
+
+    }
+
+
+
+    .nav-menu a::after {
+
+        content: '';
+
+        position: absolute;
+
+        bottom: 0;
+
+        left: 0;
+
+        width: 0;
+
+        height: 1.5px;
+
+        background: #d4af37;
+
+        transition: width 0.3s ease;
+
+    }
+
+
+
+    .nav-menu a:hover::after, .nav-menu a.active::after {
+
+        width: 100%;
+
+    }
+
+
+
+    .nav-menu a:hover, .nav-menu a.active{
+
+        color:#d4af37;
+
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+
+    }
+
+
+
+    .nav-social{
+
+        display:flex;
+
+        gap:20px;
+
+    }
+
+
+
+    .nav-social a{
+
+        color:#e0e0e0;
+
+        text-decoration:none;
+
+        font-size:18px;
+
+        transition:all .3s ease;
+
+    }
+
+
+
+    .nav-social a:hover{
+
+        color:#d4af37;
+
+        transform:translateY(-3px);
+
+    }
+
+
+
+    /* Mobile Menu Toggle Button */
+
+    .menu-toggle {
+
+        display: none;
+
+        color: #d4af37;
+
+        font-size: 28px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        z-index: 1000000;
+
+        user-select: none;
+
+        -webkit-tap-highlight-color: transparent;
+
+    }
+
+
+
+    /* Page Content Styling */
+
+    h1{
+
+        text-align:center;
+
+        padding:30px;
+
+        color:#d4af37;
+
+        font-size: 36px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+    }
+
+
+
+    .gallery{
+
+        display:grid;
+
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+        gap:20px;
+
+        padding:20px;
+
+    }
+
+
+
+    .gallery img{
+
+        width:100%;
+
+        border-radius:10px;
+
+        transition:0.4s;
+
+        cursor:pointer;
+
+    }
+
+
+
+    .gallery img:hover{
+
+        transform:scale(1.05);
+
+    }
+
+
+
+    .content{
+
+        padding:40px 20px;
+
+        max-width:1000px;
+
+        margin:auto;
+
+        margin-bottom:60px;
+
+    }
+
+
+
+    .content h2{
+
+        color:#d4af37;
+
+        margin-bottom:20px;
+
+        font-size: 24px;
+
+        font-weight: 600;
+
+    }
+
+
+
+    .content p{
+
+        font-size:16px;
+
+        color:#b8b8b8;
+
+        line-height:1.8;
+
+        margin-bottom: 15px;
+
+    }
+
+
+
+    /* Enterprise Footer Architecture */
+
+    footer {
+
+        text-align: center;
+
+        padding: 50px 20px;
+
+        background: #080808;
+
+        color: #777777;
+
+        font-size: 13px;
+
+        border-top: 1px solid #1a1a1a;
+
+    }
+
+
+
+    .footer-links-container {
+
+        margin-bottom:25px; 
+
+        line-height: 2.2;
+
+    }
+
+
+
+    .footer-links-container a {
+
+        color:#d4af37; 
+
+        text-decoration:none;
+
+        font-weight: 500;
+
+        transition: color 0.3s ease;
+
+    }
+
+    
+
+    .footer-links-container a:hover {
+
+        color: #ffffff;
+
+    }
+
+
+
+    .footer-divider {
+
+        color:#333;
+
+        margin: 0 8px;
+
+    }
+
+
+
+    /* Mobile View Overrides */
 
     @media(max-width:768px){
-        .gallery { grid-template-columns: 1fr; gap: 15px; }
-        .navbar { padding: 15px 20px; }
+
+        .navbar{
+
+            padding:12px 24px;
+
+            flex-wrap: nowrap;
+
+        }
+
+
+
+        .nav-logo img{
+
+            height:45px;
+
+        }
+
+
+
+        .menu-toggle {
+
+            display: block; 
+
+        }
+
+
+
+        .nav-social {
+
+            display: none !important; 
+
+        }
+
+
+
+        .nav-menu {
+
+            position: fixed;
+
+            top: 60px; 
+
+            left: 0;
+
+            width: 100%;
+
+            height: auto; 
+
+            background: rgba(13, 13, 13, 0.97);
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            flex-direction: column;
+
+            justify-content: flex-start;
+
+            align-items: center;
+
+            gap: 0;
+
+            padding: 15px 0 0 0;
+
+            transform: translateY(-150%); 
+
+            transition: transform 0.4s ease-in-out;
+
+            z-index: 999998;
+
+            border-bottom: 3px solid #d4af37; 
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+
+        }
+
+
+
+        .nav-menu.active {
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .nav-menu a {
+
+            font-size: 15px;
+
+            letter-spacing: 2px;
+
+            font-weight: 500;
+
+            color: #d4af37 !important;
+
+            width: 100%;
+
+            text-align: center;
+
+            padding: 16px 0;
+
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+
+        }
+
+
+
+        /* REMOVE Underline Effect on Mobile */
+
+        .nav-menu a::after {
+
+            display: none !important; 
+
+        }
+
+
+
+        .nav-menu a:last-child {
+
+            border-bottom: none;
+
+            padding-bottom: 22px;
+
+        }
+
     }
+
 </style>
+
 </head>
+
+
 
 <body>
 
+
+
+<!-- Header Navigation Bar Architecture -->
+
 <div class="navbar">
-   <div class="nav-logo"><a href="/"><img src="logo.png" alt="Logo"></a></div>
-   <div class="nav-menu">
-       <a href="/">Home</a>
-       <a href="/#gallery">Gallery</a>
-       <a href="films">Films</a>
-       <a href="packages">Packages</a>
-   </div>
-</div>
 
-<div class="gallery-container">
-    <h1>Pre Wedding</h1>
-    <div class="gallery" id="imageGallery">
-        <!-- আপনার ২৫টি ইমেজ -->
-        <div class="gallery-item"><img src="PreWedding1.jpg" alt="Photo"></div>
-        <div class="gallery-item"><img src="PreWedding2.jpg" alt="Photo"></div>
-        <div class="gallery-item"><img src="PreWedding3.jpg" alt="Photo"></div>
-        <div class="gallery-item"><img src="PreWedding4.jpg" alt="Photo"></div>
-        <div class="gallery-item"><img src="PreWedding5.jpg" alt="Photo"></div>
-        <!-- বাকি ইমেজগুলো এভাবে বসিয়ে দিন -->
+   <div class="nav-logo">
+
+        <a href="/">
+
+            <img src="logo.png" alt="Logo">
+
+        </a>
+
     </div>
+
+
+
+    <div class="nav-menu">
+
+        <a href="/">Home</a>
+
+        <a href="/#gallery">Gallery</a>
+
+        <a href="films">Films</a>
+
+        <a href="packages">Packages</a>
+
+        <a href="reviews">Reviews</a>
+
+        <a href="/#why">Why Picxlart</a>
+
+        <a href="blog">Blog</a>
+
+    </div>
+
+
+
+    <div class="nav-social">
+
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+
+    </div>
+
+
+
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+
 </div>
 
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="View">
+
+
+<h1>Pre Wedding Shoot</h1>
+
+
+
+<div class="gallery">
+
+<img src="PreWedding1.jpg" alt="Pre Wedding Shoot 1">
+
+<img src="PreWedding2.jpg" alt="Pre Wedding Shoot 2">
+
+<img src="PreWedding3.jpg" alt="Pre Wedding Shoot 3">
+
+<img src="PreWedding4.jpg" alt="Pre Wedding Shoot 4">
+
+<img src="PreWedding5.jpg" alt="Pre Wedding Shoot 5">
+
+<img src="PreWedding6.jpg" alt="Pre Wedding Shoot 6">
+
+<img src="PreWedding7.jpg" alt="Pre Wedding Shoot 7">
+
+<img src="PreWedding8.jpg" alt="Pre Wedding Shoot 8">
+
+<img src="PreWedding9.jpg" alt="Pre Wedding Shoot 9">
+
+<img src="PreWedding10.jpg" alt="Pre Wedding Shoot 10">
+
+<img src="PreWedding11.jpg" alt="Pre Wedding Shoot 11">
+
+<img src="PreWedding12.jpg" alt="Pre Wedding Shoot 12">
+
+<img src="PreWedding13.jpg" alt="Pre Wedding Shoot 13">
+
+<img src="PreWedding14.jpg" alt="Pre Wedding Shoot 14">
+
+<img src="PreWedding15.jpg" alt="Pre Wedding Shoot 15">
+
+<img src="PreWedding16.jpg" alt="Pre Wedding Shoot 16">
+
+<img src="PreWedding17.jpg" alt="Pre Wedding Shoot 17">
+
+<img src="PreWedding18.jpg" alt="Pre Wedding Shoot 18">
+
+<img src="PreWedding19.jpg" alt="Pre Wedding Shoot 19">
+
+<img src="PreWedding20.jpg" alt="Pre Wedding Shoot 20">
+
 </div>
+
+
+
+<div class="content">
+
+<h2>Our Pre Wedding Photography & Cinematography</h2>
+
+<p>Every love story deserves to be told beautifully before the wedding day. Our pre-wedding photography and cinematography capture the chemistry, emotions, and special moments that make your relationship unique.</p>
+
+<p>From dreamy outdoor locations to cinematic storytelling, we create stunning visuals that reflect your journey together. With creative concepts, candid moments, and professional editing, we turn your pre-wedding memories into timeless treasures you'll cherish forever.</p>
+
+</div>
+
+
+
+<!-- Footer Enterprise Framework -->
+
+<footer>
+
+    <div class="footer-links-container">
+
+        <div>
+
+            <a href="faq">FAQ</a>
+
+            <span class="footer-divider">|</span>
+
+            <a href="payment">Online Payment</a>
+
+        </div>
+
+        <div>
+
+            <a href="privacy-policy">Privacy Policy</a>
+
+            <span class="footer-divider">|</span>
+
+            <a href="payment-terms">Payment Terms</a>
+
+        </div>
+
+        <div>
+
+            <a href="terms">Terms & Conditions</a>
+
+            <span class="footer-divider">|</span>
+
+            <a href="blog">Blog & Stories</a>
+
+        </div>
+
+    </div>
+
+
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+
+    </p>
+
+
+
+    <p style="margin-top:8px;">
+
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+
+
+<div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:9999;">
+
+<img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;" alt="Enlarged View">
+
+</div>
+
+
 
 <script>
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
 
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        });
+const images = document.querySelectorAll('.gallery img');
+
+images.forEach(img => {
+
+img.addEventListener('click', () => {
+
+document.getElementById('lightbox').style.display='flex';
+
+document.getElementById('lightbox-img').src=img.src;
+
+});
+
+});
+
+function closeLightbox(){
+
+document.getElementById('lightbox').style.display='none';
+
+}
+
+
+
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+const navMenu = document.querySelector('.nav-menu');
+
+
+
+mobileMenuBtn.addEventListener('click', (e) => {
+
+    e.stopPropagation();
+
+    navMenu.classList.toggle('active');
+
+    if(navMenu.classList.contains('active')) {
+
+        mobileMenuBtn.textContent = '✕';
+
+    } else {
+
+        mobileMenuBtn.textContent = '☰';
+
+    }
+
+});
+
+
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+
+navLinks.forEach(link => {
+
+    link.addEventListener('click', () => {
+
+        navMenu.classList.remove('active');
+
+        mobileMenuBtn.textContent = '☰';
+
     });
 
-    function closeLightbox(){
-        lightbox.style.display = 'none';
-    }
+});
+
+
+
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+
+document.addEventListener('keydown', function(e){
+
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+
+    if(e.key === 'F12'){ e.preventDefault(); }
+
+});
+
 </script>
 
 </body>
-</html>
+
+</html> 
+
