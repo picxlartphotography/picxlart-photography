@@ -48,12 +48,12 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Client Banner Section (Fix for Mobile & Image Cutting) */
+    /* Client Banner Section (1920x1080 Cover Fix) */
     .client-hero {
         position: relative;
         width: 100%;
         height: 70vh;
-        min-height: 350px;
+        min-height: 400px;
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -63,8 +63,7 @@
     .client-hero img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* ছবি কাটবে না, পুরোটা দেখাবে */
-        display: block;
+        object-fit: cover;
     }
 
     /* Client Header Title & Meta */
