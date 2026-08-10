@@ -93,31 +93,68 @@
         margin-right: 5px;
     }
 
-    /* 5 Images in One Line (Vertical Grid Layout) */
-    .gallery{
+    /* Section Headings */
+    .section-title {
+        text-align: center;
+        color: #d4af37;
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        margin: 40px 0 20px 0;
+        text-transform: uppercase;
+    }
+
+    /* 1. Horizontal Photos Grid (2048 x 1365 Landscape Ratio) */
+    .horizontal-gallery{
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-        padding: 0 30px 60px 30px;
-        max-width: 1650px;
+        grid-template-columns: repeat(3, 1fr); /* এক লাইনে ৩টা করে বড় হরিজেন্টাল ছবি */
+        gap: 25px;
+        padding: 0 40px 40px 40px;
+        max-width: 1550px;
         margin: auto;
     }
-    .gallery-item {
+    .horizontal-item {
         overflow: hidden;
         background: #121212;
         border-radius: 4px;
-        aspect-ratio: 2/3; /* ভার্টিকাল বা লম্বালম্বি ছবির পারফেক্ট রেশিও */
+        aspect-ratio: 2048 / 1365; /* আপনার হরিজেন্টাল সাইজের নিখুঁত রেশিও */
         box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    .gallery img{
-        width:100%;
-        height:100%;
-        object-fit: contain; /* ছবি কাটবে না, একদম অরিজিনাল সাইজ ও রেশিও বজায় রাখবে */
-        background: #000;
+    .horizontal-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: transform 0.6s ease;
         cursor: pointer;
     }
-    .gallery img:hover{
+    .horizontal-item img:hover {
+        transform: scale(1.03);
+    }
+
+    /* 2. Vertical Photos Grid (5 Images in One Line) */
+    .vertical-gallery{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* এক লাইনে ৫টি ভার্টিকাল ছবি */
+        gap: 20px;
+        padding: 0 40px 60px 40px;
+        max-width: 1650px;
+        margin: auto;
+    }
+    .vertical-item {
+        overflow: hidden;
+        background: #121212;
+        border-radius: 4px;
+        aspect-ratio: 2/3; /* ভার্টিকাল ছবির রেশিও */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .vertical-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+        cursor: pointer;
+    }
+    .vertical-item img:hover {
         transform: scale(1.03);
     }
 
@@ -140,8 +177,9 @@
     .footer-divider { color:#333; margin: 0 8px; }
 
     /* Mobile & Tablet Responsive */
-    @media(max-width: 1200px){
-        .gallery { grid-template-columns: repeat(3, 1fr); } /* ট্যাবলেটে ৩টা করে দেখাবে */
+    @media(max-width: 1024px){
+        .horizontal-gallery { grid-template-columns: repeat(2, 1fr); }
+        .vertical-gallery { grid-template-columns: repeat(3, 1fr); }
     }
     @media(max-width: 768px){
         .navbar{ padding:12px 24px; }
@@ -160,7 +198,8 @@
             font-size: 15px; letter-spacing: 2px; color: #d4af37 !important;
             width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
-        .gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; gap: 15px; } /* মোবাইলে ২টি করে পাশাপাশি দেখাবে */
+        .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; gap: 15px; }
+        .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; gap: 15px; }
         .client-hero { height: 35vh; min-height: 250px; }
         .client-header h1 { font-size: 30px; }
     }
@@ -206,23 +245,35 @@
     </div>
 </div>
 
-<!-- Client Photo Grid (15 Images - 5 per row) -->
-<div class="gallery">
-    <div class="gallery-item"><img src="ms1.jpg" alt="Photo 1"></div>
-    <div class="gallery-item"><img src="ms2.jpg" alt="Photo 2"></div>
-    <div class="gallery-item"><img src="ms3.jpg" alt="Photo 3"></div>
-    <div class="gallery-item"><img src="ms4.jpg" alt="Photo 4"></div>
-    <div class="gallery-item"><img src="ms5.jpg" alt="Photo 5"></div>
-    <div class="gallery-item"><img src="ms6.jpg" alt="Photo 6"></div>
-    <div class="gallery-item"><img src="ms7.jpg" alt="Photo 7"></div>
-    <div class="gallery-item"><img src="ms8.jpg" alt="Photo 8"></div>
-    <div class="gallery-item"><img src="ms9.jpg" alt="Photo 9"></div>
-    <div class="gallery-item"><img src="ms10.jpg" alt="Photo 10"></div>
-    <div class="gallery-item"><img src="ms11.jpg" alt="Photo 11"></div>
-    <div class="gallery-item"><img src="ms12.jpg" alt="Photo 12"></div>
-    <div class="gallery-item"><img src="ms13.jpg" alt="Photo 13"></div>
-    <div class="gallery-item"><img src="ms14.jpg" alt="Photo 14"></div>
-    <div class="gallery-item"><img src="ms15.jpg" alt="Photo 15"></div>
+<!-- 1. Horizontal Photos Section (15 Images - 2048x1365 size ratio) -->
+<div class="horizontal-gallery">
+    <div class="horizontal-item"><img src="ms1.jpg" alt="Horizontal Photo 1"></div>
+    <div class="horizontal-item"><img src="ms2.jpg" alt="Horizontal Photo 2"></div>
+    <div class="horizontal-item"><img src="ms3.jpg" alt="Horizontal Photo 3"></div>
+    <div class="horizontal-item"><img src="ms4.jpg" alt="Horizontal Photo 4"></div>
+    <div class="horizontal-item"><img src="ms5.jpg" alt="Horizontal Photo 5"></div>
+    <div class="horizontal-item"><img src="ms6.jpg" alt="Horizontal Photo 6"></div>
+    <div class="horizontal-item"><img src="ms7.jpg" alt="Horizontal Photo 7"></div>
+    <div class="horizontal-item"><img src="ms8.jpg" alt="Horizontal Photo 8"></div>
+    <div class="horizontal-item"><img src="ms9.jpg" alt="Horizontal Photo 9"></div>
+    <div class="horizontal-item"><img src="ms10.jpg" alt="Horizontal Photo 10"></div>
+    <div class="horizontal-item"><img src="ms11.jpg" alt="Horizontal Photo 11"></div>
+    <div class="horizontal-item"><img src="ms12.jpg" alt="Horizontal Photo 12"></div>
+    <div class="horizontal-item"><img src="ms13.jpg" alt="Horizontal Photo 13"></div>
+    <div class="horizontal-item"><img src="ms14.jpg" alt="Horizontal Photo 14"></div>
+    <div class="horizontal-item"><img src="ms15.jpg" alt="Horizontal Photo 15"></div>
+</div>
+
+<!-- Section Divider Title for Vertical Photos -->
+<div class="section-title">Special Moments</div>
+
+<!-- 2. Vertical Photos Section (5 Images in One Line) -->
+<div class="vertical-gallery">
+    <div class="vertical-item"><img src="mv1.jpg" alt="Vertical Photo 1"></div>
+    <div class="vertical-item"><img src="mv2.jpg" alt="Vertical Photo 2"></div>
+    <div class="vertical-item"><img src="mv3.jpg" alt="Vertical Photo 3"></div>
+    <div class="vertical-item"><img src="mv4.jpg" alt="Vertical Photo 4"></div>
+    <div class="vertical-item"><img src="mv5.jpg" alt="Vertical Photo 5"></div>
 </div>
 
 <!-- Footer Framework -->
@@ -258,9 +309,9 @@
 </div>
 
 <script>
-// Lightbox Logic
-const images = document.querySelectorAll('.gallery img');
-images.forEach(img => {
+// Lightbox Logic for both galleries
+const allImages = document.querySelectorAll('.horizontal-item img, .vertical-item img');
+allImages.forEach(img => {
     img.addEventListener('click', () => {
         document.getElementById('lightbox').style.display='flex';
         document.getElementById('lightbox-img').src=img.src;
