@@ -88,8 +88,9 @@
         text-transform: uppercase;
         margin-bottom: 40px;
     }
+    /* Location and Heart Icons Color Changed to Red (#ff3333) */
     .client-meta span i {
-        color: #d4af37;
+        color: #ff3333;
         margin-right: 5px;
     }
 
@@ -104,10 +105,10 @@
         text-transform: uppercase;
     }
 
-    /* 1. Horizontal Photos Grid (2048 x 1365 Landscape Ratio) */
+    /* 1. Horizontal Photos Grid (15 Images) */
     .horizontal-gallery{
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* এক লাইনে ৩টা করে বড় হরিজেন্টাল ছবি */
+        grid-template-columns: repeat(3, 1fr);
         gap: 25px;
         padding: 0 40px 40px 40px;
         max-width: 1550px;
@@ -117,7 +118,7 @@
         overflow: hidden;
         background: #121212;
         border-radius: 4px;
-        aspect-ratio: 2048 / 1365; /* আপনার হরিজেন্টাল সাইজের নিখুঁত রেশিও */
+        aspect-ratio: 2048 / 1365;
         box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
     .horizontal-item img {
@@ -134,7 +135,7 @@
     /* 2. Vertical Photos Grid (5 Images in One Line) */
     .vertical-gallery{
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* এক লাইনে ৫টি ভার্টিকাল ছবি */
+        grid-template-columns: repeat(5, 1fr);
         gap: 20px;
         padding: 0 40px 60px 40px;
         max-width: 1650px;
@@ -144,7 +145,7 @@
         overflow: hidden;
         background: #121212;
         border-radius: 4px;
-        aspect-ratio: 2/3; /* ভার্টিকাল ছবির রেশিও */
+        aspect-ratio: 2/3;
         box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
     .vertical-item img {
@@ -245,7 +246,7 @@
     </div>
 </div>
 
-<!-- 1. Horizontal Photos Section (15 Images - 2048x1365 size ratio) -->
+<!-- 1. Horizontal Photos Section (15 Images) -->
 <div class="horizontal-gallery">
     <div class="horizontal-item"><img src="ms1.jpg" alt="Horizontal Photo 1"></div>
     <div class="horizontal-item"><img src="ms2.jpg" alt="Horizontal Photo 2"></div>
@@ -267,7 +268,7 @@
 <!-- Section Divider Title for Vertical Photos -->
 <div class="section-title">Special Moments</div>
 
-<!-- 2. Vertical Photos Section (5 Images in One Line) -->
+<!-- 2. Vertical Photos Section (5 Images) -->
 <div class="vertical-gallery">
     <div class="vertical-item"><img src="mv1.jpg" alt="Vertical Photo 1"></div>
     <div class="vertical-item"><img src="mv2.jpg" alt="Vertical Photo 2"></div>
