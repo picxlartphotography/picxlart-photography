@@ -46,12 +46,12 @@
         width: 100%; 
         height: 100%; 
         object-fit: cover; 
-        object-position: center 30%; /* মোবাইল ভিউ */
+        object-position: center 30%; /* মোবাইল ভিউ অপরিবর্তিত থাকবে */
     }
-    /* ডেস্কটপ ভিউয়ের জন্য পজিশন ঠিক করা (কাপলদের মাথা না কাটার জন্য) */
+    /* ডেস্কটপ ভিউয়ের জন্য কভার ছবি নিচে নামানোর কোড */
     @media(min-width: 769px) {
         .client-hero img {
-            object-position: center 20%; 
+            object-position: center 75%; 
         }
     }
 
