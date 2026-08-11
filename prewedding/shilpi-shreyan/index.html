@@ -40,17 +40,18 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner & Cover Position Fix */
+    /* Hero Banner with Desktop Fix */
     .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
     .client-hero img { 
         width: 100%; 
         height: 100%; 
         object-fit: cover; 
-        object-position: center 30%; 
+        object-position: center 30%; /* মোবাইল ভিউ */
     }
+    /* ডেস্কটপ ভিউয়ের জন্য পজিশন ঠিক করা (কাপলদের মাথা না কাটার জন্য) */
     @media(min-width: 769px) {
         .client-hero img {
-            object-position: center 15%; 
+            object-position: center 20%; 
         }
     }
 
@@ -114,7 +115,7 @@
 </head>
 <body>
 
-<!-- Header Navigation Bar -->
+<!-- Navbar -->
 <div class="navbar">
    <div class="nav-logo">
         <a href="../../"><img src="../../logo.png" alt="Logo"></a>
@@ -136,12 +137,12 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Top Big Cover Banner -->
+<!-- Cover Banner -->
 <div class="client-hero">
     <img src="sscover.jpg" alt="Couple Cover">
 </div>
 
-<!-- Couple Name & Location -->
+<!-- Header -->
 <div class="client-header">
     <h1>Shilpi & Shreyan</h1>
     <div class="client-meta">
@@ -151,7 +152,7 @@
     </div>
 </div>
 
-<!-- 1. Horizontal Photos Section (10 Images: ss1.jpg to ss10.jpg) -->
+<!-- Horizontal Photos (10 Images) -->
 <div class="horizontal-gallery">
     <div class="horizontal-item"><img src="ss1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
     <div class="horizontal-item"><img src="ss2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
@@ -167,7 +168,7 @@
 
 <div class="section-title">Special Moments</div>
 
-<!-- 2. Vertical Photos Section (5 Images: ssr1.jpg to ssr5.jpg) -->
+<!-- Vertical Photos (5 Images) -->
 <div class="vertical-gallery">
     <div class="vertical-item"><img src="ssr1.jpg" alt="V Photo 1" onclick="openLightbox(this.src)"></div>
     <div class="vertical-item"><img src="ssr2.jpg" alt="V Photo 2" onclick="openLightbox(this.src)"></div>
@@ -176,74 +177,29 @@
     <div class="vertical-item"><img src="ssr5.jpg" alt="V Photo 5" onclick="openLightbox(this.src)"></div>
 </div>
 
-<!-- Footer Framework -->
+<!-- Footer -->
 <footer>
     <div class="footer-links-container">
-        <div>
-            <a href="../../faq">FAQ</a>
-            <span class="footer-divider">|</span>
-            <a href="../../payment">Online Payment</a>
-        </div>
-        <div>
-            <a href="../../privacy-policy">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="../../payment-terms">Payment Terms</a>
-        </div>
-        <div>
-            <a href="../../terms">Terms & Conditions</a>
-            <span class="footer-divider">|</span>
-            <a href="../../blog">Blog & Stories</a>
-        </div>
+        <div><a href="../../faq">FAQ</a><span class="footer-divider">|</span><a href="../../payment">Online Payment</a></div>
+        <div><a href="../../privacy-policy">Privacy Policy</a><span class="footer-divider">|</span><a href="../../payment-terms">Payment Terms</a></div>
+        <div><a href="../../terms">Terms & Conditions</a><span class="footer-divider">|</span><a href="../../blog">Blog & Stories</a></div>
     </div>
-    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
-        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
-    </p>
-    <p style="margin-top:8px;">
-        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
-    </p>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
+    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
 </footer>
 
-<!-- Lightbox Modal -->
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Enlarged View">
-</div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="Enlarged View"></div>
 
 <script>
-function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').style.display = 'flex';
-}
-function closeLightbox(){
-    document.getElementById('lightbox').style.display = 'none';
-}
-
+function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+function closeLightbox(){ document.getElementById('lightbox').style.display = 'none'; }
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
+mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰'; });
+document.querySelectorAll('.nav-menu a').forEach(link => { link.addEventListener('click', () => { navMenu.classList.remove('active'); mobileMenuBtn.textContent = '☰'; }); });
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('keydown', function(e){
-    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
-    if(e.key === 'F12'){ e.preventDefault(); }
-});
+document.addEventListener('keydown', function(e){ if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); } if(e.key === 'F12'){ e.preventDefault(); } });
 </script>
 </body>
 </html>
