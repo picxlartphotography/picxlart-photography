@@ -40,9 +40,21 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner */
-    .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; }
+    /* Hero Banner & Desktop Cover Position Fix */
+    .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
+    .client-hero img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center 30%; 
+    }
+
+    /* শুধু ডেস্কটপ বা বড় স্ক্রিনের জন্য কভার ছবি নিচে নামানোর কোড যাতে মাথা না কাটে */
+    @media(min-width: 769px) {
+        .client-hero img {
+            object-position: center 60%; 
+        }
+    }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -225,7 +237,7 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-const navLinks = दुसরে = document.querySelectorAll('.nav-menu a'); // safe query
+const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
