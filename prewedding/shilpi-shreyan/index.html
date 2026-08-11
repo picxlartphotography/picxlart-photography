@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DLCSJBGXZ6');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shilpi & Shreyan Pre-Wedding | Picxlart</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Global Styling */
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
+
+    /* Navbar */
+    .navbar{
+        position:fixed; top:0; left:0; width:100%;
+        background:rgba(10,10,10,0.92); backdrop-filter:blur(12px);
+        display:flex; justify-content:space-between; align-items:center;
+        padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-menu{ display:flex; gap:30px; align-items: center; }
+    .nav-menu a{
+        color:#e0e0e0; text-decoration:none; font-weight:500;
+        letter-spacing: 1px; text-transform: uppercase; font-size: 13px;
+        transition: all 0.3s ease; position: relative; padding: 4px 0;
+    }
+    .nav-menu a::after {
+        content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease;
+    }
+    .nav-menu a:hover::after { width: 100%; }
+    .nav-menu a:hover{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
+
+    /* Hero Banner & Cover Position Fix */
+    .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
+    .client-hero img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center 30%; 
+    }
+    @media(min-width: 769px) {
+        .client-hero img {
+            object-position: center 15%; 
+        }
+    }
+
+    /* Header & Meta */
+    .client-header { text-align: center; padding: 40px 20px 20px 20px; }
+    .client-header h1 { color: #d4af37; font-size: 42px; font-weight: 500; letter-spacing: 3px; margin-bottom: 10px; }
+    .client-meta { display: flex; justify-content: center; gap: 20px; font-size: 13px; letter-spacing: 2px; color: #a0a0a0; text-transform: uppercase; margin-bottom: 40px; }
+    .client-meta span i { color: #ff3333; margin-right: 5px; }
+
+    /* Galleries */
+    .section-title { text-align: center; color: #d4af37; font-size: 26px; font-weight: 500; letter-spacing: 2px; margin: 40px 0 20px 0; text-transform: uppercase; }
+    .horizontal-gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 0 40px 40px 40px; max-width: 1550px; margin: auto; }
+    .horizontal-item { overflow: hidden; background: #121212; border-radius: 4px; aspect-ratio: 2048 / 1365; box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; }
+    .horizontal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .horizontal-item img:hover { transform: scale(1.03); }
+
+    .vertical-gallery{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 40px 60px 40px; max-width: 1650px; margin: auto; }
+    .vertical-item { overflow: hidden; background: #121212; border-radius: 4px; aspect-ratio: 2/3; box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; }
+    .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .vertical-item img:hover { transform: scale(1.03); }
+
+    /* Lightbox Modal */
+    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); justify-content:center; align-items:center; z-index:999999; }
+    #lightbox img { max-width:92%; max-height:92vh; border-radius:3px; box-shadow:0 0 40px rgba(0,0,0,0.8); object-fit: contain; }
+
+    /* Footer */
+    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Responsive */
+    @media(max-width: 1100px){
+        .horizontal-gallery { grid-template-columns: repeat(2, 1fr); }
+        .vertical-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media(max-width: 768px){
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+        .nav-menu {
+            position: fixed; top: 60px; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px);
+            flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0;
+            transform: translateY(-150%); transition: transform 0.4s ease-in-out;
+            z-index: 999998; border-bottom: 3px solid #d4af37;
+        }
+        .nav-menu.active { transform: translateY(0); }
+        .nav-menu a {
+            font-size: 15px; letter-spacing: 2px; color: #d4af37 !important;
+            width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
+        .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
+        .client-hero { height: 35vh; min-height: 250px; }
+        .client-header h1 { font-size: 30px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Header Navigation Bar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="../../"><img src="../../logo.png" alt="Logo"></a>
+    </div>
+    <div class="nav-menu">
+        <a href="../../">Home</a>
+        <a href="../../#gallery">Gallery</a>
+        <a href="../../films">Films</a>
+        <a href="../../packages">Packages</a>
+        <a href="../../reviews">Reviews</a>
+        <a href="../../#why">Why Picxlart</a>
+        <a href="../../blog">Blog</a>
+    </div>
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Top Big Cover Banner -->
+<div class="client-hero">
+    <img src="sscover.jpg" alt="Couple Cover">
+</div>
+
+<!-- Couple Name & Location -->
+<div class="client-header">
+    <h1>Shilpi & Shreyan</h1>
+    <div class="client-meta">
+        <span><i class="fas fa-map-marker-alt"></i> Rajbari Vibe</span>
+        <span>•</span>
+        <span><i class="fas fa-heart"></i> Pre-Wedding</span>
+    </div>
+</div>
+
+<!-- 1. Horizontal Photos Section (10 Images: ss1.jpg to ss10.jpg) -->
+<div class="horizontal-gallery">
+    <div class="horizontal-item"><img src="ss1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss3.jpg" alt="Photo 3" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss4.jpg" alt="Photo 4" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss5.jpg" alt="Photo 5" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss6.jpg" alt="Photo 6" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss7.jpg" alt="Photo 7" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss8.jpg" alt="Photo 8" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss9.jpg" alt="Photo 9" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="ss10.jpg" alt="Photo 10" onclick="openLightbox(this.src)"></div>
+</div>
+
+<div class="section-title">Special Moments</div>
+
+<!-- 2. Vertical Photos Section (5 Images: ssr1.jpg to ssr5.jpg) -->
+<div class="vertical-gallery">
+    <div class="vertical-item"><img src="ssr1.jpg" alt="V Photo 1" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="ssr2.jpg" alt="V Photo 2" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="ssr3.jpg" alt="V Photo 3" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="ssr4.jpg" alt="V Photo 4" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="ssr5.jpg" alt="V Photo 5" onclick="openLightbox(this.src)"></div>
+</div>
+
+<!-- Footer Framework -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="../../faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="../../payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="../../privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="../../payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="../../terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="../../blog">Blog & Stories</a>
+        </div>
+    </div>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged View">
+</div>
+
+<script>
+function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+function closeLightbox(){
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
+</body>
+</html>
