@@ -184,7 +184,7 @@
 <!-- Couple Cards Section -->
 <div class="cards-container">
     
-    <!-- 1. Moumita & Subhadeep Card -->
+    <!-- 1. Moumita & Subhadeep -->
     <div class="card">
         <a href="moumita-subhadeep/">
             <div class="card-img"><img src="moumita-subhadeep/mscover.jpg" alt="Moumita & Subhadeep"></div>
@@ -195,7 +195,7 @@
         </a>
     </div>
 
-    <!-- 2. Abhinaba & Subhra Card -->
+    <!-- 2. Abhinaba & Subhra -->
     <div class="card">
         <a href="abhinaba-subhra/">
             <div class="card-img"><img src="abhinaba-subhra/ascover.jpg" alt="Abhinaba & Subhra"></div>
@@ -206,7 +206,7 @@
         </a>
     </div>
 
-    <!-- 3. Sushmina & Baburam Card -->
+    <!-- 3. Sushmina & Baburam -->
     <div class="card">
         <a href="sushmina-baburam/">
             <div class="card-img"><img src="sushmina-baburam/sbcover.jpg" alt="Sushmina & Baburam"></div>
@@ -217,7 +217,7 @@
         </a>
     </div>
 
-    <!-- 4. Shilpi & Shreyan Card -->
+    <!-- 4. Shilpi & Shreyan -->
     <div class="card">
         <a href="shilpi-shreyan/">
             <div class="card-img"><img src="shilpi-shreyan/sscover.jpg" alt="Shilpi & Shreyan"></div>
@@ -228,13 +228,24 @@
         </a>
     </div>
 
-    <!-- 5. Surajit & Swati Card -->
+    <!-- 5. Surajit & Swati -->
     <div class="card">
         <a href="surajit-swati/">
             <div class="card-img"><img src="surajit-swati/sswcover.jpg" alt="Surajit & Swati"></div>
             <div class="card-content">
                 <h3>Surajit & Swati</h3>
                 <p>Bishnupur • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 6. Pritam & Sunita -->
+    <div class="card">
+        <a href="pritam-sunita/">
+            <div class="card-img"><img src="pritam-sunita/pscover.jpg" alt="Pritam & Sunita"></div>
+            <div class="card-content">
+                <h3>Pritam & Sunita</h3>
+                <p>Kolkata • Pre-wedding</p>
             </div>
         </a>
     </div>
@@ -269,35 +280,14 @@
 </footer>
 
 <script>
-// Mobile Menu Logic
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
+mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰'; });
 const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-// Security Protections
+navLinks.forEach(link => { link.addEventListener('click', () => { navMenu.classList.remove('active'); mobileMenuBtn.textContent = '☰'; }); });
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('keydown', function(e){
-    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
-    if(e.key === 'F12'){ e.preventDefault(); }
-});
+document.addEventListener('keydown', function(e){ if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); } if(e.key === 'F12'){ e.preventDefault(); } });
 </script>
 </body>
 </html>
