@@ -1,81 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
-<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DLCSJBGXZ6');</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pre Wedding Stories | Picxlart Photography</title>
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+    /* Global Base Styling */
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
-    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
-    .nav-logo img{ height:60px; width:auto; }
-    .nav-menu{ display:flex; gap:35px; align-items: center; }
-    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
-    .nav-menu a:hover{ color:#d4af37; }
-    .menu-toggle { display: none; color: #d4af37; font-size: 28px; cursor: pointer; z-index: 1000000; }
-    .main-title { text-align: center; color: #d4af37; font-size: 36px; font-weight: 500; letter-spacing: 3px; margin: 40px 0; text-transform: uppercase; }
-    .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; padding: 0 40px 80px 40px; max-width: 1400px; margin: auto; }
-    
-    /* Card with Golden Glow Hover Effect */
-    .card { background: #121212; border-radius: 6px; overflow: hidden; transition: all 0.4s ease; border: 1px solid rgba(212,175,55,0.15); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-    .card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 30px rgba(212,175,55,0.3); }
-    
-    .card a { text-decoration: none; color: inherit; display: block; }
-    .card-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .card:hover .card-img img { transform: scale(1.05); }
-    .card-content { padding: 25px 20px; text-align: center; background: #121212; }
-    .card-content h3 { color: #d4af37; font-size: 22px; margin-bottom: 8px; transition: color 0.3s ease; }
-    .card-content p { color: #a0a0a0; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
-    
-    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; }
+
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed; top:0; left:0; width:100%;
+        background:rgba(10,10,10,0.92); backdrop-filter:blur(12px);
+        display:flex; justify-content:space-between; align-items:center;
+        padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-menu{ display:flex; gap:30px; align-items: center; }
+    .nav-menu a{
+        color:#e0e0e0; text-decoration:none; font-weight:500;
+        letter-spacing: 1px; text-transform: uppercase; font-size: 13px;
+        transition: all 0.3s ease; position: relative; padding: 4px 0;
+    }
+    .nav-menu a::after {
+        content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease;
+    }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
+
+    /* Main Page Heading */
+    .main-title {
+        text-align: center;
+        color: #d4af37;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: 3px;
+        margin: 40px 0;
+        text-transform: uppercase;
+    }
+
+    /* Cards Container (Grid Layout) */
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 30px;
+        padding: 0 40px 80px 40px;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    /* Individual Card Style with Golden Glow Hover */
+    .card {
+        background: #121212;
+        border-radius: 6px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(212,175,55,0.15);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        border-color: rgba(212,175,55,0.5);
+    }
+    .card a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    .card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+    }
+    .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+    .card:hover .card-img img {
+        transform: scale(1.05);
+    }
+    .card-content {
+        padding: 25px 20px;
+        text-align: center;
+        background: #121212;
+    }
+    .card-content h3 {
+        color: #d4af37;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+    .card-content p {
+        color: #a0a0a0;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* Enterprise Footer Architecture */
+    footer {
+        text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a;
+    }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Mobile View Responsive */
     @media(max-width:768px){
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
-        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); flex-direction: column; transform: translateY(-150%); transition: transform 0.4s ease; z-index: 999998; }
+        .nav-social { display: none !important; }
+        .nav-menu {
+            position: fixed; top: 60px; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px);
+            flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0;
+            transform: translateY(-150%); transition: transform 0.4s ease-in-out;
+            z-index: 999998; border-bottom: 3px solid #d4af37;
+        }
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a { width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
-        .cards-container { grid-template-columns: 1fr; padding: 0 20px 50px 20px; }
+        .nav-menu a {
+            font-size: 15px; letter-spacing: 2px; color: #d4af37 !important;
+            width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .cards-container { grid-template-columns: 1fr; padding: 0 20px 50px 20px; gap: 20px; }
+        .main-title { font-size: 26px; }
     }
 </style>
 </head>
+
 <body>
 
+<!-- Header Navigation Bar -->
 <div class="navbar">
-   <div class="nav-logo"><a href="../"><img src="../logo.png" alt="Logo"></a></div>
-   <div class="nav-menu">
-       <a href="../">Home</a><a href="../#gallery" class="active">Gallery</a><a href="../films">Films</a><a href="../packages">Packages</a><a href="../reviews">Reviews</a><a href="../blog">Blog</a>
-   </div>
-   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+   <div class="nav-logo">
+        <a href="../"><img src="../logo.png" alt="Logo"></a>
+    </div>
+    <div class="nav-menu">
+        <a href="../">Home</a>
+        <a href="../#gallery" class="active">Gallery</a>
+        <a href="../films">Films</a>
+        <a href="../packages">Packages</a>
+        <a href="../reviews">Reviews</a>
+        <a href="../#why">Why Picxlart</a>
+        <a href="../blog">Blog</a>
+    </div>
+    <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
+<!-- Main Page Title -->
 <h1 class="main-title">Pre Wedding Stories</h1>
 
+<!-- Couple Cards Section -->
 <div class="cards-container">
-    <div class="card"><a href="moumita-subhadeep/"><div class="card-img"><img src="moumita-subhadeep/mscover.jpg"></div><div class="card-content"><h3>Moumita & Subhadeep</h3><p>North Bengal • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="abhinaba-subhra/"><div class="card-img"><img src="abhinaba-subhra/ascover.jpg"></div><div class="card-content"><h3>Abhinaba & Subhra</h3><p>Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="sushmina-baburam/"><div class="card-img"><img src="sushmina-baburam/sbcover.jpg"></div><div class="card-content"><h3>Sushmina & Baburam</h3><p>Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="shilpi-shreyan/"><div class="card-img"><img src="shilpi-shreyan/sscover.jpg"></div><div class="card-content"><h3>Shilpi & Shreyan</h3><p>Rajbari Vibe • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="surajit-swati/"><div class="card-img"><img src="surajit-swati/sswcover.jpg"></div><div class="card-content"><h3>Surajit & Swati</h3><p>Bishnupur • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="pritam-sunita/"><div class="card-img"><img src="pritam-sunita/pscover.jpg"></div><div class="card-content"><h3>Pritam & Sunita</h3><p>Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="malyashree-arjun/"><div class="card-img"><img src="malyashree-arjun/macover.jpg"></div><div class="card-content"><h3>Malyashree & Arjun</h3><p>Newtown Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="shounik-pranati/"><div class="card-img"><img src="shounik-pranati/spcover.jpg"></div><div class="card-content"><h3>Dr. Shounik & Dr. Pranati</h3><p>Murshidabad • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="pushan-nilanjana/"><div class="card-img"><img src="pushan-nilanjana/pncover.jpg"></div><div class="card-content"><h3>Dr. Pushan & Nilanjana</h3><p>Nature Bankura • Casual Pre-wedding</p></div></a></div>
-    <div class="card"><a href="shalini-anirban/"><div class="card-img"><img src="shalini-anirban/sacover.jpg"></div><div class="card-content"><h3>Shalini & Anirban</h3><p>Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="tuhin-tiyasha/"><div class="card-img"><img src="tuhin-tiyasha/ttcover.jpg"></div><div class="card-content"><h3>Dr. Tuhin & Dr. Tiyasha</h3><p>Kolkata • Pre-wedding</p></div></a></div>
-    <div class="card"><a href="sanjay-krittika/"><div class="card-img"><img src="sanjay-krittika/skcover.jpg"></div><div class="card-content"><h3>Sanjay & Krittika</h3><p>Purulia & Jhargram • Pre-wedding</p></div></a></div>
+    
+    <!-- 1. Moumita & Subhadeep -->
+    <div class="card">
+        <a href="moumita-subhadeep/">
+            <div class="card-img"><img src="moumita-subhadeep/mscover.jpg" alt="Moumita & Subhadeep"></div>
+            <div class="card-content">
+                <h3>Moumita & Subhadeep</h3>
+                <p>North Bengal • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 2. Abhinaba & Subhra -->
+    <div class="card">
+        <a href="abhinaba-subhra/">
+            <div class="card-img"><img src="abhinaba-subhra/ascover.jpg" alt="Abhinaba & Subhra"></div>
+            <div class="card-content">
+                <h3>Abhinaba & Subhra</h3>
+                <p>Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 3. Sushmina & Baburam -->
+    <div class="card">
+        <a href="sushmina-baburam/">
+            <div class="card-img"><img src="sushmina-baburam/sbcover.jpg" alt="Sushmina & Baburam"></div>
+            <div class="card-content">
+                <h3>Sushmina & Baburam</h3>
+                <p>Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 4. Shilpi & Shreyan -->
+    <div class="card">
+        <a href="shilpi-shreyan/">
+            <div class="card-img"><img src="shilpi-shreyan/sscover.jpg" alt="Shilpi & Shreyan"></div>
+            <div class="card-content">
+                <h3>Shilpi & Shreyan</h3>
+                <p>Rajbari Vibe • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 5. Surajit & Swati -->
+    <div class="card">
+        <a href="surajit-swati/">
+            <div class="card-img"><img src="surajit-swati/sswcover.jpg" alt="Surajit & Swati"></div>
+            <div class="card-content">
+                <h3>Surajit & Swati</h3>
+                <p>Bishnupur • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 6. Pritam & Sunita -->
+    <div class="card">
+        <a href="pritam-sunita/">
+            <div class="card-img"><img src="pritam-sunita/pscover.jpg" alt="Pritam & Sunita"></div>
+            <div class="card-content">
+                <h3>Pritam & Sunita</h3>
+                <p>Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 7. Malyashree & Arjun -->
+    <div class="card">
+        <a href="malyashree-arjun/">
+            <div class="card-img"><img src="malyashree-arjun/macover.jpg" alt="Malyashree & Arjun"></div>
+            <div class="card-content">
+                <h3>Malyashree & Arjun</h3>
+                <p>Newtown Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 8. Dr. Shounik & Dr. Pranati -->
+    <div class="card">
+        <a href="shounik-pranati/">
+            <div class="card-img"><img src="shounik-pranati/spcover.jpg" alt="Dr. Shounik & Dr. Pranati"></div>
+            <div class="card-content">
+                <h3>Dr. Shounik & Dr. Pranati</h3>
+                <p>Murshidabad • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 9. Dr. Pushan & Nilanjana -->
+    <div class="card">
+        <a href="pushan-nilanjana/">
+            <div class="card-img"><img src="pushan-nilanjana/pncover.jpg" alt="Dr. Pushan & Nilanjana"></div>
+            <div class="card-content">
+                <h3>Dr. Pushan & Nilanjana</h3>
+                <p>Nature Bankura • Casual Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 10. Shalini & Anirban -->
+    <div class="card">
+        <a href="shalini-anirban/">
+            <div class="card-img"><img src="shalini-anirban/sacover.jpg" alt="Shalini & Anirban"></div>
+            <div class="card-content">
+                <h3>Shalini & Anirban</h3>
+                <p>Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 11. Dr. Tuhin & Dr. Tiyasha -->
+    <div class="card">
+        <a href="tuhin-tiyasha/">
+            <div class="card-img"><img src="tuhin-tiyasha/ttcover.jpg" alt="Dr. Tuhin & Dr. Tiyasha"></div>
+            <div class="card-content">
+                <h3>Dr. Tuhin & Dr. Tiyasha</h3>
+                <p>Kolkata • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 12. Sanjay & Krittika -->
+    <div class="card">
+        <a href="sanjay-krittika/">
+            <div class="card-img"><img src="sanjay-krittika/skcover.jpg" alt="Sanjay & Krittika"></div>
+            <div class="card-content">
+                <h3>Sanjay & Krittika</h3>
+                <p>Purulia & Jhargram • Pre-wedding</p>
+            </div>
+        </a>
+    </div>
+
 </div>
 
-<footer>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</footer>
+<!-- Footer Framework -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="../faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="../payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="../privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="../payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="../terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="../blog">Blog & Stories</a>
+        </div>
+    </div>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
 
 <script>
+// Mobile Menu Logic
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
-mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰'; });
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+// Security Protections
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
 </script>
 </body>
 </html>
