@@ -51,6 +51,10 @@
     .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
     .vertical-item img:hover { transform: scale(1.03); }
 
+    /* Lightbox Modal */
+    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); justify-content:center; align-items:center; z-index:999999; }
+    #lightbox img { max-width:92%; max-height:92vh; border-radius:3px; box-shadow:0 0 40px rgba(0,0,0,0.8); object-fit: contain; }
+
     /* Footer */
     footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; }
     .footer-links-container { margin-bottom:25px; line-height: 2.2; }
@@ -58,15 +62,51 @@
     .footer-links-container a:hover { color: #ffffff; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    @media(max-width: 768px){ .navbar{ padding:12px 24px; } .nav-social { display: none !important; } .menu-toggle { display: block; } .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); flex-direction: column; transform: translateY(-150%); transition: transform 0.4s ease-in-out; z-index: 999998; border-bottom: 3px solid #d4af37; } .nav-menu.active { transform: translateY(0); } .nav-menu a { width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); } }
+    /* Responsive for Tablets & Mobiles */
+    @media(max-width: 1100px){
+        .horizontal-gallery { grid-template-columns: repeat(2, 1fr); }
+        .vertical-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media(max-width: 768px){
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+        .nav-menu {
+            position: fixed; top: 60px; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px);
+            flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0;
+            transform: translateY(-150%); transition: transform 0.4s ease-in-out;
+            z-index: 999998; border-bottom: 3px solid #d4af37;
+        }
+        .nav-menu.active { transform: translateY(0); }
+        .nav-menu a {
+            font-size: 15px; letter-spacing: 2px; color: #d4af37 !important;
+            width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        /* মোবাইলের জন্য গ্যালারি লেআউট ঠিক করা (হরিজেন্টাল ১ কলাম এবং ভার্টিকাল ২ কলাম) */
+        .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
+        .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
+        .client-hero { height: 35vh; min-height: 250px; }
+        .client-header h1 { font-size: 30px; }
+    }
 </style>
 </head>
 <body>
 
+<!-- Header Navigation Bar -->
 <div class="navbar">
-    <div class="nav-logo"><a href="../../"><img src="../../logo.png" alt="Logo"></a></div>
+   <div class="nav-logo">
+        <a href="../../"><img src="../../logo.png" alt="Logo"></a>
+    </div>
     <div class="nav-menu">
-        <a href="../../">Home</a><a href="../../#gallery">Gallery</a><a href="../../films">Films</a><a href="../../packages">Packages</a><a href="../../reviews">Reviews</a><a href="../../#why">Why Picxlart</a><a href="../../blog">Blog</a>
+        <a href="../../">Home</a>
+        <a href="../../#gallery">Gallery</a>
+        <a href="../../films">Films</a>
+        <a href="../../packages">Packages</a>
+        <a href="../../reviews">Reviews</a>
+        <a href="../../#why">Why Picxlart</a>
+        <a href="../../blog">Blog</a>
     </div>
     <div class="nav-social">
         <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -76,8 +116,12 @@
     <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<div class="client-hero"><img src="sswcover.jpg" alt="Couple Cover"></div>
+<!-- Top Big Cover Banner -->
+<div class="client-hero">
+    <img src="sswcover.jpg" alt="Couple Cover">
+</div>
 
+<!-- Couple Name & Location -->
 <div class="client-header">
     <h1>Surajit & Swati</h1>
     <div class="client-meta">
@@ -87,32 +131,86 @@
     </div>
 </div>
 
+<!-- Horizontal Photos Section (15 Images: ssw1.jpg to ssw15.jpg) -->
 <div class="horizontal-gallery">
-    <script>for(let i=1; i<=15; i++) document.write('<div class="horizontal-item"><img src="ssw'+i+'.jpg" onclick="openLightbox(this.src)"></div>');</script>
+    <script>for(let i=1; i<=15; i++) document.write('<div class="horizontal-item"><img src="ssw'+i+'.jpg" alt="Photo '+i+'" onclick="openLightbox(this.src)"></div>');</script>
 </div>
 
 <div class="section-title">Special Moments</div>
 
+<!-- Vertical Photos Section (5 Images: sswr1.jpg to sswr5.jpg) -->
 <div class="vertical-gallery">
-    <script>for(let i=1; i<=5; i++) document.write('<div class="vertical-item"><img src="sswr'+i+'.jpg" onclick="openLightbox(this.src)"></div>');</script>
+    <script>for(let i=1; i<=5; i++) document.write('<div class="vertical-item"><img src="sswr'+i+'.jpg" alt="V Photo '+i+'" onclick="openLightbox(this.src)"></div>');</script>
 </div>
 
+<!-- Footer Framework -->
 <footer>
     <div class="footer-links-container">
-        <div><a href="../../faq">FAQ</a><span class="footer-divider">|</span><a href="../../payment">Online Payment</a></div>
-        <div><a href="../../privacy-policy">Privacy Policy</a><span class="footer-divider">|</span><a href="../../payment-terms">Payment Terms</a></div>
-        <div><a href="../../terms">Terms & Conditions</a><span class="footer-divider">|</span><a href="../../blog">Blog & Stories</a></div>
+        <div>
+            <a href="../../faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="../../payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="../../privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="../../payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="../../terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="../../blog">Blog & Stories</a>
+        </div>
     </div>
-    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
-    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="View"></div>
+<!-- Lightbox Modal -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged View">
+</div>
 
 <script>
-function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
-function closeLightbox(){ document.getElementById('lightbox').style.display = 'none'; }
-document.getElementById('mobileMenuBtn').onclick = () => document.querySelector('.nav-menu').classList.toggle('active');
+function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+function closeLightbox(){
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
 </script>
 </body>
 </html>
