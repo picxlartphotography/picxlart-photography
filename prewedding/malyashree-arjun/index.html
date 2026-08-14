@@ -28,10 +28,19 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner */
-    .client-hero { width: 100%; height: 85vh; min-height: 500px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-    @media(min-width: 769px) { .client-hero img { object-position: center 50%; } }
+    /* Hero Banner - Desktop Fix */
+    .client-hero { width: 100%; height: 75vh; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
+    .client-hero img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center 30%; /* মোবাইলের জন্য ঠিক রাখা হয়েছে */
+    }
+    @media(min-width: 769px) {
+        .client-hero img {
+            object-position: center 50%; /* ডেস্কটপের জন্য কভার ছবি সেন্টারে */
+        }
+    }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -117,7 +126,6 @@
     </div>
 </div>
 
-<!-- Horizontal Photos (1 to 15) -->
 <div class="horizontal-gallery">
     <div class="horizontal-item"><img src="ma1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
     <div class="horizontal-item"><img src="ma2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
@@ -138,7 +146,6 @@
 
 <div class="section-title">Special Moments</div>
 
-<!-- Vertical Photos (1 to 5) -->
 <div class="vertical-gallery">
     <div class="vertical-item"><img src="mar1.jpg" alt="V Photo 1" onclick="openLightbox(this.src)"></div>
     <div class="vertical-item"><img src="mar2.jpg" alt="V Photo 2" onclick="openLightbox(this.src)"></div>
