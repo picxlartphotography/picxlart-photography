@@ -30,8 +30,18 @@
 
     /* Hero Banner */
     .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-    @media(min-width: 769px) { .client-hero img { object-position: center 75%; } }
+    .client-hero img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center 30%; /* মোবাইল ভিউ অপরিবর্তিত থাকবে */
+    }
+    /* ডেস্কটপ ভিউয়ের জন্য কভার ছবি ওপরের দিকে তোলার ফিক্স (এখানে মান কমিয়ে বা বাড়িয়ে পজিশন অ্যাডজাস্ট করতে পারবেন) */
+    @media(min-width: 769px) {
+        .client-hero img {
+            object-position: center 40%; 
+        }
+    }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
