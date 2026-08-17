@@ -24,9 +24,9 @@
     .nav-menu a:hover{ color:#d4af37; }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner Fix */
-    .client-hero { width: 100%; height: auto; max-height: 85vh; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: auto; max-height: 85vh; object-fit: contain; display: block; margin: 0 auto; }
+    /* Hero Banner - Fixed Width and Cover */
+    .client-hero { width: 100%; height: 75vh; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -61,6 +61,7 @@
         .nav-menu a::after { display: none !important; }
         .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
         .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
+        .client-hero { height: 35vh; min-height: 250px; }
     }
 </style>
 </head>
