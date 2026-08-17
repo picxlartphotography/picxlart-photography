@@ -13,49 +13,60 @@
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
 
-    /* Navbar Fixed */
-    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:99999; border-bottom:2px solid #d4af37; }
-    .nav-logo img{ height:50px; }
+    /* Navbar */
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.95); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:12px 50px; z-index:99999; border-bottom:2px solid #d4af37; }
+    .nav-logo img{ height:55px; width:auto; }
     .nav-menu{ display:flex; gap:30px; align-items: center; }
-    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: color 0.3s; }
     .nav-menu a:hover{ color:#d4af37; }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; cursor: pointer; }
 
-    /* Hero */
-    .client-hero { width: 100%; height: 75vh; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; }
+    /* Hero Cover Section */
+    .client-hero { width: 100%; height: 80vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #000; overflow: hidden; }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
 
-    /* Content */
-    .client-header { text-align: center; padding: 40px 20px; }
-    .client-header h1 { color: #d4af37; font-size: 42px; margin-bottom: 10px; }
-    .client-meta { color: #a0a0a0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+    /* Header & Meta */
+    .client-header { text-align: center; padding: 40px 20px 10px 20px; }
+    .client-header h1 { color: #d4af37; font-size: 40px; font-weight: 500; letter-spacing: 2px; margin-bottom: 10px; }
+    .client-meta { color: #a0a0a0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
+
+    /* Galleries */
+    .section-title { text-align: center; color: #d4af37; font-size: 24px; font-weight: 500; letter-spacing: 2px; margin: 40px 0 20px 0; text-transform: uppercase; }
     
-    /* Gallery */
-    .section-title { text-align: center; color: #d4af37; font-size: 26px; margin: 40px 0 20px 0; text-transform: uppercase; }
-    .horizontal-gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 40px 40px 40px; max-width: 1550px; margin: auto; }
-    .horizontal-item { aspect-ratio: 3/2; cursor: pointer; overflow:hidden; }
-    .horizontal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .horizontal-item img:hover { transform: scale(1.05); }
-    .vertical-gallery{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 40px 60px 40px; max-width: 1650px; margin: auto; }
-    .vertical-item { aspect-ratio: 2/3; cursor: pointer; overflow:hidden; }
-    .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .vertical-item img:hover { transform: scale(1.05); }
+    .horizontal-gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 40px 30px 40px; max-width: 1500px; margin: auto; }
+    .horizontal-item { width: 100%; aspect-ratio: 3/2; overflow: hidden; background: #151515; border-radius: 4px; cursor: pointer; }
+    .horizontal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .horizontal-item img:hover { transform: scale(1.04); }
 
-    /* Footer Fixed */
-    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; }
-    .footer-links { margin-bottom:20px; }
-    .footer-links a { color:#d4af37; text-decoration:none; margin: 0 10px; }
-    .msme-text { margin-top:20px; color: #a0a0a0; font-size: 12px; }
+    .vertical-gallery{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 40px 50px 40px; max-width: 1500px; margin: auto; }
+    .vertical-item { width: 100%; aspect-ratio: 2/3; overflow: hidden; background: #151515; border-radius: 4px; cursor: pointer; }
+    .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .vertical-item img:hover { transform: scale(1.04); }
 
-    /* Mobile */
+    /* Lightbox Modal */
+    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:999999; }
+    #lightbox img { max-width:90%; max-height:90vh; object-fit: contain; }
+
+    /* Footer */
+    footer { text-align: center; padding: 40px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; }
+    .footer-links { margin-bottom: 15px; }
+    .footer-links a { color: #d4af37; text-decoration: none; margin: 0 10px; }
+    .msme-text { margin-top: 15px; color: #999; font-size: 12px; line-height: 1.6; }
+
+    /* Responsive Design */
+    @media(max-width: 1100px){
+        .horizontal-gallery { grid-template-columns: repeat(2, 1fr); }
+        .vertical-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
     @media(max-width: 768px){
-        .navbar{ padding: 15px 20px; }
+        .navbar{ padding: 12px 20px; }
         .menu-toggle { display: block; }
-        .nav-menu { position: fixed; top: 80px; left: 0; width: 100%; background: #0d0d0d; flex-direction: column; transform: translateY(-150%); transition: 0.4s; }
+        .nav-menu { position: fixed; top: 75px; left: 0; width: 100%; background: #0d0d0d; flex-direction: column; transform: translateY(-150%); transition: transform 0.3s ease; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a { padding: 15px 0; width: 100%; text-align: center; border-bottom: 1px solid #222; }
-        .horizontal-gallery { grid-template-columns: 1fr; }
-        .vertical-gallery { grid-template-columns: repeat(2, 1fr); }
+        .nav-menu a { padding: 14px 0; width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px; }
+        .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px; }
+        .client-hero { height: 50vh; }
     }
 </style>
 </head>
@@ -64,26 +75,51 @@
 <div class="navbar">
    <div class="nav-logo"><a href="../../"><img src="../../logo.png" alt="Logo"></a></div>
    <div class="nav-menu">
-       <a href="../../">Home</a><a href="../../#gallery">Gallery</a><a href="../../films">Films</a><a href="../../packages">Packages</a><a href="../../reviews">Reviews</a><a href="../../#why">Why Picxlart</a><a href="../../blog">Blog</a>
+       <a href="../../">Home</a>
+       <a href="../../#gallery">Gallery</a>
+       <a href="../../films">Films</a>
+       <a href="../../packages">Packages</a>
+       <a href="../../reviews">Reviews</a>
+       <a href="../../#why">Why Picxlart</a>
+       <a href="../../blog">Blog</a>
    </div>
    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<div class="client-hero"><img src="pncover.jpg" alt="Couple Cover"></div>
+<div class="client-hero">
+    <img src="pncover.jpg" alt="Dr. Pushan & Nilanjana Cover">
+</div>
 
 <div class="client-header">
     <h1>Dr. Pushan & Nilanjana</h1>
     <div class="client-meta">Nature Bankura • Casual Pre-Wedding</div>
 </div>
 
+<!-- 12 Horizontal Photos -->
 <div class="horizontal-gallery">
-    <img src="pn1.jpg"><img src="pn2.jpg"><img src="pn3.jpg"><img src="pn4.jpg"><img src="pn5.jpg"><img src="pn6.jpg"><img src="pn7.jpg"><img src="pn8.jpg"><img src="pn9.jpg"><img src="pn10.jpg"><img src="pn11.jpg"><img src="pn12.jpg">
+    <div class="horizontal-item"><img src="pn1.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn2.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn3.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn4.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn5.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn6.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn7.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn8.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn9.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn10.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn11.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="horizontal-item"><img src="pn12.jpg" onclick="openLightbox(this.src)"></div>
 </div>
 
 <div class="section-title">Special Moments</div>
 
+<!-- 5 Vertical Photos -->
 <div class="vertical-gallery">
-    <img src="pnr1.jpg"><img src="pnr2.jpg"><img src="pnr3.jpg"><img src="pnr4.jpg"><img src="pnr5.jpg">
+    <div class="vertical-item"><img src="pnr1.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="pnr2.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="pnr3.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="pnr4.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="vertical-item"><img src="pnr5.jpg" onclick="openLightbox(this.src)"></div>
 </div>
 
 <footer>
@@ -96,10 +132,17 @@
     </div>
 </footer>
 
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="Lightbox View"></div>
+
 <script>
-    const btn = document.getElementById('mobileMenuBtn');
-    const menu = document.querySelector('.nav-menu');
-    btn.onclick = () => { menu.classList.toggle('active'); btn.textContent = menu.classList.contains('active') ? '✕' : '☰'; };
+function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+function closeLightbox(){ document.getElementById('lightbox').style.display = 'none'; }
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+mobileMenuBtn.onclick = () => { 
+    navMenu.classList.toggle('active'); 
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰'; 
+};
 </script>
 </body>
 </html>
