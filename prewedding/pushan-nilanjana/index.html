@@ -10,58 +10,52 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-    /* Global Styling */
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
 
-    /* Navbar */
-    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
-    .nav-logo img{ height:60px; width:auto; }
+    /* Navbar Fixed */
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:99999; border-bottom:2px solid #d4af37; }
+    .nav-logo img{ height:50px; }
     .nav-menu{ display:flex; gap:30px; align-items: center; }
-    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
-    .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease; }
-    .nav-menu a:hover::after { width: 100%; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; }
     .nav-menu a:hover{ color:#d4af37; }
-    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; cursor: pointer; }
 
-    /* Hero Banner - Fixed Width and Cover */
-    .client-hero { width: 100%; height: 75vh; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+    /* Hero */
+    .client-hero { width: 100%; height: 75vh; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Header & Meta */
-    .client-header { text-align: center; padding: 40px 20px 20px 20px; }
-    .client-header h1 { color: #d4af37; font-size: 42px; font-weight: 500; letter-spacing: 3px; margin-bottom: 10px; }
-    .client-meta { display: flex; justify-content: center; gap: 20px; font-size: 13px; letter-spacing: 2px; color: #a0a0a0; text-transform: uppercase; margin-bottom: 40px; }
-
-    /* Galleries */
+    /* Content */
+    .client-header { text-align: center; padding: 40px 20px; }
+    .client-header h1 { color: #d4af37; font-size: 42px; margin-bottom: 10px; }
+    .client-meta { color: #a0a0a0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+    
+    /* Gallery */
     .section-title { text-align: center; color: #d4af37; font-size: 26px; margin: 40px 0 20px 0; text-transform: uppercase; }
-    .horizontal-gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 0 40px 40px 40px; max-width: 1550px; margin: auto; }
-    .horizontal-item { overflow: hidden; background: #121212; border-radius: 4px; aspect-ratio: 2048 / 1365; cursor: pointer; }
+    .horizontal-gallery{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 40px 40px 40px; max-width: 1550px; margin: auto; }
+    .horizontal-item { aspect-ratio: 3/2; cursor: pointer; overflow:hidden; }
     .horizontal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .horizontal-item img:hover { transform: scale(1.03); }
+    .horizontal-item img:hover { transform: scale(1.05); }
     .vertical-gallery{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 40px 60px 40px; max-width: 1650px; margin: auto; }
-    .vertical-item { overflow: hidden; background: #121212; border-radius: 4px; aspect-ratio: 2/3; cursor: pointer; }
+    .vertical-item { aspect-ratio: 2/3; cursor: pointer; overflow:hidden; }
     .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .vertical-item img:hover { transform: scale(1.03); }
+    .vertical-item img:hover { transform: scale(1.05); }
 
-    /* Lightbox & Footer */
-    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); justify-content:center; align-items:center; z-index:999999; }
-    #lightbox img { max-width:92%; max-height:92vh; object-fit: contain; }
-    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; }
-    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; }
+    /* Footer Fixed */
+    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; }
+    .footer-links { margin-bottom:20px; }
+    .footer-links a { color:#d4af37; text-decoration:none; margin: 0 10px; }
+    .msme-text { margin-top:20px; color: #a0a0a0; font-size: 12px; }
 
-    /* Responsive */
+    /* Mobile */
     @media(max-width: 768px){
-        .navbar{ padding:12px 24px; }
+        .navbar{ padding: 15px 20px; }
         .menu-toggle { display: block; }
-        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); flex-direction: column; gap: 0; padding: 15px 0 0 0; transform: translateY(-150%); transition: transform 0.4s ease-in-out; z-index: 999998; border-bottom: 3px solid #d4af37; }
+        .nav-menu { position: fixed; top: 80px; left: 0; width: 100%; background: #0d0d0d; flex-direction: column; transform: translateY(-150%); transition: 0.4s; }
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a { font-size: 15px; color: #d4af37 !important; width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
-        .nav-menu a::after { display: none !important; }
-        .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
-        .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
-        .client-hero { height: 35vh; min-height: 250px; }
+        .nav-menu a { padding: 15px 0; width: 100%; text-align: center; border-bottom: 1px solid #222; }
+        .horizontal-gallery { grid-template-columns: 1fr; }
+        .vertical-gallery { grid-template-columns: repeat(2, 1fr); }
     }
 </style>
 </head>
@@ -79,55 +73,33 @@
 
 <div class="client-header">
     <h1>Dr. Pushan & Nilanjana</h1>
-    <div class="client-meta">
-        <span><i class="fas fa-map-marker-alt" style="color: #ff3333;"></i> Nature Bankura</span>
-        <span>•</span>
-        <span><i class="fas fa-heart" style="color: #ff3333;"></i> Casual Pre-Wedding</span>
-    </div>
+    <div class="client-meta">Nature Bankura • Casual Pre-Wedding</div>
 </div>
 
 <div class="horizontal-gallery">
-    <div class="horizontal-item"><img src="pn1.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn2.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn3.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn4.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn5.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn6.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn7.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn8.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn9.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn10.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn11.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="pn12.jpg" onclick="openLightbox(this.src)"></div>
+    <img src="pn1.jpg"><img src="pn2.jpg"><img src="pn3.jpg"><img src="pn4.jpg"><img src="pn5.jpg"><img src="pn6.jpg"><img src="pn7.jpg"><img src="pn8.jpg"><img src="pn9.jpg"><img src="pn10.jpg"><img src="pn11.jpg"><img src="pn12.jpg">
 </div>
 
 <div class="section-title">Special Moments</div>
 
 <div class="vertical-gallery">
-    <div class="vertical-item"><img src="pnr1.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="pnr2.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="pnr3.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="pnr4.jpg" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="pnr5.jpg" onclick="openLightbox(this.src)"></div>
+    <img src="pnr1.jpg"><img src="pnr2.jpg"><img src="pnr3.jpg"><img src="pnr4.jpg"><img src="pnr5.jpg">
 </div>
 
 <footer>
-    <div class="footer-links-container">
-        <div><a href="../../faq">FAQ</a><span class="footer-divider">|</span><a href="../../payment">Online Payment</a></div>
-        <div><a href="../../privacy-policy">Privacy Policy</a><span class="footer-divider">|</span><a href="../../payment-terms">Payment Terms</a></div>
-        <div><a href="../../terms">Terms & Conditions</a><span class="footer-divider">|</span><a href="../../blog">Blog & Stories</a></div>
+    <div class="footer-links">
+        <a href="../../faq">FAQ</a> | <a href="../../payment">Payment</a> | <a href="../../privacy-policy">Privacy</a>
     </div>
-    <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+    <div class="msme-text">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: UDYAM-WB-07-0069651<br>
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </div>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="View"></div>
-
 <script>
-function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
-function closeLightbox(){ document.getElementById('lightbox').style.display = 'none'; }
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
-mobileMenuBtn.addEventListener('click', () => { navMenu.classList.toggle('active'); mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰'; });
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.querySelector('.nav-menu');
+    btn.onclick = () => { menu.classList.toggle('active'); btn.textContent = menu.classList.contains('active') ? '✕' : '☰'; };
 </script>
 </body>
 </html>
