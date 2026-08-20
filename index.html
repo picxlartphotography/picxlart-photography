@@ -147,6 +147,7 @@
     .nav-menu{
         display:flex;
         gap:35px;
+        align-items: center;
     }
 
     .nav-menu a{
@@ -956,7 +957,7 @@
         }
 
         .nav-menu a::after {
-            display: none; 
+            display: none !important; 
         }
 
         section{
@@ -1123,27 +1124,27 @@
         <a href="/" id="logoLink">
             <img src="logo.png" alt="Logo">
         </a>
-    </div>
+   </div>
 
-    <!-- Top Navbar Menu with Login Button right after Blog -->
-    <div class="nav-menu">
-        <a href="/">Home</a>
-        <a href="#gallery">Gallery</a>
-        <a href="films">Films</a>
-        <a href="packages">Packages</a>
-        <a href="reviews">Reviews</a>
-        <a href="#why">Why Picxlart</a>
-        <a href="blog">Blog</a>
-        <a href="login">Login</a>
-    </div>
+   <!-- Top Navbar Menu with Login Button right after Blog -->
+   <div class="nav-menu">
+       <a href="/">Home</a>
+       <a href="#gallery">Gallery</a>
+       <a href="films">Films</a>
+       <a href="packages">Packages</a>
+       <a href="reviews">Reviews</a>
+       <a href="#why">Why Picxlart</a>
+       <a href="blog">Blog</a>
+       <a href="login">Login</a>
+   </div>
 
-    <div class="nav-social">
+   <div class="nav-social">
         <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
         <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
+   </div>
 
-    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
 <div class="hero">
@@ -1408,14 +1409,14 @@
 </footer>
 
 <script>
-// Premium Preloader Transition Execution Script
+// Premium Preloader Transition Execution Script (Time reduced to 2 seconds)
 window.addEventListener('load', function() {
     setTimeout(function() {
         const preloader = document.getElementById('picxlart-preloader');
         if (preloader) {
             preloader.classList.add('fade-out');
         }
-    }, 3500);
+    }, 2000);
 });
 
 let slideIndex = 0;
