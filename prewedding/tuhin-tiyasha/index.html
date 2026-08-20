@@ -28,9 +28,9 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-2px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Cover Fix - No Cutting & Balanced Height */
-    .client-hero { width: 100%; height: auto; max-height: 80vh; background: #0d0d0d; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-    .client-hero img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; display: block; margin: 0 auto; }
+    /* Hero Cover Fix - Perfect Full Width & Balanced Position */
+    .client-hero { width: 100%; height: 75vh; min-height: 450px; background: #0d0d0d; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
 
     /* Header */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -70,6 +70,7 @@
         .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
         .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
         .client-header h1 { font-size: 30px; }
+        .client-hero { height: 35vh; min-height: 250px; }
     }
 </style>
 </head>
@@ -134,7 +135,7 @@
     <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt="View"></div>
+<div id="lightbox" onclick="openLightbox()"><img id="lightbox-img" src="" alt="View"></div>
 
 <script>
 function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
