@@ -14,7 +14,7 @@
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
 
-    /* Navbar - Fixed size match */
+    /* Navbar */
     .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
     .nav-logo img:hover { transform: scale(1.03); }
@@ -29,9 +29,9 @@
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner */
+    /* Hero Banner - Mobile Fix */
     .client-hero { width: 100%; height: 70vh; min-height: 400px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -64,25 +64,20 @@
 
     /* Responsive */
     @media(max-width: 768px){
-        .navbar{ padding:12px 24px; }
+        .navbar{ padding:12px 20px; }
         .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
-        .nav-menu {
-            position: fixed; top: 60px; left: 0; width: 100%;
-            background: rgba(13, 13, 13, 0.97); flex-direction: column; gap: 0; padding: 15px 0 0 0;
-            transform: translateY(-150%); transition: transform 0.4s ease-in-out;
-            z-index: 999998; border-bottom: 3px solid #d4af37;
-        }
+        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px); flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0; transform: translateY(-150%); transition: transform 0.4s ease-in-out; z-index: 999998; border-bottom: 3px solid #d4af37; }
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a {
-            font-size: 15px; color: #d4af37 !important; width: 100%; text-align: center; padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        /* Mobile menu underline removal fix */
+        .nav-menu a { font-size: 15px; color: #d4af37 !important; width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        /* Fix: Remove underlines in mobile menu */
         .nav-menu a::after { display: none !important; }
         .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
         .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
+        /* Fix: Mobile cover height */
+        .client-hero { height: auto; min-height: 250px; }
+        .client-hero img { object-fit: contain; }
         .client-header h1 { font-size: 30px; }
     }
 </style>
