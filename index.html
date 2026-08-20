@@ -149,19 +149,30 @@
     }
     .popup-slideshow {
         width: 100%;
-        height: 240px;
+        height: 300px;
         position: relative;
         overflow: hidden;
     }
+    /* Dissolve / Fade Animation for Slideshow */
     .popup-slide {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    }
+    .popup-slide.active-slide {
+        opacity: 1;
+        visibility: visible;
     }
     .popup-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center top;
     }
     .popup-form {
         padding: 25px 30px;
@@ -1260,12 +1271,12 @@
     </div>
 </div>
 
-<!-- Popup Modal Structure with Multi-Image Slideshow (popupimg1 to popupimg5) & Email Field -->
+<!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Email Field -->
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
         <div class="popup-slideshow">
-            <div class="popup-slide"><img src="popupimg1.jpg" alt="Slide 1"></div>
+            <div class="popup-slide active-slide"><img src="popupimg1.jpg" alt="Slide 1"></div>
             <div class="popup-slide"><img src="popupimg2.jpg" alt="Slide 2"></div>
             <div class="popup-slide"><img src="popupimg3.jpg" alt="Slide 3"></div>
             <div class="popup-slide"><img src="popupimg4.jpg" alt="Slide 4"></div>
@@ -1596,17 +1607,17 @@ window.addEventListener('load', function() {
     }, 2000);
 });
 
-// Scroll-triggered Popup Modal Script with delay & smooth fade-in
+// Scroll-triggered Popup Modal Script
 let popupShown = false;
 window.addEventListener('scroll', function() {
-    if (!popupShown && window.scrollY > 350) { // Triggers when user scrolls down 350px
+    if (!popupShown && window.scrollY > 550) { 
         setTimeout(function() {
             const popup = document.getElementById('popup-overlay');
             if (popup) {
                 popup.classList.add('show-popup');
                 popupShown = true;
             }
-        }, 800); // 0.8 second delay before smooth appearance
+        }, 1200); 
     }
 });
 
@@ -1634,20 +1645,20 @@ function submitPopupEnquiry() {
     closePopup();
 }
 
-// Popup Image Slideshow Script (popupimg1 to popupimg5)
+// Popup Image Dissolve (Fade) Slideshow Script
 let popupSlideIndex = 0;
-showPopupSlides();
+showPopupDissolveSlides();
 
-function showPopupSlides() {
+function showPopupDissolveSlides() {
     let slides = document.getElementsByClassName("popup-slide");
     if (slides.length > 0) {
         for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+            slides[i].classList.remove("active-slide");  
         }
         popupSlideIndex++;
         if (popupSlideIndex > slides.length) { popupSlideIndex = 1; }    
-        slides[popupSlideIndex-1].style.display = "block";  
-        setTimeout(showPopupSlides, 3000); // Change image every 3 seconds
+        slides[popupSlideIndex-1].classList.add("active-slide");  
+        setTimeout(showPopupDissolveSlides, 3500); // Dissolve change every 3.5 seconds
     }
 }
 
