@@ -14,33 +14,25 @@
     *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body{ background:#0d0d0d; color:#f5f5f5; margin:0; padding-top:90px; overflow-x:hidden; -webkit-user-select:none; user-select:none; }
 
-    /* Navbar */
+    /* Navbar - Fixed size match */
     .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
     .nav-logo img:hover { transform: scale(1.03); }
     .nav-menu{ display:flex; gap:30px; align-items: center; }
     .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
     .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease; }
-    .nav-menu a:hover::after { width: 100%; }
-    .nav-menu a:hover{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    
     .nav-social{ display:flex; gap:20px; }
     .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
     .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
 
-    /* Hero Banner */
+    /* Hero Banner - Mobile Fix */
     .client-hero { width: 100%; height: 75vh; min-height: 450px; display: flex; justify-content: center; align-items: center; background: #0d0d0d; overflow: hidden; }
-    .client-hero img { 
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-        object-position: center 30%; 
-    }
-    @media(min-width: 769px) {
-        .client-hero img {
-            object-position: center 50%; 
-        }
-    }
+    .client-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    @media(min-width: 769px) { .client-hero img { object-position: center 50%; } }
 
     /* Header & Meta */
     .client-header { text-align: center; padding: 40px 20px 20px 20px; }
@@ -60,7 +52,7 @@
     .vertical-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
     .vertical-item img:hover { transform: scale(1.03); }
 
-    /* Lightbox Modal */
+    /* Lightbox */
     #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); justify-content:center; align-items:center; z-index:999999; }
     #lightbox img { max-width:92%; max-height:92vh; border-radius:3px; box-shadow:0 0 40px rgba(0,0,0,0.8); object-fit: contain; }
 
@@ -72,30 +64,21 @@
     .footer-divider { color:#333; margin: 0 8px; }
 
     /* Responsive */
-    @media(max-width: 1100px){
-        .horizontal-gallery { grid-template-columns: repeat(2, 1fr); }
-        .vertical-gallery { grid-template-columns: repeat(3, 1fr); }
-    }
     @media(max-width: 768px){
-        .navbar{ padding:12px 24px; }
+        .navbar{ padding:12px 20px; }
         .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
-        .nav-menu {
-            position: fixed; top: 60px; left: 0; width: 100%;
-            background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px);
-            flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0;
-            transform: translateY(-150%); transition: transform 0.4s ease-in-out;
-            z-index: 999998; border-bottom: 3px solid #d4af37;
-        }
+        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(15px); flex-direction: column; align-items: center; gap: 0; padding: 15px 0 0 0; transform: translateY(-150%); transition: transform 0.4s ease-in-out; z-index: 999998; border-bottom: 3px solid #d4af37; }
         .nav-menu.active { transform: translateY(0); }
-        .nav-menu a {
-            font-size: 15px; letter-spacing: 2px; color: #d4af37 !important;
-            width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
+        .nav-menu a { font-size: 15px; color: #d4af37 !important; width: 100%; text-align: center; padding: 16px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        /* Fix: Remove underlines in mobile menu */
+        .nav-menu a::after { display: none !important; }
         .horizontal-gallery { grid-template-columns: 1fr; padding: 0 15px 20px 15px; }
         .vertical-gallery { grid-template-columns: repeat(2, 1fr); padding: 0 15px 40px 15px; }
-        .client-hero { height: 35vh; min-height: 250px; }
+        /* Fix: Mobile cover height */
+        .client-hero { height: auto; min-height: 250px; }
+        .client-hero img { object-fit: contain; }
         .client-header h1 { font-size: 30px; }
     }
 </style>
@@ -126,34 +109,14 @@
     </div>
 </div>
 
-<!-- Horizontal Photos (1 to 15) -->
 <div class="horizontal-gallery">
-    <div class="horizontal-item"><img src="dsp1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp3.jpg" alt="Photo 3" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp4.jpg" alt="Photo 4" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp5.jpg" alt="Photo 5" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp6.jpg" alt="Photo 6" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp7.jpg" alt="Photo 7" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp8.jpg" alt="Photo 8" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp9.jpg" alt="Photo 9" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp10.jpg" alt="Photo 10" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp11.jpg" alt="Photo 11" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp12.jpg" alt="Photo 12" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp13.jpg" alt="Photo 13" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp14.jpg" alt="Photo 14" onclick="openLightbox(this.src)"></div>
-    <div class="horizontal-item"><img src="dsp15.jpg" alt="Photo 15" onclick="openLightbox(this.src)"></div>
+    <script>for(let i=1; i<=15; i++) document.write('<div class="horizontal-item"><img src="dsp'+i+'.jpg" onclick="openLightbox(this.src)"></div>');</script>
 </div>
 
 <div class="section-title">Special Moments</div>
 
-<!-- Vertical Photos (1 to 5) -->
 <div class="vertical-gallery">
-    <div class="vertical-item"><img src="dspr1.jpg" alt="V Photo 1" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="dspr2.jpg" alt="V Photo 2" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="dspr3.jpg" alt="V Photo 3" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="dspr4.jpg" alt="V Photo 4" onclick="openLightbox(this.src)"></div>
-    <div class="vertical-item"><img src="dspr5.jpg" alt="V Photo 5" onclick="openLightbox(this.src)"></div>
+    <script>for(let i=1; i<=5; i++) document.write('<div class="vertical-item"><img src="dspr'+i+'.jpg" onclick="openLightbox(this.src)"></div>');</script>
 </div>
 
 <footer>
