@@ -203,16 +203,13 @@
         color: #e0e0e0;
     }
 
-    /* Universal Responsive Natural Image Style */
+    /* Clean Natural Image Classes */
     .shop-img-natural {
         width: 100%;
         height: auto;
-        max-height: 600px;
-        object-fit: contain;
         border-radius: 8px;
         margin-top: 15px;
         display: block;
-        background: rgba(0, 0, 0, 0.4);
         border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
@@ -508,7 +505,9 @@ navLinks.forEach(link => {
     });
 });
 
-// Security Protections
+/****************************************************************
+ * Security Protections
+ ****************************************************************/
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
