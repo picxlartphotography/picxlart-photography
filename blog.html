@@ -98,7 +98,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Memories Designer Top Hero Banner */
+    /* Blog Hero Banner */
     .blog-hero-banner {
         margin-top: 76px;
         position: relative;
@@ -198,9 +198,7 @@
         will-change: transform;
     }
 
-    .blog-card:hover .blog-thumb-wrapper img,
-    .blog-card:active .blog-thumb-wrapper img,
-    .blog-card:focus-within .blog-thumb-wrapper img {
+    .blog-card:hover .blog-thumb-wrapper img {
         transform: scale(1.08);
     }
 
@@ -247,144 +245,76 @@
     .footer-links-container a:hover { color: #ffffff; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* EXACT INDEX.HTML MOBILE MEDIA QUERIES */
+    /* Responsive */
     @media (max-width: 1024px) {
         .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     }
 
     @media(max-width:768px){
-        .navbar{
-            padding:12px 24px;
-            flex-wrap: nowrap;
-            overflow: visible !important;
-        }
-
-        .nav-logo img{ height:45px; }
+        .navbar{ padding:12px 24px; }
         .menu-toggle { display: block; }
         .nav-social { display: none !important; }
-
-        .nav-menu {
-            position: fixed;
-            top: 60px; 
-            left: 0;
-            width: 100%;
-            height: auto; 
-            background: rgba(13, 13, 13, 0.97);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0;
-            padding: 15px 0 0 0;
-            transform: translateY(-150%); 
-            transition: transform 0.4s ease-in-out;
-            z-index: 999998;
-            border-bottom: 3px solid #d4af37; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-        }
-
+        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); flex-direction: column; align-items: center; transform: translateY(-150%); transition: 0.4s; z-index: 999998; border-bottom: 3px solid #d4af37; }
         .nav-menu.active { transform: translateY(0); }
-
-        .nav-menu a {
-            font-size: 15px;
-            letter-spacing: 2px;
-            font-weight: 500;
-            color: #d4af37 !important;
-            width: 100%;
-            text-align: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .nav-menu a:last-child {
-            border-bottom: none;
-            padding-bottom: 22px;
-        }
-
+        .nav-menu a { width: 100%; text-align: center; padding: 16px 0; color: #d4af37 !important; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
         .nav-menu a::after { display: none; }
-
         .blog-hero-banner { height: 260px; }
-        .blog-hero-content h1 { font-size: 22px; }
-        .blog-grid { grid-template-columns: 1fr; gap: 30px; }
-        .blog-thumb-wrapper { height: 200px; }
-    }
-
-    @media (max-width: 480px) {
-        .navbar { padding: 12px 20px; }
+        .blog-grid { grid-template-columns: 1fr; }
     }
 </style>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- Top Navbar -->
 <div class="navbar">
-   <div class="nav-logo">
-        <a href="/" id="logoLink">
-            <img src="logo.png" alt="Logo">
-        </a>
-    </div>
-
-    <div class="nav-menu">
-        <a href="/">Home</a>
-        <a href="/#gallery">Gallery</a>
-        <a href="films">Films</a>
-        <a href="packages">Packages</a>
-        <a href="reviews">Reviews</a>
-        <a href="/#why">Why Picxlart</a>
-        <a href="blog" class="active">Blog</a>
-    </div>
-
-    <div class="nav-social">
-        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-
-    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+   <div class="nav-logo"><a href="/"><img src="logo.png" alt="Logo"></a></div>
+   <div class="nav-menu">
+       <a href="/">Home</a><a href="/#gallery">Gallery</a><a href="blog" class="active">Blog</a>
+   </div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Hero Banner -->
 <div class="blog-hero-banner">
     <div class="blog-hero-content">
         <h1>Let our blogs be your guide to the perfect wedding!</h1>
-        <div class="blog-breadcrumb">
-            <a href="/">Home</a> / Blog
-        </div>
+        <div class="blog-breadcrumb"><a href="/">Home</a> / Blog</div>
     </div>
 </div>
 
-<!-- Sub Header -->
 <div class="blog-sub-header">
     <span>Blogs</span>
     <h2>Our Latest Blog</h2>
 </div>
 
-<!-- Blog Cards Container -->
 <div class="blog-container">
     <div class="blog-grid">
 
-        <!-- New Blog: Lower Sittong (Image name updated to blog-banner-4.jpg) -->
+        <!-- New Blog Card -->
         <article class="blog-card" tabindex="0">
             <div class="blog-thumb-wrapper">
-                <img src="blog-banner-4.jpg" alt="North Bengal Pre-Wedding Photography, Destination near Darjeeling off beat">
+                <img src="sherwani-shop.jpg" alt="Top 8 Wedding Sherwani Shops In Kolkata">
             </div>
             <div class="blog-details">
+                <div class="blog-meta-date">21 August, 2026</div>
+                <h2 class="blog-title">Top 8 Wedding Sherwani Shops In Kolkata: A Guide for the Dapper Groom</h2>
+                <a href="best-sherwani-showrooms-kolkata" class="blog-read-link">Read More</a>
+            </div>
+        </article>
+
+        <!-- Existing Blogs -->
+        <article class="blog-card" tabindex="0">
+            <div class="blog-thumb-wrapper"><img src="blog-banner-4.jpg" alt="Sittong"></div>
+            <div class="blog-details">
                 <div class="blog-meta-date">01 August, 2026</div>
-                <h2 class="blog-title">Romantic Riverside Pre-Wedding Photography Destination Near Darjeeling: Lower Sittong</h2>
+                <h2 class="blog-title">Romantic Riverside Pre-Wedding Destination Near Darjeeling: Lower Sittong</h2>
                 <a href="sittong-pre-wedding-photography-guide" class="blog-read-link">Read More</a>
             </div>
         </article>
 
-        <!-- Blog 1 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb-wrapper">
-                <img src="blog-banner-1.jpg" alt="Top Pre-Wedding Shoot Locations in Hooghly & Kolkata">
-            </div>
+            <div class="blog-thumb-wrapper"><img src="blog-banner-1.jpg" alt="Locations"></div>
             <div class="blog-details">
                 <div class="blog-meta-date">25 July, 2026</div>
                 <h2 class="blog-title">Top Pre-Wedding Shoot Locations in Hooghly & Kolkata</h2>
@@ -392,11 +322,8 @@
             </div>
         </article>
 
-        <!-- Blog 2 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb-wrapper">
-                <img src="blog-banner-2.jpg" alt="Amazing Locations For Pre Wedding Photography In Kolkata">
-            </div>
+            <div class="blog-thumb-wrapper"><img src="blog-banner-2.jpg" alt="Kolkata Locations"></div>
             <div class="blog-details">
                 <div class="blog-meta-date">18 June, 2026</div>
                 <h2 class="blog-title">Amazing Locations For Pre Wedding Photography In Kolkata</h2>
@@ -404,80 +331,25 @@
             </div>
         </article>
 
-        <!-- Blog 3 -->
         <article class="blog-card" tabindex="0">
-            <div class="blog-thumb-wrapper">
-                <img src="blog-banner-3.jpg" alt="What To Wear For a Pre Wedding Shoot">
-            </div>
+            <div class="blog-thumb-wrapper"><img src="blog-banner-3.jpg" alt="Wear"></div>
             <div class="blog-details">
                 <div class="blog-meta-date">10 May, 2026</div>
                 <h2 class="blog-title">What To Wear For a Pre Wedding Shoot</h2>
                 <a href="what-to-wear-for-a-pre-wedding-shoot" class="blog-read-link">Read More</a>
             </div>
         </article>
-
     </div>
 </div>
 
-<!-- Footer -->
 <footer>
-    <div class="footer-links-container">
-        <div>
-            <a href="faq">FAQ</a>
-            <span class="footer-divider">|</span>
-            <a href="payment">Online Payment</a>
-        </div>
-        <div>
-            <a href="privacy-policy">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="payment-terms">Payment Terms</a>
-        </div>
-        <div>
-            <a href="terms">Terms & Conditions</a>
-            <span class="footer-divider">|</span>
-            <a href="blog">Blog & Stories</a>
-        </div>
-    </div>
-
-    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
-        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
-    </p>
-
-    <p style="margin-top:8px;">
-        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
-    </p>
+    <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
 </footer>
 
 <script>
-// Mobile Navigation Drawer Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-// Security Protections
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('keydown', function(e){
-    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
-    if(e.key === 'F12'){ e.preventDefault(); }
-});
+mobileMenuBtn.addEventListener('click', () => { navMenu.classList.toggle('active'); });
 </script>
 
 </body>
