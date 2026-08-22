@@ -13,7 +13,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bengali Single Side Wedding | Picxlart</title>
+<title>Wedding Selection | Picxlart</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
     .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px 60px; }
     h1{ text-align:center; color:#d4af37; margin-bottom:50px; font-size: 32px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
     
-    .selection-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 30px; width: 100%; max-width: 900px; }
+    .selection-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; max-width: 1100px; }
 
     .select-card{ background: rgba(28, 28, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; text-align: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; align-items: center; backdrop-filter: blur(10px); text-decoration: none; }
     .card-img-holder { width: 100%; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; margin-bottom: 22px; border: 1px solid rgba(212, 175, 55, 0.25); position: relative; }
@@ -60,63 +60,67 @@
     .footer-divider { color:#333; margin: 0 8px; }
 
     /* Responsive */
+    @media(max-width:992px){ .selection-grid { grid-template-columns: 1fr 1fr; } }
     @media(max-width:768px){
-        .navbar{ padding:12px 24px; flex-wrap: nowrap; overflow: visible !important; }
-        .nav-logo img { height: 45px; } /* লোগো ছোট করে আগের পেজের সাইজে আনা হলো */
-        .menu-toggle { display: block; }
+        /* FORCE NAVBAR STYLES WITH !IMPORTANT */
+        .navbar{ padding: 12px 20px !important; flex-wrap: nowrap !important; overflow: visible !important; height: 62px !important; }
+        .nav-logo img { height: 40px !important; width: auto !important; } /* লোগো জোর করে ছোট করা হলো */
+        .menu-toggle { display: block !important; font-size: 26px !important; margin-top: 4px !important; }
         .nav-social { display: none !important; }
 
-        /* মোবাইল মেনুর পারফেক্ট সাইজ এবং ডিজাইন */
+        /* PERFECT MENU BAR MATCH */
         .nav-menu {
-            position: fixed;
-            top: 60px; 
-            left: 0;
-            width: 100%;
-            height: auto; 
+            position: fixed !important;
+            top: 62px !important; /* ন্যাভবারের হাইট অনুযায়ী সেট করা হলো */
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important; 
             background: rgba(13, 13, 13, 0.97) !important;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0;
-            padding: 15px 0 0 0;
-            transform: translateY(-150%); 
-            transition: transform 0.4s ease-in-out;
-            z-index: 9999998;
-            border-bottom: 3px solid #d4af37; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 0 !important;
+            padding: 15px 0 0 0 !important;
+            transform: translateY(-150%) !important; 
+            transition: transform 0.4s ease-in-out !important;
+            z-index: 9999998 !important;
+            border-bottom: 3px solid #d4af37 !important; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
             pointer-events: none;
         }
 
         .nav-menu.active {
-            transform: translateY(0);
-            pointer-events: auto;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
         }
 
         .nav-menu a {
-            font-size: 16px;
-            letter-spacing: 2px;
-            font-weight: 500;
+            font-size: 16px !important;
+            letter-spacing: 2px !important;
+            font-weight: 500 !important;
             color: #d4af37 !important;
-            width: 100%;
-            text-align: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            display: block;
+            width: 100% !important;
+            text-align: center !important;
+            padding: 16px 0 !important;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
+            display: block !important;
             pointer-events: auto !important;
         }
 
         .nav-menu a:last-child {
-            border-bottom: none;
-            padding-bottom: 22px;
+            border-bottom: none !important;
+            padding-bottom: 22px !important;
         }
 
         .nav-menu a::after {
             display: none !important; 
         }
 
-        .selection-grid { grid-template-columns: 1fr; gap: 20px; }
+        .selection-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+        .main-content { padding-top: 110px !important; }
+        h1 { font-size: 26px !important; }
     }
 </style>
 </head>
@@ -128,7 +132,7 @@
        <a href="/">Home</a>
        <a href="/#gallery">Gallery</a>
        <a href="films">Films</a>
-       <a href="packages">Packages</a>
+       <a href="packages" class="active">Packages</a>
        <a href="reviews">Reviews</a>
        <a href="/#why">Why Picxlart</a>
        <a href="blog">Blog</a>
@@ -143,23 +147,31 @@
 </div>
 
 <div class="main-content">
-    <h1>SELECT CATEGORY</h1>
+    <h1>SELECT WEDDING TYPE</h1>
     <div class="selection-grid">
         
-        <!-- Bengali Groom Side Wedding -->
-        <a href="groom-side-packages" class="select-card">
+        <!-- Bengali Single Side Wedding -->
+        <a href="bengali-single-side-packages" class="select-card">
             <div class="card-img-holder">
-                <img src="groom-side-card.jpg" alt="Bengali Groom Side Wedding">
+                <img src="bengali-single-card.jpg" alt="Bengali Single Side Wedding">
             </div>
-            <h3>Bengali Groom Side Wedding</h3>
+            <h3>Bengali Single Side Wedding</h3>
         </a>
 
-        <!-- Bengali Bride Side Wedding -->
-        <a href="bride-side-packages" class="select-card">
+        <!-- Bengali Both Side Wedding -->
+        <a href="bengali-both-side-packages" class="select-card">
             <div class="card-img-holder">
-                <img src="bride-side-card.jpg" alt="Bengali Bride Side Wedding">
+                <img src="bengali-both-card.jpg" alt="Bengali Both Side Wedding">
             </div>
-            <h3>Bengali Bride Side Wedding</h3>
+            <h3>Bengali Both Side Wedding</h3>
+        </a>
+        
+        <!-- Other Indian Wedding -->
+        <a href="other-indian-wedding-packages" class="select-card">
+            <div class="card-img-holder">
+                <img src="other-wedding-card.jpg" alt="Other Indian Wedding">
+            </div>
+            <h3>Other Indian Wedding</h3>
         </a>
         
     </div>
@@ -182,6 +194,7 @@
 </footer>
 
 <script>
+// Fixed Mobile Menu Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
