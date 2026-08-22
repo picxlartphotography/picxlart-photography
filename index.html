@@ -111,7 +111,7 @@
         transform: scale(1.02);
     }
 
-    /* Popup Modal Styles (Smooth Fade-In & Wide Layout) */
+    /* Popup Modal Styles */
     #popup-overlay {
         position: fixed;
         top: 0;
@@ -153,7 +153,6 @@
         position: relative;
         overflow: hidden;
     }
-    /* Dissolve / Fade Animation for Slideshow */
     .popup-slide {
         position: absolute;
         top: 0;
@@ -219,8 +218,6 @@
         outline: none;
         width: 100%;
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
     }
     .popup-form select {
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -1077,27 +1074,25 @@
             display: none !important; 
         }
 
-        /* মোবাইল মেনু ফিক্সed সিস্টেম যা ক্লিক ঠিকঠাক নেবে */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: calc(100vh - 60px); 
-            background: rgba(13, 13, 13, 0.98);
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 20px 0;
+            padding: 15px 0 0 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
             z-index: 999998;
             border-bottom: 3px solid #d4af37; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            overflow-y: auto;
         }
 
         .nav-menu.active {
@@ -1105,18 +1100,19 @@
         }
 
         .nav-menu a {
-            font-size: 16px;
+            font-size: 15px;
             letter-spacing: 2px;
             font-weight: 500;
             color: #d4af37 !important;
             width: 100%;
             text-align: center;
-            padding: 18px 0;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         
         .nav-menu a:last-child {
             border-bottom: none;
+            padding-bottom: 22px;
         }
 
         .nav-menu a::after {
@@ -1161,6 +1157,10 @@
             letter-spacing: 2px;
             margin-top: 15px;
         }
+
+        .intro-welcome-text { font-size: 16px; letter-spacing: 3px; }
+        .intro-brand-logo { max-width: 340px; }
+        .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
 
         .why-card{
             padding:35px 25px;
@@ -1238,6 +1238,10 @@
             padding-bottom: 30px; 
         }
 
+        .intro-welcome-text { font-size: 13px; letter-spacing: 2px; }
+        .intro-brand-logo { max-width: 250px; }
+        .intro-tagline-text { font-size: 9px; letter-spacing: 1.5px; }
+
         .hero-brand-logo {
             max-width: 250px;
         }
@@ -1276,7 +1280,6 @@
 
 <body>
 
-<!-- Custom Premium Animated Splash Screen Structure -->
 <div id="picxlart-preloader">
     <div class="loader-content">
         <div class="intro-welcome-text">Welcome to</div>
@@ -1285,7 +1288,6 @@
     </div>
 </div>
 
-<!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
@@ -1328,7 +1330,6 @@
         </a>
    </div>
 
-   <!-- Top Navbar Menu with Login Button right after Blog -->
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
        <a href="#gallery">Gallery</a>
@@ -1579,6 +1580,7 @@
         <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
     </div>
 
+    <!-- Footer Links with Login Option included -->
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
@@ -1599,6 +1601,7 @@
         </div>
     </div>
 
+    <!-- Govt. MSME Udyam Registration Info -->
     <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
         🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
     </p>
@@ -1609,36 +1612,6 @@
 </footer>
 
 <script>
-// Mobile Navigation Drawer Script - Fixed for proper clicking
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
 // Premium Preloader Transition Execution Script
 window.addEventListener('load', function() {
     setTimeout(function() {
@@ -1765,8 +1738,32 @@ function toggleWhy(){
         btn.innerText = "Read More";
     }
 }
+</script>
 
-// Security Protections
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+</script>
+
+<script>
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('keydown', function(e){
