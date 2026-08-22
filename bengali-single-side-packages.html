@@ -24,7 +24,7 @@
     body{ background:#0d0d0d; color:#f5f5f5; overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
     /* Top Navbar */
-    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
     .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
     .nav-logo img:hover { transform: scale(1.03); }
     .nav-menu{ display:flex; gap:35px; align-items: center; }
@@ -35,7 +35,7 @@
     .nav-social{ display:flex; gap:20px; }
     .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
     .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
-    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; -webkit-tap-highlight-color: transparent; }
 
     /* Selection Layout */
     .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px 60px; }
@@ -59,9 +59,8 @@
     .footer-links-container a:hover { color: #ffffff; }
     .footer-divider { color:#333; margin: 0 8px; }
 
-    /* Responsive */
+    /* Mobile View (Copied exactly from Films page) */
     @media(max-width:768px){
-        /* EXACTLY MATCHED WITH FILMS PAGE */
         .navbar{ padding:12px 24px; }
         .nav-logo img{ height:45px; }
         .menu-toggle { display: block; }
@@ -91,6 +90,7 @@
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            display: block;
         }
 
         .nav-menu a::after {
@@ -112,7 +112,11 @@
 <body>
 
 <div class="navbar">
-   <div class="nav-logo"><a href="/"><img src="logo.png" alt="Picxlart Logo"></a></div>
+   <div class="nav-logo">
+        <a href="/">
+            <img src="logo.png" alt="Picxlart Logo">
+        </a>
+    </div>
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
        <a href="/#gallery">Gallery</a>
@@ -171,9 +175,9 @@
 </footer>
 
 <script>
-// Fixed Mobile Menu Script
+// Mobile Navigation Drawer Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
+const navMenu = document.querySelector('.nav-menu');
 
 mobileMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -187,19 +191,18 @@ mobileMenuBtn.addEventListener('click', (e) => {
 
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        setTimeout(() => {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.textContent = '☰';
-        }, 300);
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
     });
 });
 
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    }
+// Security Protections
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
 });
 </script>
 </body>
