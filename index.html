@@ -111,7 +111,7 @@
         transform: scale(1.02);
     }
 
-    /* Popup Modal Styles */
+    /* Popup Modal Styles (Smooth Fade-In & Wide Layout) */
     #popup-overlay {
         position: fixed;
         top: 0;
@@ -153,6 +153,7 @@
         position: relative;
         overflow: hidden;
     }
+    /* Dissolve / Fade Animation for Slideshow */
     .popup-slide {
         position: absolute;
         top: 0;
@@ -1076,28 +1077,25 @@
             display: none !important; 
         }
 
-        /* Mobile Menu Fully Fixed */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: calc(100vh - 60px); 
-            background: #0d0d0d !important;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 20px 0;
+            padding: 15px 0 0 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            z-index: 9999999;
+            z-index: 999998;
             border-bottom: 3px solid #d4af37; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            overflow-y: auto;
-            pointer-events: auto !important;
         }
 
         .nav-menu.active {
@@ -1105,7 +1103,7 @@
         }
 
         .nav-menu a {
-            font-size: 16px;
+            font-size: 15px;
             letter-spacing: 2px;
             font-weight: 500;
             color: #d4af37 !important;
@@ -1113,9 +1111,6 @@
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            display: block;
-            pointer-events: auto !important;
-            z-index: 10000000;
         }
         
         .nav-menu a:last-child {
@@ -1297,6 +1292,7 @@
     </div>
 </div>
 
+<!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
@@ -1339,13 +1335,14 @@
         </a>
    </div>
 
+   <!-- Top Navbar Menu with Login Button right after Blog -->
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
-       <a href="/#gallery">Gallery</a>
+       <a href="#gallery">Gallery</a>
        <a href="films">Films</a>
        <a href="packages">Packages</a>
        <a href="reviews">Reviews</a>
-       <a href="/#why">Why Picxlart</a>
+       <a href="#why">Why Picxlart</a>
        <a href="blog">Blog</a>
        <a href="login">Login</a>
    </div>
@@ -1750,7 +1747,7 @@ function toggleWhy(){
 </script>
 
 <script>
-// Mobile Menu Script - Fully Fixed to allow page navigation
+// Mobile Menu Script - 100% Foolproof Redirection
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
@@ -1764,16 +1761,30 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-// Allow links to work normally without blocking navigation
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault(); // ডিফল্ট কাজ বন্ধ করে দিলাম
+        const targetUrl = this.getAttribute('href');
+        
+        // মেনু ক্লোজ করে দেওয়া
         navMenu.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
+        
+        // একটু সময় দিয়ে (150ms) পেজ রিডাইরেক্ট বা স্ক্রল করানো
+        setTimeout(() => {
+            if (targetUrl.startsWith('#')) {
+                // একই পেজের সেকশন হলে (যেমন #gallery, #why)
+                const section = document.querySelector(targetUrl);
+                if(section) section.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // অন্য পেজ হলে (যেমন films, packages)
+                window.location.href = targetUrl;
+            }
+        }, 150);
     });
 });
 
-// Close menu when clicking outside
 document.addEventListener('click', (e) => {
     if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
         navMenu.classList.remove('active');
