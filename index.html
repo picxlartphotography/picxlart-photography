@@ -103,7 +103,7 @@
         to { opacity: 1; transform: scale(1); }
     }
 
-    /* THE GHOST FIX: fade-out হলে pointer-events: none হয়ে যাবে */
+    /* THE GHOST FIX: fade-out হলে pointer-events: none হয়ে যাবে */
     #picxlart-preloader.fade-out {
         opacity: 0;
         visibility: hidden;
@@ -1079,12 +1079,13 @@
             display: none !important; 
         }
 
+        /* Mobile Menu - FINALLY FIXED (Height auto & Golden Bar placed perfectly) */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: calc(100vh - 60px); 
+            height: auto; /* <--- No more 100vh black screen */
             background: rgba(13, 13, 13, 0.97) !important;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -1092,13 +1093,12 @@
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 20px 0;
+            padding: 15px 0 0 0; /* Padding adjusted to snap the golden bar correctly */
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
             z-index: 9999998;
-            border-bottom: 3px solid #d4af37; 
+            border-bottom: 3px solid #d4af37; /* The golden bar will now sit right below the last menu item */
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            overflow-y: auto;
             pointer-events: none;
         }
 
@@ -1122,7 +1122,7 @@
         
         .nav-menu a:last-child {
             border-bottom: none;
-            padding-bottom: 22px;
+            padding-bottom: 22px; /* Extra padding so text doesn't touch the golden bar */
         }
 
         .nav-menu a::after {
@@ -1758,7 +1758,7 @@ function toggleWhy(){
 </script>
 
 <script>
-// Mobile Menu Script
+// Mobile Menu Script - 100% Native Link Action Restored
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
