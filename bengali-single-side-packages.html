@@ -61,65 +61,51 @@
 
     /* Responsive */
     @media(max-width:768px){
-        /* FORCE NAVBAR STYLES WITH !IMPORTANT */
-        .navbar{ padding: 12px 20px !important; flex-wrap: nowrap !important; overflow: visible !important; height: 62px !important; }
-        .nav-logo img { height: 45px !important; width: auto !important; } /* লোগো জোর করে ছোট করা হলো */
-        .menu-toggle { display: block !important; font-size: 26px !important; margin-top: 4px !important; }
+        /* EXACTLY MATCHED WITH FILMS PAGE */
+        .navbar{ padding:12px 24px; }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
         .nav-social { display: none !important; }
 
-        /* PERFECT MENU BAR MATCH */
         .nav-menu {
-            position: fixed !important;
-            top: 62px !important; /* ন্যাভবারের হাইট অনুযায়ী সেট করা হলো */
-            left: 0 !important;
-            width: 100% !important;
-            height: auto !important; 
-            background: rgba(13, 13, 13, 0.97) !important;
-            backdrop-filter: blur(15px) !important;
-            -webkit-backdrop-filter: blur(15px) !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            align-items: center !important;
-            gap: 0 !important;
-            padding: 15px 0 0 0 !important;
-            transform: translateY(-150%) !important; 
-            transition: transform 0.4s ease-in-out !important;
-            z-index: 9999998 !important;
-            border-bottom: 3px solid #d4af37 !important; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
-            pointer-events: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.97);
+            flex-direction: column;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37;
         }
 
-        .nav-menu.active {
-            transform: translateY(0) !important;
-            pointer-events: auto !important;
-        }
+        .nav-menu.active { transform: translateY(0); }
 
         .nav-menu a {
-            font-size: 16px !important;
-            letter-spacing: 2px !important;
-            font-weight: 500 !important;
+            font-size: 15px;
             color: #d4af37 !important;
-            width: 100% !important;
-            text-align: center !important;
-            padding: 16px 0 !important;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
-            display: block !important;
-            pointer-events: auto !important;
-        }
-
-        .nav-menu a:last-child {
-            border-bottom: none !important;
-            padding-bottom: 22px !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .nav-menu a::after {
-            display: none !important; 
+            display: none !important;
         }
 
-        .selection-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-        .main-content { padding-top: 110px !important; }
-        h1 { font-size: 26px !important; }
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        /* Adjusted layout for mobile viewing */
+        .selection-grid { grid-template-columns: 1fr; gap: 20px; }
+        .main-content { padding-top: 110px; }
+        h1 { font-size: 26px; }
     }
 </style>
 </head>
