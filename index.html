@@ -288,7 +288,6 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:hidden;
     }
 
     .nav-logo img{
@@ -1057,225 +1056,106 @@
         }
     }
 
-    /* ==============================================================
-       THE MAGIC FIX FOR MOBILE NAVBAR (EXACTLY MATCHING BLOG.HTML) 
-       ============================================================== */
+    /* =========================================
+       THE ULTIMATE FIX FOR MOBILE CLICK ISSUES
+       ========================================= */
     @media(max-width:768px){
         .navbar{
             padding:12px 24px;
             flex-wrap: nowrap;
-            overflow: visible !important; /* এটাই সেই লাইন যার জন্য মেনু আটকে ছিল */
+            overflow: visible !important;
         }
 
-        .nav-logo img{
-            height:45px;
-        }
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
 
-        .menu-toggle {
-            display: block; 
-        }
-
-        .nav-social {
-            display: none !important; 
-        }
-
+        /* Mobile Menu */
         .nav-menu {
-            position: fixed;
-            top: 60px; 
+            position: absolute; 
+            top: 100%; /* Drops exactly below navbar */
             left: 0;
             width: 100%;
-            height: auto; 
-            background: rgba(13, 13, 13, 0.97);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            height: 100vh; 
+            background: #0d0d0d !important; /* Solid color stops underlying layers from bleeding through */
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 15px 0 0 0;
+            padding: 10px 0 20px 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            z-index: 999998;
+            z-index: 9999999;
             border-bottom: 3px solid #d4af37; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            visibility: hidden; /* Fixes any invisible blocking completely */
         }
 
         .nav-menu.active {
             transform: translateY(0);
+            visibility: visible;
         }
 
         .nav-menu a {
-            font-size: 15px;
+            font-size: 16px;
             letter-spacing: 2px;
             font-weight: 500;
             color: #d4af37 !important;
             width: 100%;
             text-align: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            display: block;
         }
         
         .nav-menu a:last-child {
             border-bottom: none;
-            padding-bottom: 22px;
         }
+        .nav-menu a::after { display: none !important; }
 
-        .nav-menu a::after {
-            display: none !important; 
-        }
+        .popup-content { max-width: 100%; }
+        .popup-form { grid-template-columns: 1fr; padding: 20px; }
+        .popup-form-full { grid-column: span 1; }
 
-        .popup-content {
-            max-width: 100%;
-        }
-        .popup-form {
-            grid-template-columns: 1fr;
-            padding: 20px;
-        }
-        .popup-form-full {
-            grid-column: span 1;
-        }
-
-        section{
-            padding:60px 20px;
-        }
-        
-        h2 {
-            font-size: 24px;
-        }
-
-        .hero {
-            padding: 0 20px 40px; 
-        }
-
-        .hero-brand-logo {
-            max-width: 320px;
-        }
-
-        .hero-title span {
-            font-size: 20px;
-            letter-spacing: 1.5px;
-            margin-top: 6px;
-        }
-
-        .hero-content p {
-            font-size: 14px;
-            letter-spacing: 2px;
-            margin-top: 15px;
-        }
+        section{ padding:60px 20px; }
+        h2 { font-size: 24px; }
+        .hero { padding: 0 20px 40px; }
+        .hero-brand-logo { max-width: 320px; }
+        .hero-title span { font-size: 20px; letter-spacing: 1.5px; margin-top: 6px; }
+        .hero-content p { font-size: 14px; letter-spacing: 2px; margin-top: 15px; }
 
         .intro-welcome-text { font-size: 16px; letter-spacing: 3px; }
         .intro-brand-logo { max-width: 340px; }
         .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
 
-        .why-card{
-            padding:35px 25px;
-        }
-
-        .why-card p{
-            font-size:14px;
-            text-align: left;
-        }
-
-        .form-inline{
-            flex-direction:column;
-            gap: 15px;
-        }
-
-        .form-inline select,
-        .form-inline input,
-        .form-inline .send-btn{
-            width:100%;
-            min-width:100%;
-        }
-
-        .contact-layout{
-            grid-template-columns: 1fr;
-            gap:35px;
-            padding:30px 20px;
-        }
-
-        .contact-text-side{
-            text-align:center;
-        }
-
-        .contact-details-list p{
-            display: block !important;
-            text-align: center !important;
-        }
-
-        .address-mobile-layout {
-            display: block !important;
-            text-align: center !important;
-        }
-
-        .address-mobile-layout span {
-            display: block !important;
-            text-align: center !important;
-        }
-
-        .address-mobile-layout span:first-child {
-            margin-bottom: 4px;
-        }
-
-        .map-window{
-            height:280px;
-        }
-
-        .seo-guide-section {
-            padding: 60px 20px;
-        }
-        .seo-guide-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .seo-guide-card {
-            padding: 30px 20px;
-        }
+        .why-card{ padding:35px 25px; }
+        .why-card p{ font-size:14px; text-align: left; }
+        
+        .form-inline{ flex-direction:column; gap: 15px; }
+        .form-inline select, .form-inline input, .form-inline .send-btn{ width:100%; min-width:100%; }
+        
+        .contact-layout{ grid-template-columns: 1fr; gap:35px; padding:30px 20px; }
+        .contact-text-side{ text-align:center; }
+        .contact-details-list p, .address-mobile-layout, .address-mobile-layout span { display: block !important; text-align: center !important; }
+        .address-mobile-layout span:first-child { margin-bottom: 4px; }
+        .map-window{ height:280px; }
+        .seo-guide-section { padding: 60px 20px; }
+        .seo-guide-grid { grid-template-columns: 1fr; gap: 20px; }
+        .seo-guide-card { padding: 30px 20px; }
     }
 
     @media (max-width: 480px) {
-        .navbar {
-            padding: 12px 20px;
-        }
-        
-        .hero {
-            height: 95vh; 
-            padding-bottom: 30px; 
-        }
-
+        .navbar { padding: 12px 20px; }
+        .hero { height: 95vh; padding-bottom: 30px; }
         .intro-welcome-text { font-size: 13px; letter-spacing: 2px; }
         .intro-brand-logo { max-width: 250px; }
         .intro-tagline-text { font-size: 9px; letter-spacing: 1.5px; }
-
-        .hero-brand-logo {
-            max-width: 250px;
-        }
-
-        .hero-title span {
-            font-size: 15px;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        .hero-content p {
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            margin-bottom: 25px;
-            margin-top: 10px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            font-size: 12px;
-        }
-        
-        .review-box {
-            padding: 30px 20px;
-        }
-        
-        .review-text {
-            font-size: 15px;
-        }
+        .hero-brand-logo { max-width: 250px; }
+        .hero-title span { font-size: 15px; letter-spacing: 1px; margin-top: 4px; }
+        .hero-content p { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 25px; margin-top: 10px; }
+        .btn { padding: 12px 30px; font-size: 12px; }
+        .review-box { padding: 30px 20px; }
+        .review-text { font-size: 15px; }
     }
 </style>
 
@@ -1337,7 +1217,6 @@
         </a>
    </div>
 
-   <!-- Top Navbar Menu with Login Button right after Blog -->
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
        <a href="#gallery">Gallery</a>
