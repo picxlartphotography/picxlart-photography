@@ -1,64 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengali Single Side Wedding | Picxlart</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* আপনার অরিজিনাল মেইন পেজের CSS এখানে বসিয়ে দিয়েছি যাতে স্টাইল হুবহু থাকে */
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-        body { background:#0d0d0d; color:#f5f5f5; display: flex; flex-direction: column; min-height: 100vh; }
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        /* Navbar & Footer স্টাইল */
-        .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; }
-        .nav-logo img{ height:60px; width:auto; }
-        .nav-menu{ display:flex; gap:35px; align-items: center; }
-        .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; text-transform: uppercase; font-size: 13px; }
-        .nav-menu a:hover{ color:#d4af37; }
-        
-        .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px; }
-        h1{ color:#d4af37; margin-bottom:50px; font-size: 32px; text-transform: uppercase; }
-        
-        .selection-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 800px; }
-        .select-card{ background: rgba(28, 28, 28, 0.4); border: 1px solid #d4af37; padding: 40px; border-radius: 20px; text-align: center; text-decoration: none; color: white; transition: 0.4s; }
-        .select-card:hover { transform: translateY(-10px); background: #1a1a1a; }
-        
-        footer { text-align: center; padding: 50px; background: #080808; color: #777; border-top: 1px solid #1a1a1a; }
-        
-        @media(max-width:768px){ .selection-grid { grid-template-columns: 1fr; } }
-    </style>
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bengali Single Side Wedding | Picxlart</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body{ background:#0d0d0d; color:#f5f5f5; overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* Top Navbar */
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-menu{ display:flex; gap:35px; align-items: center; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
+    .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease; }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; }
+
+    /* Selection Layout */
+    .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px 60px; }
+    h1{ text-align:center; color:#d4af37; margin-bottom:50px; font-size: 32px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    
+    .selection-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 30px; width: 100%; max-width: 900px; }
+
+    .select-card{ background: rgba(28, 28, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; text-align: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; align-items: center; backdrop-filter: blur(10px); text-decoration: none; }
+    .card-img-holder { width: 100%; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; margin-bottom: 22px; border: 1px solid rgba(212, 175, 55, 0.25); position: relative; }
+    .card-img-holder img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .select-card h3{ color: #e0e0e0; font-size: 15px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; transition: color 0.3s ease; }
+
+    .select-card:hover{ transform: translateY(-8px); background: rgba(35, 35, 35, 0.6); border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+    .select-card:hover .card-img-holder img { transform: scale(1.06); }
+    .select-card:hover h3 { color: #d4af37; }
+
+    /* Footer */
+    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; width: 100%; }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Responsive */
+    @media(max-width:768px){
+        .navbar{ padding:12px 24px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+        .nav-menu { position: fixed; top: 60px; left: 0; width: 100%; background: rgba(13, 13, 13, 0.97); flex-direction: column; align-items: center; transform: translateY(-150%); transition: transform 0.4s ease-in-out; z-index: 999998; border-bottom: 3px solid #d4af37; }
+        .nav-menu.active { transform: translateY(0); }
+        .nav-menu a { width: 100%; text-align: center; padding: 16px 0; color: #d4af37 !important; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        .selection-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-       <div class="nav-logo"><a href="/"><img src="logo.png" alt="Logo"></a></div>
-       <div class="nav-menu">
-           <a href="/">Home</a>
-           <a href="packages">Packages</a>
-           <a href="blog">Blog</a>
-           <a href="login">Login</a>
-       </div>
-    </div>
+<div class="navbar">
+   <div class="nav-logo"><a href="/"><img src="logo.png" alt="Picxlart Logo"></a></div>
+   <div class="nav-menu">
+       <a href="/">Home</a>
+       <a href="/#gallery">Gallery</a>
+       <a href="films">Films</a>
+       <a href="packages" class="active">Packages</a>
+       <a href="reviews">Reviews</a>
+       <a href="/#why">Why Picxlart</a>
+       <a href="blog">Blog</a>
+   </div>
+   <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+   </div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>SELECT CATEGORY</h1>
-        <div class="selection-grid">
-            <a href="groom-side-packages" class="select-card">
-                <h3>Bengali Groom Side Wedding</h3>
-            </a>
-            <a href="bride-side-packages" class="select-card">
-                <h3>Bengali Bride Side Wedding</h3>
-            </a>
+<div class="main-content">
+    <h1>SELECT CATEGORY</h1>
+    <div class="selection-grid">
+        
+        <!-- Bengali Groom Side Wedding -->
+        <a href="groom-side-packages" class="select-card">
+            <div class="card-img-holder">
+                <img src="groom-side-card.jpg" alt="Bengali Groom Side Wedding">
+            </div>
+            <h3>Bengali Groom Side Wedding</h3>
+        </a>
+
+        <!-- Bengali Bride Side Wedding -->
+        <a href="bride-side-packages" class="select-card">
+            <div class="card-img-holder">
+                <img src="bride-side-card.jpg" alt="Bengali Bride Side Wedding">
+            </div>
+            <h3>Bengali Bride Side Wedding</h3>
+        </a>
+        
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a> <span class="footer-divider">|</span> <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a> <span class="footer-divider">|</span> <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a> <span class="footer-divider">|</span> <a href="blog">Blog & Stories</a>
         </div>
     </div>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
+    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
-    </footer>
-
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+</script>
 </body>
 </html>
