@@ -288,7 +288,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:visible !important;
+        overflow:hidden;
     }
 
     .nav-logo img{
@@ -1057,11 +1057,14 @@
         }
     }
 
+    /* ==============================================================
+       THE MAGIC FIX FOR MOBILE NAVBAR (EXACTLY MATCHING BLOG.HTML) 
+       ============================================================== */
     @media(max-width:768px){
         .navbar{
             padding:12px 24px;
             flex-wrap: nowrap;
-            overflow: visible !important;
+            overflow: visible !important; /* এটাই সেই লাইন যার জন্য মেনু আটকে ছিল */
         }
 
         .nav-logo img{
@@ -1076,37 +1079,33 @@
             display: none !important; 
         }
 
-        /* Mobile Menu Fully Fixed */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: calc(100vh - 60px); 
-            background: #0d0d0d !important;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 20px 0;
+            padding: 15px 0 0 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            z-index: 9999999;
+            z-index: 999998;
             border-bottom: 3px solid #d4af37; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            overflow-y: auto;
-            pointer-events: none;
         }
 
         .nav-menu.active {
             transform: translateY(0);
-            pointer-events: auto;
         }
 
         .nav-menu a {
-            font-size: 16px;
+            font-size: 15px;
             letter-spacing: 2px;
             font-weight: 500;
             color: #d4af37 !important;
@@ -1114,7 +1113,6 @@
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            display: block;
         }
         
         .nav-menu a:last-child {
@@ -1342,11 +1340,11 @@
    <!-- Top Navbar Menu with Login Button right after Blog -->
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
-       <a href="/#gallery">Gallery</a>
+       <a href="#gallery">Gallery</a>
        <a href="films">Films</a>
        <a href="packages">Packages</a>
        <a href="reviews">Reviews</a>
-       <a href="/#why">Why Picxlart</a>
+       <a href="#why">Why Picxlart</a>
        <a href="blog">Blog</a>
        <a href="login">Login</a>
    </div>
@@ -1751,9 +1749,9 @@ function toggleWhy(){
 </script>
 
 <script>
-// Mobile Menu Script - 100% Native Link Action Restored
+// Mobile Navigation Drawer Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
+const navMenu = document.querySelector('.nav-menu');
 
 mobileMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -1767,22 +1765,10 @@ mobileMenuBtn.addEventListener('click', (e) => {
 
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        // কোনো e.preventDefault() নেই, ব্রাউজারকে তার স্বাভাবিক কাজ করতে দেওয়া হচ্ছে।
-        // মেনু বন্ধ করার আগে ৩০০ মিলি-সেকেন্ড সময় নেওয়া হচ্ছে,
-        // যাতে মোবাইল ব্রাউজার লিঙ্কটি ক্যান্সেল না করে দেয়।
-        setTimeout(() => {
-            navMenu.classList.remove('active');
-            mobileMenuBtn.textContent = '☰';
-        }, 300);
-    });
-});
-
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+    link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
-    }
+    });
 });
 </script>
 
