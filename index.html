@@ -218,6 +218,8 @@
         outline: none;
         width: 100%;
         appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
     .popup-form select {
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -286,7 +288,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:hidden;
+        overflow:visible !important; /* Fixed: allows dropdown menu clicks to register properly */
     }
 
     .nav-logo img{
@@ -1074,29 +1076,34 @@
             display: none !important; 
         }
 
+        /* Mobile Dropdown Fixed Styling */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: auto; 
-            background: rgba(13, 13, 13, 0.97);
+            height: auto;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+            background: #0d0d0d !important;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 15px 0 0 0;
+            padding: 10px 0 20px 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
-            z-index: 999998;
+            z-index: 9999999;
             border-bottom: 3px solid #d4af37; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.9);
+            pointer-events: none;
         }
 
         .nav-menu.active {
             transform: translateY(0);
+            pointer-events: auto;
         }
 
         .nav-menu a {
@@ -1108,11 +1115,15 @@
             text-align: center;
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            display: block;
+            background: transparent;
+            -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+            cursor: pointer;
         }
         
         .nav-menu a:last-child {
             border-bottom: none;
-            padding-bottom: 22px;
+            padding-bottom: 16px;
         }
 
         .nav-menu a::after {
@@ -1280,6 +1291,7 @@
 
 <body>
 
+<!-- Custom Premium Animated Splash Screen Structure -->
 <div id="picxlart-preloader">
     <div class="loader-content">
         <div class="intro-welcome-text">Welcome to</div>
@@ -1332,11 +1344,11 @@
 
    <div class="nav-menu" id="navMenu">
        <a href="/">Home</a>
-       <a href="#gallery">Gallery</a>
+       <a href="/#gallery">Gallery</a>
        <a href="films">Films</a>
        <a href="packages">Packages</a>
        <a href="reviews">Reviews</a>
-       <a href="#why">Why Picxlart</a>
+       <a href="/#why">Why Picxlart</a>
        <a href="blog">Blog</a>
        <a href="login">Login</a>
    </div>
@@ -1556,6 +1568,7 @@
         </div>
 
         <div class="seo-guide-card">
+            <div class="seo-guide-card">
             <div class="seo-card-icon"><i class="fas fa-wallet"></i></div>
             <h3>Transparent Value & Album Portfolio</h3>
             <p>Analyze customized package structures and album deliverables clearly. Ensure your investment includes premium handcrafted photobooks, 4K video edits, and complete RAW file delivery without hidden conditions.</p>
@@ -1741,8 +1754,9 @@ function toggleWhy(){
 </script>
 
 <script>
+// Mobile Menu Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
+const navMenu = document.getElementById('navMenu');
 
 mobileMenuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -1754,12 +1768,12 @@ mobileMenuBtn.addEventListener('click', (e) => {
     }
 });
 
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
         navMenu.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
-    });
+    }
 });
 </script>
 
