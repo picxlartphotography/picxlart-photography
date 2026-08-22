@@ -1720,10 +1720,6 @@ function sendEnquiry() {
     const sPhone = document.getElementById('clientPhone').value;
     const otherDetails = document.getElementById('otherDetails').value;
     
-    @media(max-width:768px) {
-        // Validation check
-    }
-    
     if(!sType || !sDate || !sPhone) {
         alert("Please fill all the details before sending!");
         return;
@@ -1772,7 +1768,6 @@ mobileMenuBtn.addEventListener('click', (e) => {
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        // Allow default navigation to happen immediately
         navMenu.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
     });
