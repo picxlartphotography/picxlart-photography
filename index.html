@@ -288,7 +288,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:visible !important; /* Fixed: allows dropdown menu clicks to register properly */
+        overflow:visible !important;
     }
 
     .nav-logo img{
@@ -1076,15 +1076,13 @@
             display: none !important; 
         }
 
-        /* Mobile Dropdown Fixed Styling */
+        /* Mobile Menu Fully Fixed */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: auto;
-            max-height: calc(100vh - 60px);
-            overflow-y: auto;
+            height: calc(100vh - 60px); 
             background: #0d0d0d !important;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -1092,22 +1090,22 @@
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 10px 0 20px 0;
+            padding: 20px 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
             z-index: 9999999;
             border-bottom: 3px solid #d4af37; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.9);
-            pointer-events: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            overflow-y: auto;
+            pointer-events: auto !important;
         }
 
         .nav-menu.active {
             transform: translateY(0);
-            pointer-events: auto;
         }
 
         .nav-menu a {
-            font-size: 15px;
+            font-size: 16px;
             letter-spacing: 2px;
             font-weight: 500;
             color: #d4af37 !important;
@@ -1116,14 +1114,13 @@
             padding: 16px 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             display: block;
-            background: transparent;
-            -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
-            cursor: pointer;
+            pointer-events: auto !important;
+            z-index: 10000000;
         }
         
         .nav-menu a:last-child {
             border-bottom: none;
-            padding-bottom: 16px;
+            padding-bottom: 22px;
         }
 
         .nav-menu a::after {
@@ -1568,7 +1565,6 @@
         </div>
 
         <div class="seo-guide-card">
-            <div class="seo-guide-card">
             <div class="seo-card-icon"><i class="fas fa-wallet"></i></div>
             <h3>Transparent Value & Album Portfolio</h3>
             <p>Analyze customized package structures and album deliverables clearly. Ensure your investment includes premium handcrafted photobooks, 4K video edits, and complete RAW file delivery without hidden conditions.</p>
@@ -1724,6 +1720,10 @@ function sendEnquiry() {
     const sPhone = document.getElementById('clientPhone').value;
     const otherDetails = document.getElementById('otherDetails').value;
     
+    @media(max-width:768px) {
+        // Validation check
+    }
+    
     if(!sType || !sDate || !sPhone) {
         alert("Please fill all the details before sending!");
         return;
@@ -1754,7 +1754,7 @@ function toggleWhy(){
 </script>
 
 <script>
-// Mobile Menu Script
+// Mobile Menu Script - Fully Fixed to allow page navigation
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
@@ -1766,6 +1766,16 @@ mobileMenuBtn.addEventListener('click', (e) => {
     } else {
         mobileMenuBtn.textContent = '☰';
     }
+});
+
+// Allow links to work normally without blocking navigation
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        // Allow default navigation to happen immediately
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
 });
 
 // Close menu when clicking outside
