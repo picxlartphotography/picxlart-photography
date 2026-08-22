@@ -4,41 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bengali Single Side Wedding | Picxlart</title>
-    <!-- আপনার আগের পেজের স্টাইল ও ফন্ট লিঙ্কগুলো এখানে একইভাবে রাখুন -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* আপনার মেইন ওয়েবসাইটের CSS গুলো এখানে বসাবেন */
-        *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-        body{ background:#0d0d0d; color:#f5f5f5; padding-top: 100px; min-height: 100vh; display: flex; flex-direction: column; }
-        
-        /* Navbar & Footer (মেইন পেজ থেকে কপি করে নেবেন) */
-        .navbar{ position:fixed; top:0; width:100%; background:rgba(10,10,10,0.95); display:flex; justify-content:space-between; align-items:center; padding:15px 40px; border-bottom:2px solid #d4af37; z-index:999; }
-        footer { margin-top: auto; padding: 50px; text-align: center; color: #777; border-top: 1px solid #222; }
+        /* আপনার অরিজিনাল মেইন পেজের CSS এখানে বসিয়ে দিয়েছি যাতে স্টাইল হুবহু থাকে */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+        body { background:#0d0d0d; color:#f5f5f5; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* নতুন কার্ডের স্টাইল */
-        .container { flex: 1; padding: 50px 20px; text-align: center; }
-        h1 { color: #d4af37; margin-bottom: 50px; text-transform: uppercase; }
-        .selection-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; }
-        .select-card { background: #1a1a1a; border: 1px solid #d4af37; padding: 30px; border-radius: 20px; text-decoration: none; color: white; transition: 0.4s; }
-        .select-card:hover { transform: translateY(-10px); background: #222; }
+        /* Navbar & Footer স্টাইল */
+        .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; }
+        .nav-logo img{ height:60px; width:auto; }
+        .nav-menu{ display:flex; gap:35px; align-items: center; }
+        .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; text-transform: uppercase; font-size: 13px; }
+        .nav-menu a:hover{ color:#d4af37; }
+        
+        .main-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px; }
+        h1{ color:#d4af37; margin-bottom:50px; font-size: 32px; text-transform: uppercase; }
+        
+        .selection-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 800px; }
+        .select-card{ background: rgba(28, 28, 28, 0.4); border: 1px solid #d4af37; padding: 40px; border-radius: 20px; text-align: center; text-decoration: none; color: white; transition: 0.4s; }
+        .select-card:hover { transform: translateY(-10px); background: #1a1a1a; }
+        
+        footer { text-align: center; padding: 50px; background: #080808; color: #777; border-top: 1px solid #1a1a1a; }
+        
+        @media(max-width:768px){ .selection-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- হেডার (মেইন পেজ থেকে কপি করা) -->
+    <!-- Navbar -->
     <div class="navbar">
-       <div class="nav-logo"><a href="/"><img src="logo.png" alt="Logo" style="height:50px;"></a></div>
+       <div class="nav-logo"><a href="/"><img src="logo.png" alt="Logo"></a></div>
        <div class="nav-menu">
            <a href="/">Home</a>
-           <a href="/#gallery">Gallery</a>
            <a href="packages">Packages</a>
            <a href="blog">Blog</a>
            <a href="login">Login</a>
        </div>
     </div>
 
-    <div class="container">
+    <!-- Main Content -->
+    <div class="main-content">
         <h1>SELECT CATEGORY</h1>
         <div class="selection-grid">
             <a href="groom-side-packages" class="select-card">
@@ -50,7 +55,7 @@
         </div>
     </div>
 
-    <!-- ফুটার (মেইন পেজ থেকে কপি করা) -->
+    <!-- Footer -->
     <footer>
         <p>© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
     </footer>
