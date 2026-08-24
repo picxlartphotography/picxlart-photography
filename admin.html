@@ -1,508 +1,1874 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DLCSJBGXZ6');
-</script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - Picxlart Photography & Events Co.</title>
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
 
-<style>
-    /* Global Reset & Base Typography */
-    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body{ background:#0d0d0d; color:#f5f5f5; overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; -webkit-user-select:none; user-select:none; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* Top Navbar */
-    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
-    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
-    .nav-logo img:hover { transform: scale(1.03); }
-    .nav-menu{ display:flex; gap:35px; align-items: center; }
-    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
-    .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease; }
-    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
-    .nav-social{ display:flex; gap:20px; }
-    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
-    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
-    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; -webkit-tap-highlight-color: transparent; }
+    <title>Admin Dashboard - Picxlart Portal</title>
 
-    /* Hero Header */
-    .about-hero {
-        margin-top: 60px;
-        min-height: 320px;
-        background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 60px 20px;
-        border-bottom: 1px solid rgba(212,175,55,0.2);
-    }
-    .about-hero h1 {
-        font-size: 38px;
-        color: #d4af37;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 12px;
-    }
-    .about-hero p {
-        font-size: 15px;
-        color: #cccccc;
-        letter-spacing: 1.5px;
-        max-width: 700px;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    /* Main Content Sections */
-    section { padding: 80px 10%; }
-    h2 { text-align: center; color: #d4af37; font-size: 32px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 45px; position: relative; }
-    h2::after { content: ''; display: block; width: 60px; height: 2px; background: #d4af37; margin: 12px auto 0; }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    /* Detailed Story Box */
-    .about-story-box {
-        max-width: 1100px;
-        margin: 0 auto;
-        background: #141414;
-        border: 1px solid rgba(212,175,55,0.2);
-        border-radius: 20px;
-        padding: 50px 60px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-    .about-story-box p {
-        font-size: 16px;
-        line-height: 1.9;
-        color: #d6d6d6;
-        margin-bottom: 22px;
-        text-align: justify;
-    }
-    .about-story-box p strong { color: #d4af37; }
+    
 
-    /* Metrics / Key Cards Grid */
-    .metrics-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
-        max-width: 1100px;
-        margin: 60px auto 0;
-    }
-    .metric-card {
-        background: #141414;
-        border: 1px solid rgba(212,175,55,0.2);
-        border-radius: 16px;
-        overflow: hidden;
-        text-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-    }
-    .metric-card:hover {
-        transform: translateY(-6px);
-        border-color: #d4af37;
-        box-shadow: 0 10px 30px rgba(212,175,55,0.25);
-    }
-    .metric-card-img {
-        width: 100%;
-        height: 160px;
-        overflow: hidden;
-        border-bottom: 1px solid rgba(212,175,55,0.15);
-    }
-    .metric-card-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    .metric-card:hover .metric-card-img img {
-        transform: scale(1.05);
-    }
-    .metric-card-content {
-        padding: 22px 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .metric-card-content h3 {
-        font-size: 22px;
-        color: #ffffff;
-        margin-bottom: 4px;
-        font-weight: 700;
-    }
-    .metric-card-content p {
-        font-size: 12px;
-        color: #d4af37;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 600;
-    }
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-    /* Owners' Journey Section */
-    .owners-section {
-        background: #090909;
-        border-top: 1px solid rgba(212,175,55,0.15);
-        border-bottom: 1px solid rgba(212,175,55,0.15);
-    }
-    .owners-container {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 80px;
-    }
-    .founder-row {
-        display: grid;
-        grid-template-columns: 420px 1fr;
-        gap: 50px;
-        align-items: center;
-    }
-    .founder-row.reverse {
-        grid-template-columns: 1fr 420px;
-    }
-    .founder-row.reverse .founder-img-box {
-        order: 2;
-    }
-    .founder-row.reverse .founder-text-box {
-        order: 1;
-    }
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
 
-    .founder-img-box {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .founder-img-box img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        border: 1px solid rgba(212,175,55,0.2);
-        transition: transform 0.5s ease;
-    }
-    .founder-row:hover .founder-img-box img {
-        transform: scale(1.02);
-    }
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    .founder-text-box h3 {
-        font-size: 30px;
-        color: #ffffff;
-        margin-bottom: 6px;
-        font-weight: 600;
-    }
-    .founder-text-box .founder-role {
-        font-size: 13px;
-        color: #d4af37;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-        display: block;
-        font-weight: 600;
-        line-height: 1.6;
-    }
-    .founder-text-box p {
-        font-size: 15px;
-        color: #cccccc;
-        line-height: 1.9;
-        text-align: justify;
-    }
 
-    /* Achievement Infinite Marquee Section */
-    .achievements-marquee-section {
-        padding: 60px 0;
-        background: #0d0d0d;
-        overflow: hidden;
-        border-top: 1px solid rgba(212,175,55,0.15);
-        border-bottom: 1px solid rgba(212,175,55,0.15);
-    }
-    .achievements-title {
-        text-align: center;
-        color: #d4af37;
-        font-size: 24px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 35px;
-    }
-    .marquee-track {
-        display: flex;
-        width: max-content;
-        animation: scrollMarquee 30s linear infinite;
-        gap: 30px;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    .achievement-pill {
-        background: #141414;
-        border: 1px solid rgba(212,175,55,0.3);
-        padding: 18px 35px;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        white-space: nowrap;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    }
-    .achievement-pill i {
-        color: #d4af37;
-        font-size: 20px;
-    }
-    .achievement-pill span {
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-    }
-    @keyframes scrollMarquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
 
-    /* Footer */
-    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; width: 100%; }
-    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
-    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
-    .footer-links-container a:hover { color: #ffffff; }
-    .footer-divider { color:#333; margin: 0 8px; }
+    <style>
 
-    /* Responsive Design */
-    @media(max-width: 1024px) {
-        .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media(max-width: 768px) {
-        .navbar{ padding: 12px 20px !important; flex-wrap: nowrap !important; }
-        .nav-logo img { height: 45px !important; }
-        .menu-toggle { display: block !important; }
-        .nav-social { display: none !important; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-        .nav-menu {
-            position: fixed !important;
-            top: 60px !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: auto !important;
-            background: rgba(13, 13, 13, 0.97) !important;
-            backdrop-filter: blur(15px) !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            align-items: center !important;
-            gap: 0 !important;
-            padding: 15px 0 0 0 !important;
-            transform: translateY(-150%) !important;
-            transition: transform 0.4s ease-in-out !important;
-            z-index: 9999998 !important;
-            border-bottom: 3px solid #d4af37 !important;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
-            pointer-events: none;
+        body { background-color: #0d0d0f; color: #ffffff; display: flex; height: 100vh; overflow: hidden; }
+
+
+
+        /* =========================================================================
+
+           NEW PREMIUM LOGIN SCREEN WITH IMAGE BACKGROUND & BLUR
+
+        ========================================================================= */
+
+        .login-overlay { 
+
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+
+            z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; 
+
+            overflow: hidden;
+
         }
-        .nav-menu.active { transform: translateY(0) !important; pointer-events: auto !important; }
-        .nav-menu a { font-size: 15px !important; color: #d4af37 !important; width: 100% !important; text-align: center !important; padding: 16px 0 !important; border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; display: block !important; }
-        .nav-menu a::after { display: none !important; }
-        .nav-menu a:last-child { border-bottom: none !important; padding-bottom: 22px !important; }
 
-        .about-story-box { padding: 30px 20px; }
-        .metrics-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 15px; }
-        .metric-card-img { height: 130px; }
-        .metric-card-content h3 { font-size: 18px; }
-        .metric-card-content p { font-size: 11px; }
 
-        /* Mobile View Founders Layout */
-        .founder-row, .founder-row.reverse {
-            grid-template-columns: 1fr !important;
-            gap: 25px;
-            text-align: center;
+
+        .login-overlay::before {
+
+            content: '';
+
+            position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; 
+
+            background: url('cover page design wooden1.jpg') center/cover no-repeat;
+
+            filter: blur(6px) brightness(0.35); 
+
+            z-index: -1; 
+
         }
-        .founder-row.reverse .founder-img-box { order: 1; }
-        .founder-row.reverse .founder-text-box { order: 2; }
-        .founder-img-box img { max-width: 100%; }
-        .founder-text-box h3 { font-size: 24px; }
-        .founder-text-box p { text-align: center; }
 
-        .about-hero h1 { font-size: 26px; }
-        section { padding: 60px 20px; }
-    }
-</style>
+
+
+        .login-card { background: #16161a; border: 1px solid #d4af37; border-radius: 14px; padding: 35px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
+        .login-card input { width: 100%; padding: 12px; margin-top: 12px; background: #0b0b0d; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; }
+
+        .btn-auth { width: 100%; background: linear-gradient(135deg, #d4af37, #aa820a); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; margin-top: 18px; cursor: pointer; transition: 0.3s; }
+
+        .btn-auth:hover { opacity: 0.9; }
+
+
+
+        /* SIDEBAR & MAIN CONTENT */
+
+        .sidebar { width: 260px; background: #121215; border-right: 1px solid #222228; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 0; }
+
+        .sidebar-brand { display: flex; align-items: center; justify-content: center; padding: 0 20px 20px 20px; border-bottom: 1px solid #222228; }
+
+        .sidebar-brand img { height: 50px; }
+
+        
+
+        .menu-list { list-style: none; margin-top: 20px; }
+
+        .menu-item { padding: 14px 20px; color: #aaa; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent; }
+
+        .menu-item:hover, .menu-item.active { background: #18181c; color: #d4af37; border-left-color: #d4af37; }
+
+        .logout-btn-container { padding: 15px 20px; border-top: 1px solid #222228; }
+
+        .btn-sidebar-logout { width: 100%; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+
+        .btn-sidebar-logout:hover { background: #ff4d4d; color: #fff; }
+
+
+
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; background: #0d0d0f; }
+
+        .system-header-title { font-size: 20px; font-weight: 700; color: #d4af37; letter-spacing: 1px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #222228; text-transform: uppercase; }
+
+
+
+        .card { background: #16161a; border: 1px solid #222228; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+
+        .card-title { font-size: 16px; color: #d4af37; font-weight: 600; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+
+
+
+        .db-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+        .db-table th { background: #121215; color: #d4af37; text-align: left; padding: 12px; border-bottom: 1px solid #222228; }
+
+        .db-table td { padding: 12px; border-bottom: 1px solid #222; color: #ccc; }
+
+        .db-table tr:hover { background: rgba(212, 175, 55, 0.05); }
+
+
+
+        .full-form-scroll-box { max-height: 320px; overflow-y: auto; background: #0b0b0d; border: 1px solid #2a2a30; border-radius: 10px; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+
+        .data-point { background: #141418; padding: 12px; border-radius: 8px; border: 1px solid #222; }
+
+        .data-point strong { color: #d4af37; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+
+        .data-point span { color: #eee; font-size: 13px; word-break: break-word; }
+
+
+
+        .action-btn-group { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
+
+        .btn-ack { padding: 11px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+
+        .btn-view-ack { background: #2196F3; color: #fff; }
+
+        .btn-edit-ack { background: #FF9800; color: #fff; }
+
+        .btn-preview-ack { background: #9C27B0; color: #fff; }
+
+        .btn-issue-ack { background: #4CAF50; color: #fff; }
+
+
+
+        .payment-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 15px; }
+
+        .pay-card { background: #141418; border: 1px solid #2a2a30; border-radius: 10px; padding: 16px; position: relative; }
+
+        .pay-card-title { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; display: flex; justify-content: space-between; }
+
+        .pay-card-value { font-size: 20px; font-weight: 700; color: #fff; }
+
+        .edit-icon { color: #d4af37; cursor: pointer; font-size: 11px; }
+
+
+
+        .pay-card.total { border-color: rgba(212, 175, 55, 0.4); } .pay-card.total .pay-card-value { color: #d4af37; }
+
+        .pay-card.paid { border-color: rgba(76, 175, 80, 0.4); } .pay-card.paid .pay-card-value { color: #4caf50; }
+
+        .pay-card.early-due { border-color: rgba(255, 152, 0, 0.4); } .pay-card.early-due .pay-card-value { color: #ff9800; }
+
+        .pay-card.event-due { border-color: rgba(33, 150, 243, 0.4); } .pay-card.event-due .pay-card-value { color: #2196F3; }
+
+        .pay-card.delivery-due { border-color: rgba(233, 30, 99, 0.4); } .pay-card.delivery-due .pay-card-value { color: #e91e63; }
+
+
+
+        .status-manager-box { background: #111114; border: 1px solid #222228; border-radius: 10px; padding: 18px; }
+
+        .status-list-item { display: flex; justify-content: space-between; align-items: center; background: #18181c; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #282830; }
+
+
+
+        .btn-approve { background: #4caf50; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; }
+
+        .btn-reject { background: #ff4d4d; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; margin-left: 5px; }
+
+
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px; }
+
+        .preview-box { background: #1a1a1e; border: 1px solid #d4af37; color: #fff; border-radius: 12px; width: 100%; max-width: 900px; height: 95vh; overflow: auto; padding: 25px; position: relative; }
+
+        .preview-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #fff; z-index: 100;}
+
+
+
+        .pdf-page-wrap { position: relative; width: 794px; min-width: 794px; margin: 0 auto 30px auto; border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); background: #fff; color: #000; overflow: hidden; }
+
+        .pdf-page-bg { width: 100%; display: block; }
+
+        .pdf-data-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+
+
+        .tab-content { display: none; }
+
+        .tab-content.active { display: block; }
+
+
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 768px) {
+
+            body { flex-direction: column; height: auto; overflow-y: auto; }
+
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #222228; padding: 15px; }
+
+            .sidebar-brand { padding-bottom: 10px; }
+
+            .menu-list { display: flex; flex-direction: row; overflow-x: auto; gap: 10px; margin-top: 10px; padding-bottom: 5px; }
+
+            .menu-item { white-space: nowrap; padding: 10px 15px; border-left: none; border-bottom: 3px solid transparent; border-radius: 6px; }
+
+            .menu-item.active { border-left-color: transparent; border-bottom-color: transparent; background: #d4af37; color: #000; font-weight: 700; }
+
+            .logout-btn-container { padding: 15px 0 0 0; border-top: none; }
+
+            .main-content { padding: 15px; height: auto; overflow: visible; }
+
+            .system-header-title { font-size: 16px; text-align: center; }
+
+            .card { padding: 15px; overflow-x: auto; }
+
+            .card-title { flex-direction: column; gap: 10px; align-items: flex-start; }
+
+            .db-table { min-width: 650px; } 
+
+            .full-form-scroll-box { grid-template-columns: 1fr; max-height: 400px; padding: 15px; }
+
+            .action-btn-group { flex-direction: column; gap: 10px; }
+
+            .btn-ack { width: 100%; justify-content: center; }
+
+            .payment-summary-grid { grid-template-columns: 1fr 1fr; }
+
+            .status-manager-box > div:first-child { flex-direction: column; }
+
+            .status-manager-box > div:first-child button { width: 100%; padding: 10px; }
+
+            .modal-overlay { padding: 10px; }
+
+            .preview-box { padding: 15px; height: 90vh; }
+
+            .preview-close { top: 5px; right: 10px; }
+
+        }
+
+
+
+        @media (max-width: 480px) {
+
+            .payment-summary-grid { grid-template-columns: 1fr; }
+
+            .login-card { padding: 25px 20px; }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-   <div class="nav-logo">
-        <a href="/"><img src="logo.png" alt="Picxlart Logo"></a>
-    </div>
-   <div class="nav-menu" id="navMenu">
-       <a href="/">Home</a>
-       <a href="/#gallery">Gallery</a>
-       <a href="films">Films</a>
-       <a href="packages">Packages</a>
-       <a href="reviews">Reviews</a>
-       <a href="/#why">Why Picxlart</a>
-       <a href="blog">Blog</a>
-   </div>
-   <div class="nav-social">
-        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
-   </div>
-   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
-</div>
 
-<!-- Hero Header -->
-<div class="about-hero">
-    <h1>About Picxlart</h1>
-    <p>Timeless Moments, Captured for Eternity with Passion & Artistic Excellence</p>
-</div>
 
-<!-- Detailed Story Section -->
-<section>
-    <h2>Our Brand Story</h2>
-    <div class="about-story-box">
-        <p>
-            At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
-        </p>
-        <p>
-            We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
-        </p>
-        <p>
-            From grand weddings and cinematic wedding films to candid photography, pre-wedding shoots, bridal portraits, destination weddings, corporate events, birthdays, rice ceremonies (Annaprashan), baby showers, anniversaries, housewarming celebrations, family functions, school and college events, our experienced team is committed to delivering premium photography and cinematic storytelling tailored to every occasion.
-        </p>
-        <p>
-            Based in West Bengal, Picxlart proudly serves clients across Kolkata, Serampore, Hooghly, Durgapur, Asansol, Siliguri, Kharagpur, and destinations throughout India. Whether your event is close to home or in another state, our team is always ready to travel to capture your story with the same passion and professionalism.
-        </p>
-    </div>
+    <div class="login-overlay" id="admin-login-overlay">
 
-    <!-- Key Metrics / Stats Cards -->
-    <div class="metrics-grid">
-        <div class="metric-card">
-            <div class="metric-card-img"><img src="card-bg1.jpg" alt="Experience"></div>
-            <div class="metric-card-content">
-                <h3>10+ Years</h3>
-                <p>Industry Experience</p>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-card-img"><img src="card-bg2.jpg" alt="Projects"></div>
-            <div class="metric-card-content">
-                <h3>750+</h3>
-                <p>Projects Completed</p>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-card-img"><img src="card-bg3.jpg" alt="Google Top Rated"></div>
-            <div class="metric-card-content">
-                <h3>4.9 Star</h3>
-                <p>Google Top Rated</p>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-card-img"><img src="card-bg4.jpg" alt="Top Ranked"></div>
-            <div class="metric-card-content">
-                <h3>Top Ranked</h3>
-                <p>Facebook Wedding Brand</p>
-            </div>
-        </div>
-    </div>
-</section>
+        <div class="login-card">
 
-<!-- Owners' Journey Section -->
-<section class="owners-section">
-    <h2>The Founders' Journey</h2>
-    <div class="owners-container">
-        
-        <!-- 1st Founder (Debashis Ghosh) -->
-        <div class="founder-row">
-            <div class="founder-img-box">
-                <img src="owner1.jpg" alt="Debashis Ghosh">
-            </div>
-            <div class="founder-text-box">
-                <h3>Debashis Ghosh</h3>
-                <span class="founder-role">Founder, Lead Cinematographer, Photographer & Media Manager</span>
-                <p>Choosing the right wedding photographer in Kolkata and Hooghly for your special day is a crucial decision. My professional journey actually began in 2007 as a Computer Network Engineer, working with several multinational companies. However, out of a deep-rooted passion for capturing true emotions, photography soon turned from a hobby into a calling. Driven by this love, I officially established Picxlart in June 2016. By 2017, I stepped away from corporate life to dedicate 100% of my focus and heart to building Picxlart.<br><br>Over the years, our journey has grown far beyond just photography. We have had the privilege of training numerous aspiring individuals; many talented photographers have worked and grown alongside us, and today, our team has expanded significantly. With our strong, skilled workforce and robust management, we now possess the capability to handle up to 3 major assignments simultaneously in a single day without ever compromising on quality.<br><br>As the founder, I believe that every single client is immensely valuable to us. When a client trusts us with their booking, we don't just complete an assignment—we craft a lifelong memory that they will cherish forever. We know that delivering our absolute best means they will love our work, trust us for future milestones, and recommend us to their friends and family through word-of-mouth.<br><br>Beyond professionalism, we love capturing the genuine, raw emotions of your once-in-a-lifetime moments across Kolkata, Serampore, Hooghly, and all over West Bengal. From pre-wedding photo shoots on iconic Kolkata streets to grand weddings, we are dedicated to making you look classy and royal. Just share your vision, relax with your family, and let us deliver your valuable frames on time, ensuring you've hired the best wedding photographer.</p>
-            </div>
-        </div>
+            <img src="logo.png" style="height: 55px; margin-bottom: 10px;">
 
-        <!-- 2nd Founder (Moumita Shil) -->
-        <div class="founder-row reverse">
-            <div class="founder-img-box">
-                <img src="owner2.jpg" alt="Moumita Shil">
-            </div>
-            <div class="founder-text-box">
-                <h3>Moumita Shil</h3>
-                <span class="founder-role">Co Founder and Lead Photographer</span>
-                <p>"Every wedding has its unique rhythm, colours, and unspoken vows. Our goal behind the lens and at the edit desk is to weave those elements into cinematic poetry that brings back tears of joy even decades later."</p>
-            </div>
+            <h3 style="color:#d4af37;">Secure Admin Access</h3>
+
+            <input type="email" id="admin-user" placeholder="Admin Email">
+
+            <input type="password" id="admin-pass" placeholder="Password">
+
+            <button class="btn-auth" id="login-btn" onclick="verifyAdminLogin()">Unlock Dashboard</button>
+
         </div>
 
     </div>
-</section>
 
-<!-- Achievement Marquee Strip -->
-<div class="achievements-marquee-section">
-    <div class="achievements-title">Milestones & Achievements</div>
-    <div class="marquee-track">
-        <!-- Set 1 -->
-        <div class="achievement-pill"><i class="fas fa-check-circle"></i><span>Govt. Registered MSME Enterprise (Udyam Reg.)</span></div>
-        <div class="achievement-pill"><i class="fas fa-trophy"></i><span>Over 460+ Successful Luxury Weddings Captured</span></div>
-        <div class="achievement-pill"><i class="fas fa-globe-asia"></i><span>Pan-India Destination Wedding Coverage</span></div>
-        <div class="achievement-pill"><i class="fas fa-heart"></i><span>100% Client Satisfaction & 5-Star Google Rating</span></div>
-        <!-- Set 2 (Duplicated for seamless infinite loop) -->
-        <div class="achievement-pill"><i class="fas fa-check-circle"></i><span>Govt. Registered MSME Enterprise (Udyam Reg.)</span></div>
-        <div class="achievement-pill"><i class="fas fa-trophy"></i><span>Over 460+ Successful Luxury Weddings Captured</span></div>
-        <div class="achievement-pill"><i class="fas fa-globe-asia"></i><span>Pan-India Destination Wedding Coverage</span></div>
-        <div class="achievement-pill"><i class="fas fa-heart"></i><span>100% Client Satisfaction & 5-Star Google Rating</span></div>
-    </div>
-</div>
 
-<!-- Footer -->
-<footer>
-    <div class="footer-links-container">
+
+    <div class="sidebar">
+
         <div>
-            <a href="faq">FAQ</a> <span class="footer-divider">|</span> <a href="payment">Online Payment</a>
+
+            <div class="sidebar-brand"><img src="logo.png" alt="Picxlart Logo"></div>
+
+            <ul class="menu-list">
+
+                <li class="menu-item active" onclick="switchTab('tab-approvals', this)"><i class="fa-solid fa-user-clock"></i> Pending Approvals</li>
+
+                <li class="menu-item" onclick="switchTab('tab-database', this)"><i class="fa-solid fa-users"></i> All Clients Database</li>
+
+                <li class="menu-item" onclick="switchTab('tab-active', this)"><i class="fa-solid fa-diagram-project"></i> Active Client Management</li>
+
+            </ul>
+
         </div>
-        <div>
-            <a href="privacy-policy">Privacy Policy</a> <span class="footer-divider">|</span> <a href="payment-terms">Payment Terms</a>
+
+        <div class="logout-btn-container">
+
+            <button class="btn-sidebar-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+
         </div>
-        <div>
-            <a href="terms">Terms & Conditions</a> <span class="footer-divider">|</span> <a href="blog">Blog & Stories</a>
-        </div>
+
     </div>
-    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
-    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
-</footer>
 
-<script>
-// Mobile Menu Script
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
 
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-});
 
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
+    <div class="main-content">
 
-document.addEventListener('click', (e) => {
-    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-</script>
+        <h2 class="system-header-title">PICXLART CLIENT MANAGEMENT SYSTEM</h2>
+
+
+
+        <div id="tab-approvals" class="tab-content active">
+
+            <div class="card">
+
+                <div class="card-title"><span><i class="fa-solid fa-user-check"></i> Pending Signup Requests</span></div>
+
+                <table class="db-table">
+
+                    <thead><tr><th>Client Name</th><th>Email</th><th>Action</th></tr></thead>
+
+                    <tbody id="pending-users-rows"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div id="tab-database" class="tab-content">
+
+            <div class="card">
+
+                <div class="card-title"><span><i class="fa-solid fa-database"></i> Approved Clients Database</span></div>
+
+                <table class="db-table">
+
+                    <thead><tr><th>Client Name</th><th>Email</th><th>Form Status</th><th>Action</th></tr></thead>
+
+                    <tbody id="approved-clients-rows"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div id="tab-active" class="tab-content">
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <span><i class="fa-solid fa-folder-open"></i> Managing Client: <span id="current-client-name" style="color:#fff;">Select Client</span></span>
+
+                    <span id="issue-status-badge" style="font-size: 11px; padding: 4px 12px; border-radius: 20px;">Paper Status</span>
+
+                </div>
+
+
+
+                <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-list-check"></i> Complete Form Specifications (In Sequential Order)</h4>
+
+                <div class="full-form-scroll-box" id="full-form-data-box">
+
+                    <p style="color:#aaa; font-size:12px; grid-column:1/-1;">Click 'Open Panel' on any approved client in Database to load form details.</p>
+
+                </div>
+
+
+
+                <div class="action-btn-group">
+
+                    <button class="btn-ack btn-view-ack" onclick="render6PagePreview(false)"><i class="fa-solid fa-eye"></i> View Acknowledgement Paper</button>
+
+                    <button class="btn-ack btn-edit-ack" onclick="openEditAckModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Acknowledgement Paper</button>
+
+                    <button class="btn-ack btn-preview-ack" onclick="render6PagePreview(true)"><i class="fa-solid fa-file-pdf"></i> Final Preview</button>
+
+                    <button class="btn-ack btn-issue-ack" onclick="issueAcknowledgementPaper()"><i class="fa-solid fa-paper-plane"></i> Issue Acknowledgement Paper</button>
+
+                </div>
+
+
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+
+                    <h4 style="color:#d4af37; font-size:13px;"><i class="fa-solid fa-calculator"></i> Automatic Smart Payment Calculator</h4>
+
+                    <button id="btn-save-custom-payments" style="display:none; background:#4caf50; color:#fff; border:none; padding:6px 14px; border-radius:6px; font-size:12px; cursor:pointer;" onclick="saveCustomPayments()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+
+                </div>
+
+
+
+                <div class="payment-summary-grid">
+
+                    <div class="pay-card total">
+
+                        <div class="pay-card-title">Total Package Value <i class="fa-solid fa-pen edit-icon" onclick="editPayValue('calc-total')"></i></div>
+
+                        <div class="pay-card-value" id="calc-total">₹0</div>
+
+                    </div>
+
+                    <div class="pay-card paid">
+
+                        <div class="pay-card-title">Advance Paid <i class="fa-solid fa-pen edit-icon" onclick="editPayValue('calc-adv')"></i></div>
+
+                        <div class="pay-card-value" id="calc-adv">₹0</div>
+
+                    </div>
+
+                    <div class="pay-card early-due" id="card-early-due">
+
+                        <div class="pay-card-title">1 Month Before Due (50%) <i class="fa-solid fa-pen edit-icon" onclick="editPayValue('calc-early-due-amt')"></i></div>
+
+                        <div class="pay-card-value" id="calc-early-due-amt">₹0</div>
+
+                    </div>
+
+                    <div class="pay-card event-due">
+
+                        <div class="pay-card-title">Event Day Final Due <i class="fa-solid fa-pen edit-icon" onclick="editPayValue('calc-event-due')"></i></div>
+
+                        <div class="pay-card-value" id="calc-event-due">₹0</div>
+
+                    </div>
+
+                    <div class="pay-card delivery-due" id="card-delivery-due">
+
+                        <div class="pay-card-title">Album/Deliverable Submission Due <i class="fa-solid fa-pen edit-icon" onclick="editPayValue('calc-delivery-due-amt')"></i></div>
+
+                        <div class="pay-card-value" id="calc-delivery-due-amt">₹0</div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAYMENT HISTORY LEDGER -->
+
+                <h4 style="color:#d4af37; font-size:13px; margin-top:25px; margin-bottom:12px;"><i class="fa-solid fa-clock-rotate-left"></i> Payment History Ledger (Admin Tracking)</h4>
+
+                <div style="background:#111114; border:1px solid #222228; border-radius:10px; padding:15px; margin-bottom:25px; overflow-x:auto;">
+
+                    <table class="db-table" style="font-size:12px; min-width: 500px;">
+
+                        <thead>
+
+                            <tr><th>Date & Time</th><th>Amount Paid</th><th>Total Paid</th><th>Remaining Balance</th><th style="text-align:right;">Action</th></tr>
+
+                        </thead>
+
+                        <tbody id="payment-history-rows">
+
+                            <!-- Rows will inject here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <h4 style="color:#d4af37; font-size:13px; margin-bottom:12px;"><i class="fa-solid fa-tasks"></i> Live Event / Project Status Management</h4>
+
+                <div class="status-manager-box">
+
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+
+                        <input type="text" id="new-stage-name" placeholder="Add Event Stage (e.g. Trailer Editing, Album Design)" style="flex:1; padding:10px; background:#0b0b0d; border:1px solid #333; border-radius:6px; color:#fff; font-size:12px;">
+
+                        <button class="btn-approve" onclick="addProjectStage()"><i class="fa-solid fa-plus"></i> Add Stage</button>
+
+                    </div>
+
+                    <div id="project-stages-list"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal-overlay" id="preview-modal">
+
+        <div class="preview-box" id="pdf-preview-content">
+
+            <span class="preview-close" onclick="document.getElementById('preview-modal').style.display='none'">&times;</span>
+
+            <div id="preview-html-body"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyAGXrHusoIE1Alp9gqUDwCNg4mdba4s7uo",
+
+            authDomain: "picxlart-portal.firebaseapp.com",
+
+            projectId: "picxlart-portal",
+
+            storageBucket: "picxlart-portal.firebasestorage.app",
+
+            messagingSenderId: "993916901139",
+
+            appId: "1:993916901139:web:55d481ca4cf6fb61fdece6"
+
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+
+        const db = firebase.firestore();
+
+
+
+        let currentActiveUid = null;
+
+        let currentClientData = null;
+
+
+
+        window.onload = function() {
+
+            auth.onAuthStateChanged((user) => {
+
+                if (user && user.email === "admin@picxlart.com") {
+
+                    document.getElementById('admin-login-overlay').style.display = "none";
+
+                    listenForUsers();
+
+                } else {
+
+                    document.getElementById('admin-login-overlay').style.display = "flex";
+
+                }
+
+            });
+
+        };
+
+
+
+        function verifyAdminLogin() {
+
+            const email = document.getElementById('admin-user').value.trim();
+
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            const loginBtn = document.getElementById('login-btn');
+
+
+
+            if(email !== "admin@picxlart.com") {
+
+                alert("Unauthorized Email! Only the authorized Admin can login.");
+
+                return;
+
+            }
+
+
+
+            loginBtn.innerText = "Verifying...";
+
+            loginBtn.disabled = true;
+
+
+
+            auth.signInWithEmailAndPassword(email, pass)
+
+                .then((userCredential) => {
+
+                    document.getElementById('admin-login-overlay').style.display = "none";
+
+                    loginBtn.innerText = "Unlock Dashboard";
+
+                    loginBtn.disabled = false;
+
+                    listenForUsers();
+
+                })
+
+                .catch((error) => {
+
+                    alert("Invalid Admin Credentials!");
+
+                    loginBtn.innerText = "Unlock Dashboard";
+
+                    loginBtn.disabled = false;
+
+                });
+
+        }
+
+
+
+        function logoutAdmin() {
+
+            auth.signOut().then(() => {
+
+                location.reload();
+
+            });
+
+        }
+
+
+
+        function switchTab(tabId, element) {
+
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+
+            element.classList.add('active');
+
+        }
+
+
+
+        function listenForUsers() {
+
+            db.collection("users").onSnapshot((snapshot) => {
+
+                const pendingTbody = document.getElementById("pending-users-rows");
+
+                const approvedTbody = document.getElementById("approved-clients-rows");
+
+                pendingTbody.innerHTML = "";
+
+                approvedTbody.innerHTML = "";
+
+
+
+                snapshot.forEach((doc) => {
+
+                    const data = doc.data();
+
+                    const userId = doc.id;
+
+
+
+                    if (data.status === "pending") {
+
+                        pendingTbody.innerHTML += `<tr>
+
+                            <td><strong>${data.name || 'New User'}</strong></td>
+
+                            <td>${data.email}</td>
+
+                            <td>
+
+                                <button class="btn-approve" onclick="approveUser('${userId}')">Approve</button>
+
+                                <button class="btn-reject" onclick="deleteUser('${userId}')">Reject</button>
+
+                            </td>
+
+                        </tr>`;
+
+                    } else if (data.status === "approved") {
+
+                        let formBadge = data.formSubmitted 
+
+                            ? '<span style="color:#4caf50; font-size:11px;">✅ Form Submitted</span>' 
+
+                            : '<span style="color:#ff9800; font-size:11px;">⏳ Form Pending</span>';
+
+                        
+
+                        approvedTbody.innerHTML += `<tr style="cursor:pointer;" onclick="openClientDetail('${userId}')">
+
+                            <td><strong>${data.name || 'User'}</strong></td>
+
+                            <td>${data.email}</td>
+
+                            <td>${formBadge}</td>
+
+                            <td><span style="color:#d4af37;"><i class="fa-solid fa-folder-open"></i> Open Panel</span></td>
+
+                        </tr>`;
+
+                    }
+
+                });
+
+            });
+
+        }
+
+
+
+        function approveUser(userId) {
+
+            db.collection("users").doc(userId).update({ status: "approved" }).then(() => alert("Client Approved!"));
+
+        }
+
+        function deleteUser(userId) {
+
+            if(confirm("Reject client?")) db.collection("users").doc(userId).delete();
+
+        }
+
+
+
+        function getFormattedDateTime() {
+
+            return new Date().toLocaleString('en-IN', { 
+
+                day: '2-digit', month: 'short', year: 'numeric', 
+
+                hour: '2-digit', minute: '2-digit', hour12: true 
+
+            });
+
+        }
+
+
+
+        function openClientDetail(docId) {
+
+            currentActiveUid = docId;
+
+            db.collection("users").doc(docId).get().then((doc) => {
+
+                if(doc.exists) {
+
+                    currentClientData = doc.data();
+
+                    document.getElementById('current-client-name').innerText = currentClientData.name || "Client";
+
+
+
+                    const sequentialFields = [
+
+                        { key: 'name', label: 'Client Name' },
+
+                        { key: 'email', label: 'Email Address' },
+
+                        { key: 'phone', label: 'Contact Number' },
+
+                        { key: 'whatsapp', label: 'WhatsApp Number' },
+
+                        { key: 'eventType', label: 'Event Name' },
+
+                        { key: 'weddingCategory', label: 'Wedding Category' },
+
+                        { key: 'address', label: 'Postal Address' },
+
+                        { key: 'bookingDate', label: 'Booking Date' },
+
+                        { key: 'assignmentBriefDate', label: 'Assignment Brief Dates' },
+
+                        { key: 'daysCount', label: 'Days Count' },
+
+                        { key: 'weddingLagna', label: 'Wedding Lagna / Time' },
+
+                        { key: 'packageNameAndCost', label: 'Package Name & Actual Cost' },
+
+                        { key: 'totalAmount', label: 'Total Package Amount' },
+
+                        { key: 'advanceAmount', label: 'Advance Paid Amount' },
+
+                        { key: 'tokenBooking', label: 'Token Booking Amount' },
+
+                        { key: 'finalPaymentDesc', label: 'Final Payment Details' },
+
+                        { key: 'duesAfterAssignment', label: 'Dues After Assignment' },
+
+                        { key: 'jobDetails', label: 'Job & Deliverables Selection' },
+
+                        { key: 'albumDetails', label: 'Album / Photobook Details' },
+
+                        { key: 'complimentaryAssured', label: 'Complimentary Assured' },
+
+                        { key: 'complimentaryDetails', label: 'Complimentary Details' },
+
+                        { key: 'customRequirements', label: 'Custom Requirements' },
+
+                        { key: 'miscCharges', label: 'Misc Charges' },
+
+                        { key: 'droneRequired', label: 'Drone Required' },
+
+                        { key: 'conductedBy', label: 'Assignment Conducted By' },
+
+                        { key: 'comments', label: 'Client Feedback / Comments' }
+
+                    ];
+
+
+
+                    const scrollBox = document.getElementById('full-form-data-box');
+
+                    scrollBox.innerHTML = "";
+
+
+
+                    sequentialFields.forEach(item => {
+
+                        let val = currentClientData[item.key] || 'N/A';
+
+                        if(item.key === 'totalAmount' || item.key === 'advanceAmount') val = '₹' + val;
+
+                        scrollBox.innerHTML += `
+
+                            <div class="data-point">
+
+                                <strong>${item.label}</strong>
+
+                                <span>${val}</span>
+
+                            </div>
+
+                        `;
+
+                    });
+
+
+
+                    const badge = document.getElementById('issue-status-badge');
+
+                    if(currentClientData.paperIssued) {
+
+                        badge.style.background = "rgba(76, 175, 80, 0.2)";
+
+                        badge.style.color = "#4caf50";
+
+                        badge.innerText = "Acknowledgement Issued";
+
+                    } else {
+
+                        badge.style.background = "rgba(255, 77, 77, 0.2)";
+
+                        badge.style.color = "#ff4d4d";
+
+                        badge.innerText = "Acknowledgement Not Issued";
+
+                    }
+
+
+
+                    calculateSmartPayment(currentClientData);
+
+                    renderProjectStages(currentClientData.projectStages || []);
+
+                    
+
+                    let history = currentClientData.paymentHistory || [];
+
+                    let adv = parseFloat(currentClientData.advanceAmount) || 0;
+
+                    let tot = parseFloat(currentClientData.totalAmount) || 0;
+
+
+
+                    if (history.length === 0 && adv > 0) {
+
+                        let timeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+                        let dateStr = currentClientData.bookingDate || new Date().toLocaleDateString('en-IN');
+
+                        const initDateStr = dateStr + ", " + timeStr + " (Initial Booking)";
+
+                        
+
+                        history.push({
+
+                            date: initDateStr,
+
+                            paidNow: adv,
+
+                            totalPaid: adv,
+
+                            remaining: tot - adv
+
+                        });
+
+                        db.collection("users").doc(docId).update({ paymentHistory: history });
+
+                        currentClientData.paymentHistory = history;
+
+                    }
+
+                    
+
+                    renderPaymentHistory(history);
+
+                    
+
+                    switchTab('tab-active', document.querySelectorAll('.menu-item')[2]);
+
+                }
+
+            });
+
+        }
+
+
+
+        function calculateSmartPayment(data) {
+
+            let total, adv;
+
+            if(data.customPayments) {
+
+                total = data.customPayments.total;
+
+                adv = data.customPayments.adv;
+
+            } else {
+
+                total = parseFloat(data.totalAmount) || parseFloat(data.totalPkgAmt) || 0;
+
+                adv = parseFloat(data.advanceAmount) || parseFloat(data.advanceAmt) || 0;
+
+            }
+
+            renderPaymentUI(total, adv, data.duesAfterAssignment || "");
+
+        }
+
+
+
+        function renderPaymentUI(total, adv, duesRawText) {
+
+            const req50Adv = total * 0.50;
+
+            document.getElementById('calc-total').innerText = '₹' + total;
+
+            document.getElementById('calc-adv').innerText = '₹' + adv;
+
+
+
+            let earlyDue = 0;
+
+            if (adv < req50Adv) {
+
+                earlyDue = req50Adv - adv;
+
+                document.getElementById('card-early-due').style.display = 'block';
+
+                document.getElementById('calc-early-due-amt').innerText = '₹' + earlyDue;
+
+            } else {
+
+                document.getElementById('card-early-due').style.display = 'none';
+
+                document.getElementById('calc-early-due-amt').innerText = '₹0';
+
+            }
+
+
+
+            const duesRaw = duesRawText.toUpperCase().trim();
+
+            let deliveryDue = 0;
+
+            if (!duesRaw.includes("NO DUES") && duesRaw !== "") {
+
+                if(duesRaw.includes("K")) { const matchK = duesRaw.match(/(\d+)\s*K/); if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000; } 
+
+                if(deliveryDue === 0) { const matches = duesRaw.match(/\d+/g); if(matches) deliveryDue = parseFloat(matches.join('')); }
+
+                if(deliveryDue === 0) deliveryDue = 5000;
+
+            }
+
+
+
+            const eventDue = total - (adv + earlyDue + deliveryDue);
+
+            document.getElementById('calc-event-due').innerText = '₹' + Math.max(0, eventDue);
+
+
+
+            if(deliveryDue > 0) {
+
+                document.getElementById('card-delivery-due').style.display = 'block';
+
+                document.getElementById('calc-delivery-due-amt').innerText = '₹' + deliveryDue;
+
+            } else {
+
+                document.getElementById('card-delivery-due').style.display = 'none';
+
+                document.getElementById('calc-delivery-due-amt').innerText = '₹0';
+
+            }
+
+        }
+
+
+
+        function editPayValue(elemId) {
+
+            const currentVal = document.getElementById(elemId).innerText.replace('₹', '');
+
+            const newVal = prompt("Enter new amount:", currentVal);
+
+            
+
+            if(newVal !== null && !isNaN(newVal)) {
+
+                document.getElementById(elemId).innerText = '₹' + parseFloat(newVal);
+
+
+
+                if(elemId === 'calc-total' || elemId === 'calc-adv') {
+
+                    const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
+
+                    const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
+
+                    const duesText = currentClientData ? (currentClientData.duesAfterAssignment || "") : "";
+
+                    renderPaymentUI(newTotal, newAdv, duesText);
+
+                }
+
+                document.getElementById('btn-save-custom-payments').style.display = 'inline-block';
+
+            }
+
+        }
+
+
+
+        function saveCustomPayments() {
+
+            if(!currentActiveUid) return;
+
+
+
+            const newTotal = parseFloat(document.getElementById('calc-total').innerText.replace('₹', ''));
+
+            const newAdv = parseFloat(document.getElementById('calc-adv').innerText.replace('₹', ''));
+
+            const oldAdv = parseFloat(currentClientData.advanceAmount || 0);
+
+
+
+            const customData = {
+
+                total: newTotal,
+
+                adv: newAdv,
+
+                earlyDue: parseFloat(document.getElementById('calc-early-due-amt').innerText.replace('₹', '')),
+
+                eventDue: parseFloat(document.getElementById('calc-event-due').innerText.replace('₹', '')),
+
+                deliveryDue: parseFloat(document.getElementById('calc-delivery-due-amt').innerText.replace('₹', ''))
+
+            };
+
+
+
+            let updateObj = { 
+
+                customPayments: customData,
+
+                advanceAmount: newAdv, 
+
+                totalAmount: newTotal
+
+            };
+
+
+
+            if (newAdv > oldAdv) {
+
+                let history = currentClientData.paymentHistory || [];
+
+                const paidNow = newAdv - oldAdv;
+
+                history.push({ 
+
+                    date: getFormattedDateTime(), 
+
+                    paidNow: paidNow, 
+
+                    totalPaid: newAdv, 
+
+                    remaining: newTotal - newAdv 
+
+                });
+
+                updateObj.paymentHistory = history;
+
+            }
+
+
+
+            db.collection("users").doc(currentActiveUid).update(updateObj).then(() => {
+
+                alert("Payment Calculations & Ledger Saved!");
+
+                document.getElementById('btn-save-custom-payments').style.display = 'none';
+
+                openClientDetail(currentActiveUid);
+
+            });
+
+        }
+
+
+
+        function openEditAckModal() {
+
+            if(!currentClientData) { alert("Please select a client first!"); return; }
+
+            
+
+            const body = document.getElementById('preview-html-body');
+
+            body.innerHTML = `
+
+                <h3 style="color:#d4af37; border-bottom:2px solid #d4af37; padding-bottom:10px; margin-bottom:20px;">Edit All Client Acknowledgement Specifications</h3>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px; color:#fff; max-height:75vh; overflow-y:auto; padding-right:10px;">
+
+                    <div style="grid-column: 1/-1;"><label>Client Name:</label><input type="text" id="edit-name" value="${currentClientData.name || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column: 1/-1;"><label>Email Address:</label><input type="text" id="edit-email" value="${currentClientData.email || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Contact Number:</label><input type="text" id="edit-phone" value="${currentClientData.phone || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>WhatsApp Number:</label><input type="text" id="edit-whatsapp" value="${currentClientData.whatsapp || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column: 1/-1;"><label>Event Name:</label><input type="text" id="edit-event" value="${currentClientData.eventType || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Wedding Category:</label><input type="text" id="edit-weddingCat" value="${currentClientData.weddingCategory || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column:1/-1;"><label>Postal Address:</label><input type="text" id="edit-address" value="${currentClientData.address || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Booking Date:</label><input type="text" id="edit-bookingDate" value="${currentClientData.bookingDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Assignment Brief Dates:</label><input type="text" id="edit-briefDate" value="${currentClientData.assignmentBriefDate || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Days Count:</label><input type="text" id="edit-daysCount" value="${currentClientData.daysCount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Wedding Lagna / Time:</label><input type="text" id="edit-weddingLagna" value="${currentClientData.weddingLagna || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column: 1/-1;"><label>Package Name & Cost:</label><input type="text" id="edit-pkgName" value="${currentClientData.packageNameAndCost || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Total Package Amount (₹):</label><input type="number" id="edit-total" value="${currentClientData.totalAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Advance Amount (₹):</label><input type="number" id="edit-adv" value="${currentClientData.advanceAmount || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Token Booking (₹):</label><input type="number" id="edit-token" value="${currentClientData.tokenBooking || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Dues After Assignment:</label><input type="text" id="edit-dues" value="${currentClientData.duesAfterAssignment || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column:1/-1;"><label>Job Details:</label><textarea id="edit-jobs" rows="2" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;">${currentClientData.jobDetails || ''}</textarea></div>
+
+                    <div style="grid-column: 1/-1;"><label>Album Details:</label><input type="text" id="edit-album" value="${currentClientData.albumDetails || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Drone Shoot Required:</label><input type="text" id="edit-drone" value="${currentClientData.droneRequired || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div><label>Conducted By:</label><input type="text" id="edit-conducted" value="${currentClientData.conductedBy || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                    <div style="grid-column: 1/-1;"><label>Comments / Reactions:</label><input type="text" id="edit-comments" value="${currentClientData.comments || ''}" style="width:100%; padding:8px; margin-top:4px; background:#0b0b0d; border:1px solid #333; color:#fff; border-radius:4px;"></div>
+
+                </div>
+
+                <button onclick="saveAllEditedAck()" style="margin-top:20px; width:100%; background:#4caf50; color:#fff; border:none; padding:12px 20px; border-radius:6px; font-weight:600; cursor:pointer;"><i class="fa-solid fa-floppy-disk"></i> Save All Changes</button>
+
+            `;
+
+            document.getElementById('preview-modal').style.display = 'flex';
+
+        }
+
+
+
+        function saveAllEditedAck() {
+
+            const oldAdv = parseFloat(currentClientData.advanceAmount || 0);
+
+            const newAdv = parseFloat(document.getElementById('edit-adv').value || 0);
+
+            const totalAmt = parseFloat(document.getElementById('edit-total').value || 0);
+
+
+
+            let updated = {
+
+                name: document.getElementById('edit-name').value,
+
+                email: document.getElementById('edit-email').value,
+
+                phone: document.getElementById('edit-phone').value,
+
+                whatsapp: document.getElementById('edit-whatsapp').value,
+
+                eventType: document.getElementById('edit-event').value,
+
+                weddingCategory: document.getElementById('edit-weddingCat').value,
+
+                address: document.getElementById('edit-address').value,
+
+                bookingDate: document.getElementById('edit-bookingDate').value,
+
+                assignmentBriefDate: document.getElementById('edit-briefDate').value,
+
+                daysCount: document.getElementById('edit-daysCount').value,
+
+                weddingLagna: document.getElementById('edit-weddingLagna').value,
+
+                packageNameAndCost: document.getElementById('edit-pkgName').value,
+
+                totalAmount: document.getElementById('edit-total').value,
+
+                advanceAmount: document.getElementById('edit-adv').value,
+
+                tokenBooking: document.getElementById('edit-token').value,
+
+                duesAfterAssignment: document.getElementById('edit-dues').value,
+
+                jobDetails: document.getElementById('edit-jobs').value,
+
+                albumDetails: document.getElementById('edit-album').value,
+
+                droneRequired: document.getElementById('edit-drone').value,
+
+                conductedBy: document.getElementById('edit-conducted').value,
+
+                comments: document.getElementById('edit-comments').value
+
+            };
+
+
+
+            if (newAdv > oldAdv) {
+
+                let history = currentClientData.paymentHistory || [];
+
+                const paidNow = newAdv - oldAdv;
+
+                history.push({
+
+                    date: getFormattedDateTime(),
+
+                    paidNow: paidNow,
+
+                    totalPaid: newAdv,
+
+                    remaining: totalAmt - newAdv
+
+                });
+
+                updated.paymentHistory = history;
+
+            }
+
+
+
+            db.collection("users").doc(currentActiveUid).update(updated).then(() => {
+
+                alert("All Client Specifications & Payment Ledger Updated Successfully!");
+
+                document.getElementById('preview-modal').style.display = 'none';
+
+                openClientDetail(currentActiveUid);
+
+            });
+
+        }
+
+
+
+        function renderPaymentHistory(history) {
+
+            const tbody = document.getElementById('payment-history-rows');
+
+            tbody.innerHTML = "";
+
+            if(!history || history.length === 0) {
+
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#777;">No history tracked yet. Update Advance Amount to log automatically.</td></tr>`;
+
+                return;
+
+            }
+
+            history.forEach((row, index) => {
+
+                tbody.innerHTML += `<tr>
+
+                    <td><strong>${row.date}</strong></td>
+
+                    <td style="color:#4caf50; font-weight:600;">+ ₹${row.paidNow}</td>
+
+                    <td style="color:#d4af37;">₹${row.totalPaid}</td>
+
+                    <td style="color:#ff9800;">₹${row.remaining}</td>
+
+                    <td style="text-align:right;"><i class="fa-solid fa-trash" style="color:#ff4d4d; cursor:pointer;" onclick="deleteHistoryRow(${index})"></i></td>
+
+                </tr>`;
+
+            });
+
+        }
+
+
+
+        function deleteHistoryRow(index) {
+
+            if(confirm("Remove this payment log?")) {
+
+                let history = currentClientData.paymentHistory || [];
+
+                history.splice(index, 1);
+
+                db.collection("users").doc(currentActiveUid).update({ paymentHistory: history }).then(() => {
+
+                    openClientDetail(currentActiveUid);
+
+                });
+
+            }
+
+        }
+
+
+
+        function render6PagePreview(isPrintable) {
+
+            if(!currentClientData) { alert("Please select a client first!"); return; }
+
+
+
+            const clientName = currentClientData.name || '';
+
+            const totalAmt = parseFloat(currentClientData.totalAmount || currentClientData.totalPkgAmt || 0);
+
+            const advAmt = parseFloat(currentClientData.advanceAmount || currentClientData.advanceAmt || 0);
+
+            const tokenAmt = parseFloat(currentClientData.tokenBooking || 0);
+
+            const req50Adv = totalAmt * 0.50;
+
+
+
+            let earlyDue = 0;
+
+            if (advAmt < req50Adv) {
+
+                earlyDue = req50Adv - advAmt;
+
+            }
+
+
+
+            const duesRaw = (currentClientData.duesAfterAssignment || "").toUpperCase().trim();
+
+            let deliveryDue = 0;
+
+
+
+            if (!duesRaw.includes("NO DUES") && duesRaw !== "") {
+
+                if(duesRaw.includes("K")) {
+
+                    const matchK = duesRaw.match(/(\d+)\s*K/);
+
+                    if(matchK) deliveryDue = parseFloat(matchK[1]) * 1000;
+
+                } 
+
+                if(deliveryDue === 0) {
+
+                    const matches = duesRaw.match(/\d+/g);
+
+                    if(matches) deliveryDue = parseFloat(matches.join(''));
+
+                }
+
+                if(deliveryDue === 0) deliveryDue = 5000;
+
+            }
+
+
+
+            const eventDue = Math.max(0, totalAmt - (advAmt + earlyDue + deliveryDue));
+
+
+
+            const body = document.getElementById('preview-html-body');
+
+            body.innerHTML = `
+
+                <!-- PAGE 1 -->
+
+                <div class="pdf-page-wrap"><img src="acknowledgement-page1.jpg" class="pdf-page-bg"></div>
+
+
+
+                <!-- PAGE 2 -->
+
+                <div class="pdf-page-wrap">
+
+                    <img src="acknowledgement-page2.jpg?v=2" class="pdf-page-bg">
+
+                    <div class="pdf-data-overlay" style="padding: 370px 75px 0 75px; color: #000; font-family: Arial, sans-serif;">
+
+                        <p style="font-size: 16px; font-weight: bold; margin-bottom: 28px; color: #c59b27;">
+
+                            To : <span style="font-weight: bold; color: #c59b27;">${clientName}</span>
+
+                        </p>
+
+                        <p style="font-size: 15px; font-weight: bold; margin-bottom: 25px; color: #000;">
+
+                            Dear <span style="font-weight: bold; color: #000;">${clientName}</span>,
+
+                        </p>
+
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">We sincerely thank you for choosing us to be a part of your special day.</p>
+
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">It means a lot to us.</p>
+
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 16px; font-weight: 500;">Kindly find your booking confirmation and assignment details attached.</p>
+
+                        <p style="font-size: 14px; line-height: 1.8; margin-bottom: 45px; font-weight: 500;">We look forward to creating wonderful memories for you.</p>
+
+                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 6px;">Sincerely,</p>
+
+                        <p style="font-size: 15px; font-weight: bold;">Team Picxlart</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAGE 3 -->
+
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
+
+                    <img src="acknowledgement-page3.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+
+                    <div style="position:relative; z-index:2; padding: 90px 45px 120px 45px; font-size:11.5px; line-height:1.85; color:#000;">
+
+                        <h2 style="text-align:center; font-size:17px; font-weight:bold; margin-bottom:18px; border-bottom:2px solid #8b6d21; padding-bottom:6px; font-family:Arial, sans-serif; color:#000;">Work Details / Filled Details by Client</h2>
+
+                        <ul style="list-style:none; padding:0; margin:0;">
+
+                            <li>• Assignment form filled email : <strong>${currentClientData.email || 'N/A'}</strong></li>
+
+                            <li>• Event Name : <strong>${currentClientData.eventType || 'N/A'}</strong></li>
+
+                            <li>• Name of the Client : <strong>${currentClientData.name || 'N/A'}</strong></li>
+
+                            <li>• Full postal address : <strong>${currentClientData.address || 'N/A'}</strong></li>
+
+                            <li>• Contact No : <strong>${currentClientData.phone || 'N/A'}</strong></li>
+
+                            <li>• Whatsapp No : <strong>${currentClientData.whatsapp || 'N/A'}</strong></li>
+
+                            <li>• Email id : <strong>${currentClientData.email || 'N/A'}</strong></li>
+
+                            <li>• Assignment Dates (Mention in brief details) : <strong>${currentClientData.assignmentBriefDate || 'N/A'}</strong></li>
+
+                            <br>
+
+                            <li>• Booking Date : <strong>${currentClientData.bookingDate || 'N/A'}</strong></li>
+
+                            <li>• Days : <strong>${currentClientData.daysCount || 'N/A'}</strong></li>
+
+                            <li>• Wedding type or Catagory of Event : <strong>${currentClientData.weddingCategory || 'N/A'}</strong></li>
+
+                            <li>• If other Indian Wedding Catagory, Please mention here : <strong>${currentClientData.otherWeddingCategory || 'no'}</strong></li>
+
+                            <li>• Any Complimentary Work Assured by Team Picxlart : <strong>${currentClientData.complimentaryAssured || 'No'}</strong></li>
+
+                            <li>• Assured Complimentary Work Details : <strong>${currentClientData.complimentaryDetails || 'no'}</strong></li>
+
+                            <li>• Wedding Lagna or Subh Muhurat / time : <strong>${currentClientData.weddingLagna || 'N/A'}</strong></li>
+
+                            <li>• Mention package name with package actual cost : <strong>${currentClientData.packageNameAndCost || 'N/A'}</strong></li>
+
+                            <br>
+
+                            <li>• Total assignment package amount : <strong>₹${currentClientData.totalAmount || '0'}</strong></li>
+
+                            <li>• Advance Amount : <strong>₹${currentClientData.advanceAmount || '0'}</strong></li>
+
+                            <li>• Token Booking (minimum remain time 3 months from assignment date) : <strong>₹${currentClientData.tokenBooking || '0'}</strong></li>
+
+                            <li>• Final Payment (Wedding Day or Assignment Day Payment) : <strong>${currentClientData.finalPaymentDesc || 'Rest all payment'}</strong></li>
+
+                            <li>• If any dues after assignment date mention here, otherwise please mention "NO DUES" : <strong>${currentClientData.duesAfterAssignment || 'NO DUES'}</strong></li>
+
+                            <li>• Job Details : <strong>${currentClientData.jobDetails || 'N/A'}</strong></li>
+
+                            <br>
+
+                            <li>• Album or Photobook Details : <strong>${currentClientData.albumDetails || 'N/A'}</strong></li>
+
+                            <li>• Customised or any extra requirements : <strong>${currentClientData.customRequirements || 'NIL'}</strong></li>
+
+                            <li>• Misc. (Extra Charge applicable) : <strong>${currentClientData.miscCharges || 'NIL'}</strong></li>
+
+                            <li>• If Drone Shoot required : <strong>${currentClientData.droneRequired || 'Not Required'}</strong></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAGE 4 -->
+
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; min-height:1120px; background:#fff; color:#000; font-family:Arial, sans-serif; overflow:hidden;">
+
+                    <img src="acknowledgement-page4.jpg?v=2" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+
+                    <div style="position:relative; z-index:2; padding: 100px 50px 110px 50px; font-size:11.5px; line-height:1.8; color:#000;">
+
+                        <h2 style="text-align:center; font-size:18px; font-weight:bold; margin-bottom:20px; border-bottom:2px solid #8b6d21; padding-bottom:6px; font-family:Arial, sans-serif; color:#000;">Agreed & Accepted Rule & Norms by Client</h2>
+
+                        <ol style="padding-left:20px; margin:0 0 25px 0; font-size:11.5px; line-height:1.7;">
+
+                            <li>For any event, client need to inform the entire work details.</li>
+
+                            <li>For Late night wedding / lagan will increase the package value.</li>
+
+                            <li>Package charges may exceed for outstation work.</li>
+
+                            <li>For any customize package after booking, will increase the package value.</li>
+
+                            <li>5.A. Work time 8AM to 12.00AM maximum for Bengali wedding.</li>
+
+                            <li>5.B. Work time 8AM to 12.00AM onwards work for Bengali or non Bengali wedding, charges applicable / different package**</li>
+
+                            <li>For wedding reception 12.30AM</li>
+
+                            <li>If time boundation is over extra charges will be applicable per hour and persons basis. ** Conditions apply</li>
+
+                            <li>Booking Amount 50%. Rest of 50% have to pay assignment day.</li>
+
+                            <li>After booking a slot, if client want to cancel the booking for any circumstances then advance amount will not refund. Can be adjusted with other work.</li>
+
+                            <li>After booking a date slot, if the date change or postpone to another date then client need to inform us ASAP.</li>
+
+                            <li>For any outdoor shoot like Prewedding post wedding etc. - Client need to pay spot charges or any misc. charges to them.</li>
+
+                            <li>Travelling Allowance / Fooding / Accommodation is not included with package.</li>
+
+                            <li>Payment Terms will not change in any circumstances.</li>
+
+                            <li>Delivery date maximum 3 months after submitting selected photos.</li>
+
+                            <li>Complimentary work correction is not acceptable.</li>
+
+                            <li>Client have to manage the time for couple photo shoot should be done by us within our fixed time, any demand after our fixed time will not be acceptable. If required more, thereafter the charge will be hourly basis for each photography person.</li>
+
+                            <li>The team is not responsible if you do not complete the photo shoot within our fixed time.</li>
+
+                            <li>If drone shoots are required, the client will need to obtain the necessary permissions from Local PS. The client will also be responsible for any disturbances or issues that may arise</li>
+
+                            <li>Final / 2nd payment is mandatory on the day of wedding or programme reception day.</li>
+
+                            <li>Using laser lights is strictly prohibited. If they are used and any camera damage occurs as a result, the client will be responsible for covering the full cost of the damage.</li>
+
+                            <li>Data will not be transferred if Final / 2nd payment is not made.</li>
+
+                            <li>We do not provide props for any shoot.</li>
+
+                            <li>Raw Video data is not transferable, only raw photos will be transfer.</li>
+
+                            <li>If at any time any of our instruments get damaged by the client or any others relatives of clients, then the cost of the damage will have to be borne by the client.</li>
+
+                        </ol>
+
+                        <ul style="list-style:none; padding:0; margin:20px 0 0 0; font-size:12.5px; line-height:2.0;">
+
+                            <li style="margin-bottom:8px;">• Any reactions or comments : <strong>${currentClientData.comments || 'NIL'}</strong></li>
+
+                            <li>• Assignment Conducted By from Team Picxlart (Mention his / her name) : <strong>${currentClientData.conductedBy || 'Team Picxlart'}</strong></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAGE 5 -->
+
+                <div class="pdf-page-wrap" style="position:relative; width:100%; max-width:794px; background:#fff; color:#000; font-family:Arial, sans-serif;">
+
+                    <img src="acknowledgement-page5.jpg?v=3" class="pdf-page-bg">
+
+                    
+
+                    <div class="pdf-data-overlay" style="padding: 70px 45px 0 45px; font-size:12.5px; font-family:Arial, sans-serif; color:#000; line-height:1.8;">
+
+                        <p style="margin-bottom:4px; font-size:13.5px;">Package Details :</p>
+
+                        <p style="margin-bottom:12px; font-size:13.5px;">Package Name :: <strong style="font-size:14px;">${currentClientData.packageNameAndCost || 'Standard Package'}</strong></p>
+
+                        
+
+                        <p style="margin-bottom:4px; font-size:13px;">Total Assignment Amount : <strong>₹${totalAmt}</strong></p>
+
+                        <p style="margin-bottom:8px; font-size:13px;">Duration: <strong>${currentClientData.daysCount || '1 Day'}</strong></p>
+
+                        <p style="margin-bottom:18px; font-size:13px;">Photography Details / Work Details: <strong>${currentClientData.jobDetails || 'N/A'}</strong></p>
+
+
+
+                        <p style="font-size:11.5px; margin-bottom:4px; color:#333;">Note: Travelling, lodging & fooding charges are excluded. Additional requirements will be charged separately.</p>
+
+                        <p style="font-size:11.5px; font-weight:bold; color:#7a1d1d; margin-bottom:18px;">** All Travelling expences, fooding, accomodation from the customer stand point.</p>
+
+
+
+                        <p style="margin-bottom:16px; font-size:13px;">• <strong>Document Submitted :</strong> <strong>${currentClientData.docSubmitted || 'Not required'}</strong></p>
+
+
+
+                        <p style="font-size:14px; font-weight:bold; color:#7a1d1d; margin-bottom:8px;">• <u>PAYMENT DETAILS :</u></p>
+
+                        <ul style="list-style:none; padding-left:12px; margin-bottom:15px; line-height:1.9; font-size:13px;">
+
+                            <li>Actual Package Amount : <strong>₹${totalAmt}</strong></li>
+
+                            <li>Assigned Package Amount : <strong>₹${totalAmt}</strong></li>
+
+                            <li>Token Advance Paid : <strong>₹${advAmt}</strong></li>
+
+                            ${earlyDue > 0 ? `<li style="color:#e65100;"><strong>1 Month Before Event Due (To complete 50% Advance) :</strong> <strong>₹${earlyDue}</strong></li>` : ''}
+
+                            <li>Event Day Payment Amount : <strong>₹${eventDue}</strong></li>
+
+                            ${deliveryDue > 0 ? `<li style="color:#c2185b;">Album / Deliverable Submission Due : <strong>₹${deliveryDue}</strong></li>` : ''}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAGE 6 -->
+
+                <div class="pdf-page-wrap"><img src="acknowledgement-page6.jpg" class="pdf-page-bg"></div>
+
+            `;
+
+
+
+            document.getElementById('preview-modal').style.display = 'flex';
+
+        }
+
+
+
+        function renderProjectStages(stages) {
+
+            const container = document.getElementById('project-stages-list');
+
+            container.innerHTML = "";
+
+
+
+            if(stages.length === 0) {
+
+                container.innerHTML = `<p style="color:#777; font-size:12px;">No custom project stages added yet.</p>`;
+
+                return;
+
+            }
+
+
+
+            stages.forEach((stg, index) => {
+
+                const statusColor = stg.completed ? '#4caf50' : '#ff9800';
+
+                const statusText = stg.completed ? '✅ Completed' : '⏳ In Progress';
+
+
+
+                container.innerHTML += `
+
+                    <div class="status-list-item">
+
+                        <div>
+
+                            <strong style="color:#fff; font-size:13px;">${stg.name}</strong><br>
+
+                            <span style="color:${statusColor}; font-size:11px;">${statusText}</span>
+
+                        </div>
+
+                        <div style="display:flex; gap:10px; align-items:center;">
+
+                            <button class="btn-approve" onclick="toggleStageStatus(${index})">
+
+                                ${stg.completed ? 'Mark Incomplete' : 'Mark Complete'}
+
+                            </button>
+
+                            <i class="fa-solid fa-trash" style="color:#ff4d4d; font-size:14px; cursor:pointer;" onclick="deleteProjectStage(${index})" title="Delete Stage"></i>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+
+        function addProjectStage() {
+
+            const stageName = document.getElementById('new-stage-name').value.trim();
+
+            if(!stageName || !currentActiveUid) return;
+
+
+
+            db.collection("users").doc(currentActiveUid).get().then(doc => {
+
+                let currentStages = doc.data().projectStages || [];
+
+                currentStages.push({ name: stageName, completed: false });
+
+
+
+                db.collection("users").doc(currentActiveUid).update({
+
+                    projectStages: currentStages
+
+                }).then(() => {
+
+                    document.getElementById('new-stage-name').value = "";
+
+                    openClientDetail(currentActiveUid);
+
+                });
+
+            });
+
+        }
+
+
+
+        function toggleStageStatus(index) {
+
+            db.collection("users").doc(currentActiveUid).get().then(doc => {
+
+                let currentStages = doc.data().projectStages || [];
+
+                currentStages[index].completed = !currentStages[index].completed;
+
+
+
+                db.collection("users").doc(currentActiveUid).update({
+
+                    projectStages: currentStages
+
+                }).then(() => {
+
+                    openClientDetail(currentActiveUid);
+
+                });
+
+            });
+
+        }
+
+
+
+        function deleteProjectStage(index) {
+
+            if(confirm("Are you sure you want to delete this event stage?")) {
+
+                db.collection("users").doc(currentActiveUid).get().then(doc => {
+
+                    let currentStages = doc.data().projectStages || [];
+
+                    currentStages.splice(index, 1);
+
+
+
+                    db.collection("users").doc(currentActiveUid).update({
+
+                        projectStages: currentStages
+
+                    }).then(() => {
+
+                        openClientDetail(currentActiveUid);
+
+                    });
+
+                });
+
+            }
+
+        }
+
+
+
+        function issueAcknowledgementPaper() {
+
+            if(!currentActiveUid) return;
+
+            db.collection("users").doc(currentActiveUid).update({ paperIssued: true }).then(() => {
+
+                alert("Acknowledgement Paper Issued to Client Dashboard!");
+
+                openClientDetail(currentActiveUid);
+
+            });
+
+        }
+
+    </script>
+
 </body>
-</html>
+
+</html> 
+
