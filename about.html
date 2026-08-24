@@ -146,7 +146,7 @@
         font-weight: 600;
     }
 
-    /* Owners' Journey Section (Borderless Clean Layout) */
+    /* Owners' Journey Section (Fixed Uncropped Image Layout) */
     .owners-section {
         background: #090909;
         border-top: 1px solid rgba(212,175,55,0.15);
@@ -164,7 +164,6 @@
         grid-template-columns: 1fr 1.2fr;
         gap: 50px;
         align-items: center;
-        /* কোনো কার্ড ব্যাকগ্রাউন্ড বা বর্ডার নেই, একদম ক্লিন */
     }
     .founder-row.reverse {
         grid-template-columns: 1.2fr 1fr;
@@ -178,21 +177,26 @@
 
     .founder-img-box {
         width: 100%;
-        height: 400px;
+        background: #141414;
         border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         border: 1px solid rgba(212,175,55,0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
     }
     .founder-img-box img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
+        height: auto;
+        max-height: 480px;
+        object-fit: contain; /* ইমেজ ক্রপ না হয়ে পুরোটা দেখাবে */
+        border-radius: 10px;
         transition: transform 0.6s ease;
     }
     .founder-row:hover .founder-img-box img {
-        transform: scale(1.04);
+        transform: scale(1.02);
     }
     .founder-text-box h3 {
         font-size: 30px;
@@ -320,7 +324,6 @@
         }
         .founder-row.reverse .founder-img-box { order: 1; }
         .founder-row.reverse .founder-text-box { order: 2; }
-        .founder-img-box { height: 280px; }
         .founder-text-box h3 { font-size: 24px; }
 
         .about-hero h1 { font-size: 26px; }
@@ -409,7 +412,7 @@
     </div>
 </section>
 
-<!-- Owners' Journey Section (Borderless Clean Layout) -->
+<!-- Owners' Journey Section (Uncropped Images) -->
 <section class="owners-section">
     <h2>The Founders' Journey</h2>
     <div class="owners-container">
