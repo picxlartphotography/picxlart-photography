@@ -102,15 +102,20 @@
         padding: 30px 20px;
         text-align: center;
         transition: transform 0.3s ease, border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .metric-card:hover {
         transform: translateY(-6px);
         border-color: #d4af37;
         box-shadow: 0 10px 30px rgba(212,175,55,0.2);
     }
-    .metric-card i {
-        font-size: 32px;
-        color: #d4af37;
+    .metric-card img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
         margin-bottom: 15px;
     }
     .metric-card h3 {
@@ -287,7 +292,12 @@
         .nav-menu a:last-child { border-bottom: none !important; padding-bottom: 22px !important; }
 
         .about-story-box { padding: 30px 20px; }
-        .metrics-grid { grid-template-columns: 1fr; }
+        .metrics-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 15px; }
+        .metric-card { padding: 20px 10px; }
+        .metric-card h3 { font-size: 18px; }
+        .metric-card p { font-size: 11px; }
+        .metric-card img { width: 36px; height: 36px; margin-bottom: 10px; }
+
         .owners-grid { grid-template-columns: 1fr; }
         .about-hero h1 { font-size: 26px; }
         section { padding: 60px 20px; }
@@ -342,25 +352,25 @@
         </p>
     </div>
 
-    <!-- Key Metrics / Stats Cards -->
+    <!-- Key Metrics / Stats Cards with Images -->
     <div class="metrics-grid">
         <div class="metric-card">
-            <i class="fas fa-calendar-alt"></i>
+            <img src="card-icon1.png" alt="Experience">
             <h3>10+ Years</h3>
             <p>Industry Experience</p>
         </div>
         <div class="metric-card">
-            <i class="fas fa-camera-retro"></i>
+            <img src="card-icon2.png" alt="Projects">
             <h3>750+</h3>
             <p>Projects Completed</p>
         </div>
         <div class="metric-card">
-            <i class="fas fa-star"></i>
+            <img src="card-icon3.png" alt="Google Top Rated">
             <h3>4.9 Star</h3>
             <p>Google Top Rated</p>
         </div>
         <div class="metric-card">
-            <i class="fas fa-award"></i>
+            <img src="card-icon4.png" alt="Top Ranked">
             <h3>Top Ranked</h3>
             <p>Facebook Wedding Brand</p>
         </div>
@@ -384,10 +394,10 @@
             </div>
         </div>
 
-        <!-- Owner 2 (Placeholder / Co-Founder) -->
+        <!-- Owner 2 -->
         <div class="owner-card">
             <div class="owner-img-container">
-                <img src="owner2.jpg" alt="Co-Founder / Partner">
+                <img src="owner2.jpg" alt="Creative Direction Team">
             </div>
             <div class="owner-info">
                 <h3>Creative Direction Team</h3>
