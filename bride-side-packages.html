@@ -172,10 +172,11 @@
         border: 1px solid rgba(212, 175, 55, 0.15);
         padding: 45px;
         border-radius: 22px;
-        display: block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         backdrop-filter: blur(15px);
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        text-decoration: none;
         position: relative;
         overflow: hidden;
         -webkit-tap-highlight-color: transparent;
@@ -193,13 +194,12 @@
         transition: 0.8s;
     }
 
-    .card-full-info {
-        width: 100%;
+    .card-left-info {
+        max-width: 72%;
         z-index: 2;
-        position: relative;
     }
 
-    .card-full-info .tagline {
+    .card-left-info .tagline {
         font-size: 11px;
         color: #d4af37;
         text-transform: uppercase;
@@ -209,7 +209,7 @@
         font-weight: 500;
     }
 
-    .card-full-info h3{
+    .card-left-info h3{
         color:#ffffff;
         font-size: 28px;
         font-weight: 700;
@@ -219,13 +219,13 @@
         transition: color 0.3s ease;
     }
 
-    .card-full-info ul {
+    .card-left-info ul {
         list-style: none;
         margin-top: 15px;
         padding-left: 0;
     }
 
-    .card-full-info ul li {
+    .card-left-info ul li {
         font-size: 14.5px;
         color: #b0b0b0;
         line-height: 2;
@@ -233,12 +233,34 @@
         padding-left: 20px;
     }
 
-    .card-full-info ul li::before {
+    .card-left-info ul li::before {
         content: '▪';
         position: absolute;
         left: 0;
         color: #d4af37;
         font-size: 14px;
+    }
+
+    .card-right-action {
+        text-align: right;
+        z-index: 2;
+    }
+
+    .view-details-btn {
+        background: rgba(212, 175, 55, 0.02);
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.6);
+        padding: 14px 28px;
+        font-size: 12.5px;
+        font-weight: 600;
+        border-radius: 50px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        white-space: nowrap;
     }
 
     /* Desktop Hover Architecture States */
@@ -253,6 +275,13 @@
         .package-row-card:hover::after {
             left: 100%;
         }
+
+        .package-row-card:hover .view-details-btn {
+            background: #d4af37;
+            color: #000000;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            border-color: transparent;
+        }
     }
 
     /* Advanced Touch Responsive Class Framework for Mobile Glow */
@@ -261,6 +290,12 @@
         border-color: rgba(212, 175, 55, 0.75) !important;
         box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15) !important;
         transform: translateY(-4px);
+    }
+
+    .package-row-card.touch-glow .view-details-btn {
+        background: #d4af37 !important;
+        color: #000000 !important;
+        border-color: transparent !important;
     }
 
     .package-row-card.touch-glow::after {
@@ -367,9 +402,12 @@
 
         h1 { font-size: 26px; }
         .intro-text { font-size: 13.5px; margin-bottom: 40px; }
-        .package-row-card { padding: 35px 20px; }
-        .card-full-info h3 { font-size: 24px; }
-        .card-full-info ul li { font-size: 13.5px; }
+        .package-row-card { flex-direction: column; text-align: center; gap: 30px; padding: 35px 20px; }
+        .card-left-info { max-width: 100%; }
+        .card-left-info h3 { font-size: 24px; }
+        .card-left-info ul li { font-size: 13.5px; text-align: left; }
+        .card-right-action { width: 100%; text-align: center; }
+        .view-details-btn { width: 100%; }
     }
 </style>
 </head>
@@ -411,95 +449,110 @@
         
         <!-- TRADITIONAL WEDDING (BRIDE SIDE) -->
         <div class="package-row-card">
-            <div class="card-full-info">
+            <div class="card-left-info">
                 <span class="tagline">Traditional Heritage Coverage</span>
                 <h3>Traditional Bengali Bride Side Wedding</h3>
                 <ul>
-                    <li>Day: Wedding day, Vidai[cite: 1]</li>
-                    <li>All RAW Photos[cite: 1]</li>
-                    <li>Edited Photos[cite: 1]</li>
-                    <li>Full HD Wedding Teaser[cite: 1]</li>
-                    <li>Full Video till 30 to 35 mnts[cite: 1]</li>
-                    <li>12x18 (12x36) Indigo photo book[cite: 1]</li>
-                    <li>Excluding Travelling, Lodging and Fooding[cite: 1]</li>
-                    <li>For more requirements price will be change[cite: 1]</li>
-                    <li>Price cannot be negotiable / No bargainable package price[cite: 1]</li>
+                    <li>Day: Wedding day, Vidai</li>
+                    <li>All RAW Photos</li>
+                    <li>Edited Photos</li>
+                    <li>Full HD Wedding Teaser</li>
+                    <li>Full Video till 30 to 35 mnts</li>
+                    <li>12x18 (12x36) Indigo photo book</li>
+                    <li>Excluding Travelling, Lodging and Fooding</li>
+                    <li>For more requirements price will be change</li>
+                    <li>Price cannot be negotiable / No bargainable package price</li>
                 </ul>
+            </div>
+            <div class="card-right-action">
+                <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Traditional%20Bengali%20Bride%20Side%20Wedding%20Package." class="view-details-btn" target="_blank">Check Pricing & Availability</a>
             </div>
         </div>
 
         <!-- CINEMATIC BENGALI BRIDE SIDE WEDDING STARTER -->
         <div class="package-row-card">
-            <div class="card-full-info">
+            <div class="card-left-info">
                 <span class="tagline">Cinematic Storytelling Starter</span>
                 <h3>Cinematic Bengali Bride Side Wedding Starter</h3>
                 <ul>
-                    <li>Day: Wedding day, Vidai[cite: 1]</li>
-                    <li>All RAW Photos[cite: 1]</li>
-                    <li>Edited Photos[cite: 1]</li>
-                    <li>Full HD Wedding Teaser[cite: 1]</li>
-                    <li>Full Video till 30 to 35 mnts[cite: 1]</li>
-                    <li>1 pcs Indigo photobook 12x18 (12x36) size[cite: 1]</li>
-                    <li>Excluding Travelling, Lodging and Fooding[cite: 1]</li>
-                    <li>For more requirements price will be change[cite: 1]</li>
-                    <li>Price cannot be negotiable / No bargainable package price[cite: 1]</li>
+                    <li>Day: Wedding day, Vidai</li>
+                    <li>All RAW Photos</li>
+                    <li>Edited Photos</li>
+                    <li>Full HD Wedding Teaser</li>
+                    <li>Full Video till 30 to 35 mnts</li>
+                    <li>1 pcs Indigo photobook 12x18 (12x36) size</li>
+                    <li>Excluding Travelling, Lodging and Fooding</li>
+                    <li>For more requirements price will be change</li>
+                    <li>Price cannot be negotiable / No bargainable package price</li>
                 </ul>
+            </div>
+            <div class="card-right-action">
+                <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Cinematic%20Bengali%20Bride%20Side%20Wedding%20Starter%20Package." class="view-details-btn" target="_blank">Check Pricing & Availability</a>
             </div>
         </div>
 
         <!-- CINEMATIC BENGALI BRIDE SIDE WEDDING STARTER PLUS -->
         <div class="package-row-card">
-            <div class="card-full-info">
+            <div class="card-left-info">
                 <span class="tagline">Enhanced Cinematic Coverage</span>
                 <h3>Cinematic Bengali Bride Side Wedding Starter Plus</h3>
                 <ul>
-                    <li>Day: Wedding day, Vidai[cite: 1]</li>
-                    <li>All RAW Photos[cite: 1]</li>
-                    <li>Edited Photos[cite: 1]</li>
-                    <li>Full HD Wedding Teaser[cite: 1]</li>
-                    <li>Full Video till 30 to 35 mnts[cite: 1]</li>
-                    <li>1 pcs 12x18 (12x36) Canvera Standard photobook[cite: 1]</li>
-                    <li>Excluding Travelling, Lodging and Fooding[cite: 1]</li>
-                    <li>For more requirements price will be change[cite: 1]</li>
-                    <li>Price cannot be negotiable / No bargainable package price[cite: 1]</li>
+                    <li>Day: Wedding day, Vidai</li>
+                    <li>All RAW Photos</li>
+                    <li>Edited Photos</li>
+                    <li>Full HD Wedding Teaser</li>
+                    <li>Full Video till 30 to 35 mnts</li>
+                    <li>1 pcs 12x18 (12x36) Canvera Standard photobook</li>
+                    <li>Excluding Travelling, Lodging and Fooding</li>
+                    <li>For more requirements price will be change</li>
+                    <li>Price cannot be negotiable / No bargainable package price</li>
                 </ul>
+            </div>
+            <div class="card-right-action">
+                <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Cinematic%20Bengali%20Bride%20Side%20Wedding%20Starter%20Plus%20Package." class="view-details-btn" target="_blank">Check Pricing & Availability</a>
             </div>
         </div>
 
         <!-- CINEMATIC BENGALI BRIDE SIDE WEDDING STANDARD -->
         <div class="package-row-card">
-            <div class="card-full-info">
+            <div class="card-left-info">
                 <span class="tagline">Comprehensive Standard Coverage</span>
                 <h3>Cinematic Bengali Bride Side Wedding Standard</h3>
                 <ul>
-                    <li>Day: Aiburobhat or Mehendi day, Wedding day, Vidai[cite: 1]</li>
-                    <li>All RAW Photos[cite: 1]</li>
-                    <li>Edited Photos[cite: 1]</li>
-                    <li>Full HD Cinematic Wedding Teaser[cite: 1]</li>
-                    <li>Full Video till 30 to 35 mnts[cite: 1]</li>
-                    <li>1pc 12x18 (12x36) Canvera Standard photobook[cite: 1]</li>
-                    <li>Excluding Travel, Lodging and Fooding[cite: 1]</li>
-                    <li>For more requirements price will be change[cite: 1]</li>
-                    <li>Price cannot be negotiable / No bargainable package price[cite: 1]</li>
+                    <li>Day: Aiburobhat or Mehendi day, Wedding day, Vidai</li>
+                    <li>All RAW Photos</li>
+                    <li>Edited Photos</li>
+                    <li>Full HD Cinematic Wedding Teaser</li>
+                    <li>Full Video till 30 to 35 mnts</li>
+                    <li>1pc 12x18 (12x36) Canvera Standard photobook</li>
+                    <li>Excluding Travel, Lodging and Fooding</li>
+                    <li>For more requirements price will be change</li>
+                    <li>Price cannot be negotiable / No bargainable package price</li>
                 </ul>
+            </div>
+            <div class="card-right-action">
+                <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Cinematic%20Bengali%20Bride%20Side%20Wedding%20Standard%20Package." class="view-details-btn" target="_blank">Check Pricing & Availability</a>
             </div>
         </div>
 
         <!-- CINEMATIC BENGALI BRIDE SIDE WEDDING PREMIUM -->
         <div class="package-row-card">
-            <div class="card-full-info">
+            <div class="card-left-info">
                 <span class="tagline">Elite Luxury Masterpiece</span>
                 <h3>Cinematic Bengali Bride Side Wedding Premium</h3>
                 <ul>
-                    <li>Day: Aiburobhat or Mehendi day, Wedding day, Vidai[cite: 1]</li>
-                    <li>All RAW Photos[cite: 1]</li>
-                    <li>4K/FHD Cinematic Teaser[cite: 1]</li>
-                    <li>Full Video till 30 to 35 mnts[cite: 1]</li>
-                    <li>1pc 12x18 (12x36) Canvera Premium Ornato photobook[cite: 1]</li>
-                    <li>Excluding Travel, Lodging and Fooding[cite: 1]</li>
-                    <li>For more requirements price will be change[cite: 1]</li>
-                    <li>Price cannot be negotiable / No bargainable package price[cite: 1]</li>
+                    <li>Day: Aiburobhat or Mehendi day, Wedding day, Vidai</li>
+                    <li>All RAW Photos</li>
+                    <li>4K/FHD Cinematic Teaser</li>
+                    <li>Full Video till 30 to 35 mnts</li>
+                    <li>1pc 12x18 (12x36) Canvera Premium Ornato photobook</li>
+                    <li>Excluding Travel, Lodging and Fooding</li>
+                    <li>For more requirements price will be change</li>
+                    <li>Price cannot be negotiable / No bargainable package price</li>
                 </ul>
+            </div>
+            <div class="card-right-action">
+                <a href="https://wa.me/917003521139?text=Hi%20Picxlart%2C%20I%20would%20like%20to%20know%20the%20pricing%20and%20availability%20for%20the%20Cinematic%20Bengali%20Bride%20Side%20Wedding%20Premium%20Package." class="view-details-btn" target="_blank">Check Pricing & Availability</a>
             </div>
         </div>
 
