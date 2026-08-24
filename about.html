@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Picxlart Photography & Events Co.</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body{ background:#0d0d0d; color:#f5f5f5; overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; -webkit-user-select:none; user-select:none; }
+
+    /* Top Navbar */
+    .navbar{ position:fixed; top:0; left:0; width:100%; background:rgba(10,10,10,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; padding:8px 40px; z-index:99999; border-bottom:2px solid #d4af37; box-shadow:0 4px 25px rgba(0,0,0,.5); }
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-menu{ display:flex; gap:35px; align-items: center; }
+    .nav-menu a{ color:#e0e0e0; text-decoration:none; font-weight:500; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; transition: all 0.3s ease; position: relative; padding: 4px 0; }
+    .nav-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: #d4af37; transition: width 0.3s ease; }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+    .menu-toggle { display: none; color: #d4af37; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 1000000; -webkit-tap-highlight-color: transparent; }
+
+    /* Hero Header */
+    .about-hero {
+        margin-top: 60px;
+        min-height: 320px;
+        background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+        border-bottom: 1px solid rgba(212,175,55,0.2);
+    }
+    .about-hero h1 {
+        font-size: 38px;
+        color: #d4af37;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+    .about-hero p {
+        font-size: 15px;
+        color: #cccccc;
+        letter-spacing: 1.5px;
+        max-width: 700px;
+    }
+
+    /* Main Content Sections */
+    section { padding: 80px 10%; }
+    h2 { text-align: center; color: #d4af37; font-size: 32px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 45px; position: relative; }
+    h2::after { content: ''; display: block; width: 60px; height: 2px; background: #d4af37; margin: 12px auto 0; }
+
+    /* Detailed Story Box */
+    .about-story-box {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 20px;
+        padding: 50px 60px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .about-story-box p {
+        font-size: 16px;
+        line-height: 1.9;
+        color: #d6d6d6;
+        margin-bottom: 22px;
+        text-align: justify;
+    }
+    .about-story-box p strong { color: #d4af37; }
+
+    /* Metrics / Key Cards Grid */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        max-width: 1100px;
+        margin: 60px auto 0;
+    }
+    .metric-card {
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .metric-card:hover {
+        transform: translateY(-6px);
+        border-color: #d4af37;
+        box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+    }
+    .metric-card i {
+        font-size: 32px;
+        color: #d4af37;
+        margin-bottom: 15px;
+    }
+    .metric-card h3 {
+        font-size: 24px;
+        color: #ffffff;
+        margin-bottom: 6px;
+        font-weight: 700;
+    }
+    .metric-card p {
+        font-size: 13px;
+        color: #a0a0a0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Owners' Talk Section */
+    .owners-section {
+        background: #090909;
+        border-top: 1px solid rgba(212,175,55,0.15);
+        border-bottom: 1px solid rgba(212,175,55,0.15);
+    }
+    .owners-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .owner-card {
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s ease;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .owner-card:hover {
+        transform: translateY(-8px);
+        border-color: #d4af37;
+        box-shadow: 0 20px 40px rgba(212,175,55,0.25);
+    }
+    .owner-img-container {
+        width: 100%;
+        height: 380px;
+        overflow: hidden;
+        position: relative;
+    }
+    .owner-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transition: transform 0.6s ease;
+    }
+    .owner-card:hover .owner-img-container img {
+        transform: scale(1.04);
+    }
+    .owner-info {
+        padding: 30px;
+        text-align: left;
+    }
+    .owner-info h3 {
+        font-size: 22px;
+        color: #ffffff;
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+    .owner-info .owner-role {
+        font-size: 13px;
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 18px;
+        display: block;
+    }
+    .owner-info p {
+        font-size: 14px;
+        color: #b0b0b0;
+        line-height: 1.75;
+        font-style: italic;
+    }
+
+    /* Achievement Infinite Marquee Section */
+    .achievements-marquee-section {
+        padding: 60px 0;
+        background: #0d0d0d;
+        overflow: hidden;
+        border-top: 1px solid rgba(212,175,55,0.15);
+        border-bottom: 1px solid rgba(212,175,55,0.15);
+    }
+    .achievements-title {
+        text-align: center;
+        color: #d4af37;
+        font-size: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: scrollMarquee 30s linear infinite;
+        gap: 30px;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .achievement-pill {
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.3);
+        padding: 18px 35px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        white-space: nowrap;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    }
+    .achievement-pill i {
+        color: #d4af37;
+        font-size: 20px;
+    }
+    .achievement-pill span {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+    @keyframes scrollMarquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Footer */
+    footer { text-align: center; padding: 50px 20px; background: #080808; color: #777777; font-size: 13px; border-top: 1px solid #1a1a1a; width: 100%; }
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    /* Responsive Design */
+    @media(max-width: 1024px) {
+        .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 768px) {
+        .navbar{ padding: 12px 20px !important; flex-wrap: nowrap !important; }
+        .nav-logo img { height: 45px !important; }
+        .menu-toggle { display: block !important; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed !important;
+            top: 60px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            background: rgba(13, 13, 13, 0.97) !important;
+            backdrop-filter: blur(15px) !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 0 !important;
+            padding: 15px 0 0 0 !important;
+            transform: translateY(-150%) !important;
+            transition: transform 0.4s ease-in-out !important;
+            z-index: 9999998 !important;
+            border-bottom: 3px solid #d4af37 !important;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
+            pointer-events: none;
+        }
+        .nav-menu.active { transform: translateY(0) !important; pointer-events: auto !important; }
+        .nav-menu a { font-size: 15px !important; color: #d4af37 !important; width: 100% !important; text-align: center !important; padding: 16px 0 !important; border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; display: block !important; }
+        .nav-menu a::after { display: none !important; }
+        .nav-menu a:last-child { border-bottom: none !important; padding-bottom: 22px !important; }
+
+        .about-story-box { padding: 30px 20px; }
+        .metrics-grid { grid-template-columns: 1fr; }
+        .owners-grid { grid-template-columns: 1fr; }
+        .about-hero h1 { font-size: 26px; }
+        section { padding: 60px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="/"><img src="logo.png" alt="Picxlart Logo"></a>
+    </div>
+   <div class="nav-menu" id="navMenu">
+       <a href="/">Home</a>
+       <a href="/#gallery">Gallery</a>
+       <a href="films">Films</a>
+       <a href="packages">Packages</a>
+       <a href="reviews">Reviews</a>
+       <a href="/#why">Why Picxlart</a>
+       <a href="blog">Blog</a>
+   </div>
+   <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+   </div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Hero Header -->
+<div class="about-hero">
+    <h1>About Picxlart</h1>
+    <p>Timeless Moments, Captured for Eternity with Passion & Artistic Excellence</p>
+</div>
+
+<!-- Detailed Story Section -->
+<section>
+    <h2>Our Brand Story</h2>
+    <div class="about-story-box">
+        <p>
+            At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
+        </p>
+        <p>
+            We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
+        </p>
+        <p>
+            From grand weddings and cinematic wedding films to candid photography, pre-wedding shoots, bridal portraits, destination weddings, corporate events, birthdays, rice ceremonies (Annaprashan), baby showers, anniversaries, housewarming celebrations, family functions, school and college events, our experienced team is committed to delivering premium photography and cinematic storytelling tailored to every occasion.
+        </p>
+        <p>
+            Based in West Bengal, Picxlart proudly serves clients across Kolkata, Serampore, Hooghly, Durgapur, Asansol, Siliguri, Kharagpur, and destinations throughout India. Whether your event is close to home or in another state, our team is always ready to travel to capture your story with the same passion and professionalism.
+        </p>
+    </div>
+
+    <!-- Key Metrics / Stats Cards -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>10+ Years</h3>
+            <p>Industry Experience</p>
+        </div>
+        <div class="metric-card">
+            <i class="fas fa-camera-retro"></i>
+            <h3>750+</h3>
+            <p>Projects Completed</p>
+        </div>
+        <div class="metric-card">
+            <i class="fas fa-star"></i>
+            <h3>4.9 Star</h3>
+            <p>Google Top Rated</p>
+        </div>
+        <div class="metric-card">
+            <i class="fas fa-award"></i>
+            <h3>Top Ranked</h3>
+            <p>Facebook Wedding Brand</p>
+        </div>
+    </div>
+</section>
+
+<!-- Owners' Talk Section -->
+<section class="owners-section">
+    <h2>The Founders' Journey</h2>
+    <div class="owners-grid">
+        
+        <!-- Owner 1 -->
+        <div class="owner-card">
+            <div class="owner-img-container">
+                <img src="owner1.jpg" alt="Debashis Ghosh">
+            </div>
+            <div class="owner-info">
+                <h3>Debashis Ghosh</h3>
+                <span class="owner-role">Founder & Lead Photographer</span>
+                <p>"Photography isn't just about clicking pictures; it's about freezing raw emotions and real connections. Starting this journey in 2016, my vision for Picxlart was to create a team that treats every couple's story as our own masterpiece."</p>
+            </div>
+        </div>
+
+        <!-- Owner 2 (Placeholder / Co-Founder) -->
+        <div class="owner-card">
+            <div class="owner-img-container">
+                <img src="owner2.jpg" alt="Co-Founder / Partner">
+            </div>
+            <div class="owner-info">
+                <h3>Creative Direction Team</h3>
+                <span class="owner-role">Cinematography & Post-Production</span>
+                <p>"Every wedding has its unique rhythm, colours, and unspoken vows. Our goal behind the lens and at the edit desk is to weave those elements into cinematic poetry that brings back tears of joy even decades later."</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Achievement Marquee Strip -->
+<div class="achievements-marquee-section">
+    <div class="achievements-title">Milestones & Achievements</div>
+    <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="achievement-pill"><i class="fas fa-check-circle"></i><span>Govt. Registered MSME Enterprise (Udyam Reg.)</span></div>
+        <div class="achievement-pill"><i class="fas fa-trophy"></i><span>Over 460+ Successful Luxury Weddings Captured</span></div>
+        <div class="achievement-pill"><i class="fas fa-globe-asia"></i><span>Pan-India Destination Wedding Coverage</span></div>
+        <div class="achievement-pill"><i class="fas fa-heart"></i><span>100% Client Satisfaction & 5-Star Google Rating</span></div>
+        <!-- Set 2 (Duplicated for seamless infinite loop) -->
+        <div class="achievement-pill"><i class="fas fa-check-circle"></i><span>Govt. Registered MSME Enterprise (Udyam Reg.)</span></div>
+        <div class="achievement-pill"><i class="fas fa-trophy"></i><span>Over 460+ Successful Luxury Weddings Captured</span></div>
+        <div class="achievement-pill"><i class="fas fa-globe-asia"></i><span>Pan-India Destination Wedding Coverage</span></div>
+        <div class="achievement-pill"><i class="fas fa-heart"></i><span>100% Client Satisfaction & 5-Star Google Rating</span></div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a> <span class="footer-divider">|</span> <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a> <span class="footer-divider">|</span> <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a> <span class="footer-divider">|</span> <a href="blog">Blog & Stories</a>
+        </div>
+    </div>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
+    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Mobile Menu Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.getElementById('navMenu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+</script>
+</body>
+</html>
