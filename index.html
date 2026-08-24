@@ -46,10 +46,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 99999999; /* সর্বোচ্চ লেয়ারে রাখা হলো */
+        z-index: 99999999;
         opacity: 1;
         visibility: visible;
-        pointer-events: auto; /* ক্লিক নেবে */
+        pointer-events: auto;
         transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
@@ -103,7 +103,6 @@
         to { opacity: 1; transform: scale(1); }
     }
 
-    /* THE GHOST FIX: fade-out হলে pointer-events: none হয়ে যাবে */
     #picxlart-preloader.fade-out {
         opacity: 0;
         visibility: hidden;
@@ -129,13 +128,13 @@
         padding: 20px;
         opacity: 0;
         visibility: hidden;
-        pointer-events: none; /* যখন হাইড থাকবে, কোনো ক্লিক নেবে না */
+        pointer-events: none;
         transition: opacity 0.6s ease, visibility 0.6s ease;
     }
     #popup-overlay.show-popup {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto; /* ওপেন হলে ক্লিক নেবে */
+        pointer-events: auto;
     }
     .popup-content {
         background: #141414;
@@ -239,15 +238,6 @@
         background: #111;
         color: white;
     }
-    .popup-form select:invalid {
-        color: #999;
-    }
-    .popup-form select option[value=""] {
-        color: #999;
-    }
-    .popup-form select option:not([value=""]) {
-        color: white;
-    }
     .popup-form input:focus, 
     .popup-form select:focus {
         border-color: #d4af37;
@@ -291,7 +281,7 @@
         z-index:99999;
         border-bottom:2px solid #d4af37;
         box-shadow:0 4px 25px rgba(0,0,0,.5);
-        overflow:visible !important; /* Fixed dropdown clipping */
+        overflow:visible !important;
     }
 
     .nav-logo img{
@@ -1079,13 +1069,12 @@
             display: none !important; 
         }
 
-        /* Mobile Menu - FINALLY FIXED (Height auto & Golden Bar placed perfectly) */
         .nav-menu {
             position: fixed;
             top: 60px; 
             left: 0;
             width: 100%;
-            height: auto; /* <--- No more 100vh black screen */
+            height: auto;
             background: rgba(13, 13, 13, 0.97) !important;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -1093,11 +1082,11 @@
             justify-content: flex-start;
             align-items: center;
             gap: 0;
-            padding: 15px 0 0 0; /* Padding adjusted to snap the golden bar correctly */
+            padding: 15px 0 0 0;
             transform: translateY(-150%); 
             transition: transform 0.4s ease-in-out;
             z-index: 9999998;
-            border-bottom: 3px solid #d4af37; /* The golden bar will now sit right below the last menu item */
+            border-bottom: 3px solid #d4af37;
             box-shadow: 0 10px 20px rgba(0,0,0,0.6);
             pointer-events: none;
         }
@@ -1122,7 +1111,7 @@
         
         .nav-menu a:last-child {
             border-bottom: none;
-            padding-bottom: 22px; /* Extra padding so text doesn't touch the golden bar */
+            padding-bottom: 22px;
         }
 
         .nav-menu a::after {
@@ -1424,21 +1413,10 @@
             <p>
                 We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
             </p>
-
-            <div id="moreContent" style="display:none;">
-                <p>
-                    From grand weddings and cinematic wedding films to candid photography, pre-wedding shoots, bridal portraits, destination weddings, corporate events, birthdays, rice ceremonies (Annaprashan), baby showers, anniversaries, housewarming celebrations, family functions, school and college events, our experienced team is committed to delivering premium photography and cinematic storytelling tailored to every occasion.
-                </p>
-                <p>
-                    Based in West Bengal, Picxlart proudly serves clients across Kolkata, Serampore, Hooghly, Durgapur, asansol, Siliguri, Kharagpur, and destinations throughout India. Whether your event is close to home or in another state, our team is always ready to travel to capture your story with the same passion and professionalism.
-                </p>
-                <p>
-                    If you are searching for trusted wedding photographers, cinematic wedding films, destination wedding photography, corporate event coverage, birthday photography, rice ceremony photography, or premium event photography anywhere in India, Picxlart is dedicated to transforming your most precious moments into timeless visual stories that will be cherished for generations.
-                </p>
-            </div>
         </div>
 
-        <button id="seeMoreBtn" onclick="toggleWhy()">Read More</button>
+        <!-- UPDATED READ MORE BUTTON LINKED TO about.html -->
+        <a href="about.html"><button id="seeMoreBtn">Read More</button></a>
     </div>
 </section>
 
@@ -1624,14 +1602,11 @@
 </footer>
 
 <script>
-// Premium Preloader Transition Execution Script
 window.addEventListener('load', function() {
     setTimeout(function() {
         const preloader = document.getElementById('picxlart-preloader');
         if (preloader) {
             preloader.classList.add('fade-out');
-            
-            // The Ghost Fix: Completely remove it from DOM after it fades out
             setTimeout(function() {
                 preloader.style.display = 'none';
             }, 1200);
@@ -1639,7 +1614,6 @@ window.addEventListener('load', function() {
     }, 2000);
 });
 
-// Scroll-triggered Popup Modal Script
 let popupShown = false;
 window.addEventListener('scroll', function() {
     if (!popupShown && window.scrollY > 550) { 
@@ -1677,7 +1651,6 @@ function submitPopupEnquiry() {
     closePopup();
 }
 
-// Popup Image Dissolve (Fade) Slideshow Script
 let popupSlideIndex = 0;
 showPopupDissolveSlides();
 
@@ -1694,7 +1667,6 @@ function showPopupDissolveSlides() {
     }
 }
 
-// Hero Slideshow Script
 let slideIndex = 0;
 showSlides();
 
@@ -1742,23 +1714,9 @@ function sendEnquiry() {
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
 }
-
-function toggleWhy(){
-    const content = document.getElementById("moreContent");
-    const btn = document.getElementById("seeMoreBtn");
-
-    if(content.style.display === "none" || content.style.display === ""){
-        content.style.display = "block";
-        btn.innerText = "Show Less";
-    }else{
-        content.style.display = "none";
-        btn.innerText = "Read More";
-    }
-}
 </script>
 
 <script>
-// Mobile Menu Script - 100% Native Link Action Restored
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
