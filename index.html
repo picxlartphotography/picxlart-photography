@@ -1225,6 +1225,17 @@
         .seo-guide-card {
             padding: 30px 20px;
         }
+
+        /* মোবাইল ভিউর জন্য ৫টি স্ট্যাট্স বক্স লেআউট (উপরে ২টি, মাঝে ২টি, নিচে ১টি centered) */
+        .stats-container {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .stat-box.center-last-box {
+            grid-column: span 2 !important;
+            max-width: 50% !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+        }
     }
 
     @media (max-width: 480px) {
@@ -1489,7 +1500,8 @@
             <h3>10+</h3>
             <p>Corporate Events</p>
         </div>
-        <div class="stat-box">
+        <!-- শেষ বক্সে center-last-box ক্লাসটি যোগ করা হয়েছে যাতে মোবাইলে এটি মাঝখানে থাকে -->
+        <div class="stat-box center-last-box">
             <h3>80+</h3>
             <p>Other Events</p>
         </div>
@@ -1661,7 +1673,7 @@ function showPopupDissolveSlides() {
             slides[i].classList.remove("active-slide");  
         }
         popupSlideIndex++;
-        if (popupSlideIndex > slides.length) { popupSlideIndex = 1; }    
+        if (popupSlideIndex > slides.length) { popupSlideIndex = 1; }   
         slides[popupSlideIndex-1].classList.add("active-slide");  
         setTimeout(showPopupDissolveSlides, 3500); 
     }
@@ -1677,7 +1689,7 @@ function showSlides() {
     slides[i].style.display = "none";  
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
+  if (slideIndex > slides.length) {slideIndex = 1}   
   slides[slideIndex-1].style.display = "block";  
   setTimeout(showSlides, 3500); 
 }
@@ -1710,7 +1722,7 @@ function sendEnquiry() {
         extraInfo = `%0A*Programme Details:* ${otherDetails}`;
     }
 
-    const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Shoot:* ${sType}${extraInfo}%0A*Preferred Date:* ${sDate}%0A*My Phone Number:* ${sPhone}%0A%0APlease get back to me with the details.`;
+    const message = `Hello Picxlart! I am looking to book a shoot.%0A%0A*Type of Shoot:* ${sType}${extraInfo}%0A*Preferred Date:* ${sDate}%0A*My Phone Number:* ${sPhone}%0A%0APlease get back to me with the details.;`;
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
 }
@@ -1756,9 +1768,9 @@ document.addEventListener('keydown', function(e){
     if(e.key === 'F12'){ e.preventDefault(); }
 });
 
-const logoLink = document.getElementById('logoLink');
-if(logoLink){
-    logoLink.addEventListener('click', function(){
+const logoLayout = document.getElementById('logoLink');
+if(logoLayout){
+    logoLayout.addEventListener('click', function(){
         const navbar = document.querySelector('.navbar');
         navbar.classList.remove('shine');
         void navbar.offsetWidth;
