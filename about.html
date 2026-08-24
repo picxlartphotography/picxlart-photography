@@ -87,7 +87,7 @@
     }
     .about-story-box p strong { color: #d4af37; }
 
-    /* Metrics / Key Cards Grid */
+    /* Metrics / Key Cards Grid with Full Background Image Design */
     .metrics-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -96,40 +96,62 @@
         margin: 60px auto 0;
     }
     .metric-card {
-        background: #141414;
-        border: 1px solid rgba(212,175,55,0.2);
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(212,175,55,0.3);
         border-radius: 16px;
-        padding: 30px 20px;
+        padding: 50px 20px;
         text-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        overflow: hidden;
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
+    /* পুরো কার্ড জুড়ে ডার্ক ওভারলে যাতে লেখা পরিষ্কারা দেখায় */
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(10, 10, 10, 0.78);
+        z-index: 1;
+        transition: background 0.3s ease;
+    }
+    .metric-card:hover::before {
+        background: rgba(10, 10, 10, 0.65);
+    }
     .metric-card:hover {
         transform: translateY(-6px);
         border-color: #d4af37;
-        box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+        box-shadow: 0 10px 30px rgba(212,175,55,0.3);
     }
-    .metric-card img {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-        margin-bottom: 15px;
+    .metric-card h3, .metric-card p {
+        position: relative;
+        z-index: 2;
     }
     .metric-card h3 {
-        font-size: 24px;
+        font-size: 26px;
         color: #ffffff;
         margin-bottom: 6px;
         font-weight: 700;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
     .metric-card p {
         font-size: 13px;
-        color: #a0a0a0;
+        color: #d4af37;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-weight: 600;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
+
+    /* আলাদা আলাদা ব্যাকগ্রাউন্ড ইমেজ সেট করার ক্লাস */
+    .card-bg-1 { background-image: url('card-bg1.jpg'); }
+    .card-bg-2 { background-image: url('card-bg2.jpg'); }
+    .card-bg-3 { background-image: url('card-bg3.jpg'); }
+    .card-bg-4 { background-image: url('card-bg4.jpg'); }
 
     /* Owners' Talk Section */
     .owners-section {
@@ -293,10 +315,9 @@
 
         .about-story-box { padding: 30px 20px; }
         .metrics-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 15px; }
-        .metric-card { padding: 20px 10px; }
-        .metric-card h3 { font-size: 18px; }
+        .metric-card { padding: 30px 15px; }
+        .metric-card h3 { font-size: 20px; }
         .metric-card p { font-size: 11px; }
-        .metric-card img { width: 36px; height: 36px; margin-bottom: 10px; }
 
         .owners-grid { grid-template-columns: 1fr; }
         .about-hero h1 { font-size: 26px; }
@@ -352,25 +373,21 @@
         </p>
     </div>
 
-    <!-- Key Metrics / Stats Cards with Images -->
+    <!-- Key Metrics / Stats Cards with Full Background Images -->
     <div class="metrics-grid">
-        <div class="metric-card">
-            <img src="card-icon1.png" alt="Experience">
+        <div class="metric-card card-bg-1">
             <h3>10+ Years</h3>
             <p>Industry Experience</p>
         </div>
-        <div class="metric-card">
-            <img src="card-icon2.png" alt="Projects">
+        <div class="metric-card card-bg-2">
             <h3>750+</h3>
             <p>Projects Completed</p>
         </div>
-        <div class="metric-card">
-            <img src="card-icon3.png" alt="Google Top Rated">
+        <div class="metric-card card-bg-3">
             <h3>4.9 Star</h3>
             <p>Google Top Rated</p>
         </div>
-        <div class="metric-card">
-            <img src="card-icon4.png" alt="Top Ranked">
+        <div class="metric-card card-bg-4">
             <h3>Top Ranked</h3>
             <p>Facebook Wedding Brand</p>
         </div>
