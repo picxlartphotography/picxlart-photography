@@ -146,7 +146,7 @@
         font-weight: 600;
     }
 
-    /* Owners' Journey Section (Fixed Uncropped Image Layout) */
+    /* Owners' Journey Section (Auto-Fit Uncropped Layout without Gaps) */
     .owners-section {
         background: #090909;
         border-top: 1px solid rgba(212,175,55,0.15);
@@ -161,12 +161,12 @@
     }
     .founder-row {
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
+        grid-template-columns: auto 1fr;
         gap: 50px;
         align-items: center;
     }
     .founder-row.reverse {
-        grid-template-columns: 1.2fr 1fr;
+        grid-template-columns: 1fr auto;
     }
     .founder-row.reverse .founder-img-box {
         order: 2;
@@ -176,23 +176,19 @@
     }
 
     .founder-img-box {
-        width: 100%;
         background: #141414;
         border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         border: 1px solid rgba(212,175,55,0.25);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
+        display: inline-flex;
     }
     .founder-img-box img {
-        width: 100%;
+        display: block;
+        max-width: 400px;
         height: auto;
-        max-height: 480px;
-        object-fit: contain; /* ইমেজ ক্রপ না হয়ে পুরোটা দেখাবে */
-        border-radius: 10px;
+        object-fit: none; /* কোনো ক্রপ বা রিসাইজ হবে না, ছবি একদম নিখুঁত থাকবে */
+        border-radius: 12px;
         transition: transform 0.6s ease;
     }
     .founder-row:hover .founder-img-box img {
@@ -321,10 +317,14 @@
         .founder-row, .founder-row.reverse {
             grid-template-columns: 1fr !important;
             gap: 25px;
+            justify-items: center;
+            text-align: center;
         }
         .founder-row.reverse .founder-img-box { order: 1; }
         .founder-row.reverse .founder-text-box { order: 2; }
+        .founder-img-box img { max-width: 100%; height: auto; }
         .founder-text-box h3 { font-size: 24px; }
+        .founder-text-box p { text-align: center; }
 
         .about-hero h1 { font-size: 26px; }
         section { padding: 60px 20px; }
@@ -412,7 +412,7 @@
     </div>
 </section>
 
-<!-- Owners' Journey Section (Uncropped Images) -->
+<!-- Owners' Journey Section (Exact Uncropped Image Size Match) -->
 <section class="owners-section">
     <h2>The Founders' Journey</h2>
     <div class="owners-container">
