@@ -618,93 +618,56 @@
         background: #f4d06f;
     }
 
-    /* Premium Album Showcase Section Styles (Rig Biswas Style) */
-    .album-showcase-section {
-        padding: 50px 5% 70px 5%;
+    /* Milestone Style Infinite Marquee Album Strip */
+    .achievements-marquee-section {
+        padding: 50px 0;
         background: #0d0d0d;
-        text-align: center;
-    }
-
-    .album-showcase-title {
-        color: #ffffff;
-        font-size: 34px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        margin-bottom: 8px;
-    }
-
-    .album-showcase-title::after {
-        display: none !important;
-    }
-
-    .album-showcase-title span {
-        color: #d4af37;
-    }
-
-    .album-see-all {
-        color: #d4af37;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-bottom: 45px;
-        transition: color 0.3s ease;
-    }
-
-    .album-see-all:hover {
-        color: #ffffff;
-        text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-    }
-
-    .album-cards-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .album-card-box {
-        background: #161616;
-        border: 1px solid rgba(212, 175, 55, 0.18);
-        border-radius: 16px;
         overflow: hidden;
-        position: relative;
-        aspect-ratio: 4 / 3;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        border-top: 1px solid rgba(212,175,55,0.15);
+        border-bottom: 1px solid rgba(212,175,55,0.15);
+        margin: 30px 0;
     }
-
-    .album-card-box:hover {
-        transform: translateY(-8px);
-        border-color: #d4af37;
-        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+    .achievements-title {
+        text-align: center;
+        color: #d4af37;
+        font-size: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+        font-weight: 600;
     }
-
-    .card-slideshow-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: scrollMarquee 35s linear infinite;
+        gap: 25px;
     }
-
-    .card-slide-img {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .marquee-track:hover { animation-play-state: paused; }
+    
+    .album-marquee-card {
+        background: #141414;
+        border: 1px solid rgba(212,175,55,0.3);
+        border-radius: 14px;
+        overflow: hidden;
+        width: 320px;
+        height: 210px;
+        flex-shrink: 0;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+    .album-marquee-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    .album-marquee-card:hover img {
+        transform: scale(1.05);
     }
 
-    .card-slide-img.active-card-slide {
-        opacity: 1;
-        visibility: visible;
+    @keyframes scrollMarquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
 
     /* Social Ecosystem Section */
@@ -1126,9 +1089,6 @@
         .seo-guide-section h2 {
             font-size: 24px;
         }
-        .album-cards-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-        }
     }
 
     @media(max-width:1024px){
@@ -1316,15 +1276,6 @@
         }
         .seo-guide-card {
             padding: 30px 20px;
-        }
-
-        /* Album Cards Grid responsive for mobile */
-        .album-cards-grid {
-            grid-template-columns: repeat(1, 1fr) !important;
-            gap: 20px;
-        }
-        .album-showcase-title {
-            font-size: 26px;
         }
 
         /* মোবাইল ভিউর জন্য ৫টি স্ট্যাট্স বক্স লেআউট (উপরে ২টি, মাঝে ২টি, নিচে ১টি centered) */
@@ -1532,49 +1483,26 @@
     </div>
 </section>
 
-<!-- NEW ALBUM SHOWCASE SECTION (Inserted right between Why Picxlart and Also Visit Us At) -->
-<section class="album-showcase-section">
-    <h2 class="album-showcase-title">Premium, Hand Crafted & <span>Beautiful.</span></h2>
-    <a href="albums" class="album-see-all">See them all &gt;</a>
-
-    <div class="album-cards-grid">
-        <!-- Card 1 -->
-        <div class="album-card-box">
-            <div class="card-slideshow-container">
-                <img src="album1-1.jpg" alt="Album 1" class="card-slide-img active-card-slide">
-                <img src="album1-2.jpg" alt="Album 1" class="card-slide-img">
-            </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="album-card-box">
-            <div class="card-slideshow-container">
-                <img src="album2-1.jpg" alt="Album 2" class="card-slide-img active-card-slide">
-                <img src="album2-2.jpg" alt="Album 2" class="card-slide-img">
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="album-card-box">
-            <div class="card-slideshow-container">
-                <img src="album3-1.jpg" alt="Album 3" class="card-slide-img active-card-slide">
-                <img src="album3-2.jpg" alt="Album 3" class="card-slide-img">
-            </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="album-card-box">
-            <div class="card-slideshow-container">
-                <img src="album4-1.jpg" alt="Album 4" class="card-slide-img active-card-slide">
-                <img src="album4-2.jpg" alt="Album 4" class="card-slide-img">
-            </div>
-        </div>
-        <!-- Card 5 -->
-        <div class="album-card-box">
-            <div class="card-slideshow-container">
-                <img src="album5-1.jpg" alt="Album 5" class="card-slide-img active-card-slide">
-                <img src="album5-2.jpg" alt="Album 5" class="card-slide-img">
-            </div>
-        </div>
+<!-- NEW INFINITE MARQUEE ALBUM STRIP (Milestone Style Sliding) -->
+<div class="achievements-marquee-section">
+    <div class="achievements-title">Featured Album Stories</div>
+    <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="album-marquee-card"><img src="album1.jpg" alt="Album 1"></div>
+        <div class="album-marquee-card"><img src="album2.jpg" alt="Album 2"></div>
+        <div class="album-marquee-card"><img src="album3.jpg" alt="Album 3"></div>
+        <div class="album-marquee-card"><img src="album4.jpg" alt="Album 4"></div>
+        <div class="album-marquee-card"><img src="album5.jpg" alt="Album 5"></div>
+        <div class="album-marquee-card"><img src="album6.jpg" alt="Album 6"></div>
+        <!-- Set 2 (Duplicated for seamless infinite loop) -->
+        <div class="album-marquee-card"><img src="album1.jpg" alt="Album 1"></div>
+        <div class="album-marquee-card"><img src="album2.jpg" alt="Album 2"></div>
+        <div class="album-marquee-card"><img src="album3.jpg" alt="Album 3"></div>
+        <div class="album-marquee-card"><img src="album4.jpg" alt="Album 4"></div>
+        <div class="album-marquee-card"><img src="album5.jpg" alt="Album 5"></div>
+        <div class="album-marquee-card"><img src="album6.jpg" alt="Album 6"></div>
     </div>
-</section>
+</div>
 
 <h3 class="social-visit-title">Also Visit Us At</h3>
 <div class="social-buttons-container">
@@ -1852,7 +1780,7 @@ function toggleOtherField() {
 }
     
 function sendEnquiry() {
-    const sType = document.getElementById('shootType').value;
+    const sType = document.getElementById('shootType'].value;
     const sDate = document.getElementById('shootDate').value;
     const sPhone = document.getElementById('clientPhone').value;
     const otherDetails = document.getElementById('otherDetails').value;
@@ -1871,26 +1799,6 @@ function sendEnquiry() {
     const whatsappUrl = `https://wa.me/917003521139?text=${message}`;
     window.open(whatsappUrl, '_blank');
 }
-</script>
-
-<!-- Album Cards Auto-playing Slideshow Script -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const cardContainers = document.querySelectorAll('.card-slideshow-container');
-    
-    cardContainers.forEach(container => {
-        let slides = container.querySelectorAll('.card-slide-img');
-        let currentSlide = 0;
-        
-        if (slides.length > 1) {
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active-card-slide');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active-card-slide');
-            }, 3000); // প্রতি ৩ সেকেন্ড পর পর ছবি পরিবর্তন হবে
-        }
-    });
-});
 </script>
 
 <script>
