@@ -143,23 +143,25 @@
         border-bottom: 1px solid rgba(212,175,55,0.2);
     }
     .albums-hero h1 {
-        font-size: 32px;
-        color: #d4af37;
-        letter-spacing: 1.5px;
-        line-height: 1.5;
-        text-transform: uppercase;
+        font-size: 26px;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        line-height: 1.6;
+        text-transform: none;
         margin-bottom: 20px;
         max-width: 1100px;
+        font-weight: 500;
     }
     .albums-hero p {
         font-size: 15px;
-        color: #cccccc;
-        letter-spacing: 0.8px;
+        color: #d6d6d6;
+        letter-spacing: 0.5px;
         line-height: 1.8;
         max-width: 1000px;
+        text-transform: none;
     }
 
-    /* Section Intro Heading (Rig Biswas Style) */
+    /* Section Intro Heading */
     .albums-section-header {
         text-align: center;
         padding: 70px 20px 20px 20px;
@@ -181,7 +183,7 @@
         line-height: 1.3;
     }
 
-    /* Main Albums Grid Section */
+    /* Main Albums Grid Section (Rectangle Format) */
     .albums-section {
         padding: 40px 8% 80px 8%;
         max-width: 1450px;
@@ -202,8 +204,7 @@
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        display: flex;
-        flex-direction: column;
+        aspect-ratio: 16 / 10; /* Changed to Rectangle aspect ratio */
     }
 
     .album-item-card:hover {
@@ -214,7 +215,7 @@
 
     .album-img-wrapper {
         width: 100%;
-        aspect-ratio: 16 / 11;
+        height: 100%;
         overflow: hidden;
         position: relative;
     }
@@ -229,26 +230,6 @@
 
     .album-item-card:hover .album-img-wrapper img {
         transform: scale(1.06);
-    }
-
-    .album-details {
-        padding: 25px;
-        text-align: center;
-        background: #141414;
-    }
-
-    .album-details h3 {
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        letter-spacing: 0.5px;
-    }
-
-    .album-details p {
-        color: #b0b0b0;
-        font-size: 13.5px;
-        letter-spacing: 0.5px;
     }
 
     /* Enterprise Footer */
@@ -321,7 +302,7 @@
             grid-template-columns: 1fr !important;
             gap: 25px;
         }
-        .albums-hero h1 { font-size: 20px; }
+        .albums-hero h1 { font-size: 18px; line-height: 1.5; }
         .albums-hero p { font-size: 13.5px; }
         .albums-section-title { font-size: 24px; }
         .albums-section-intro { font-size: 15px; }
@@ -354,7 +335,7 @@
    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Hero Header with New Description -->
+<!-- Hero Header -->
 <div class="albums-hero">
     <h1>Welcome to our Premium Photobook Collection—a curated showcase of our best, handcrafted wedding albums, featuring an exquisite range of super-premium, original photobooks crafted to preserve your most cherished moments.</h1>
     <p>Explore our wide range of premium wedding albums, beautifully designed by Picxlart Photography, and meticulously handcrafted and manufactured by Canvera—bringing together elegant design, exceptional print quality, and timeless craftsmanship.</p>
@@ -366,175 +347,24 @@
     <div class="albums-section-title">Best Photobooks that Crafting Timeless Stories, Beautifully.</div>
 </div>
 
-<!-- Albums Grid Collection (15 Albums) -->
+<!-- Albums Grid Collection (Rectangle Format, 15 Photos Only) -->
 <section class="albums-section">
     <div class="albums-grid">
-        
-        <!-- Album 1 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album1.jpg" alt="Royal Wedding Album 1">
-            </div>
-            <div class="album-details">
-                <h3>Royal Bengali Wedding</h3>
-                <p>Canvera Premium Ornato Series</p>
-            </div>
-        </div>
-
-        <!-- Album 2 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album2.jpg" alt="Traditional Marriage Album 2">
-            </div>
-            <div class="album-details">
-                <h3>Traditional Vows & Rituals</h3>
-                <p>Handcrafted Indigo Photobook</p>
-            </div>
-        </div>
-
-        <!-- Album 3 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album3.jpg" alt="Reception Album 3">
-            </div>
-            <div class="album-details">
-                <h3>Grand Reception Gala</h3>
-                <p>Metallic Finish Layouts</p>
-            </div>
-        </div>
-
-        <!-- Album 4 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album4.jpg" alt="Pre-Wedding Album 4">
-            </div>
-            <div class="album-details">
-                <h3>Pre-Wedding Cinematic Story</h3>
-                <p>Matte Laminated Folio</p>
-            </div>
-        </div>
-
-        <!-- Album 5 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album5.jpg" alt="Bridal Portrait Album 5">
-            </div>
-            <div class="album-details">
-                <h3>The Royal Bride Portfolio</h3>
-                <p>Canvera Standard Collection</p>
-            </div>
-        </div>
-
-        <!-- Album 6 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album6.jpg" alt="Destination Wedding Album 6">
-            </div>
-            <div class="album-details">
-                <h3>Destination Celebration</h3>
-                <p>Exclusive Velvet Cover</p>
-            </div>
-        </div>
-
-        <!-- Album 7 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album7.jpg" alt="Album 7">
-            </div>
-            <div class="album-details">
-                <h3>Sangeet & Mehendi Night</h3>
-                <p>Vibrant Cultural Memories</p>
-            </div>
-        </div>
-
-        <!-- Album 8 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album8.jpg" alt="Album 8">
-            </div>
-            <div class="album-details">
-                <h3>Aiburobhat & Haldi Rituals</h3>
-                <p>Authentic Heritage Album</p>
-            </div>
-        </div>
-
-        <!-- Album 9 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album9.jpg" alt="Album 9">
-            </div>
-            <div class="album-details">
-                <h3>Timeless Bond & Romance</h3>
-                <p>Fine Art Storybook</p>
-            </div>
-        </div>
-
-        <!-- Album 10 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album10.jpg" alt="Album 10">
-            </div>
-            <div class="album-details">
-                <h3>Candid Expressions</h3>
-                <p>Modern Editorial Design</p>
-            </div>
-        </div>
-
-        <!-- Album 11 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album11.jpg" alt="Album 11">
-            </div>
-            <div class="album-details">
-                <h3>The Grand Celebration</h3>
-                <p>Luxury Leatherette Bound</p>
-            </div>
-        </div>
-
-        <!-- Album 12 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album12.jpg" alt="Album 12">
-            </div>
-            <div class="album-details">
-                <h3>Sacred Fire Vows</h3>
-                <p>Classic Matte Finish</p>
-            </div>
-        </div>
-
-        <!-- Album 13 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album13.jpg" alt="Album 13">
-            </div>
-            <div class="album-details">
-                <h3>Vidai & Emotional Moments</h3>
-                <p>Heirloom Keepsake Edition</p>
-            </div>
-        </div>
-
-        <!-- Album 14 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album14.jpg" alt="Album 14">
-            </div>
-            <div class="album-details">
-                <h3>Bodhuboron & Welcome</h3>
-                <p>Glossy UV Coated Pages</p>
-            </div>
-        </div>
-
-        <!-- Album 15 -->
-        <div class="album-item-card">
-            <div class="album-img-wrapper">
-                <img src="album15.jpg" alt="Album 15">
-            </div>
-            <div class="album-details">
-                <h3>The Ultimate Wedding Saga</h3>
-                <p>Masterpiece Collector's Box</p>
-            </div>
-        </div>
-
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album1.jpg" alt="Album 1"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album2.jpg" alt="Album 2"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album3.jpg" alt="Album 3"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album4.jpg" alt="Album 4"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album5.jpg" alt="Album 5"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album6.jpg" alt="Album 6"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album7.jpg" alt="Album 7"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album8.jpg" alt="Album 8"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album9.jpg" alt="Album 9"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album10.jpg" alt="Album 10"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album11.jpg" alt="Album 11"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album12.jpg" alt="Album 12"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album13.jpg" alt="Album 13"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album14.jpg" alt="Album 14"></div></div>
+        <div class="album-item-card"><div class="album-img-wrapper"><img src="album15.jpg" alt="Album 15"></div></div>
     </div>
 </section>
 
