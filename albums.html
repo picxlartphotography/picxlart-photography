@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Albums Collection | Picxlart</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+    
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        -webkit-user-select:none;
+        user-select:none;
+    }
+
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+    }
+
+    .nav-logo img{
+        height:60px;
+        width:auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-logo img:hover {
+        transform: scale(1.03);
+    }
+        
+    .nav-menu{
+        display:flex;
+        gap:35px;
+        align-items: center;
+    }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after, .nav-menu a.active::after {
+        width: 100%;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active{
+        color:#d4af37;
+        text-shadow:0 0 10px rgba(212,175,55,.3);
+    }
+
+    .nav-social{
+        display:flex;
+        gap:20px;
+    }
+
+    .nav-social a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-size:18px;
+        transition:all .3s ease;
+    }
+
+    .nav-social a:hover{
+        color:#d4af37;
+        transform:translateY(-3px);
+    }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Hero Header */
+    .albums-hero {
+        margin-top: 60px;
+        min-height: 280px;
+        background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 50px 20px;
+        border-bottom: 1px solid rgba(212,175,55,0.2);
+    }
+    .albums-hero h1 {
+        font-size: 38px;
+        color: #d4af37;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    .albums-hero p {
+        font-size: 15px;
+        color: #cccccc;
+        letter-spacing: 1.5px;
+        max-width: 700px;
+    }
+
+    /* Main Albums Grid Section */
+    .albums-section {
+        padding: 80px 8%;
+        max-width: 1450px;
+        margin: 0 auto;
+        flex: 1;
+    }
+
+    .albums-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+    }
+
+    .album-item-card {
+        background: #141414;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .album-item-card:hover {
+        transform: translateY(-8px);
+        border-color: #d4af37;
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
+    }
+
+    .album-img-wrapper {
+        width: 100%;
+        aspect-ratio: 16 / 11;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .album-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    .album-item-card:hover .album-img-wrapper img {
+        transform: scale(1.06);
+    }
+
+    .album-details {
+        padding: 25px;
+        text-align: center;
+        background: #141414;
+    }
+
+    .album-details h3 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .album-details p {
+        color: #b0b0b0;
+        font-size: 13.5px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Enterprise Footer */
+    footer { 
+        text-align: center; 
+        padding: 50px 20px; 
+        background: #080808; 
+        color: #777777; 
+        font-size: 13px; 
+        border-top: 1px solid #1a1a1a; 
+        width: 100%; 
+    }
+    .footer-links-container { 
+        margin-bottom:25px; 
+        line-height: 2.2; 
+    }
+    .footer-links-container a { 
+        color:#d4af37; 
+        text-decoration:none; 
+        font-weight: 500; 
+        transition: color 0.3s ease; 
+    }
+    .footer-links-container a:hover { 
+        color: #ffffff; 
+    }
+    .footer-divider { 
+        color:#333; 
+        margin: 0 8px; 
+    }
+
+    /* Responsive Design */
+    @media(max-width: 1024px) {
+        .albums-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media(max-width: 768px) {
+        .navbar{ padding: 12px 20px !important; flex-wrap: nowrap !important; }
+        .nav-logo img { height: 45px !important; }
+        .menu-toggle { display: block !important; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed !important;
+            top: 60px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            background: rgba(13, 13, 13, 0.97) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 0 !important;
+            padding: 15px 0 0 0 !important;
+            transform: translateY(-150%) !important;
+            transition: transform 0.4s ease-in-out !important;
+            z-index: 9999998 !important;
+            border-bottom: 3px solid #d4af37 !important;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
+            pointer-events: none;
+        }
+        .nav-menu.active { transform: translateY(0) !important; pointer-events: auto !important; }
+        .nav-menu a { font-size: 15px !important; color: #d4af37 !important; width: 100% !important; text-align: center !important; padding: 16px 0 !important; border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; display: block !important; }
+        .nav-menu a::after { display: none !important; }
+        .nav-menu a:last-child { border-bottom: none !important; padding-bottom: 22px !important; }
+
+        .albums-grid {
+            grid-template-columns: 1fr !important;
+            gap: 25px;
+        }
+        .albums-hero h1 { font-size: 26px; }
+        .albums-section { padding: 50px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="/"><img src="logo.png" alt="Picxlart Logo"></a>
+    </div>
+   <div class="nav-menu" id="navMenu">
+       <a href="/">Home</a>
+       <a href="/#gallery">Gallery</a>
+       <a href="films">Films</a>
+       <a href="packages">Packages</a>
+       <a href="reviews">Reviews</a>
+       <a href="/#why">Why Picxlart</a>
+       <a href="blog">Blog</a>
+   </div>
+   <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+   </div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
+</div>
+
+<!-- Hero Header -->
+<div class="albums-hero">
+    <h1>Our Wedding Albums</h1>
+    <p>Handcrafted Masterpieces Preserving Your Timeless Memories</p>
+</div>
+
+<!-- Albums Grid Collection (15 Albums) -->
+<section class="albums-section">
+    <div class="albums-grid">
+        
+        <!-- Album 1 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album1.jpg" alt="Royal Wedding Album 1">
+            </div>
+            <div class="album-details">
+                <h3>Royal Bengali Wedding</h3>
+                <p>Canvera Premium Ornato Series</p>
+            </div>
+        </div>
+
+        <!-- Album 2 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album2.jpg" alt="Traditional Marriage Album 2">
+            </div>
+            <div class="album-details">
+                <h3>Traditional Vows & Rituals</h3>
+                <p>Handcrafted Indigo Photobook</p>
+            </div>
+        </div>
+
+        <!-- Album 3 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album3.jpg" alt="Reception Album 3">
+            </div>
+            <div class="album-details">
+                <h3>Grand Reception Gala</h3>
+                <p>Metallic Finish Layouts</p>
+            </div>
+        </div>
+
+        <!-- Album 4 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album4.jpg" alt="Pre-Wedding Album 4">
+            </div>
+            <div class="album-details">
+                <h3>Pre-Wedding Cinematic Story</h3>
+                <p>Matte Laminated Folio</p>
+            </div>
+        </div>
+
+        <!-- Album 5 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album5.jpg" alt="Bridal Portrait Album 5">
+            </div>
+            <div class="album-details">
+                <h3>The Royal Bride Portfolio</h3>
+                <p>Canvera Standard Collection</p>
+            </div>
+        </div>
+
+        <!-- Album 6 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album6.jpg" alt="Destination Wedding Album 6">
+            </div>
+            <div class="album-details">
+                <h3>Destination Celebration</h3>
+                <p>Exclusive Velvet Cover</p>
+            </div>
+        </div>
+
+        <!-- Album 7 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album7.jpg" alt="Album 7">
+            </div>
+            <div class="album-details">
+                <h3>Sangeet & Mehendi Night</h3>
+                <p>Vibrant Cultural Memories</p>
+            </div>
+        </div>
+
+        <!-- Album 8 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album8.jpg" alt="Album 8">
+            </div>
+            <div class="album-details">
+                <h3>Aiburobhat & Haldi Rituals</h3>
+                <p>Authentic Heritage Album</p>
+            </div>
+        </div>
+
+        <!-- Album 9 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album9.jpg" alt="Album 9">
+            </div>
+            <div class="album-details">
+                <h3>Timeless Bond & Romance</h3>
+                <p>Fine Art Storybook</p>
+            </div>
+        </div>
+
+        <!-- Album 10 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album10.jpg" alt="Album 10">
+            </div>
+            <div class="album-details">
+                <h3>Candid Expressions</h3>
+                <p>Modern Editorial Design</p>
+            </div>
+        </div>
+
+        <!-- Album 11 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album11.jpg" alt="Album 11">
+            </div>
+            <div class="album-details">
+                <h3>The Grand Celebration</h3>
+                <p>Luxury Leatherette Bound</p>
+            </div>
+        </div>
+
+        <!-- Album 12 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album12.jpg" alt="Album 12">
+            </div>
+            <div class="album-details">
+                <h3>Sacred Fire Vows</h3>
+                <p>Classic Matte Finish</p>
+            </div>
+        </div>
+
+        <!-- Album 13 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album13.jpg" alt="Album 13">
+            </div>
+            <div class="album-details">
+                <h3>Vidai & Emotional Moments</h3>
+                <p>Heirloom Keepsake Edition</p>
+            </div>
+        </div>
+
+        <!-- Album 14 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album14.jpg" alt="Album 14">
+            </div>
+            <div class="album-details">
+                <h3>Bodhuboron & Welcome</h3>
+                <p>Glossy UV Coated Pages</p>
+            </div>
+        </div>
+
+        <!-- Album 15 -->
+        <div class="album-item-card">
+            <div class="album-img-wrapper">
+                <img src="album15.jpg" alt="Album 15">
+            </div>
+            <div class="album-details">
+                <h3>The Ultimate Wedding Saga</h3>
+                <p>Masterpiece Collector's Box</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a> <span class="footer-divider">|</span> <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a> <span class="footer-divider">|</span> <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a> <span class="footer-divider">|</span> <a href="blog">Blog & Stories</a>
+        </div>
+    </div>
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span></p>
+    <p style="margin-top:8px;">© 2026 Picxlart Photography & Events Co. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Mobile Menu Script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.getElementById('navMenu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+</script>
+</body>
+</html>
