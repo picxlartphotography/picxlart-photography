@@ -185,16 +185,18 @@
 
     /* Main Albums Grid Section (Rectangle Format) */
     .albums-section {
-        padding: 40px 8% 80px 8%;
-        max-width: 1450px;
+        padding: 40px 6% 80px 6%;
+        max-width: 1600px;
         margin: 0 auto;
         flex: 1;
+        width: 100%;
     }
 
     .albums-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 35px;
+        width: 100%;
     }
 
     .album-item-card {
@@ -204,7 +206,8 @@
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        aspect-ratio: 16 / 10; /* Changed to Rectangle aspect ratio */
+        width: 100%;
+        aspect-ratio: 16 / 10;
     }
 
     .album-item-card:hover {
