@@ -130,18 +130,34 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hero Header */
+    /* Hero Header with album-cover 1.jpg Background */
     .albums-hero {
         margin-top: 60px;
-        background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+        position: relative;
+        background-image: url('album-cover 1.jpg');
+        background-size: cover;
+        background-position: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 70px 10%;
+        padding: 90px 10%;
         border-bottom: 1px solid rgba(212,175,55,0.2);
+        z-index: 1;
     }
+
+    .albums-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(8, 8, 8, 0.88); /* Dark overlay for better text readability */
+        z-index: -1;
+    }
+
     .albums-hero h1 {
         font-size: 26px;
         color: #ffffff;
@@ -309,7 +325,7 @@
         .albums-hero p { font-size: 13.5px; }
         .albums-section-title { font-size: 24px; }
         .albums-section-intro { font-size: 15px; }
-        .albums-hero { padding: 40px 20px; }
+        .albums-hero { padding: 50px 20px; }
         .albums-section { padding: 30px 20px 60px 20px; }
     }
 </style>
@@ -338,7 +354,7 @@
    <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
-<!-- Hero Header -->
+<!-- Hero Header with album-cover 1.jpg Background -->
 <div class="albums-hero">
     <h1>Welcome to our Premium Photobook Collection—a curated showcase of our best, handcrafted wedding albums, featuring an exquisite range of super-premium, original photobooks crafted to preserve your most cherished moments.</h1>
     <p>Explore our wide range of premium wedding albums, beautifully designed by Picxlart Photography, and meticulously handcrafted and manufactured by Canvera—bringing together elegant design, exceptional print quality, and timeless craftsmanship.</p>
