@@ -26,7 +26,7 @@
             padding: 20px;
         }
 
-        /* Background 3-Line Seamless Marquee Animation (Gap completely removed, Height increased) */
+        /* Background 3-Line Seamless Marquee Animation (Synced Equal Speed) */
         .bg-marquee-wrapper {
             position: absolute;
             top: 0;
@@ -35,7 +35,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* কোনো এক্সট্রা গ্যাপ না রেখে স্ক্রিন জুড়ে সমানভাবে ছড়ানোর জন্য */
+            justify-content: space-between;
             overflow: hidden;
             z-index: 1;
             opacity: 0.38;
@@ -48,24 +48,22 @@
             gap: 0; 
         }
 
-        /* Row 1: Right to Left */
+        /* All rows now have the exact same duration for uniform speed */
         .row-1 {
             animation: scrollRightToLeft 35s linear infinite;
         }
 
-        /* Row 2: Left to Right (Opposite) */
         .row-2 {
             animation: scrollLeftToRight 35s linear infinite;
         }
 
-        /* Row 3: Right to Left */
         .row-3 {
             animation: scrollRightToLeft 35s linear infinite;
         }
 
         .marquee-img-box {
             width: 420px;
-            height: 360px; /* ছবির উচ্চতা বাড়িয়ে দেওয়া হয়েছে যাতে মাঝের ফাঁকা জায়গা ঢেকে যায় */
+            height: 360px;
             flex-shrink: 0;
             margin: 0;
             padding: 0;
@@ -96,7 +94,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(11, 11, 13, 0.78); /* হালকা ওভারলে যাতে ছবিগুলো পরিষ্কার বোঝা যায় */
+            background: rgba(11, 11, 13, 0.78);
             z-index: 2;
         }
 
