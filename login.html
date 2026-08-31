@@ -21,11 +21,87 @@
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
-            background-image: radial-gradient(circle at top right, #1a1a24, #0b0b0d);
+            overflow: hidden;
+            position: relative;
             padding: 20px;
         }
 
+        /* Background 3-Line Seamless Marquee Animation */
+        .bg-marquee-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.35;
+        }
+
+        .marquee-row {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+        }
+
+        /* Row 1: Right to Left */
+        .row-1 {
+            animation: scrollRightToLeft 40s linear infinite;
+        }
+
+        /* Row 2: Left to Right (Opposite) */
+        .row-2 {
+            animation: scrollLeftToRight 40s linear infinite;
+        }
+
+        /* Row 3: Right to Left */
+        .row-3 {
+            animation: scrollRightToLeft 40s linear infinite;
+        }
+
+        .marquee-img-box {
+            width: 320px;
+            height: 220px;
+            flex-shrink: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .marquee-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes scrollRightToLeft {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @keyframes scrollLeftToRight {
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        /* Transparent Dark Screen Overlay over Background */
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 13, 0.82);
+            z-index: 2;
+        }
+
         .auth-container {
+            position: relative;
+            z-index: 10;
             background: #121215;
             border: 1px solid #d4af37;
             border-radius: 16px;
@@ -70,9 +146,82 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         #signup-section { display: none; }
+
+        @media (max-width: 480px) {
+            .marquee-img-box { width: 220px; height: 150px; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Background 3-Row Continuous Marquee Animation -->
+    <div class="bg-marquee-wrapper">
+        <!-- Row 1: Right to Left -->
+        <div class="marquee-row row-1">
+            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album3.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album5.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album7.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+            <!-- Duplicated for Infinite Loop -->
+            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album3.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album5.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album7.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 2: Left to Right (Opposite) -->
+        <div class="marquee-row row-2">
+            <div class="marquee-img-box"><img src="album9.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album11.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album13.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+            <!-- Duplicated for Infinite Loop -->
+            <div class="marquee-img-box"><img src="album9.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album11.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album13.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 3: Right to Left -->
+        <div class="marquee-row row-3">
+            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+            <!-- Duplicated for Infinite Loop -->
+            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+        </div>
+    </div>
+
+    <!-- Transparent Dark Screen Overlay -->
+    <div class="bg-overlay"></div>
 
     <div class="auth-container">
         <img src="logo.png" alt="Picxlart Logo">
