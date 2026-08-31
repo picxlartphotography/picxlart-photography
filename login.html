@@ -26,7 +26,7 @@
             padding: 20px;
         }
 
-        /* Background 3-Line Seamless Marquee Animation */
+        /* Background 3-Line Seamless Marquee Animation (Zero Gap Fixed) */
         .bg-marquee-wrapper {
             position: absolute;
             top: 0;
@@ -35,7 +35,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-around; /* লাইনের মাঝের গ্যাপ পারফেক্ট করার জন্য */
             overflow: hidden;
             z-index: 1;
             opacity: 0.35;
@@ -45,26 +45,27 @@
             display: flex;
             width: max-content;
             will-change: transform;
+            gap: 0; /* ছবির মাঝে কোনো গ্যাপ বা প্যাডিং থাকবে না */
         }
 
         /* Row 1: Right to Left */
         .row-1 {
-            animation: scrollRightToLeft 40s linear infinite;
+            animation: scrollRightToLeft 35s linear infinite;
         }
 
         /* Row 2: Left to Right (Opposite) */
         .row-2 {
-            animation: scrollLeftToRight 40s linear infinite;
+            animation: scrollLeftToRight 35s linear infinite;
         }
 
         /* Row 3: Right to Left */
         .row-3 {
-            animation: scrollRightToLeft 40s linear infinite;
+            animation: scrollRightToLeft 35s linear infinite;
         }
 
         .marquee-img-box {
-            width: 320px;
-            height: 220px;
+            width: 350px;
+            height: 230px;
             flex-shrink: 0;
             margin: 0;
             padding: 0;
@@ -154,69 +155,69 @@
 </head>
 <body>
 
-    <!-- Background 3-Row Continuous Marquee Animation -->
+    <!-- Background 3-Row Continuous Marquee Animation (Using login-bg images) -->
     <div class="bg-marquee-wrapper">
         <!-- Row 1: Right to Left -->
         <div class="marquee-row row-1">
-            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album3.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album5.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album7.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg3.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg5.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg7.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg8.jpg" alt=""></div>
             <!-- Duplicated for Infinite Loop -->
-            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album3.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album5.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album7.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg3.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg5.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg7.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg8.jpg" alt=""></div>
         </div>
 
         <!-- Row 2: Left to Right (Opposite) -->
         <div class="marquee-row row-2">
-            <div class="marquee-img-box"><img src="album9.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album11.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album13.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg9.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg11.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg13.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg1.jpg" alt=""></div>
             <!-- Duplicated for Infinite Loop -->
-            <div class="marquee-img-box"><img src="album9.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album11.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album13.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album1.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg9.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg11.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg13.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg1.jpg" alt=""></div>
         </div>
 
         <!-- Row 3: Right to Left -->
         <div class="marquee-row row-3">
-            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg15.jpg" alt=""></div>
             <!-- Duplicated for Infinite Loop -->
-            <div class="marquee-img-box"><img src="album2.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album4.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album6.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album8.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album10.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album12.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album14.jpg" alt=""></div>
-            <div class="marquee-img-box"><img src="album15.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg2.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg4.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg6.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg8.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg10.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg12.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg14.jpg" alt=""></div>
+            <div class="marquee-img-box"><img src="login-bg15.jpg" alt=""></div>
         </div>
     </div>
 
