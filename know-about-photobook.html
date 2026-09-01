@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DLCSJBGXZ6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know About Photobook: Preserving Your Wedding Memories | Picxlart Blog</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+    /* Global Reset & Base Typography */
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+    
+    body{
+        background:#0d0d0d;
+        color:#f5f5f5;
+        overflow-x:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    /* Top Navbar Layout & Styling */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(10,10,10,0.92);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:8px 40px;
+        z-index:99999;
+        border-bottom:2px solid #d4af37;
+        box-shadow:0 4px 25px rgba(0,0,0,.5);
+        overflow:hidden;
+    }
+
+    .nav-logo img{ height:60px; width:auto; transition: transform 0.3s ease; }
+    .nav-logo img:hover { transform: scale(1.03); }
+    .nav-logo a{ -webkit-tap-highlight-color: transparent; }
+        
+    .nav-menu{ display:flex; gap:35px; align-items: center; }
+
+    .nav-menu a{
+        color:#e0e0e0;
+        text-decoration:none;
+        font-weight:500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 4px 0;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; width: 0; height: 1.5px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+    .nav-menu a:hover, .nav-menu a.active{ color:#d4af37; text-shadow:0 0 10px rgba(212,175,55,.3); }
+
+    .nav-social{ display:flex; gap:20px; }
+    .nav-social a{ color:#e0e0e0; text-decoration:none; font-size:18px; transition:all .3s ease; }
+    .nav-social a:hover{ color:#d4af37; transform:translateY(-3px); }
+
+    .menu-toggle {
+        display: none;
+        color: #d4af37;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Article Hero Banner Header */
+    .article-hero {
+        margin-top: 76px;
+        position: relative;
+        height: 420px;
+        background-image: url('blog-banner-6.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .article-hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(13,13,13,1) 100%);
+        z-index: 1;
+    }
+
+    .article-hero-content { position: relative; z-index: 2; max-width: 950px; }
+
+    .article-tag {
+        background: #d4af37;
+        color: #000;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 16px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    .article-hero-content h1 {
+        color: #ffffff;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.35;
+        margin-bottom: 18px;
+    }
+
+    .article-meta {
+        font-size: 13px;
+        color: #cccccc;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-meta i { color: #d4af37; }
+
+    /* Main Article Content Container */
+    .article-container {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 50px 20px 80px;
+        line-height: 1.85;
+        font-size: 15.5px;
+        color: #dddddd;
+    }
+
+    .article-container p { margin-bottom: 22px; font-weight: 300; text-align: justify; }
+
+    .article-container h2 {
+        color: #d4af37;
+        font-size: 25px;
+        font-weight: 600;
+        margin: 40px 0 18px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .article-container h3 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 25px 0 12px;
+    }
+
+    .shop-box {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-left: 4px solid #d4af37;
+        padding: 25px 30px;
+        border-radius: 12px;
+        margin: 30px 0;
+    }
+
+    .picxlart-note {
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px dashed rgba(212, 175, 55, 0.4);
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 15px 0 20px;
+        font-style: italic;
+        font-size: 14px;
+        color: #e0e0e0;
+    }
+
+    /* List styling for papers */
+    .paper-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 20px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .paper-list li {
+        background: rgba(25, 25, 25, 0.8);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .paper-list li i {
+        color: #d4af37;
+        font-size: 12px;
+    }
+
+    .shop-img-natural {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 15px;
+        display: block;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .cta-box {
+        background: linear-gradient(135deg, rgba(30,30,30,0.9), rgba(15,15,15,0.95));
+        border: 1px solid #d4af37;
+        padding: 40px 30px;
+        border-radius: 16px;
+        text-align: center;
+        margin-top: 50px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    }
+
+    .cta-box h3 {
+        color: #d4af37;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .cta-box p {
+        color: #cccccc;
+        font-size: 14px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .cta-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #d4af37, #b38f2d);
+        color: #000;
+        padding: 14px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+        background: linear-gradient(135deg, #f4d06f, #d4af37);
+    }
+
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        background: #080808;
+        color: #777777;
+        font-size: 13px;
+        border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-links-container { margin-bottom:25px; line-height: 2.2; }
+    .footer-links-container a { color:#d4af37; text-decoration:none; font-weight: 500; transition: color 0.3s ease; }
+    .footer-links-container a:hover { color: #ffffff; }
+    .footer-divider { color:#333; margin: 0 8px; }
+
+    @media(max-width:768px){
+        .navbar{
+            padding:12px 24px;
+            flex-wrap: nowrap;
+            overflow: visible !important;
+        }
+
+        .nav-logo img{ height:45px; }
+        .menu-toggle { display: block; }
+        .nav-social { display: none !important; }
+
+        .nav-menu {
+            position: fixed;
+            top: 60px; 
+            left: 0;
+            width: 100%;
+            height: auto; 
+            background: rgba(13, 13, 13, 0.97);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0;
+            padding: 15px 0 0 0;
+            transform: translateY(-150%); 
+            transition: transform 0.4s ease-in-out;
+            z-index: 999998;
+            border-bottom: 3px solid #d4af37; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .nav-menu.active { transform: translateY(0); }
+
+        .nav-menu a {
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #d4af37 !important;
+            width: 100%;
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-menu a:last-child {
+            border-bottom: none;
+            padding-bottom: 22px;
+        }
+
+        .nav-menu a::after { display: none; }
+
+        .article-hero { height: 340px; }
+        .article-hero-content h1 { font-size: 24px; }
+        .article-container { padding: 35px 18px 60px; }
+        .shop-box { padding: 20px 15px; }
+        .paper-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+        .navbar { padding: 12px 20px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar">
+   <div class="nav-logo">
+        <a href="/" id="logoLink">
+            <img src="logo.png" alt="Logo">
+        </a>
+   </div>
+
+   <div class="nav-menu">
+       <a href="/">Home</a>
+       <a href="/#gallery">Gallery</a>
+       <a href="films">Films</a>
+       <a href="packages">Packages</a>
+       <a href="reviews">Reviews</a>
+       <a href="/#why">Why Picxlart</a>
+       <a href="blog" class="active">Blog</a>
+   </div>
+
+   <div class="nav-social">
+        <a href="https://www.facebook.com/picxlart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/picxlartindia/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
+   </div>
+
+   <div class="menu-toggle" id="mobileMenuBtn">☰`</div>
+</div>
+
+<div class="article-hero">
+    <div class="article-hero-content">
+        <span class="article-tag">Wedding Photography Guide</span>
+        <h1>Know About Photobook: Preserving Your Wedding Memories in Timeless Style</h1>
+        <div class="article-meta">
+            <span><i class="far fa-user"></i> By Picxlart Team</span>
+            <span><i class="far fa-calendar-alt"></i> August 2026</span>
+            <span><i class="far fa-clock"></i> 6 Min Read</span>
+        </div>
+    </div>
+</div>
+
+<article class="article-container">
+
+    <p>A wedding is not just a single-day celebration; it is a tapestry of unexpressed emotions, vibrant rituals, tearful goodbyes, and endless laughter. Years down the line, when the rush of daily life takes over, it is these frozen fragments of time that bring back the warmth of your special day. At <strong>Picxlart Photography</strong>, we believe that holding physical memories in your hands—turning the thick, matte pages of a handcrafted photobook—creates an irreplaceable emotional connection that digital screens simply cannot match.</p>
+
+    <p>Preserving memories requires more than just capturing great photos; it demands masterclass curation, exceptional print technology, and archival-grade binding that stands the test of time. Over our years in the industry, we have partnered with the finest album manufacturing brands in the country to ensure your story is told with absolute perfection.</p>
+
+    <h2>Our Curated Photobook Ecosystem</h2>
+    <p>To cater to every distinct vision and budget, we currently work with 4 elite photobook brands, each bringing unique craftsmanship to the table:</p>
+    
+    <div class="shop-box">
+        <h3>1. Canvera (Our Premium Flagship Partner)</h3>
+        <p>Having worked hand-in-hand with Canvera for over 9 years, we are proud to hold prestigious club memberships (ranging between Silver and Bronze tiers) over the past 4 years. Canvera operates primarily in two exclusive segments—Standard and Premium—offering an extensive range of sizes and configurations. Their print quality is undeniably world-class, making them our top recommendation for couples who want uncompromising luxury.</p>
+        <div class="picxlart-note"><strong>The Canvera Advantage:</strong> Unlike other album manufacturers, Canvera includes a complimentary <strong>5-year online view link</strong> for every photobook, allowing you to seamlessly share your digital album with friends and family worldwide without any yearly renewal costs.</div>
+    </div>
+
+    <div class="shop-box">
+        <h3>2. Local Indigo Book</h3>
+        <p>A brilliant blend of local artisanship and fine detailing, Local Indigo books offer robust build quality and sophisticated finishes tailored for traditional Indian celebrations.</p>
+    </div>
+
+    <div class="shop-box">
+        <h3>3. Skylight Photobook</h3>
+        <p>Known for its bright color rendering, clean layout finishes, and lightweight durability, Skylight books bring a fresh, modern artistic flair to wedding storytelling.</p>
+    </div>
+
+    <div class="shop-box">
+        <h3>4. Klick Photobook (Surat)</h3>
+        <p>Our newest trusted addition, Klick Photobook from Surat, brings cutting-edge technological innovations in binding and texture styling straight to your hands.</p>
+    </div>
+
+    <h2>Understanding Page Types & Paper Quality</h2>
+    <p>The texture and finish of your album pages dictate how your photographs feel and age. Canvera offers an extensive variety of page specifications to match your exact aesthetic preferences, while other partner albums offer refined selections tailored for elegance:</p>
+
+    <ul class="paper-list">
+        <li><i class="fas fa-check-circle"></i> Matte Regular</li>
+        <li><i class="fas fa-check-circle"></i> Glossy Regular</li>
+        <li><i class="fas fa-check-circle"></i> Matte Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Glossy Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Lustre Regular</li>
+        <li><i class="fas fa-check-circle"></i> Lustre Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Matte Non-Tearable Regular</li>
+        <li><i class="fas fa-check-circle"></i> Glossy Non-Tearable Regular</li>
+        <li><i class="fas fa-check-circle"></i> Matte Non-Tearable Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Glossy Non-Tearable Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Linen Regular</li>
+        <li><i class="fas fa-check-circle"></i> Linen Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Scuff Free Velvet Regular</li>
+        <li><i class="fas fa-check-circle"></i> Scuff Free Velvet Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Glossy Pearl Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Matte Pearl Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Glossy NT Metallic Regular</li>
+        <li><i class="fas fa-check-circle"></i> Matte NT Metallic Regular</li>
+    </ul>
+
+    <p style="margin-top: 20px;">Whether you prefer a soft, glare-free matte feel, a vibrant and glossy pop of color, or the royal touch of velvet and linen textures, you can choose a paper grade that speaks directly to your taste.</p>
+
+    <h2>Binding Types: Crafting Seamless Spreads</h2>
+    <p>A great album layout deserves flawless binding so that panoramic couple shots across the center fold remain uninterrupted and crease-free:</p>
+    
+    <p><strong>Canvera Binding Options (3 Types):</strong></p>
+    <ul class="paper-list">
+        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Butterfly Binding</li>
+        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Split Full Flat</li>
+        <li><i class="fas fa-circle" style="font-size: 8px;"></i> V-Cut Binding</li>
+    </ul>
+
+    <p><strong>Other Partner Albums Binding Options (2 Types):</strong></p>
+    <ul class="paper-list">
+        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Butterfly Binding</li>
+        <li><i class="fas fa-circle" style="font-size: 8px;"></i> V-Cut Binding</li>
+    </ul>
+
+    <h2>Investment vs. Timeless Value</h2>
+    <p>Because of Canvera's unmatched material standards, archival inks, and complimentary 5-year cloud view service, Canvera albums are positioned slightly higher on the cost spectrum compared to standard regional alternatives. However, the superior print durability, luxurious weight, and emotional peace of mind make it a worthwhile lifetime investment for your most cherished memories.</p>
+
+    <div class="cta-box">
+        <h3>Ready to Turn Your Story Into a Masterpiece?</h3>
+        <p>Let Picxlart Photography craft your wedding legacy into an exquisite, handcrafted photobook that you will treasure for generations.</p>
+        <a href="https://wa.me/917003521139?text=Hello%20Picxlart!%20I%20read%20your%20blog%20about%20Photobooks%20and%20want%20to%20discuss%20my%20booking." target="_blank" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+    </div>
+
+</article>
+
+<footer>
+    <div class="footer-links-container">
+        <div>
+            <a href="faq">FAQ</a>
+            <span class="footer-divider">|</span>
+            <a href="payment">Online Payment</a>
+        </div>
+        <div>
+            <a href="privacy-policy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            <a href="payment-terms">Payment Terms</a>
+        </div>
+        <div>
+            <a href="terms">Terms & Conditions</a>
+            <span class="footer-divider">|</span>
+            <a href="blog">Blog & Stories</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
+        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
+    </p>
+
+    <p style="margin-top:8px;">
+        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+    if(navMenu.classList.contains('active')) {
+        mobileMenuBtn.textContent = '✕';
+    } else {
+        mobileMenuBtn.textContent = '☰';
+    }
+});
+
+const navLinks = document.querySelectorAll('.nav-menu a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+    });
+});
+
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
+    if(e.key === 'F12'){ e.preventDefault(); }
+});
+</script>
+
+</body>
+</html>
