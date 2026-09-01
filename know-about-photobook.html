@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -231,6 +230,63 @@
         font-size: 12px;
     }
 
+    /* Circle Binding Grid Layout */
+    .binding-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: 25px 0;
+    }
+
+    .binding-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 25px 0;
+        max-width: 580px;
+    }
+
+    .binding-card {
+        background: rgba(25, 25, 25, 0.7);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 12px;
+        padding: 20px 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .binding-card:hover {
+        transform: translateY(-5px);
+        border-color: #d4af37;
+    }
+
+    .binding-circle-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #d4af37;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .binding-circle-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .binding-card h4 {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
     .shop-img-natural {
         width: 100%;
         height: auto;
@@ -353,6 +409,7 @@
         .article-container { padding: 35px 18px 60px; }
         .shop-box { padding: 20px 15px; }
         .paper-list { grid-template-columns: 1fr; }
+        .binding-grid-3, .binding-grid-2 { grid-template-columns: 1fr; max-width: 100%; }
     }
 
     @media (max-width: 480px) {
@@ -389,7 +446,7 @@
         <a href="https://www.youtube.com/@Picxlart" target="_blank"><i class="fab fa-youtube"></i></a>
    </div>
 
-   <div class="menu-toggle" id="mobileMenuBtn">☰`</div>
+   <div class="menu-toggle" id="mobileMenuBtn">☰</div>
 </div>
 
 <div class="article-hero">
@@ -399,14 +456,14 @@
         <div class="article-meta">
             <span><i class="far fa-user"></i> By Picxlart Team</span>
             <span><i class="far fa-calendar-alt"></i> August 2026</span>
-            <span><i class="far fa-clock"></i> 6 Min Read</span>
+            <span><i class="far fa-clock"></i> 7 Min Read</span>
         </div>
     </div>
 </div>
 
 <article class="article-container">
 
-    <p>A wedding is not just a single-day celebration; it is a tapestry of unexpressed emotions, vibrant rituals, tearful goodbyes, and endless laughter. Years down the line, when the rush of daily life takes over, it is these frozen fragments of time that bring back the warmth of your special day. At <strong>Picxlart Photography</strong>, we believe that holding physical memories in your hands—turning the thick, matte pages of a handcrafted photobook—creates an irreplaceable emotional connection that digital screens simply cannot match.</p>
+    <p>A wedding is not just a single-day celebration; it is a tapestry of unexpressed emotions, vibrant rituals, tearful goodbyes, and endless laughter. Years down the line, when the rush of daily life takes over, it is these frozen fragments of time that bring back the warmth of your special day. At <strong>Picxlart Photography</strong>, we believe that holding physical memories in your hands—turning the thick, matte or glossy pages of a handcrafted photobook—creates an irreplaceable emotional connection that digital screens simply cannot match.</p>
 
     <p>Preserving memories requires more than just capturing great photos; it demands masterclass curation, exceptional print technology, and archival-grade binding that stands the test of time. Over our years in the industry, we have partnered with the finest album manufacturing brands in the country to ensure your story is told with absolute perfection.</p>
 
@@ -450,8 +507,8 @@
         <li><i class="fas fa-check-circle"></i> Glossy Non-Tearable Heavy</li>
         <li><i class="fas fa-check-circle"></i> Linen Regular</li>
         <li><i class="fas fa-check-circle"></i> Linen Heavy</li>
-        <li><i class="fas fa-check-circle"></i> Scuff Free Velvet Regular</li>
         <li><i class="fas fa-check-circle"></i> Scuff Free Velvet Heavy</li>
+        <li><i class="fas fa-check-circle"></i> Scuff Free Velvet Regular</li>
         <li><i class="fas fa-check-circle"></i> Glossy Pearl Heavy</li>
         <li><i class="fas fa-check-circle"></i> Matte Pearl Heavy</li>
         <li><i class="fas fa-check-circle"></i> Glossy NT Metallic Regular</li>
@@ -463,89 +520,43 @@
     <h2>Binding Types: Crafting Seamless Spreads</h2>
     <p>A great album layout deserves flawless binding so that panoramic couple shots across the center fold remain uninterrupted and crease-free:</p>
     
-    <p><strong>Canvera Binding Options (3 Types):</strong></p>
-    <ul class="paper-list">
-        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Butterfly Binding</li>
-        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Split Full Flat</li>
-        <li><i class="fas fa-circle" style="font-size: 8px;"></i> V-Cut Binding</li>
-    </ul>
+    <h3>Canvera Binding Options (3 Types)</h3>
+    <div class="binding-grid-3">
+        <div class="binding-card">
+            <div class="binding-circle-img">
+                <img src="binding-butterfly.jpg" alt="Butterfly Binding">
+            </div>
+            <h4>Butterfly Binding</h4>
+        </div>
+        <div class="binding-card">
+            <div class="binding-circle-img">
+                <img src="binding-split.jpg" alt="Split Full Flat">
+            </div>
+            <h4>Split Full Flat</h4>
+        </div>
+        <div class="binding-card">
+            <div class="binding-circle-img">
+                <img src="binding-vcut.jpg" alt="V-Cut Binding">
+            </div>
+            <h4>V-Cut Binding</h4>
+        </div>
+    </div>
 
-    <p><strong>Other Partner Albums Binding Options (2 Types):</strong></p>
-    <ul class="paper-list">
-        <li><i class="fas fa-circle" style="font-size: 8px;"></i> Butterfly Binding</li>
-        <li><i class="fas fa-circle" style="font-size: 8px;"></i> V-Cut Binding</li>
-    </ul>
+    <h3 style="margin-top: 35px;">Other Partner Albums Binding Options (2 Types)</h3>
+    <div class="binding-grid-2">
+        <div class="binding-card">
+            <div class="binding-circle-img">
+                <img src="binding-butterfly.jpg" alt="Butterfly Binding">
+            </div>
+            <h4>Butterfly Binding</h4>
+        </div>
+        <div class="binding-card">
+            <div class="binding-circle-img">
+                <img src="binding-vcut.jpg" alt="V-Cut Binding">
+            </div>
+            <h4>V-Cut Binding</h4>
+        </div>
+    </div>
 
     <h2>Investment vs. Timeless Value</h2>
-    <p>Because of Canvera's unmatched material standards, archival inks, and complimentary 5-year cloud view service, Canvera albums are positioned slightly higher on the cost spectrum compared to standard regional alternatives. However, the superior print durability, luxurious weight, and emotional peace of mind make it a worthwhile lifetime investment for your most cherished memories.</p>
-
-    <div class="cta-box">
-        <h3>Ready to Turn Your Story Into a Masterpiece?</h3>
-        <p>Let Picxlart Photography craft your wedding legacy into an exquisite, handcrafted photobook that you will treasure for generations.</p>
-        <a href="https://wa.me/917003521139?text=Hello%20Picxlart!%20I%20read%20your%20blog%20about%20Photobooks%20and%20want%20to%20discuss%20my%20booking." target="_blank" class="cta-btn">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-    </div>
-
-</article>
-
-<footer>
-    <div class="footer-links-container">
-        <div>
-            <a href="faq">FAQ</a>
-            <span class="footer-divider">|</span>
-            <a href="payment">Online Payment</a>
-        </div>
-        <div>
-            <a href="privacy-policy">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            <a href="payment-terms">Payment Terms</a>
-        </div>
-        <div>
-            <a href="terms">Terms & Conditions</a>
-            <span class="footer-divider">|</span>
-            <a href="blog">Blog & Stories</a>
-        </div>
-    </div>
-
-    <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
-        🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
-    </p>
-
-    <p style="margin-top:8px;">
-        © 2026 Picxlart Photography & Events Co. All Rights Reserved.
-    </p>
-</footer>
-
-<script>
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.querySelector('.nav-menu');
-
-mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navMenu.classList.toggle('active');
-    if(navMenu.classList.contains('active')) {
-        mobileMenuBtn.textContent = '✕';
-    } else {
-        mobileMenuBtn.textContent = '☰';
-    }
-});
-
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('keydown', function(e){
-    if(e.ctrlKey && (e.key === 's' || e.key === 'u' || e.key === 'c')){ e.preventDefault(); }
-    if(e.key === 'F12'){ e.preventDefault(); }
-});
-</script>
-
-</body>
-</html>
+    <p>
