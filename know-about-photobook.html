@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -230,7 +231,34 @@
         font-size: 12px;
     }
 
-    /* Larger Circle Binding Layout (No Box/Card Background) */
+    /* Care instructions list styling */
+    .care-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .care-list li {
+        background: rgba(25, 25, 25, 0.8);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .care-list li i {
+        color: #d4af37;
+        font-size: 14px;
+    }
+
+    /* Larger Circle Binding Layout */
     .binding-grid-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -284,15 +312,6 @@
         font-size: 16px;
         font-weight: 600;
         letter-spacing: 0.5px;
-    }
-
-    .shop-img-natural {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin-top: 15px;
-        display: block;
-        border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
     .cta-box {
@@ -558,6 +577,20 @@
             <h4>V-Cut Binding</h4>
         </div>
     </div>
+
+    <h2>Photobook Care & Maintenance Instructions</h2>
+    <p>A premium wedding photobook is an heirloom piece designed to last for generations. To keep your precious memories pristine and protect them from wear and tear, please follow these essential care guidelines:</p>
+
+    <ul class="care-list">
+        <li><i class="fas fa-shield-alt"></i> Keep away from direct sunlight to prevent color fading over time.</li>
+        <li><i class="fas fa-shield-alt"></i> Do not bend and twist the album pages or cover.</li>
+        <li><i class="fas fa-shield-alt"></i> Do not open the book on your lap; always open your photobook on a flat, stable surface.</li>
+        <li><i class="fas fa-shield-alt"></i> Use a soft, dry cloth to clean the photobook cover and pages gently.</li>
+        <li><i class="fas fa-shield-alt"></i> Do not keep it in extreme temperature and high humidity environments.</li>
+        <li><i class="fas fa-shield-alt"></i> Turn the pages using your fingertips carefully to avoid damaging the edges.</li>
+        <li><i class="fas fa-shield-alt"></i> Store your photobook flat inside its bag or a protective cover when not in use.</li>
+        <li><i class="fas fa-shield-alt"></i> Keep a safe distance from fire, water, damp areas, and young children.</li>
+    </ul>
 
     <h2>Investment vs. Timeless Value</h2>
     <p>Because of Canvera's unmatched material standards, archival inks, and complimentary 5-year cloud view service, Canvera albums are positioned slightly higher on the cost spectrum compared to standard regional alternatives. However, the superior print durability, luxurious weight, and emotional peace of mind make it a worthwhile lifetime investment for your most cherished memories. Whichever package or brand you choose, Picxlart ensures your moments are immortalized with absolute grace.</p>
