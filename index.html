@@ -35,74 +35,6 @@
         user-select:none;
     }
 
-    /* Custom Premium Animated Splash Screen Overlay Styles */
-    #picxlart-preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #080808;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999999;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .loader-content {
-        text-align: center;
-        padding: 0 20px;
-        transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .intro-welcome-text {
-        font-size: 20px;
-        font-weight: 400;
-        color: #d4af37;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0;
-        transform: translateY(10px);
-        animation: introFadeInText 1.5s forwards ease-in-out;
-    }
-
-    .intro-brand-logo {
-        max-width: 580px; 
-        width: 100%;
-        height: auto;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        opacity: 0;
-        transform: scale(0.93);
-        animation: introFadeInLogo 1.8s forwards ease-in-out;
-        animation-delay: 0.3s;
-        filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
-    }
-
-    .intro-tagline-text {
-        font-size: 14px;
-        font-weight: 300;
-        color: #dfdfdf;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0;
-        transform: translateY(-10px);
-        animation: introFadeInText 1.8s forwards ease-in-out;
-        animation-delay: 0.6s;
-    }
-
-    @keyframes introFadeInText {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes introFadeInLogo {
-        to { opacity: 1; transform: scale(1); }
-    }
-
     /* Popup Modal Styles */
     #popup-overlay {
         position: fixed;
@@ -555,7 +487,7 @@
         box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    /* New Side-by-Side Why Picxlart Layout with 6 Photos on Left */
+    /* Side-by-Side Why Picxlart Layout with 6 Clean Photos on Left */
     .why-section-container {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -568,16 +500,18 @@
     .why-photos-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 16px;
     }
 
     .why-photo-item {
         width: 100%;
-        height: 200px;
-        border-radius: 12px;
+        height: 195px;
         overflow: hidden;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        border: 2px solid rgba(212, 175, 55, 0.35);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        background: #111;
+        transition: all 0.4s ease;
     }
 
     .why-photo-item img {
@@ -588,11 +522,43 @@
         transition: transform 0.5s ease;
     }
 
-    .why-photo-item:hover img {
-        transform: scale(1.06);
+    .why-photo-item:hover {
+        border-color: #d4af37;
+        transform: translateY(-4px);
     }
 
-    /* Brand Story Box Layout */
+    .why-photo-item:hover img {
+        transform: scale(1.08);
+    }
+
+    /* Brand Story Box Layout with External Header */
+    .why-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .why-external-header {
+        color: #d4af37;
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        text-align: center;
+        position: relative;
+    }
+
+    .why-external-header::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: #d4af37;
+        margin: 10px auto 0;
+    }
+
     .why-card{
         width:100%;
         margin:0;
@@ -605,11 +571,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .why-card h2 {
-        font-size: 28px;
-        margin-bottom: 25px;
     }
 
     .why-card p{
@@ -1253,10 +1214,6 @@
             margin-top: 15px;
         }
 
-        .intro-welcome-text { font-size: 16px; letter-spacing: 3px; }
-        .intro-brand-logo { max-width: 340px; }
-        .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
-
         .why-card{
             padding:35px 20px;
         }
@@ -1268,10 +1225,10 @@
 
         .why-photos-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         .why-photo-item {
-            height: 140px;
+            height: 150px;
         }
 
         .form-inline{
@@ -1362,10 +1319,6 @@
             padding-bottom: 30px; 
         }
 
-        .intro-welcome-text { font-size: 13px; letter-spacing: 2px; }
-        .intro-brand-logo { max-width: 250px; }
-        .intro-tagline-text { font-size: 9px; letter-spacing: 1.5px; }
-
         .hero-brand-logo {
             max-width: 250px;
         }
@@ -1403,15 +1356,6 @@
 </head>
 
 <body>
-
-<!-- Custom Premium Animated Splash Screen Structure -->
-<div id="picxlart-preloader">
-    <div class="loader-content">
-        <div class="intro-welcome-text">Welcome to</div>
-        <img src="hero-logo.png" alt="Picxlart Logo" class="intro-brand-logo">
-        <div class="intro-tagline-text">Timeless Moments, Captured For Eternity</div>
-    </div>
-</div>
 
 <!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
@@ -1530,28 +1474,30 @@
 
 <section id="why">
     <div class="why-section-container">
-        <!-- বাম দিকে ৬টি ছবি (৩ সারি ও ২ কলামের গ্রিড) -->
+        <!-- বাম দিকে ৬টি ছবি (কেন্দ্রীভূত আলাদা নামের ছবি: why-img1.jpg থেকে why-img6.jpg) -->
         <div class="why-photos-grid">
-            <div class="why-photo-item"><img src="album1.jpg" alt="Wedding Moment 1"></div>
-            <div class="why-photo-item"><img src="album2.jpg" alt="Wedding Moment 2"></div>
-            <div class="why-photo-item"><img src="album3.jpg" alt="Wedding Moment 3"></div>
-            <div class="why-photo-item"><img src="album4.jpg" alt="Wedding Moment 4"></div>
-            <div class="why-photo-item"><img src="album5.jpg" alt="Wedding Moment 5"></div>
-            <div class="why-photo-item"><img src="album6.jpg" alt="Wedding Moment 6"></div>
+            <div class="why-photo-item"><img src="why-img1.jpg" alt="Why Picxlart 1"></div>
+            <div class="why-photo-item"><img src="why-img2.jpg" alt="Why Picxlart 2"></div>
+            <div class="why-photo-item"><img src="why-img3.jpg" alt="Why Picxlart 3"></div>
+            <div class="why-photo-item"><img src="why-img4.jpg" alt="Why Picxlart 4"></div>
+            <div class="why-photo-item"><img src="why-img5.jpg" alt="Why Picxlart 5"></div>
+            <div class="why-photo-item"><img src="why-img6.jpg" alt="Why Picxlart 6"></div>
         </div>
 
-        <!-- ডান দিকে 'Why Picxlart' সেকশন -->
-        <div class="card why-card">
-            <h2>Why Picxlart</h2>
-            <div id="whyText">
-                <p>
-                    At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
-                </p>
-                <p>
-                    We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
-                </p>
+        <!-- ডান দিকে 'Why Picxlart' হেডিং বক্সের বাইরে রেখে সেকশন সাজানো -->
+        <div class="why-wrapper">
+            <h2 class="why-external-header">Why Picxlart</h2>
+            <div class="card why-card">
+                <div id="whyText">
+                    <p>
+                        At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
+                    </p>
+                    <p>
+                        We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
+                    </p>
+                </div>
+                <a href="about.html"><button id="seeMoreBtn">Read More</button></a>
             </div>
-            <a href="about.html"><button id="seeMoreBtn">Read More</button></a>
         </div>
     </div>
 </section>
@@ -1585,7 +1531,7 @@
         <a href="albums.html" class="album-marquee-img-box"><img src="album4.jpg" alt="Album 4"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album5.jpg" alt="Album 5"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album6.jpg" alt="Album 6"></a>
-        <a href="albums.html" class="album-marquee-img-box"><img src="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
+        <a href="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album8.jpg" alt="Album 8"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album9.jpg" alt="Album 9"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album10.jpg" alt="Album 10"></a>
@@ -1666,7 +1612,6 @@
             <h3>10+</h3>
             <p>Corporate Events</p>
         </div>
-        <!-- শেষ বক্সে center-last-box ক্লাসটি যোগ করা হয়েছে যাতে মোবাইলে এটি মাঝখানে থাকে -->
         <div class="stat-box center-last-box">
             <h3>80+</h3>
             <p>Other Events</p>
@@ -1676,7 +1621,7 @@
     <div class="contact-layout">
         <div class="map-window">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4527.114987748521!2d88.3314629760027!3d22.758727326121473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events%20Co.!5e1!3m2!1sen!2sin!4v1781028041230!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.038161747864!2d88.3414!3d22.7486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQ0JzU0LjkiTiA4OMKwMjAnMjkuMSJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -1748,7 +1693,6 @@
         <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
     </div>
 
-    <!-- Footer Links with Login Option included -->
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
@@ -1769,7 +1713,6 @@
         </div>
     </div>
 
-    <!-- Govt. MSME Udyam Registration Info -->
     <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
         🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
     </p>
@@ -1780,17 +1723,6 @@
 </footer>
 
 <script>
-window.addEventListener('load', function() {
-    const preloader = document.getElementById('picxlart-preloader');
-    if (preloader) {
-        preloader.style.opacity = '0';
-        preloader.style.visibility = 'hidden';
-        setTimeout(function() {
-            preloader.style.display = 'none';
-        }, 1000);
-    }
-});
-
 let popupShown = false;
 window.addEventListener('scroll', function() {
     if (!popupShown && window.scrollY > 550) { 
@@ -1877,6 +1809,7 @@ function sendEnquiry() {
     const sPhone = document.getElementById('clientPhone').value;
     const otherDetails = document.getElementById('otherDetails').value;
     
+    !sType || !sDate || !sPhone
     if(!sType || !sDate || !sPhone) {
         alert("Please fill all the details before sending!");
         return;
