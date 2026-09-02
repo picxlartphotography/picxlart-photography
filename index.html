@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -458,6 +457,7 @@
         color: #dfdfdf;
         text-transform: uppercase;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        white-space: nowrap; /* ট্যাগলাইন এক লাইনে রাখার জন্য */
     }
 
     .btn{
@@ -1276,10 +1276,22 @@
             margin-top: 6px;
         }
 
+        /* মোবাইল ভিউতে লোগো এবং ট্যাগলাইন এক লাইনে ফিট করার জন্য অপ্টিমাইজড */
+        .hero-brand-logo {
+            max-width: 220px !important;
+        }
+
+        .hero-title span {
+            font-size: 12px !important;
+            letter-spacing: 1px !important;
+        }
+
         .hero-content p {
-            font-size: 14px;
-            letter-spacing: 2px;
-            margin-top: 15px;
+            font-size: 10px !important;
+            letter-spacing: 1px !important;
+            white-space: nowrap !important;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .why-card{
@@ -1293,10 +1305,10 @@
 
         .why-photos-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         .why-photo-item {
-            height: 140px;
+            height: 150px;
         }
 
         .form-inline{
@@ -1388,18 +1400,18 @@
         }
 
         .hero-brand-logo {
-            max-width: 250px;
+            max-width: 200px !important;
         }
 
         .hero-title span {
-            font-size: 15px;
-            letter-spacing: 1px;
-            margin-top: 4px;
+            font-size: 11px !important;
+            letter-spacing: 0.8px !important;
         }
 
         .hero-content p {
-            font-size: 11px;
-            letter-spacing: 1.5px;
+            font-size: 9px !important;
+            letter-spacing: 0.8px !important;
+            white-space: nowrap !important;
             margin-bottom: 25px;
             margin-top: 10px;
         }
@@ -1425,7 +1437,6 @@
 
 <body>
 
-<!-- Custom Premium Animated Splash Screen Structure -->
 <div id="picxlart-preloader">
     <div class="loader-content">
         <div class="intro-welcome-text">Welcome to</div>
@@ -1434,7 +1445,6 @@
     </div>
 </div>
 
-<!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
@@ -1551,7 +1561,6 @@
 
 <section id="why">
     <div class="why-section-container">
-        <!-- বাম দিকে ৬টি ছবি (why-img1.jpg থেকে why-img6.jpg) -->
         <div class="why-photos-grid">
             <div class="why-photo-item"><img src="why-img1.jpg" alt="Why Picxlart 1"></div>
             <div class="why-photo-item"><img src="why-img2.jpg" alt="Why Picxlart 2"></div>
@@ -1561,7 +1570,6 @@
             <div class="why-photo-item"><img src="why-img6.jpg" alt="Why Picxlart 6"></div>
         </div>
 
-        <!-- ডান দিকে 'Why Picxlart' হেডার বক্সের বাইরে রেখে সেকশন সাজানো -->
         <div class="why-wrapper">
             <h2 class="why-external-header">Why Picxlart</h2>
             <div class="card why-card">
@@ -1579,12 +1587,10 @@
     </div>
 </section>
 
-<!-- INFINITE MARQUEE ALBUM STRIP (15 Photos linked to albums.html) -->
 <div class="achievements-marquee-section">
     <div class="marquee-intro-title">The Best Wedding Photographers in Kolkata introducing</div>
     <div class="marquee-main-title">Best Photobooks that Crafting Timeless Stories, Beautifully.</div>
     <div class="marquee-track">
-        <!-- Set 1 (15 Photos) -->
         <a href="albums.html" class="album-marquee-img-box"><img src="album1.jpg" alt="Album 1"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album2.jpg" alt="Album 2"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album3.jpg" alt="Album 3"></a>
@@ -1601,7 +1607,6 @@
         <a href="albums.html" class="album-marquee-img-box"><img src="album14.jpg" alt="Album 14"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album15.jpg" alt="Album 15"></a>
 
-        <!-- Set 2 (Duplicated 15 Photos for seamless infinite loop) -->
         <a href="albums.html" class="album-marquee-img-box"><img src="album1.jpg" alt="Album 1"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album2.jpg" alt="Album 2"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album3.jpg" alt="Album 3"></a>
@@ -1718,7 +1723,6 @@
     </div>
 </section>
 
-<!-- SEO GUIDE SECTION -->
 <section class="seo-guide-section">
     <h2>THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA</h2>
     
