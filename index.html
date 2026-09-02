@@ -35,6 +35,74 @@
         user-select:none;
     }
 
+    /* Custom Premium Animated Splash Screen Overlay Styles */
+    #picxlart-preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #080808;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999999;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .loader-content {
+        text-align: center;
+        padding: 0 20px;
+        transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .intro-welcome-text {
+        font-size: 20px;
+        font-weight: 400;
+        color: #d4af37;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: introFadeInText 1.5s forwards ease-in-out;
+    }
+
+    .intro-brand-logo {
+        max-width: 580px; 
+        width: 100%;
+        height: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        opacity: 0;
+        transform: scale(0.93);
+        animation: introFadeInLogo 1.8s forwards ease-in-out;
+        animation-delay: 0.3s;
+        filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
+    }
+
+    .intro-tagline-text {
+        font-size: 14px;
+        font-weight: 300;
+        color: #dfdfdf;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: introFadeInText 1.8s forwards ease-in-out;
+        animation-delay: 0.6s;
+    }
+
+    @keyframes introFadeInText {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes introFadeInLogo {
+        to { opacity: 1; transform: scale(1); }
+    }
+
     /* Popup Modal Styles */
     #popup-overlay {
         position: fixed;
@@ -1225,10 +1293,10 @@
 
         .why-photos-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
         }
         .why-photo-item {
-            height: 150px;
+            height: 140px;
         }
 
         .form-inline{
@@ -1356,6 +1424,15 @@
 </head>
 
 <body>
+
+<!-- Custom Premium Animated Splash Screen Structure -->
+<div id="picxlart-preloader">
+    <div class="loader-content">
+        <div class="intro-welcome-text">Welcome to</div>
+        <img src="hero-logo.png" alt="Picxlart Logo" class="intro-brand-logo">
+        <div class="intro-tagline-text">Timeless Moments, Captured For Eternity</div>
+    </div>
+</div>
 
 <!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
@@ -1619,7 +1696,6 @@
     </div>
 
     <div class="contact-layout">
-        <!-- শ্রীরামপুর, হুগলির সঠিক গুগল ম্যাপ এমবেড কোড -->
         <div class="map-window">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d349.68874115575113!2d88.33396980004302!3d22.75913382772333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89be96928ade9%3A0xff01b93862ae727f!2sPicxlart%20Photography%20%26%20Events%20Co.!5e1!3m2!1sen!2sin!4v1788380746383!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
@@ -1720,6 +1796,17 @@
 </footer>
 
 <script>
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('picxlart-preloader');
+    if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        setTimeout(function() {
+            preloader.style.display = 'none';
+        }, 1000);
+    }
+});
+
 let popupShown = false;
 window.addEventListener('scroll', function() {
     if (!popupShown && window.scrollY > 550) { 
