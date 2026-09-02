@@ -34,74 +34,6 @@
         user-select:none;
     }
 
-    /* Custom Premium Animated Splash Screen Overlay Styles */
-    #picxlart-preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #080808;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999999;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .loader-content {
-        text-align: center;
-        padding: 0 20px;
-        transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .intro-welcome-text {
-        font-size: 20px;
-        font-weight: 400;
-        color: #d4af37;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0;
-        transform: translateY(10px);
-        animation: introFadeInText 1.5s forwards ease-in-out;
-    }
-
-    .intro-brand-logo {
-        max-width: 580px; 
-        width: 100%;
-        height: auto;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        opacity: 0;
-        transform: scale(0.93);
-        animation: introFadeInLogo 1.8s forwards ease-in-out;
-        animation-delay: 0.3s;
-        filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.6));
-    }
-
-    .intro-tagline-text {
-        font-size: 14px;
-        font-weight: 300;
-        color: #dfdfdf;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0;
-        transform: translateY(-10px);
-        animation: introFadeInText 1.8s forwards ease-in-out;
-        animation-delay: 0.6s;
-    }
-
-    @keyframes introFadeInText {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes introFadeInLogo {
-        to { opacity: 1; transform: scale(1); }
-    }
-
     /* Popup Modal Styles */
     #popup-overlay {
         position: fixed;
@@ -817,39 +749,4 @@
         border-radius: 30px;
         outline: none;
         width: 240px;
-        transition: all 0.3s ease;
-    }
-
-    .form-inline select option {
-        background: #111;
-        color: white;
-    }
-
-    .form-inline input[type="date"] {
-        color-scheme: dark;
-    }
-
-    .form-inline select:focus, 
-    .form-inline input:focus {
-        border-color: #d4af37;
-        box-shadow: 0 0 10px rgba(212,175,55,0.25);
-    }
-
-    .form-inline .send-btn {
-        background: #ffffff;
-        color: #000000;
-        padding: 16px 40px;
-        font-size: 14px;
-        font-weight: 700;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .form-inline .send-btn:hover {
-        background: #d4af37;
-        color: #000000;
-        box-
+        transition: all
