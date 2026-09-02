@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLCSJBGXZ6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -568,17 +567,17 @@
     .why-photos-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 18px;
     }
 
     .why-photo-item {
         width: 100%;
-        height: 190px;
+        height: 200px;
         overflow: hidden;
-        /* ব্রাশ স্ট্রোক বা পেইন্ট কাটিং ইফেক্ট (Organic Paint Brush Edge Shape) */
-        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-        border: 2px solid rgba(212, 175, 55, 0.35);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+        /* নিখুঁত ব্রাশ স্ট্রোক / পেইন্ট স্প্লাটার এজ আকৃতি (Brush-Stroke Polygon Clip-path) */
+        clip-path: polygon(3% 5%, 97% 2%, 100% 96%, 2% 98%);
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
         background: #111;
         transition: all 0.4s ease;
     }
@@ -593,7 +592,7 @@
 
     .why-photo-item:hover {
         border-color: #d4af37;
-        transform: translateY(-4px);
+        transform: translateY(-5px) scale(1.02);
     }
 
     .why-photo-item:hover img {
@@ -1412,7 +1411,6 @@
 
 <body>
 
-<!-- Custom Premium Animated Splash Screen Structure -->
 <div id="picxlart-preloader">
     <div class="loader-content">
         <div class="intro-welcome-text">Welcome to</div>
@@ -1421,7 +1419,6 @@
     </div>
 </div>
 
-<!-- Popup Modal Structure with Multi-Image Dissolve Slideshow & Uniform Inputs -->
 <div id="popup-overlay">
     <div class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
@@ -1538,7 +1535,6 @@
 
 <section id="why">
     <div class="why-section-container">
-        <!-- বাম দিকে ব্রাশ-স্ট্রোক স্টাইলে ৬টি ছবি (৩ সারি ও ২ কলামের গ্রিড) -->
         <div class="why-photos-grid">
             <div class="why-photo-item"><img src="album1.jpg" alt="Wedding Moment 1"></div>
             <div class="why-photo-item"><img src="album2.jpg" alt="Wedding Moment 2"></div>
@@ -1548,7 +1544,6 @@
             <div class="why-photo-item"><img src="album6.jpg" alt="Wedding Moment 6"></div>
         </div>
 
-        <!-- ডান দিকে 'Why Picxlart' সেকশন -->
         <div class="card why-card">
             <h2>Why Picxlart</h2>
             <div id="whyText">
@@ -1564,12 +1559,10 @@
     </div>
 </section>
 
-<!-- INFINITE MARQUEE ALBUM STRIP (15 Photos linked to albums.html) -->
 <div class="achievements-marquee-section">
     <div class="marquee-intro-title">The Best Wedding Photographers in Kolkata introducing</div>
     <div class="marquee-main-title">Best Photobooks that Crafting Timeless Stories, Beautifully.</div>
     <div class="marquee-track">
-        <!-- Set 1 (15 Photos) -->
         <a href="albums.html" class="album-marquee-img-box"><img src="album1.jpg" alt="Album 1"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album2.jpg" alt="Album 2"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album3.jpg" alt="Album 3"></a>
@@ -1586,7 +1579,6 @@
         <a href="albums.html" class="album-marquee-img-box"><img src="album14.jpg" alt="Album 14"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album15.jpg" alt="Album 15"></a>
 
-        <!-- Set 2 (Duplicated 15 Photos for seamless infinite loop) -->
         <a href="albums.html" class="album-marquee-img-box"><img src="album1.jpg" alt="Album 1"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album2.jpg" alt="Album 2"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album3.jpg" alt="Album 3"></a>
@@ -1674,7 +1666,6 @@
             <h3>10+</h3>
             <p>Corporate Events</p>
         </div>
-        <!-- শেষ বক্সে center-last-box ক্লাসটি যোগ করা হয়েছে যাতে মোবাইলে এটি মাঝখানে থাকে -->
         <div class="stat-box center-last-box">
             <h3>80+</h3>
             <p>Other Events</p>
@@ -1708,7 +1699,6 @@
     </div>
 </section>
 
-<!-- SEO GUIDE SECTION -->
 <section class="seo-guide-section">
     <h2>THINGS TO REMEMBER WHILE HIRING THE BEST WEDDING PHOTOGRAPHER IN KOLKATA</h2>
     
@@ -1756,7 +1746,6 @@
         <a href="csr-initiative" class="footer-btn-premium">CSR Initiative</a>
     </div>
 
-    <!-- Footer Links with Login Option included -->
     <div class="footer-links-container">
         <div>
             <a href="faq">FAQ</a>
@@ -1777,7 +1766,6 @@
         </div>
     </div>
 
-    <!-- Govt. MSME Udyam Registration Info -->
     <p style="margin-top:20px; font-size: 12px; color: #a0a0a0; letter-spacing: 0.5px;">
         🇮🇳 Govt. Registered MSME Enterprise | Udyam Reg. No: <span style="color: #d4af37;">UDYAM-WB-07-0069651</span>
     </p>
