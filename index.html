@@ -555,7 +555,7 @@
         box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    /* New Side-by-Side Why Picxlart Layout with 6 Photos on Left */
+    /* Side-by-Side Why Picxlart Layout with 6 Brush-Stroke Photos on Left */
     .why-section-container {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -573,11 +573,14 @@
 
     .why-photo-item {
         width: 100%;
-        height: 200px;
-        border-radius: 12px;
+        height: 190px;
         overflow: hidden;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        /* ব্রাশ স্ট্রোক বা খাসকাটা ঘষা ডিজাইন ইফেক্ট */
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        border: 2px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        background: #111;
+        transition: all 0.4s ease;
     }
 
     .why-photo-item img {
@@ -588,8 +591,13 @@
         transition: transform 0.5s ease;
     }
 
+    .why-photo-item:hover {
+        border-color: #d4af37;
+        transform: translateY(-4px);
+    }
+
     .why-photo-item:hover img {
-        transform: scale(1.06);
+        transform: scale(1.08);
     }
 
     /* Brand Story Box Layout */
@@ -1268,10 +1276,10 @@
 
         .why-photos-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         .why-photo-item {
-            height: 140px;
+            height: 150px;
         }
 
         .form-inline{
@@ -1530,7 +1538,7 @@
 
 <section id="why">
     <div class="why-section-container">
-        <!-- বাম দিকে ৬টি ছবি (৩ সারি ও ২ কলামের গ্রিড) -->
+        <!-- বাম দিকে ব্রাশ-স্ট্রোক স্টাইলে ৬টি ছবি (৩ সারি ও ২ কলামের গ্রিড) -->
         <div class="why-photos-grid">
             <div class="why-photo-item"><img src="album1.jpg" alt="Wedding Moment 1"></div>
             <div class="why-photo-item"><img src="album2.jpg" alt="Wedding Moment 2"></div>
@@ -1585,7 +1593,7 @@
         <a href="albums.html" class="album-marquee-img-box"><img src="album4.jpg" alt="Album 4"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album5.jpg" alt="Album 5"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album6.jpg" alt="Album 6"></a>
-        <a href="albums.html" class="album-marquee-img-box"><img src="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
+        <a href="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album8.jpg" alt="Album 8"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album9.jpg" alt="Album 9"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album10.jpg" alt="Album 10"></a>
