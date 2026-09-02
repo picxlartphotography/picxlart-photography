@@ -555,12 +555,48 @@
         box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
+    /* New Side-by-Side Why Picxlart Layout with 6 Photos on Left */
+    .why-section-container {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 40px;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .why-photos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .why-photo-item {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .why-photo-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .why-photo-item:hover img {
+        transform: scale(1.06);
+    }
+
     /* Brand Story Box Layout */
     .why-card{
         width:100%;
-        max-width:1000px;
-        margin:40px auto 40px;
-        padding:55px 70px;
+        margin:0;
+        padding:45px 40px;
         text-align:center;
         background:#141414;
         border:1px solid rgba(212,175,55,.15);
@@ -571,10 +607,15 @@
         align-items: center;
     }
 
+    .why-card h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
     .why-card p{
-        margin-bottom:22px;
-        font-size:16px;
-        line-height:1.9;
+        margin-bottom:20px;
+        font-size:15px;
+        line-height:1.8;
         color:#e0e0e0;
         text-align: justify;
     }
@@ -586,7 +627,7 @@
 
     #seeMoreBtn{
         display:inline-block;
-        margin-top:15px;
+        margin-top:10px;
         background:#d4af37;
         color:#111;
         border:none;
@@ -1099,6 +1140,10 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
+        .why-section-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
     }
 
     @media(max-width:768px){
@@ -1213,12 +1258,20 @@
         .intro-tagline-text { font-size: 11px; letter-spacing: 2px; }
 
         .why-card{
-            padding:35px 25px;
+            padding:35px 20px;
         }
 
         .why-card p{
             font-size:14px;
             text-align: left;
+        }
+
+        .why-photos-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .why-photo-item {
+            height: 140px;
         }
 
         .form-inline{
@@ -1288,7 +1341,6 @@
             font-size: 16px;
         }
 
-        /* মোবাইল ভিউর জন্য ৫টি স্ট্যাট্স বক্স লেআউট (উপরে ২টি, মাঝে ২টি, নিচে ১টি centered) */
         .stats-container {
             grid-template-columns: repeat(2, 1fr) !important;
         }
@@ -1477,19 +1529,30 @@
 </section>
 
 <section id="why">
-    <h2>Why Picxlart</h2>
-    <div class="card why-card">
-        <div id="whyText">
-            <p>
-                At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
-            </p>
-            <p>
-                We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
-            </p>
+    <div class="why-section-container">
+        <!-- বাম দিকে ৬টি ছবি (৩ সারি ও ২ কলামের গ্রিড) -->
+        <div class="why-photos-grid">
+            <div class="why-photo-item"><img src="album1.jpg" alt="Wedding Moment 1"></div>
+            <div class="why-photo-item"><img src="album2.jpg" alt="Wedding Moment 2"></div>
+            <div class="why-photo-item"><img src="album3.jpg" alt="Wedding Moment 3"></div>
+            <div class="why-photo-item"><img src="album4.jpg" alt="Wedding Moment 4"></div>
+            <div class="why-photo-item"><img src="album5.jpg" alt="Wedding Moment 5"></div>
+            <div class="why-photo-item"><img src="album6.jpg" alt="Wedding Moment 6"></div>
         </div>
 
-        <!-- UPDATED READ MORE BUTTON LINKED TO about.html -->
-        <a href="about.html"><button id="seeMoreBtn">Read More</button></a>
+        <!-- ডান দিকে 'Why Picxlart' সেকশন -->
+        <div class="card why-card">
+            <h2>Why Picxlart</h2>
+            <div id="whyText">
+                <p>
+                    At <strong>Picxlart</strong>, we believe every special moment deserves to be preserved with creativity, passion, and perfection. Since 2016, we have been capturing timeless memories through artistic storytelling, cinematic visuals, and premium-quality photography services.
+                </p>
+                <p>
+                    We specialize in <strong>Wedding Photography, Cinematic Wedding Films, Candid Photography, Pre-Wedding Shoots, Bridal Portraits, and Destination Weddings</strong> across West Bengal and India.
+                </p>
+            </div>
+            <a href="about.html"><button id="seeMoreBtn">Read More</button></a>
+        </div>
     </div>
 </section>
 
@@ -1522,7 +1585,7 @@
         <a href="albums.html" class="album-marquee-img-box"><img src="album4.jpg" alt="Album 4"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album5.jpg" alt="Album 5"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album6.jpg" alt="Album 6"></a>
-        <a href="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
+        <a href="albums.html" class="album-marquee-img-box"><img src="albums.html" class="album-marquee-img-box"><img src="album7.jpg" alt="Album 7"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album8.jpg" alt="Album 8"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album9.jpg" alt="Album 9"></a>
         <a href="albums.html" class="album-marquee-img-box"><img src="album10.jpg" alt="Album 10"></a>
