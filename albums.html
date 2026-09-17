@@ -154,7 +154,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(8, 8, 8, 0.88); /* Dark overlay for better text readability */
+        background: rgba(8, 8, 8, 0.88);
         z-index: -1;
     }
 
@@ -224,6 +224,8 @@
         transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         width: 100%;
         aspect-ratio: 16 / 10;
+        cursor: pointer;
+        position: relative;
     }
 
     .album-item-card:hover {
@@ -249,6 +251,69 @@
 
     .album-item-card:hover .album-img-wrapper img {
         transform: scale(1.06);
+    }
+
+    /* Lightbox Modal Styles for Zooming Image */
+    #lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.92);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999999;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        padding: 30px;
+    }
+
+    #lightbox-modal.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    #lightbox-modal img {
+        max-width: 90%;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 10px;
+        border: 2px solid #d4af37;
+        box-shadow: 0 10px 50px rgba(212, 175, 55, 0.3);
+        transform: scale(0.95);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #lightbox-modal.active img {
+        transform: scale(1);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: #fff;
+        background: rgba(212, 175, 55, 0.2);
+        border: 1px solid #d4af37;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+        background: #d4af37;
+        color: #000;
     }
 
     /* Enterprise Footer */
@@ -369,23 +434,29 @@
 <!-- Albums Grid Collection (Rectangle Format, 15 Photos Only) -->
 <section class="albums-section">
     <div class="albums-grid">
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album1.jpg" alt="Album 1"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album2.jpg" alt="Album 2"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album3.jpg" alt="Album 3"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album4.jpg" alt="Album 4"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album5.jpg" alt="Album 5"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album6.jpg" alt="Album 6"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album7.jpg" alt="Album 7"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album8.jpg" alt="Album 8"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album9.jpg" alt="Album 9"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album10.jpg" alt="Album 10"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album11.jpg" alt="Album 11"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album12.jpg" alt="Album 12"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album13.jpg" alt="Album 13"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album14.jpg" alt="Album 14"></div></div>
-        <div class="album-item-card"><div class="album-img-wrapper"><img src="album15.jpg" alt="Album 15"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album1.jpg')"><div class="album-img-wrapper"><img src="album1.jpg" alt="Album 1"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album2.jpg')"><div class="album-img-wrapper"><img src="album2.jpg" alt="Album 2"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album3.jpg')"><div class="album-img-wrapper"><img src="album3.jpg" alt="Album 3"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album4.jpg')"><div class="album-img-wrapper"><img src="album4.jpg" alt="Album 4"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album5.jpg')"><div class="album-img-wrapper"><img src="album5.jpg" alt="Album 5"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album6.jpg')"><div class="album-img-wrapper"><img src="album6.jpg" alt="Album 6"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album7.jpg')"><div class="album-img-wrapper"><img src="album7.jpg" alt="Album 7"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album8.jpg')"><div class="album-img-wrapper"><img src="album8.jpg" alt="Album 8"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album9.jpg')"><div class="album-img-wrapper"><img src="album9.jpg" alt="Album 9"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album10.jpg')"><div class="album-img-wrapper"><img src="album10.jpg" alt="Album 10"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album11.jpg')"><div class="album-img-wrapper"><img src="album11.jpg" alt="Album 11"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album12.jpg')"><div class="album-img-wrapper"><img src="album12.jpg" alt="Album 12"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album13.jpg')"><div class="album-img-wrapper"><img src="album13.jpg" alt="Album 13"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album14.jpg')"><div class="album-img-wrapper"><img src="album14.jpg" alt="Album 14"></div></div>
+        <div class="album-item-card" onclick="openLightbox('album15.jpg')"><div class="album-img-wrapper"><img src="album15.jpg" alt="Album 15"></div></div>
     </div>
 </section>
+
+<!-- Lightbox Modal Container -->
+<div id="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged Album">
+</div>
 
 <!-- Footer -->
 <footer>
@@ -405,6 +476,19 @@
 </footer>
 
 <script>
+// Lightbox Zoom Functions
+function openLightbox(imageSrc) {
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    modalImg.src = imageSrc;
+    modal.classList.add('active');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    modal.classList.remove('active');
+}
+
 // Mobile Menu Script
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
